@@ -1,6 +1,11 @@
 <?php
 namespace CowboyDuel\ApiBundle\Helper;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
+Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
+Symfony\Component\HttpFoundation\Response;
+
 class HelperQueryHolds
 {
 	private $em;
@@ -49,22 +54,36 @@ class HelperQueryHolds
 		
 		return $rank;
 	}
+	
+	/**
+	 * Get user
+	 * @return CowboyDuel\ApiBundle\Entity\Users
+	 */
 	public function getUser($authen)
 	{
 		return $q = $this->em->createQuery('
 				SELECT u
 				FROM CowboyDuelApiBundle:Users u
 				WHERE u.authen = :authen
-				')->setParameter('authen', $authen)
-				  ->setMaxResults(1)
+				')->setParameter('authen', $authen)		
 				  ->getResult();
 	}
 	
-	public function update_session($authen, $session_id)
+	public function getAuthen($authen)
 	{
-		$entity = getUser($authen);		
-		$entity->setSessionId($session_id);		
-		$em->persist($entity);
-		$em->flush();		
+		return $q = $this->em->createQuery('
+				SELECT u.online
+				FROM CowboyDuelApiBundle:Users u
+				WHERE u.authen = :authen
+				')->setParameter('authen', $authen)				
+				->getResult();
+	}
+	
+	public function get_refresh_content()
+	{
+		return $q = $this->em->createQuery('
+				SELECT s
+				FROM CowboyDuelApiBundle:Settings s			
+				')->getResult();
 	}
 }

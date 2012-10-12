@@ -36,7 +36,7 @@ class UsersController extends Controller
         	
     	$entitiesJson = json_encode($queryHolds->get_top_users());    
     	
-    	file_put_contents('bundles/cowboyduelapi/uploads/script.txt', $entitiesJson, FILE_APPEND);  
+    	file_put_contents('bundles/cowboyduelapi/uploads/scriptJson.txt', $entitiesJson, FILE_APPEND);  
     	$this->_send_stat_s3();    	
      
     	return new Response($entitiesJson);
@@ -52,9 +52,9 @@ class UsersController extends Controller
     	
     	// List Buckets
     	//var_dump($this->s3->listBuckets());
-    	$file = "bundles/cowboyduelapi/uploads/script.txt";
+    	$file = "bundles/cowboyduelapi/uploads/scriptJson.txt";
     	$bucket = "bidoncd";
-    	$uri = "top.json";
+    	$uri = "top.scriptJson";
     	var_dump(S3::putObject(S3::inputFile($file), $bucket, $uri, S3::ACL_PUBLIC_READ));
     }
     

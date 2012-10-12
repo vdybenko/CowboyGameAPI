@@ -16,7 +16,7 @@ local.properties
 app/cache/*
 app/logs/*
 web/bundles/*
-web/bundles/cowboyduelapi/uploads/*
+src/CowboyDuel/ApiBundle/Resources/public/uploads/*
 
 # External tool builders
 .externalToolBuilders/

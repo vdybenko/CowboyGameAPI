@@ -2,13 +2,17 @@
 
 namespace CowboyDuel\ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Response;
+use CowboyDuel\ApiBundle\Entity\Users;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+	Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
+	Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
+	Symfony\Component\HttpFoundation\Response;
+
+use CowboyDuel\ApiBundle\Helper\HelperQueryHolds;
 
 /**
- * @Route("/Api")
+ * @Route("/api")
  */
 class ApiController extends Controller
 {
@@ -26,67 +30,32 @@ class ApiController extends Controller
      */
     public function inAction()
     {
-    	$request = $this->getRequest()->request;    	
-    	
-    	$authen = $request->get('id');
-    	$app_ver= $request->get('app_ver');    	
+    	$request = $this->getRequest()->request;   	
+    	$authen = $request->get('id');    	
     	$session_id = uniqid();
-    	/*
-    	//$this->load->library('validation');
-    	$rules['id'] = "required";
-    	//$this->validation->set_rules($rules);
-    	if ($this->validation->run() == false)
+    	
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$queryHolds = new HelperQueryHolds($em);    	 
+    	 
+    	$entity = $queryHolds->getUser($authen); 	
+    	
+    	if ($authen == null || $entity == null)
     	{
-    		$response['err_code'] = (int) - 4;
-    		$response['err_description'] = 'Invalid value';
-    		echo json_encode($response);
-    		die;
+    		$responseDate['err_code'] = (int) - 4;
+    		$responseDate['err_description'] = 'Invalid value';
+    		return new Response(json_encode($responseDate));
     	}
     	
-    	$this->load->model('musers');
-    	$this->musers->update_session($authen,$session_id);
+    	//Update session
+    	$entity[0]->setSessionId($session_id);
+    	$em->persist($entity[0]);
+    	$em->flush();
+    	    	
+    	$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok') ;
+    	$refresh_content = $queryHolds->get_refresh_content();
+    	$responseDate['refresh_content'] = $refresh_content[0]->getRefreshContent();
+    	$responseDate['session_id'] = $session_id;
     	
-    	$exist = $this->musers->get_a($authen);
-    	if( empty($exist))
-    	{
-    		$this->musers->set_a($authen,time());
-    	}else{
-    		$this->musers->updin_a($authen,'in',time(),1);
-    		if (isset($authen))	$authen_old = null;
-    		if (!isset($app_ver))
-    		{
-    			if (isset($exist['app_ver']))
-    			{
-    				$version=$exist['app_ver'];
-    				$version = substr($version,0,3);
-    				if($version<1.4)
-    				{
-    					$response =array("err_code"=>(int)1,"err_desc"=>'Ok') ;
-    					$refresh_content=$this->musers->get_refresh_content();
-    					$response['refresh_content']=$refresh_content['refresh_content'];
-    					$response['session_id']=$session_id;
-    					echo json_encode($response);
-    					die;
-    				}
-    			}
-    		}else{
-    			$app_ver2=substr($app_ver,0,3);
-    			if($app_ver2<1.4)
-    			{
-    				$response =array("err_code"=>(int)1,"err_desc"=>'Ok') ;
-    				$refresh_content=$this->musers->get_refresh_content();
-    				$response['refresh_content']=$refresh_content['refresh_content'];
-    				$response['session_id']=$session_id;
-    				echo json_encode($response);
-    				die;
-    			}
-    		}
-    	};
-    	
-    	$response =array("err_code"=>(int)1,"err_desc"=>'Ok') ;
-    	$refresh_content=$this->musers->get_refresh_content();
-    	$response['refresh_content']=$refresh_content['refresh_content'];
-    	$response['session_id']=$session_id;
-    	echo json_encode($response);*/
+    	return new Response(json_encode($responseDate));
     }
 }
