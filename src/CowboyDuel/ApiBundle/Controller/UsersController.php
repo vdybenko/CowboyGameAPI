@@ -27,7 +27,7 @@ class UsersController extends Controller
     }
     
     /**
-     * @Route("/top.json")
+     * @Route("/top.json", name="users_top_board")
      */
     public function top_boardAction()
     {
@@ -43,7 +43,7 @@ class UsersController extends Controller
     }
     
     /**
-     * @Route("/_send_stat_s3")
+     * @Route("/_send_stat_s3", name="users_send_stat_s3")
      */
     function _send_stat_s3()
     {   	
@@ -59,7 +59,7 @@ class UsersController extends Controller
     }
     
     /**
-     * @Route("/top_rank_on_interspace")
+     * @Route("/top_rank_on_interspace", name="users_top_rank_on_interspace")
      */
     public function topRankOnInterspaceAction()
     {

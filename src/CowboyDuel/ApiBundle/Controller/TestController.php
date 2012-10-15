@@ -18,15 +18,15 @@ class TestController extends Controller
 {
     /**
      * @Route("/")
-     * 
+     * @Template()
      */
     public function indexAction()
     {
-        return new Response("Test");
+        return array();
     }
     
     /**
-     * @Route("/registration")
+     * @Route("/registration", name="test_registration")
      * @Template()
      */
     public function registrationAction()

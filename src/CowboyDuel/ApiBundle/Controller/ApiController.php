@@ -26,7 +26,7 @@ class ApiController extends Controller
     }
     
     /**
-     * @Route("/authorization")
+     * @Route("/authorization", name="api_authorization")
      */
     public function authorizationAction()
     {
@@ -279,6 +279,14 @@ class ApiController extends Controller
     						  'bigest_win' => $bigest_win, 'remove_ads' => $remove_ads
     		   				 );    		
     	return new Response(json_encode($responseDate));
+    }
+    
+    /**
+     * @Route("/duels", name="api_duels")
+     */
+    public function duelsAction()
+    {
+    	
     }
     
 }
