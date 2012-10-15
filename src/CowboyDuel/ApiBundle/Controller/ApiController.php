@@ -286,7 +286,21 @@ class ApiController extends Controller
      */
     public function duelsAction()
     {
+    	$request = $this->getRequest()->request;
     	
+    	$duels 		= $request->get('duels');
+    	$app_ver 	= $request->get('app_ver');
+    	$session_id = $request->get('session_id');
+    	$authen 	= $request->get('authentification');    	
+    	$device_name	= $request->get('device_name');
+    	$system_name 	= $request->get('system_name');
+    	$system_version = $request->get('system_version');
+    	
+    	$duels_obj = json_decode($duels);
+    	
+    	print_r($duels_obj);
+    	
+    	return new Response();
     }
     
 }

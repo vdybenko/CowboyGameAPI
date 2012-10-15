@@ -39,4 +39,13 @@ class TestController extends Controller
 				'form'     => $form->createView(),
 		);	
     }
+    
+    /**
+     * @Route("/duels", name="test_duels")
+     * @Template()
+     */
+    public function duelsAction()
+    {
+    	return array();
+    }
 }
