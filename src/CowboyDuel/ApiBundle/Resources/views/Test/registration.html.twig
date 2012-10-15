@@ -1,0 +1,23 @@
+{% extends 'CowboyDuelApiBundle::layout.html.twig' %}
+{% block title %}Registration{% endblock %}
+
+
+{% block content %}
+<h1>Registration</h1>
+
+<form action="{{ path('api_registration') }}" method="post">
+    <div>
+		<label for="CowboyDuel_ApiBundle_RegistrationForm_login_authenOld" class="required">authenOld</label>
+		<input type="text" id="CowboyDuel_ApiBundle_RegistrationForm_login_authenOld" name="CowboyDuel_ApiBundle_RegistrationForm_login[authenOld]" required="required" maxlength="50"/>
+	</div>
+	<div>
+		<label for="CowboyDuel_ApiBundle_RegistrationForm_login_authKey" class="required">authentificationv</label>
+		<input type="text" id="CowboyDuel_ApiBundle_RegistrationForm_login_authKey" name="CowboyDuel_ApiBundle_RegistrationForm_login[authKey]" required="required" maxlength="50"/>
+	</div>
+    <br>
+	{{ form_widget(form) }}
+    <p>
+        <button type="submit">Submit</button>
+    </p>
+</form>
+{% endblock %}

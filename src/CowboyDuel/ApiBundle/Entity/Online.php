@@ -17,7 +17,7 @@ class Online
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -38,16 +38,16 @@ class Online
     /**
      * @var string $in
      *
-     * @ORM\Column(name="in", type="string", length=12, nullable=false)
+     * @ORM\Column(name="enterTime", type="string", length=12, nullable=false)
      */
-    private $in;
+    private $enterTime;
 
     /**
      * @var string $out
      *
-     * @ORM\Column(name="out", type="string", length=12, nullable=false)
+     * @ORM\Column(name="exitTime", type="string", length=12, nullable=false)
      */
-    private $out;
+    private $exitTime;
 
 
 
@@ -108,48 +108,48 @@ class Online
     }
 
     /**
-     * Set in
+     * Set enterTime
      *
      * @param string $in
      * @return Online
      */
-    public function setIn($in)
+    public function setEnterTime($enterTime)
     {
-        $this->in = $in;
+        $this->enterTime = $enterTime;
     
         return $this;
     }
 
     /**
-     * Get in
+     * Get enterTime
      *
      * @return string 
      */
-    public function getIn()
+    public function getEnterTime()
     {
         return $this->in;
     }
 
     /**
-     * Set out
+     * Set exitTime
      *
-     * @param string $out
+     * @param string $exitTime
      * @return Online
      */
-    public function setOut($out)
+    public function setExitTime($exitTime)
     {
-        $this->out = $out;
+        $this->exitTime = $exitTime;
     
         return $this;
     }
 
     /**
-     * Get out
+     * Get exitTime
      *
      * @return string 
      */
-    public function getOut()
+    public function getExitTime()
     {
-        return $this->out;
+        return $this->exitTime;
     }
 }

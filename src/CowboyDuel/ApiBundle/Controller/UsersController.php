@@ -59,16 +59,16 @@ class UsersController extends Controller
     }
     
     /**
-     * @Route("/top_rank")
+     * @Route("/top_rank_on_interspace")
      */
-    public function top_rankAction()
+    public function topRankOnInterspaceAction()
     {
     	$request = $this->getRequest()->request;
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryHolds($em);    	   	
     	
     	$authen = $request->get('authentification');    	
-    	$entities = $queryHolds->get_my_rank($authen);
+    	$entities = $queryHolds->get_my_rank_on_interspace($authen);
     	
     	if ($entities == null)
     	{

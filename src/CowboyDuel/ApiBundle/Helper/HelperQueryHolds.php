@@ -1,10 +1,8 @@
 <?php
 namespace CowboyDuel\ApiBundle\Helper;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
-Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
-Symfony\Component\HttpFoundation\Response;
+use CowboyDuel\ApiBundle\Entity\Online,
+	CowboyDuel\ApiBundle\Entity\Users;
 
 class HelperQueryHolds
 {
@@ -25,7 +23,7 @@ class HelperQueryHolds
 			   ->getResult();
 	}
 	
-	public function get_my_rank($authen)
+	public function get_my_rank_on_interspace($authen)
 	{
 		if($authen == null) return null;
 		$q = $this->em->createQuery('
@@ -67,16 +65,48 @@ class HelperQueryHolds
 				WHERE u.authen = :authen
 				')->setParameter('authen', $authen)		
 				  ->getResult();
+	}	
+	
+	public function getUserWithAuthenOld($authen, $authen_old)
+	{
+		if (!$authen_old)  
+			return getUser($authen);
+		 else 
+		 	return getUser($authen_old);	
 	}
 	
-	public function getAuthen($authen)
+	public function setUser($authen, $device_token, $app_ver, $device_name, $nickname, $type, $os, $region, $current_language,
+							$level, $points, $money, $duels_win, $duels_lost, $bigest_win, $remove_ads, $avatar, $age,$home_town,
+							$friends, $facebook_name, $snetwork)
 	{
-		return $q = $this->em->createQuery('
-				SELECT u.online
-				FROM CowboyDuelApiBundle:Users u
-				WHERE u.authen = :authen
-				')->setParameter('authen', $authen)				
-				->getResult();
+		$user = new Users();
+		
+		$user
+			 ->setAuthen($authen)
+			 ->setNickname($nickname)
+			 ->setDeviceToken($device_token)
+			 ->setFirstLogin(time())
+			 ->setMoney($money)
+			 ->setType($type)
+			 ->setOs($os)
+			 ->setRegion($region)
+			 ->setCurrentLanguage($current_language)
+			 ->setLevel($level)
+			 ->setPoints($points)
+			 ->setDuelsWin($duels_win)
+			 ->setDuelsLost($duels_lost)
+			 ->setBigestWin($bigest_win)
+			 ->setRemoveAds($remove_ads)
+			 ->setAvatar($avatar)
+			 ->setAge($age)
+			 ->setHomeTown($home_town)
+			 ->setFriends($friends)
+			 ->setFacebookName($facebook_name)
+			 ->setSnetwork($snetwork)
+		;
+
+		$this->em->persist($user);
+		$this->em->flush();
 	}
 	
 	public function get_refresh_content()
@@ -85,5 +115,58 @@ class HelperQueryHolds
 				SELECT s
 				FROM CowboyDuelApiBundle:Settings s			
 				')->getResult();
+	}
+	
+	public function update_session($authen, $session_id)
+	{
+		$q = $this->em->createQuery("
+				UPDATE CowboyDuelApiBundle:Users u
+				SET u.sessionId='".$session_id."'
+			    WHERE u.authen='".$authen."'"
+		);
+		
+		return $q->getResult();
+	}
+	public function getAuthenOnline($authen)
+	{
+		$q = $this->em->createQuery('
+				SELECT o
+				FROM CowboyDuelApiBundle:Online o
+				WHERE o.authen = :authen
+				')->setParameter('authen', $authen);
+		
+		return $q->getResult();
+	}
+	public function setAuthenOnline($authen, $time)
+	{
+		$online = new Online();
+		
+		$online->setAuthen($authen)
+			   ->setOnline(1)
+			   ->setEnterTime($time)	
+			   ->setExitTime(0);
+		
+		$this->em->persist($online);
+		$this->em->flush();
+	}
+	
+	public function updateAuthenOnline($authen, $field_time, $time, $flag)
+	{
+		$setStr = "";
+		switch ($field_time)
+		{
+			case 'in' : $setStr .= "o.enterTime="; break;
+			case 'out': $setStr .= "o.exitTime="; break;
+		}	
+		
+		//$online->setOut(0);
+	
+		$q = $this->em->createQuery("
+				UPDATE CowboyDuelApiBundle:Online o
+				SET o.online=".$flag.", ".$setStr."'".$time."'
+			    WHERE o.authen='".$authen."'"
+		);
+		
+		return $q->getResult();
 	}
 }
