@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType,
 
 class RegistrationType extends AbstractType
 {
+	public $authentification;
 	/*
 	 * @param FormBuilderInterface $builder The form builder
  	 * @param array                $options The options
@@ -13,7 +14,7 @@ class RegistrationType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-			->add('authen')
+			->add('authentification')
 			//->add('authenOld')
 			//->add('authKey')
 			->add('appVer')

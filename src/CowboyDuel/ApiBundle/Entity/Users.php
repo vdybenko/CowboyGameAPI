@@ -221,7 +221,7 @@ class Users
      * @param string $authen
      * @return Users
      */
-    public function setAuthen($authen)
+    public function setAuthentification($authen)
     {
         $this->authen = $authen;
     
@@ -233,7 +233,7 @@ class Users
      *
      * @return string 
      */
-    public function getAuthen()
+    public function getAuthentification()
     {
         return $this->authen;
     }

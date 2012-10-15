@@ -73,30 +73,30 @@ class ApiController extends Controller
     	$request = $this->getRequest()->request;
     	
     	$authen = $request->get('authentification');    	
-    	if ($request->get('authen_old')) $authen_old = $this->post('authen_old'); 
+    	if ($request->get('authenOld')) $authen_old = $this->post('authenOld'); 
     	  else $authen_old = null;
     	      	
-    	$auth_key = $request->get('auth_key');    	
-    	$app_ver  = $request->get('app_ver');
+    	$auth_key = $request->get('authKey');    	
+    	$app_ver  = $request->get('appVer');
     	$os 	  = $request->get('os');
     	
-    	$device_name = $request->get('device_name');
+    	$device_name = $request->get('deviceName');
     	$region 	 = $request->get('region');
     	
-    	$current_language = $request->get('current_language');
+    	$current_language = $request->get('currentLanguage');
     	$nickname 	= $request->get('nickname');
     	$avatar   	= $request->get('avatar');
     	$age 	    = $request->get('age');
-    	$home_town 	= $request->get('home_town');
+    	$home_town 	= $request->get('homeTown');
     	$friends   	= $request->get('friends');
-    	$facebook_name = $request->get('facebook_name');
+    	$facebook_name = $request->get('facebookName');
     	
     	$level 		= $request->get('level');
     	$points 	= $request->get('points');
-    	$duels_win 	= $request->get('duels_win');
-    	$duels_lost = $request->get('duels_lost');
-    	$bigest_win = $request->get('bigest_win');
-    	$remove_ads = $request->get('remove_ads');
+    	$duels_win 	= $request->get('duelsWin');
+    	$duels_lost = $request->get('duelsLost');
+    	$bigest_win = $request->get('bigestWin');
+    	$remove_ads = $request->get('removeAds');
     	
     	/*$money 		= $request->get('money'); 
     	$device_token 	= $request->get('device_token');
@@ -127,17 +127,17 @@ class ApiController extends Controller
     		{    			
     			$user_info = $queryHolds->getUserWithAuthenOld($authen, $authen_old);
     			
-    			$money 	= $user_info['money'];
-    			$points = $user_info['points'];
-    			$level	= $user_info['level'];
+    			$money 	= $user_info->getMoney();
+				$points	= $user_info->getPoints();
+				$level	= $user_info->getLevel();
     			
-    			$duels_win	= $user_info['duels_win'];
-    			$duels_lost = $user_info['duels_lost'];
-    			$bigest_win	= $user_info['bigest_win'];    				
-    			$device_token = $user_info['device_token'];
+    			$duels_win 	= $user_info->getDuelsWin();
+				$duels_lost = $user_info->getDuelsLost();
+				$bigest_win = $user_info->getBigestWin();
+				$device_token = $user_info->getDeviceToken();
     			
-    			$type 	= $user_info['type'];
-    			$region = $user_info['region'];
+    			$type 	= $user_info->getType();
+    			$region = $user_info->getRegion();;
     			
     			//update info
     			$snetwork='F';
@@ -147,20 +147,20 @@ class ApiController extends Controller
     			//update session    			
     			$queryHolds->update_session($authen, $session_id);
     			
+    			/*
     			$user_achivments = $this->musers->get_achivments($authen);
     			foreach($user_achivments as $achivment)
     			{
     				$response['achivments'][] =$achivment['achivment_id'];
     			}
-    				
-    			//перевірить чи можливо потім прибрати
+    				*/
+    			
     			$responseDate = array('session_id' => $session_id, 'level' => $level, 'name' => $nickname, 'points' => $points,
     							      'money' => $money, 'duels_win' => $duels_win, 'duels_lost' => $duels_lost, 
     							      'bigest_win' => $bigest_win, 'remove_ads' => $remove_ads, 'avatar' => $avatar,
     		   					      'age' => $age, 'home_town' => $home_town, 'friends'=> $friends, 
     		   					  	  'facebook_name' => $facebook_name
-    		   					 	 );
-    			
+    		   					 	 );  			
     			return new Response(json_encode($responseDate));
     		}
     		 else
@@ -175,15 +175,109 @@ class ApiController extends Controller
     		$user_info = $queryHolds->getUser($authen, $authen_old);
     	}
     	
-    	$responseDate = array('session_id' => $session_id, 'level' => $level, 'name' => $nickname, 'points' => $points,
-    						  'money' => $money, 'duels_win' => $duels_win, 'duels_lost' => $duels_lost, 
-    						  'bigest_win' => $bigest_win, 'remove_ads' => $remove_ads, 'avatar' => $avatar,
-    		   				  'age' => $age, 'home_town' => $home_town, 'friends'=> $friends, 
-    		   				  'facebook_name' => $facebook_name
-    		   				 );
+    	if (!isset($session_id))
+    	{
+    		if (empty($user_info['session_id']))
+    		{
+    			$session_id = uniqid();
+    		}
+    		else
+    		{
+    			$session_id=$user_info['session_id'];
     	
+    		}
+    	} 	
     	
+    	if(empty($user_info))
+    	{    			
+    		$money = 200; $points = 0; $duels_win = 0; $duels_lost = 0; $bigest_win = 0;
+    		$word = strtoupper($authen{0});
     		
+    		if ($word=='F' ) { $snetwork='F';}
+    		 else { $snetwork='0'; }    	
+    	
+    		$queryHolds->setUser($authen, $app_ver, $device_name, $nickname, $os,$region,
+    		 					 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
+    		 					 $remove_ads, $avatar, $age,$home_town, $friends, $facebook_name, $snetwork);
+    		
+    		//send email
+    		/*	
+    		$this->load->library('email');
+    		$this->email->from('info@webkate.com', 'Cowboy');
+    		$this->email->to('dybenko@webkate.com');
+    		$list = array('taras@webkate.com', 'gordiychuk@webkate.com', 'sobol@webkate.com');
+    		$this->email->cc($list);
+    			
+    		$this->email->subject('Cowboy New User');
+    		$this->email->message(print_r($_POST, 1));
+    		$this->email->send();*/
+    	
+    	}
+    	else
+    	{    	
+    		$user_info = $user_info[0];
+    		$money 	= $user_info->getMoney();
+			$points	= $user_info->getPoints();
+			$level	= $user_info->getLevel();
+			$duels_win 	= $user_info->getDuelsWin();
+			$duels_lost = $user_info->getDuelsLost();
+			$bigest_win = $user_info->getBigestWin();
+			$device_token = $user_info->getDeviceToken();
+			$device_name  = $user_info->getDeviceName();
+			$app_ver = $user_info->getAppVer();
+			$type 	 = $user_info->getType();
+			$os 	 = $user_info->getOs();
+			$region  = $user_info->getRegion();
+			$current_language = $user_info->getCurrentLanguage();
+			$nickname 	= $user_info->getNickname();
+			$remove_ads = $user_info->getRemoveAds();
+			$avatar 	= $user_info->getAge();
+			$age 		= $user_info->getAge();
+			$home_town  = $user_info->getHomeTown();
+			$friends	= $user_info->getFriends();
+			$facebook_name = $user_info->getFacebookName();
+    		
+    		if (isset($change_nick))
+    		{
+    			$authen = $request->get('authentification');
+    			$auth_key = $request->get('authKey');
+    			$app_ver  = $request->get('appVer');
+    			$os 	  = $request->get('os');
+    			 
+    			$device_name = $request->get('devicename');
+    			$region 	 = $request->get('region');
+    			 
+    			$current_language = $request->get('currentLanguage');
+    			$nickname 	= $request->get('nickname');
+    			$avatar   	= $request->get('avatar');
+    			$age 	    = $request->get('age');
+    			$home_town 	= $request->get('homeTown');
+    			$friends   	= $request->get('friends');
+    			$facebook_name = $request->get('facebookName');
+    			 
+    			$level 		= $request->get('level');
+    			$points 	= $request->get('points');
+    			$duels_win 	= $request->get('duelsWin');
+    			$duels_lost = $request->get('duelsLost');
+    			$bigest_win = $request->get('bigestWin');
+    			$remove_ads = $request->get('removeAds');
+    		
+    			$word = strtoupper($authen{0});
+    			if ($word=='F' ) { $snetwork='F'; }
+    			 else { $snetwork='0'; }
+    		
+    			$queryHolds->setUserInfo($authen, $app_ver, $device_name, $nickname, $type, $os,$region,
+    			 						 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
+    			 						 $remove_ads, $avatar, $age,$home_town, $friends, $facebook_name, $snetwork);
+    		}
+    	
+    	}
+    	
+    	$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');    	
+    	$responseDate += array('session_id' => $session_id, 'avatar' => $avatar, 'level' => $level, 'name' => $nickname,
+    						  'points' => $points, 'money' => $money, 'duels_win' => $duels_win, 'duels_lost' => $duels_lost, 
+    						  'bigest_win' => $bigest_win, 'remove_ads' => $remove_ads
+    		   				 );    		
     	return new Response(json_encode($responseDate));
     }
     

@@ -59,12 +59,13 @@ class HelperQueryHolds
 	 */
 	public function getUser($authen)
 	{
-		return $q = $this->em->createQuery('
+		$q = $this->em->createQuery('
 				SELECT u
 				FROM CowboyDuelApiBundle:Users u
 				WHERE u.authen = :authen
 				')->setParameter('authen', $authen)		
 				  ->getResult();
+		return $q;
 	}	
 	
 	public function getUserWithAuthenOld($authen, $authen_old)
@@ -75,19 +76,21 @@ class HelperQueryHolds
 		 	return getUser($authen_old);	
 	}
 	
-	public function setUser($authen, $device_token, $app_ver, $device_name, $nickname, $type, $os, $region, $current_language,
+	public function setUser($authen, $app_ver, $device_name, $nickname, $os, $region, $current_language,
 							$level, $points, $money, $duels_win, $duels_lost, $bigest_win, $remove_ads, $avatar, $age,$home_town,
 							$friends, $facebook_name, $snetwork)
 	{
 		$user = new Users();
 		
 		$user
-			 ->setAuthen($authen)
+			 ->setAuthentification($authen)
 			 ->setNickname($nickname)
-			 ->setDeviceToken($device_token)
+			 //->setDeviceToken($device_token)
+			 ->setAppVer($app_ver)
+			 ->setDeviceName($device_name)
 			 ->setFirstLogin(time())
 			 ->setMoney($money)
-			 ->setType($type)
+			 //->setType($type)		
 			 ->setOs($os)
 			 ->setRegion($region)
 			 ->setCurrentLanguage($current_language)
@@ -103,8 +106,47 @@ class HelperQueryHolds
 			 ->setFriends($friends)
 			 ->setFacebookName($facebook_name)
 			 ->setSnetwork($snetwork)
+			 
+			 ->setLastLogin(0)
+			 ->setType(0)
+			 ->setDeviceToken("")
+			 ->setDate(0)
+			 ->setSessionId("")
 		;
 
+		$this->em->persist($user);
+		$this->em->flush();
+	}
+	
+	public function setUserInfo($authen, $app_ver, $device_name, $nickname, $type, $os, $region,
+								$current_language, $level, $points, $money, $duels_win, $duels_lost, $bigest_win, 
+								$remove_ads, $avatar, $age, $home_town, $friends, $facebook_name)
+	{
+		$user = new Users();
+	
+		if($authen) $user->setAuthen($authen);
+		if($nickname) $user->setNickname($nickname);
+		if($app_ver) $user->setAppVer($app_ver);
+		if($device_name) $user->setDeviceName($device_name);
+		$user->setFirstLogin(time());
+		//if($device_token) $this->db->set('session_id',$session_id);
+		if($money) $user->setMoney($money);
+		if($type) $user->setType($type);
+		if($os) $user->setOs($os);
+		if($region) $user->setRegion($region);
+		if($current_language) $user->setCurrentLanguage($current_language);
+		if($level) $user->setLevel($level);
+		if($points) $user->setPoints($points);
+		if($duels_win) $user->setDuelsWin($duels_win);
+		if($duels_lost) $user->setDuelsLost($duels_lost);
+		if($bigest_win) $user->setBigestWin($bigest_win);
+		if($remove_ads) $user->setRemoveAds($remove_ads);
+		if($avatar) $user->setAvatar($avatar);
+		if($age) $user->setAge($age);
+		if($home_town) $user->setHomeTown($home_town);
+		if($friends) $user->setFriends($friends);
+		if($facebook_name) $user->setFacebookName($facebook_name);
+	
 		$this->em->persist($user);
 		$this->em->flush();
 	}
