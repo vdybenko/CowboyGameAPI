@@ -152,6 +152,17 @@ class HelperQueryHolds
 		$this->em->flush();
 	}
 	
+	public function setUserMoney($authen, $money)
+	{
+		$q = $this->em->createQuery("
+				UPDATE CowboyDuelApiBundle:Users u
+				SET u.money=$money
+				WHERE u.authen='$authen'"
+		);
+	
+		return $q->getResult();
+	}
+	
 	public function setDuels($authen, $device_name, $system_name, $system_version, $rate_fire, $opponent,
 							 $gps, $lat, $lon, $date)
 	{

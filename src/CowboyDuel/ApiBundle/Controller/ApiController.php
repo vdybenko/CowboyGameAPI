@@ -9,7 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
 	Symfony\Component\HttpFoundation\Response;
 
-use CowboyDuel\ApiBundle\Helper\HelperQueryHolds;
+use CowboyDuel\ApiBundle\Helper\HelperQueryHolds,
+	CowboyDuel\ApiBundle\Helper\HelperTransactionsHolds;
 
 /**
  * @Route("/api")
@@ -335,14 +336,88 @@ class ApiController extends Controller
     					);
     			}
     		}
-    		$response = array("err_code"=>(int)1,"err_desc"=>'Спасибо за письмо') ;
+    		$responseData = array("err_code"=>(int)1,"err_desc"=>'Спасибо за письмо') ;
     	}
     	 else
     	{
-    		$response = array("err_code" => (int)-1,"err_desc"=>'Сессия устарела. Авторизируйтесь') ;
+    		$responseData = array("err_code" => (int)-1,"err_desc"=>'Сессия устарела. Авторизируйтесь') ;
     	}
     	
-    	return new Response(json_encode($response));
+    	return new Response(json_encode($responseData));
+    }
+    
+    /**
+     * @Route("/transactions", name="api_transactions")
+     */
+    public function transactionsAction()
+    {
+    	$request = $this->getRequest()->request;
+    	
+    	$authen 	  = $request->get('authentification');
+    	$session_id   = $request->get('session_id');
+    	$transactions = $request->get('transactions');
+    	
+    	if ($authen == null)
+    	{
+    		$responseDate['err_code'] = (int) - 4;
+    		$responseDate['err_description'] = 'Invalid value';
+    		return new Response(json_encode($responseDate));
+    	}
+    	
+    	$secure_value = substr($session_id, 0, 2);
+    	$s = array();
+    	
+    	for ($i = 0; $i < strlen($secure_value); $i++)
+    	{
+    		$s[] = ord($secure_value[$i]);
+    	}
+    	
+    	$secure_value = implode('', $s);
+    	settype($secure_value, "int");
+    	
+    	$transactions_obj = json_decode($transactions);
+    	
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$queryHolds = new HelperQueryHolds($em);
+    	$transactionsHolds = new HelperTransactionsHolds($em);
+    	
+    	$user_info = $queryHolds->getUser($authen);
+    	$user_info = $user_info[0];
+    	
+    	$sum = $user_info->getMoney();
+    	settype($sum, "int");
+    	
+    	// echo $authen.'##'.$session_id.'##',$user_info['session_id']; die;
+    	if ($session_id == $user_info->getSessionId())
+    	{
+    		if(isset($transactions_obj->{'transactions'}))
+    		{
+    			foreach($transactions_obj->{'transactions'} as $transaction)
+    			{
+    				if(!isset($transaction->{'transaction'}->{'transaction_id'})) 
+    					$transaction->{'transaction'}->{'transaction_id'}=0;
+    					
+    				$transaction->{'transaction'}->{'transaction_id'} = $transaction->{'transaction'}->{'transaction_id'}^$secure_value;
+    				$transaction->{'transaction'}->{'description'} = $transaction->{'transaction'}->{'description'}^$secure_value;
+    					
+    				$transactionsHolds->setTransaction($authen, 
+    												   $transaction->{'transaction'}->{'transaction_id'}, 
+    												   $transaction->{'transaction'}->{'description'});
+    				$sum = $sum + $transaction->{'transaction'}->{'transaction_id'};
+    			}
+    		}
+    			
+    		$queryHolds->setUserMoney($authen, $sum);
+    		
+    		$sum= $sum ^ $secure_value;
+    		$responseData['money'] = $sum;
+    	}
+    	 else
+    	{
+    		$responseData = array("err_code" => (int) - 1, "err_desc" => 'Сессия устарела. Авторизируйтесь') ;
+    	}
+    	
+    	return new Response(json_encode($responseData));
     }
     
 }

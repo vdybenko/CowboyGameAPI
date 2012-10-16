@@ -57,4 +57,30 @@ class TestController extends Controller
     	);
     	return array();
     }
+    
+    /**
+     * @Route("/transactions", name="test_transactions")
+     * @Template()
+     */
+    public function transactionsAction()
+    {
+    	return array();
+    }
+    
+    /**
+     * @Route("/top_rank_on_interspace", name="test_top_rank_on_interspace")
+     * @Template()
+     */
+    public function topRankOnInterspaceAction()
+    {
+    	return array();
+    }
+    /**
+     * @Route("/authorization", name="test_authorization")
+     * @Template()
+     */
+    public function authorizationAction()
+    {
+    	return array();
+    }
 }
