@@ -2,7 +2,8 @@
 namespace CowboyDuel\ApiBundle\Helper;
 
 use CowboyDuel\ApiBundle\Entity\Online,
-	CowboyDuel\ApiBundle\Entity\Users;
+	CowboyDuel\ApiBundle\Entity\Users,
+	CowboyDuel\ApiBundle\Entity\Duels;
 
 class HelperQueryHolds
 {
@@ -83,7 +84,7 @@ class HelperQueryHolds
 		$user = new Users();
 		
 		$user
-			 ->setAuthentification($authen)
+			 ->setAuthen($authen)
 			 ->setNickname($nickname)
 			 //->setDeviceToken($device_token)
 			 ->setAppVer($app_ver)
@@ -148,6 +149,28 @@ class HelperQueryHolds
 		if($facebook_name) $user->setFacebookName($facebook_name);
 	
 		$this->em->persist($user);
+		$this->em->flush();
+	}
+	
+	public function setDuels($authen, $device_name, $system_name, $system_version, $rate_fire, $opponent,
+							 $gps, $lat, $lon, $date)
+	{
+		$duels = new Duels();
+		
+		$duels
+			  ->setAuthen($authen)
+			  ->setDeviceName($device_name)
+			  ->setSystemName($system_name)
+			  ->setSystemVersion($system_version)
+			  ->setRateFire($rate_fire)
+			  ->setOpponent($opponent)
+			  ->setGps($gps)
+			  ->setLat($lat)
+			  ->setLon($lon)
+			  ->setDate($date)
+		;
+		
+		$this->em->persist($duels);
 		$this->em->flush();
 	}
 	

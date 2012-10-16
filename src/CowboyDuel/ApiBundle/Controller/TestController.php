@@ -2,9 +2,11 @@
 
 namespace CowboyDuel\ApiBundle\Controller;
 
-use CowboyDuel\ApiBundle\Entity\Users;
+use CowboyDuel\ApiBundle\Form\DuelsType,
+	CowboyDuel\ApiBundle\Form\RegistrationType;
 
-use CowboyDuel\ApiBundle\Form\RegistrationType;
+use CowboyDuel\ApiBundle\Entity\Users,
+	CowboyDuel\ApiBundle\Entity\Duels;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -46,6 +48,13 @@ class TestController extends Controller
      */
     public function duelsAction()
     {
+    	$entity = new Duels();
+    	$form   = $this->createForm(new DuelsType(), $entity);
+    	 
+    	return array(
+    			'entity'   => $entity,
+    			'form'     => $form->createView(),
+    	);
     	return array();
     }
 }

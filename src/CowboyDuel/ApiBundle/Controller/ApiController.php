@@ -73,7 +73,7 @@ class ApiController extends Controller
     	$request = $this->getRequest()->request;
     	
     	$authen = $request->get('authentification');    	
-    	if ($request->get('authenOld')) $authen_old = $this->post('authenOld'); 
+    	if ($request->get('authenOld')) $authen_old = $request->get('authenOld'); 
     	  else $authen_old = null;
     	      	
     	$auth_key = $request->get('authKey');    	
@@ -289,18 +289,60 @@ class ApiController extends Controller
     	$request = $this->getRequest()->request;
     	
     	$duels 		= $request->get('duels');
+    	$authen 	= $request->get('authentification');
     	$app_ver 	= $request->get('app_ver');
-    	$session_id = $request->get('session_id');
-    	$authen 	= $request->get('authentification');    	
+    	$session_id = $request->get('session_id');    		
     	$device_name	= $request->get('device_name');
     	$system_name 	= $request->get('system_name');
     	$system_version = $request->get('system_version');
     	
     	$duels_obj = json_decode($duels);
     	
+    	if ($authen == null)
+    	{
+    		$responseDate['err_code'] = (int) - 4;
+    		$responseDate['err_description'] = 'Invalid value';
+    		return new Response(json_encode($responseDate));
+    	}
+    	
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$queryHolds = new HelperQueryHolds($em);
+    	
+    	$user_info = $queryHolds->getUser($authen);
+    	$user_info = $user_info[0];
+    	
     	print_r($duels_obj);
     	
-    	return new Response();
+    	if ($session_id == $user_info->getSessionId())
+    	{
+    		if(isset($duels_obj->{'duels'}))
+    		{
+    			foreach($duels_obj->{'duels'} as $duel)
+    			{
+    				if(isset($duel->{'duel'}))    					
+    					$queryHolds->setDuels
+    					(
+    						$authen,
+    						$device_name,
+    						$system_name,
+    						$system_version,
+    						$duel->{'duel'}->{'rate_fire'},
+    						$duel->{'duel'}->{'opponent'},
+    						$duel->{'duel'}->{'GPS'},
+    						$duel->{'duel'}->{'lat'},
+    						$duel->{'duel'}->{'lon'},
+    						$duel->{'duel'}->{'date'}
+    					);
+    			}
+    		}
+    		$response = array("err_code"=>(int)1,"err_desc"=>'Спасибо за письмо') ;
+    	}
+    	 else
+    	{
+    		$response = array("err_code" => (int)-1,"err_desc"=>'Сессия устарела. Авторизируйтесь') ;
+    	}
+    	
+    	return new Response(json_encode($response));
     }
     
 }
