@@ -2,9 +2,8 @@
 
 namespace CowboyDuel\ApiBundle\Controller;
 
-use CowboyDuel\ApiBundle\Libraries\S3;
-
 use CowboyDuel\ApiBundle\Helper\HelperQueryHolds,
+	CowboyDuel\ApiBundle\Helper\HelperMethod,
 	CowboyDuel\ApiBundle\Libraries;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
@@ -37,25 +36,20 @@ class UsersController extends Controller
     	$entitiesJson = json_encode($queryHolds->get_top_users());    
     	
     	file_put_contents('bundles/cowboyduelapi/uploads/scriptJson.txt', $entitiesJson, FILE_APPEND);  
-    	$this->_send_stat_s3();    	
-     
+    	$this->_send_stat_s3();    
+    		
+    	$queryHolds->setSettings_timeLastRefresh(time());
+    	
     	return new Response($entitiesJson);
     }
     
     /**
      * @Route("/_send_stat_s3", name="users_send_stat_s3")
      */
-    function _send_stat_s3()
+    public function _send_stat_s3()
     {   	
-    	S3::$use_ssl = $this->container->getParameter('S3_use_ssl');
-    	S3::setAuth($this->container->getParameter('S3_access_key'), $this->container->getParameter('S3_secret_key'));
-    	
-    	// List Buckets
-    	//var_dump($this->s3->listBuckets());
-    	$file = "bundles/cowboyduelapi/uploads/scriptJson.txt";
-    	$bucket = "bidoncd";
-    	$uri = "top.scriptJson";
-    	var_dump(S3::putObject(S3::inputFile($file), $bucket, $uri, S3::ACL_PUBLIC_READ));
+    	$helperMethod = new HelperMethod();
+    	$helperMethod->sendStatS3($this->container);
     }
     
     /**

@@ -57,3 +57,12 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+services:
+    UpdateWithTime:
+        class: CowboyDuel\ApiBundle\Annotations\Driver\UpdateWithTimeAnnotationDriver
+        tags: [{name: kernel.event_listener, event: kernel.controller, method: onKernelController}]          #Указываем по какому событию вызывать этот сервис
+        arguments: [@annotation_reader] 
+    kernel.listener.UpdateWithTimeListener:
+        class: CowboyDuel\ApiBundle\Listener\UpdateWithTimeListener
+        tags: [{name: kernel.event_listener, event: kernel.controller, method: onKernelController}]
+        arguments: [@service_container, @doctrine.orm.entity_manager] 

@@ -28,6 +28,12 @@ class Settings
      */
     private $refreshContent;
 
+    /**
+     * @var integer $timeLastRefresh
+     *
+     * @ORM\Column(name="timeLastRefresh", type="integer")
+     */
+    private $timeLastRefresh;
 
 
     /**
@@ -52,7 +58,6 @@ class Settings
     
         return $this;
     }
-
     /**
      * Get refreshContent
      *
@@ -61,5 +66,28 @@ class Settings
     public function getRefreshContent()
     {
         return $this->refreshContent;
+    }
+    
+    /**
+     * Set timeLastRefresh
+     *
+     * @param integer $timeLastRefresh
+     * @return Settings
+     */
+    public function setTimeLastRefresh($timeLastRefresh)
+    {
+    	$this->timeLastRefresh = $timeLastRefresh;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get timeLastRefresh
+     *
+     * @return integer
+     */
+    public function getTimeLastRefresh()
+    {
+    	return $this->timeLastRefresh;
     }
 }

@@ -192,6 +192,16 @@ class HelperQueryHolds
 				FROM CowboyDuelApiBundle:Settings s			
 				')->getResult();
 	}
+	public function setSettings_timeLastRefresh($timeLastRefresh)
+	{
+		$q = $this->em->createQuery("
+				UPDATE CowboyDuelApiBundle:Settings s
+				SET s.timeLastRefresh=$timeLastRefresh
+				WHERE s.id=1"
+		);
+	
+		return $q->getResult();
+	}
 	
 	public function update_session($authen, $session_id)
 	{
