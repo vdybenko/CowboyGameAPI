@@ -13,9 +13,3 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
-
-# S3 Configuration
-    S3_use_ssl:  true
-    S3_verify_peer: true
-    S3_access_key: AKIAJW77I5OAC63UVOXQ
-    S3_secret_key: 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

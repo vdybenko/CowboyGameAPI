@@ -35,7 +35,7 @@ class UsersController extends Controller
         	
     	$entitiesJson = json_encode($queryHolds->get_top_users());    
     	
-    	file_put_contents('bundles/cowboyduelapi/uploads/scriptJson.txt', $entitiesJson, FILE_APPEND);  
+    	file_put_contents($this->container->getParameter('S3_file_upload'), $entitiesJson, FILE_APPEND);  
     	$this->_send_stat_s3();    
     		
     	$queryHolds->setSettings_timeLastRefresh(time());
