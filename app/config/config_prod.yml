@@ -1,12 +1,6 @@
 imports:
     - { resource: config.yml }
 
-#doctrine:
-#    orm:
-#        metadata_cache_driver: apc
-#        result_cache_driver: apc
-#        query_cache_driver: apc
-
 monolog:
     handlers:
         main:
@@ -17,3 +11,16 @@ monolog:
             type:  stream
             path:  %kernel.logs_dir%/%kernel.environment%.log
             level: debug
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     cowboyduel.c6algyr0odj4.eu-west-1.rds.amazonaws.com
+        port:     %database_port%
+        dbname:   duels_v201
+        user:     duels
+        password: FTa9aueWYmWub8wb
+        charset:  UTF8
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
