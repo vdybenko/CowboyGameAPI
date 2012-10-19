@@ -1,5 +1,0 @@
-services:
-    UpdateWithTime:
-        class: CowboyDuel\ApiBundle\Annotations\Driver\UpdateWithTimeAnnotationDriver
-        tags: [{name: kernel.event_listener, event: kernel.controller, method: onKernelController}]          #Указываем по какому событию вызывать этот сервис
-        arguments: [@annotation_reader] 

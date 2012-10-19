@@ -8,7 +8,6 @@ use Doctrine\Common\Annotations\Reader,
 
 use CowboyDuel\ApiBundle\Helper\HelperQueryHolds,
 	CowboyDuel\ApiBundle\Helper\HelperMethod;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class UpdateWithTimeListener
 {
@@ -39,7 +38,5 @@ class UpdateWithTimeListener
     		
     		$queryHolds->setSettings_timeLastRefresh(time());
     	}
-    	
-    	//throw new AccessDeniedHttpException("".$content->getTimeLastRefresh());
     }
 }
