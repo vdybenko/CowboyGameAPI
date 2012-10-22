@@ -3,7 +3,8 @@ namespace CowboyDuel\ApiBundle\Helper;
 
 use CowboyDuel\ApiBundle\Entity\Online,
 	CowboyDuel\ApiBundle\Entity\Users,
-	CowboyDuel\ApiBundle\Entity\Duels;
+	CowboyDuel\ApiBundle\Entity\Duels,
+	CowboyDuel\ApiBundle\Entity\BuyItemsStore;
 
 class HelperQueryHolds
 {
@@ -60,13 +61,14 @@ class HelperQueryHolds
 	 */
 	public function getUser($authen)
 	{
-		$q = $this->em->createQuery('
+		$q = $this->em->createQuery("
 				SELECT u
 				FROM CowboyDuelApiBundle:Users u
-				WHERE u.authen = :authen
-				')->setParameter('authen', $authen)		
-				  ->getResult();
-		return $q;
+				WHERE u.authen='$authen'"
+		);			
+	    $e = $q->getResult();
+	    
+		return  $e[0];
 	}	
 	
 	public function getUserWithAuthenOld($authen, $authen_old)
@@ -278,5 +280,21 @@ class HelperQueryHolds
 				WHERE s.type='$type'"
 		);		
 		return $q->getResult();
+	}
+	
+	public function setBuyItemsStore($authenUser, $idItemStore)
+	{
+		$itemStore = new BuyItemsStore();
+		
+		$itemStore->setAuthenuser($authenUser)
+				  ->setIditemstore($idItemStore);  
+		
+		$this->em->persist($itemStore);
+		$this->em->flush();
+	}
+	
+	public function get_user_data()
+	{
+	
 	}
 }

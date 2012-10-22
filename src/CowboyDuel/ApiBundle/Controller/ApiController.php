@@ -57,7 +57,7 @@ class ApiController extends Controller
     			$queryHolds->updateAuthenOnline($authen, 'in', time(), 1);
     		}
     	    	
-    		$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok') ;
+    		$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');
     		$responseDate['refresh_content'] = $queryHolds->getSettings('refresh_content')->getValue();
     		$responseDate['session_id'] = $session_id;
     		$responseDate['v_of_store_list'] =  $queryHolds->getSettings('versionListOfStoreItems')->getValue();
@@ -382,7 +382,6 @@ class ApiController extends Controller
     	$transactionsHolds = new HelperTransactionsHolds($em);
     	
     	$user_info = $queryHolds->getUser($authen);
-    	$user_info = $user_info[0];
     	
     	$sum = $user_info->getMoney();
     	settype($sum, "int");
@@ -395,7 +394,7 @@ class ApiController extends Controller
     			foreach($transactions_obj->{'transactions'} as $transaction)
     			{
     				if(!isset($transaction->{'transaction'}->{'transaction_id'})) 
-    					$transaction->{'transaction'}->{'transaction_id'}=0;
+    					$transaction->{'transaction'}->{'transaction_id'} = 0;
     					
     				$transaction->{'transaction'}->{'transaction_id'} = $transaction->{'transaction'}->{'transaction_id'}^$secure_value;
     				$transaction->{'transaction'}->{'description'} = $transaction->{'transaction'}->{'description'}^$secure_value;

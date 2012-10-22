@@ -75,11 +75,21 @@ class TestController extends Controller
     {
     	return array();
     }
+    
     /**
      * @Route("/authorization", name="test_authorization")
      * @Template()
      */
     public function authorizationAction()
+    {
+    	return array();
+    }
+    
+    /**
+     * @Route("/store/bought", name="test_store_bought")
+     * @Template()
+     */
+    public function storeBoughtAction()
     {
     	return array();
     }
