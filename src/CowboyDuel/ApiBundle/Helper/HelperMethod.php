@@ -13,8 +13,8 @@ class HelperMethod
 		// List Buckets
 		//var_dump($this->s3->listBuckets());
 		$bucket = "bidoncd";
-		var_dump(S3::putObject(S3::inputFile($container->getParameter('S3_file_upload')), 
-							   $bucket, 
-							   $container->getParameter('S3_uri'), S3::ACL_PUBLIC_READ));
+		S3::putObject(S3::inputFile($container->getParameter('S3_file_upload')), 
+					  $bucket, 
+					  $container->getParameter('S3_uri'), S3::ACL_PUBLIC_READ);
 	}
 }
