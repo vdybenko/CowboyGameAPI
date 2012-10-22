@@ -28,8 +28,8 @@ class StoreController extends Controller
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryHolds($em);
     	
-    	$store['w'] = $queryHolds->getStoreItems("weapons");
-    	$store['d'] = $queryHolds->getStoreItems("defenses");
+    	$store['weapons'] = $queryHolds->getStoreItems("weapons");
+    	$store['defenses'] = $queryHolds->getStoreItems("defenses");
     	
     	$storeJson = json_encode($store);
     	 
@@ -39,5 +39,18 @@ class StoreController extends Controller
     							  $storeJson);
     	
     	return new Response($storeJson);
+    }
+    
+    /**
+     * @Route("/bought", name="store_bought")
+     */
+    public function boughtAction()
+    {
+    	$request = $this->getRequest()->request;
+    	$authen = $request->get('authentification');
+    	$itemId = $request->get('item_id');
+    	
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$queryHolds = new HelperQueryHolds($em);
     }
 }
