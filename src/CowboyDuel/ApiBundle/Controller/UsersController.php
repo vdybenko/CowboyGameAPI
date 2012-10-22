@@ -3,8 +3,7 @@
 namespace CowboyDuel\ApiBundle\Controller;
 
 use CowboyDuel\ApiBundle\Helper\HelperQueryHolds,
-	CowboyDuel\ApiBundle\Helper\HelperMethod,
-	CowboyDuel\ApiBundle\Libraries;
+	CowboyDuel\ApiBundle\Helper\HelperMethod;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
@@ -35,21 +34,13 @@ class UsersController extends Controller
         	
     	$entitiesJson = json_encode($queryHolds->get_top_users());    
     	
-    	file_put_contents($this->container->getParameter('S3_file_upload'), $entitiesJson, FILE_APPEND);  
-    	$this->_send_stat_s3();    
-    		
-    	$queryHolds->setSettings_timeLastRefresh(time());
+    	$helperMethod = new HelperMethod($this->container);
+    	$helperMethod->sendStatS3($this->container->getParameter('S3_topBoard_file_upload'),
+    							  $this->container->getParameter('S3_topBoard_uri'),
+    							  $entitiesJson);   		
+    	$queryHolds->setSettings('timeLastRefresh',time());
     	
     	return new Response($entitiesJson);
-    }
-    
-    /**
-     * @Route("/_send_stat_s3", name="users_send_stat_s3")
-     */
-    public function _send_stat_s3()
-    {   	
-    	$helperMethod = new HelperMethod();
-    	$helperMethod->sendStatS3($this->container);
     }
     
     /**

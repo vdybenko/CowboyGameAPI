@@ -3,13 +3,26 @@
 # Server version:               5.5.16-log
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2012-10-19 15:40:37
+# Date/time:                    2012-10-22 12:57:49
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+# Dumping structure for table cowboys.buyitemsstore
+CREATE TABLE IF NOT EXISTS `buyitemsstore` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `authenUser` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `idItemStore` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+# Dumping data for table cowboys.buyitemsstore: ~0 rows (approximately)
+/*!40000 ALTER TABLE `buyitemsstore` DISABLE KEYS */;
+/*!40000 ALTER TABLE `buyitemsstore` ENABLE KEYS */;
+
 
 # Dumping structure for table cowboys.duels
 CREATE TABLE IF NOT EXISTS `duels` (
@@ -68,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `online` (
 INSERT INTO `online` (`id`, `authen`, `online`, `enterTime`, `exitTime`) VALUES
 	(1, 'F:537141553', 0, '1349953425', '1349953513'),
 	(2, 'F:100001785186331', 1, '1349787186', '0'),
-	(3, 'F:100004072748849', 1, '1350573153', '0'),
+	(3, 'F:100004072748849', 1, '1350899659', '0'),
 	(4, 'A:951059A5-3', 1, '1349789821', '0'),
 	(5, 'A:be56be4e39', 0, '1349939100', '1349940389'),
 	(6, 'F:100001850844084', 1, '1349958778', '0'),
@@ -122,17 +135,42 @@ INSERT INTO `rank` (`level`, `rank_name`) VALUES
 
 # Dumping structure for table cowboys.settings
 CREATE TABLE IF NOT EXISTS `settings` (
-  `id` int(11) NOT NULL,
-  `refresh_content` int(11) NOT NULL,
-  `timeLastRefresh` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) COLLATE utf8_bin NOT NULL,
+  `value` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.settings: 1 rows
+# Dumping data for table cowboys.settings: 3 rows
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` (`id`, `refresh_content`, `timeLastRefresh`) VALUES
-	(1, 1, 1350647363);
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES
+	(1, 'refresh_content', 1),
+	(2, 'timeLastRefresh', 1350897595),
+	(3, 'versionListOfStoreItems', 1);
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
+
+
+# Dumping structure for table cowboys.store
+CREATE TABLE IF NOT EXISTS `store` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `type` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `title` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `damageOrDefense` int(10) DEFAULT '0',
+  `golds` int(11) DEFAULT NULL,
+  `inAppId` int(11) DEFAULT NULL,
+  `thumb` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `img` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `description` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `levelLock` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+# Dumping data for table cowboys.store: ~0 rows (approximately)
+/*!40000 ALTER TABLE `store` DISABLE KEYS */;
+INSERT INTO `store` (`id`, `type`, `title`, `damageOrDefense`, `golds`, `inAppId`, `thumb`, `img`, `description`, `levelLock`) VALUES
+	(1, 'weapons', 'Револьвер М60', 20, 50, NULL, NULL, NULL, NULL, 2),
+	(2, 'defenses', 'Каска', 5, 40, NULL, NULL, NULL, NULL, 3);
+/*!40000 ALTER TABLE `store` ENABLE KEYS */;
 
 
 # Dumping structure for table cowboys.transactions
@@ -238,7 +276,7 @@ INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`,
 	(145813, 'F:100003825983743', 'Hugo Gana', '', 'F', 0, '', '', '', '', '', '', '', 0, 100, '', 1, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/187316_100003825983743_1090117352_q.jpg', '1987-27-11', '', 39, 'Hugo Gana'),
 	(145814, 'F:100003804058651', 'Quang Minh', '', 'F', 0, '', '', '', '', '', '', '', 0, 100, '', 1, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/370252_100003804058651_1443939224_q.jpg', '1993-20-08', '', 158, 'Quang Minh'),
 	(145815, 'F:100003443034588', 'Andrey Fedirko', '', 'F', 0, '', '', '', '', '', '', '', 0, 100, '', 1, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/49541_100003443034588_461883270_q.jpg', '1976-15-09', '', 41, 'Andrey Fedirko'),
-	(145928, 'F:100004072748849', 'Q', 'x86_64', 'F', 1349364404, '1349348039', '0', 'en_US', 'en', '5.1', '1.4', '', 0, 146, '50801c6136724', 2, 29, 0, 3, 0, 0, '', '07/01/1990', '', 2, 'John  Newbie'),
+	(145928, 'F:100004072748849', 'Q', 'x86_64', 'F', 1349364404, '1349348039', '0', 'en_US', 'en', '5.1', '1.4', '', 0, 146, '508517cb380dd', 2, 29, 0, 3, 0, 0, '', '07/01/1990', '', 2, 'John  Newbie'),
 	(145927, 'A:00000000-0', 'Q', 'x86_64', '0', 1349939590, '1349347995', '0', 'en_US', 'en', '5.1', '1.4', '', 0, 482, '507c04563d136', 3, 44, 8, 1, 26, 0, 'Q', '', '', 0, ''),
 	(145926, 'A:bc0f35c120', 'Anonymous', 'iPad3,3', '0', 0, '1349205178', '0', 'en_US', 'en', '6.0', '1.4', '', 0, 200, '', 0, 0, 0, 0, 0, 0, '0', '', '', 0, ''),
 	(145917, 'A:6e70744811', 'Anonymous', 'iPhone4', '0', 0, '1346421347', '0', 'ru_UA', 'en', '6.0', '1.4', '', 0, 200, '50628a6b8a26a', 0, 0, 0, 0, 0, 0, '0', '', '', 0, ''),

@@ -22,18 +22,19 @@ class Settings
     private $id;
 
     /**
-     * @var integer $refreshContent
+     * @var string $name
      *
-     * @ORM\Column(name="refresh_content", type="integer", nullable=false)
+     * @ORM\Column(name="name", type="string", length=30, nullable=false)
      */
-    private $refreshContent;
+    private $name;
 
     /**
-     * @var integer $timeLastRefresh
+     * @var integer $value
      *
-     * @ORM\Column(name="timeLastRefresh", type="integer")
+     * @ORM\Column(name="value", type="integer", nullable=false)
      */
-    private $timeLastRefresh;
+    private $value;
+
 
 
     /**
@@ -47,47 +48,48 @@ class Settings
     }
 
     /**
-     * Set refreshContent
+     * Set name
      *
-     * @param integer $refreshContent
+     * @param string $name
      * @return Settings
      */
-    public function setRefreshContent($refreshContent)
+    public function setName($name)
     {
-        $this->refreshContent = $refreshContent;
+        $this->name = $name;
     
         return $this;
     }
+
     /**
-     * Get refreshContent
+     * Get settingsname
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set value
+     *
+     * @param integer $value
+     * @return Settings
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    
+        return $this;
+    }
+
+    /**
+     * Get value
      *
      * @return integer 
      */
-    public function getRefreshContent()
+    public function getValue()
     {
-        return $this->refreshContent;
-    }
-    
-    /**
-     * Set timeLastRefresh
-     *
-     * @param integer $timeLastRefresh
-     * @return Settings
-     */
-    public function setTimeLastRefresh($timeLastRefresh)
-    {
-    	$this->timeLastRefresh = $timeLastRefresh;
-    
-    	return $this;
-    }
-    
-    /**
-     * Get timeLastRefresh
-     *
-     * @return integer
-     */
-    public function getTimeLastRefresh()
-    {
-    	return $this->timeLastRefresh;
+        return $this->value;
     }
 }

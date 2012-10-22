@@ -24,19 +24,17 @@ class UpdateWithTimeListener
     {
     	$queryHolds = new HelperQueryHolds($this->em);
     	
-    	$query = $this->em->getRepository('CowboyDuelApiBundle:Settings')->findAll();
-    	$content = $query[0];
+    	$query = $this->em->getRepository('CowboyDuelApiBundle:Settings')->findAll();    	
     	
-    	if($content->getTimeLastRefresh() + $content->getRefreshContent() * 3600 < time())
+    	if($query[0]->getValue() + $query[1]->getValue() * 3600 < time())
     	{
     		$entitiesJson = json_encode($queryHolds->get_top_users());
     		 
-    		file_put_contents($this->container->getParameter('S3_file_upload'), $entitiesJson, FILE_APPEND);
-    		
-    		$helperMethod = new HelperMethod();
-    		$helperMethod->sendStatS3($this->container);
-    		
-    		$queryHolds->setSettings_timeLastRefresh(time());
+    		$helperMethod = new HelperMethod($this->container);
+    		$helperMethod->sendStatS3($this->container->getParameter('S3_topBoard_file_upload'),
+    							 	  $this->container->getParameter('S3_topBoard_uri'),
+    							  	  $entitiesJson);   		
+    		$queryHolds->setSettings('timeLastRefresh',time());
     	}
     }
 }

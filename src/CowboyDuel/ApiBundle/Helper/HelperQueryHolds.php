@@ -185,21 +185,28 @@ class HelperQueryHolds
 		$this->em->flush();
 	}
 	
-	public function get_refresh_content()
+	/**
+	 * Get settings
+	 * @return CowboyDuel\ApiBundle\Entity\Settings
+	 */
+	public function getSettings($name)
 	{
-		return $q = $this->em->createQuery('
+		$q = $this->em->createQuery("
 				SELECT s
-				FROM CowboyDuelApiBundle:Settings s			
-				')->getResult();
+				FROM CowboyDuelApiBundle:Settings s
+				WHERE s.name='$name'"
+		);
+		$e = $q->getResult();
+		
+		return $e[0];
 	}
-	public function setSettings_timeLastRefresh($timeLastRefresh)
+	public function setSettings($name, $value)
 	{
 		$q = $this->em->createQuery("
 				UPDATE CowboyDuelApiBundle:Settings s
-				SET s.timeLastRefresh=$timeLastRefresh
-				WHERE s.id=1"
-		);
-	
+				SET s.value=$value
+				WHERE s.name='$name'"
+		);	
 		return $q->getResult();
 	}
 	
@@ -229,8 +236,8 @@ class HelperQueryHolds
 		
 		$online->setAuthen($authen)
 			   ->setOnline(1)
-			   ->setEnterTime($time)	
-			   ->setExitTime(0);
+			   ->setEntertime($time)	
+			   ->setExittime(0);
 		
 		$this->em->persist($online);
 		$this->em->flush();
@@ -241,8 +248,8 @@ class HelperQueryHolds
 		$setStr = "";
 		switch ($field_time)
 		{
-			case 'in' : $setStr .= "o.enterTime="; break;
-			case 'out': $setStr .= "o.exitTime="; break;
+			case 'in' : $setStr .= "o.entertime="; break;
+			case 'out': $setStr .= "o.exittime="; break;
 		}	
 		
 		//$online->setOut(0);
@@ -253,6 +260,23 @@ class HelperQueryHolds
 			    WHERE o.authen='".$authen."'"
 		);
 		
+		return $q->getResult();
+	}
+	
+	public function getStoreItems($type)
+	{
+		$dStr = null;
+		switch ($type)
+		{
+			case 'weapons': $dStr = 'damage'; break;
+			case 'defenses': $dStr = 'defense'; break;
+		}		
+		$q = $this->em->createQuery("
+				SELECT s.id, s.title, s.damageOrDefense AS $dStr, s.golds, s.inappid, s.thumb, 
+				       s.img, s.description, s.levelLock
+				FROM CowboyDuelApiBundle:Store s
+				WHERE s.type='$type'"
+		);		
 		return $q->getResult();
 	}
 }

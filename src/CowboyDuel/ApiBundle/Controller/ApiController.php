@@ -58,9 +58,9 @@ class ApiController extends Controller
     		}
     	    	
     		$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok') ;
-    		$refresh_content = $queryHolds->get_refresh_content();
-    		$responseDate['refresh_content'] = $refresh_content[0]->getRefreshContent();
+    		$responseDate['refresh_content'] = $queryHolds->getSettings('refresh_content')->getValue();
     		$responseDate['session_id'] = $session_id;
+    		$responseDate['v_of_store_list'] =  $queryHolds->getSettings('versionListOfStoreItems')->getValue();
     	}
     	
     	return new Response(json_encode($responseDate));

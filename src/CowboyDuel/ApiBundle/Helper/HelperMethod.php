@@ -5,16 +5,25 @@ use CowboyDuel\ApiBundle\Libraries\S3;
 
 class HelperMethod 
 {
-	public function sendStatS3($container)
+	private $container;
+	
+	public function __construct($_container)
+	{
+		$this->container = $_container;
+	}
+	
+	public function sendStatS3($file_upload, $uri, $data)
 	{	
-		S3::$use_ssl = $container->getParameter('S3_use_ssl');
-		S3::setAuth($container->getParameter('S3_access_key'), $container->getParameter('S3_secret_key'));
+		S3::$use_ssl =  $this->container->getParameter('S3_use_ssl');
+		S3::setAuth($this->container->getParameter('S3_access_key'), $this->container->getParameter('S3_secret_key'));
+		
+		file_put_contents($file_upload, $data, FILE_APPEND);
 		
 		// List Buckets
 		//var_dump($this->s3->listBuckets());
 		$bucket = "bidoncd";
-		S3::putObject(S3::inputFile($container->getParameter('S3_file_upload')), 
+		S3::putObject(S3::inputFile($file_upload), 
 					  $bucket, 
-					  $container->getParameter('S3_uri'), S3::ACL_PUBLIC_READ);
+					  $uri, S3::ACL_PUBLIC_READ);
 	}
 }
