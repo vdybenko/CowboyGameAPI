@@ -54,8 +54,7 @@ class StoreController extends Controller
     	$authen = $request->get('authentification');
     	$itemId = $request->get('itemId');    	
     	$transactionsId = $request->get('transactionsId');
-    	
-    	
+    	    	
     	if ($authen == null || $itemId == null || $transactionsId == null)
     	{
     		$responseDate['err_code'] = (int) - 4;
