@@ -71,6 +71,21 @@ class HelperQueryHolds
 		return  $e[0];
 	}	
 	
+	public function getUserData($authen)
+	{
+		$q = $this->em->createQuery("
+				SELECT u.userId AS user_id, u.nickname, u.money, u.sessionId AS session_id, u.level, u.points, 
+					   u.duelsWin AS duels_win, u.duelsLost AS duels_lost, u.bigestWin AS bigest_win, 
+				       u.removeAds AS remove_ads, u.avatar, u.age, u.homeTown AS home_town, u.friends, 
+					   u.facebookName AS facebook_name				
+				FROM CowboyDuelApiBundle:Users u
+				WHERE u.authen='$authen'"
+		);
+		$e = $q->getResult();
+		 
+		return  $e[0];	
+	}
+	
 	public function getUserWithAuthenOld($authen, $authen_old)
 	{
 		if (!$authen_old)  
@@ -270,31 +285,46 @@ class HelperQueryHolds
 		$dStr = null;
 		switch ($type)
 		{
-			case 'weapons': $dStr = 'damage'; break;
-			case 'defenses': $dStr = 'defense'; break;
+			case 'weapons': 
+				  $dStr = 's.id, s.title, s.damageOrDefense AS damage, s.golds, s.inappid, s.thumb, 
+				           s.img, s.bigImg, s.sound, s.description, s.levelLock'; 
+			  break;
+			case 'defenses': 
+				  $dStr = 's.id, s.title, s.damageOrDefense AS defense, s.golds, s.inappid, s.thumb, 
+				           s.img, s.description, s.levelLock'; 
+			  break;
 		}		
 		$q = $this->em->createQuery("
-				SELECT s.id, s.title, s.damageOrDefense AS $dStr, s.golds, s.inappid, s.thumb, 
-				       s.img, s.description, s.levelLock
+				SELECT $dStr
 				FROM CowboyDuelApiBundle:Store s
 				WHERE s.type='$type'"
 		);		
 		return $q->getResult();
 	}
 	
-	public function setBuyItemsStore($authenUser, $idItemStore)
+	public function setBuyItemStore($authenUser, $itemIdStore, $transactionsId)
 	{
 		$itemStore = new BuyItemsStore();
 		
 		$itemStore->setAuthenuser($authenUser)
-				  ->setIditemstore($idItemStore);  
+				  ->setItemIdStore($itemIdStore)
+				  ->setTransactionsId($transactionsId)
+				  ->setDate(time());
 		
 		$this->em->persist($itemStore);
 		$this->em->flush();
 	}
 	
-	public function get_user_data()
+	public function getLastBuyItemStore($authen, $type)
 	{
-	
+		$q = $this->em->createQuery("				
+			 	SELECT b.id
+				FROM CowboyDuelApiBundle:BuyItemsStore b, CowboyDuelApiBundle:Store s
+				WHERE b.authenuser='$authen' AND s.type='$type' AND b.itemIdStore = s.id			
+			    ORDER BY b.date DESC"
+		);
+		$e = $q->getResult();
+		
+		return $e[0];
 	}
 }

@@ -93,4 +93,13 @@ class TestController extends Controller
     {
     	return array();
     }
+    
+    /**
+     * @Route("/get_user_data", name="test_get_user_data")
+     * @Template()
+     */
+    public function getUserDataAction()
+    {
+    	return array();
+    }
 }

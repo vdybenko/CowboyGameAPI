@@ -216,7 +216,6 @@ class ApiController extends Controller
     	}
     	else
     	{    	
-    		$user_info = $user_info[0];
     		$money 	= $user_info->getMoney();
 			$points	= $user_info->getPoints();
 			$level	= $user_info->getLevel();

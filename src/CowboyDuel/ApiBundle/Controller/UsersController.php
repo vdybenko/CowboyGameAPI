@@ -64,4 +64,32 @@ class UsersController extends Controller
     	    	
     	return new Response(json_encode($responseDate));
     }
+    
+    /**
+     * @Route("/get_user_data", name="user_get_data")
+     */
+    public function getUserDataAction()
+    {
+    	$request = $this->getRequest()->request;
+    	$authen = $request->get('authentification');
+    
+    	if ($authen == null)
+    	{
+    		$responseDate['err_code'] = (int) - 4;
+    		$responseDate['err_description'] = 'Invalid value';
+    	}
+    	else
+    	{
+    		$em = $this->getDoctrine()->getEntityManager();
+    		$queryHolds = new HelperQueryHolds($em);
+    
+    		$responseDate = $queryHolds->getUserData($authen);  
+
+    		$responseDate['weapons'] = $queryHolds->getLastBuyItemStore($authen, 'weapons');
+    		$responseDate['defenses'] = $queryHolds->getLastBuyItemStore($authen, 'defenses');
+    	}
+    
+    	return new Response(json_encode($responseDate));
+    
+    }
 }

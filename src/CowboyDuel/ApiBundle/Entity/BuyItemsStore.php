@@ -24,18 +24,30 @@ class BuyItemsStore
     /**
      * @var string $authenuser
      *
-     * @ORM\Column(name="authenUser", type="string", length=50, nullable=true)
+     * @ORM\Column(name="authenUser", type="string", length=50, nullable=false)
      */
     private $authenuser;
 
     /**
-     * @var integer $iditemstore
+     * @var integer $itemIdStore
      *
-     * @ORM\Column(name="idItemStore", type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=false)
      */
-    private $iditemstore;
-
-
+    private $itemIdStore;
+    
+    /**
+     * @var integer $transactionsId
+     *
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $transactionsId;
+    
+    /**
+     * @var integer $date
+     *
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $date;
 
     /**
      * Get id
@@ -71,25 +83,68 @@ class BuyItemsStore
     }
 
     /**
-     * Set iditemstore
+     * Set itemIdStore
      *
-     * @param integer $iditemstore
+     * @param integer $itemIdStore
      * @return Buyitemsstore
      */
-    public function setIditemstore($iditemstore)
+    public function setItemIdStore($itemIdStore)
     {
-        $this->iditemstore = $iditemstore;
+        $this->itemIdStore = $itemIdStore;
     
         return $this;
     }
-
     /**
-     * Get iditemstore
+     * Get itemIdStore
      *
      * @return integer 
      */
-    public function getIditemstore()
+    public function getItemIdStore()
     {
-        return $this->iditemstore;
+        return $this->itemIdStore;
+    }
+    
+    /**
+     * Set transactionsId
+     *
+     * @param integer $transactionsId
+     * @return Buyitemsstore
+     */
+    public function setTransactionsId($transactionsId)
+    {
+    	$this->transactionsId = $transactionsId;
+    
+    	return $this;
+    }
+    /**
+     * Get transactionsId
+     *
+     * @return integer
+     */
+    public function getTransactionsId()
+    {
+    	return $this->transactionsId;
+    }
+    
+    /**
+     * Set date
+     *
+     * @param integer $date
+     * @return Buyitemsstore
+     */
+    public function setDate($date)
+    {
+    	$this->date = $date;
+    
+    	return $this;
+    }
+    /**
+     * Get date
+     *
+     * @return integer
+     */
+    public function getDate()
+    {
+    	return $this->date;
     }
 }

@@ -3,7 +3,7 @@
 # Server version:               5.5.16-log
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2012-10-22 12:57:49
+# Date/time:                    2012-10-23 16:03:12
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -14,13 +14,21 @@
 # Dumping structure for table cowboys.buyitemsstore
 CREATE TABLE IF NOT EXISTS `buyitemsstore` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `authenUser` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `idItemStore` int(10) DEFAULT NULL,
+  `authenUser` varchar(50) COLLATE utf8_bin NOT NULL,
+  `itemIdStore` int(10) NOT NULL,
+  `transactionsId` int(100) NOT NULL,
+  `date` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.buyitemsstore: ~0 rows (approximately)
+# Dumping data for table cowboys.buyitemsstore: ~3 rows (approximately)
 /*!40000 ALTER TABLE `buyitemsstore` DISABLE KEYS */;
+INSERT INTO `buyitemsstore` (`id`, `authenUser`, `itemIdStore`, `transactionsId`, `date`) VALUES
+	(1, 'F:1667761963', 1, 0, 0),
+	(3, 'F:100004072748849', 2, 0, 10),
+	(4, 'F:100004072748849', 1, 3201, 200),
+	(5, 'F:100004072748849', 2, 3201, 1350995941),
+	(6, 'F:100004072748849', 1, 3201, 1350995948);
 /*!40000 ALTER TABLE `buyitemsstore` ENABLE KEYS */;
 
 
@@ -160,16 +168,18 @@ CREATE TABLE IF NOT EXISTS `store` (
   `inAppId` int(11) DEFAULT NULL,
   `thumb` varchar(60) COLLATE utf8_bin DEFAULT NULL,
   `img` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `bigImg` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `sound` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `description` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `levelLock` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.store: ~0 rows (approximately)
+# Dumping data for table cowboys.store: ~2 rows (approximately)
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
-INSERT INTO `store` (`id`, `type`, `title`, `damageOrDefense`, `golds`, `inAppId`, `thumb`, `img`, `description`, `levelLock`) VALUES
-	(1, 'weapons', 'Револьвер М60', 20, 50, NULL, NULL, NULL, NULL, 2),
-	(2, 'defenses', 'Каска', 5, 40, NULL, NULL, NULL, NULL, 3);
+INSERT INTO `store` (`id`, `type`, `title`, `damageOrDefense`, `golds`, `inAppId`, `thumb`, `img`, `bigImg`, `sound`, `description`, `levelLock`) VALUES
+	(1, 'weapons', 'Револьвер М60', 20, 50, NULL, NULL, NULL, NULL, NULL, NULL, 2),
+	(2, 'defenses', 'Каска', 5, 40, NULL, NULL, NULL, NULL, NULL, NULL, 3);
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
 
 

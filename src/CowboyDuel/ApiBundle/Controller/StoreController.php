@@ -52,12 +52,11 @@ class StoreController extends Controller
     {
     	$request = $this->getRequest()->request;
     	$authen = $request->get('authentification');
-    	$itemId = $request->get('item_id');
+    	$itemId = $request->get('itemId');    	
+    	$transactionsId = $request->get('transactionsId');
     	
-    	//$itemId = $request->get('item_id');
     	
-    	
-    	if ($authen == null || $itemId == null)
+    	if ($authen == null || $itemId == null || $transactionsId == null)
     	{
     		$responseDate['err_code'] = (int) - 4;
     		$responseDate['err_description'] = 'Invalid value';
@@ -68,39 +67,11 @@ class StoreController extends Controller
     		$queryHolds = new HelperQueryHolds($em);    		
     		$transactionsHolds = new HelperTransactionsHolds($em);
     	
-    		$queryHolds->setBuyItemsStore($authen, $itemId);
-    		//$transactionsHolds->setTransaction($authen, $value, $description);
-    		
+    		$queryHolds->setBuyItemStore($authen, $itemId, $transactionsId);
+    		    		
     		$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');
     	}
     	
     	return new Response(json_encode($responseDate));
-    }
-    
-    /**
-     * @Route("/get_user_data", name="store_get_user_data")
-     */
-    public function bAction()
-    {
-    	$request = $this->getRequest()->request;
-    	$authen = $request->get('authentification');
-    	 
-    	if ($authen == null)
-    	{
-    		$responseDate['err_code'] = (int) - 4;
-    		$responseDate['err_description'] = 'Invalid value';
-    	}
-    	else
-    	{
-    		$em = $this->getDoctrine()->getEntityManager();
-    		$queryHolds = new HelperQueryHolds($em);
-    		
-    		
-    		
-    		//$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');
-    	}
-    	 
-    	return new Response(json_encode($responseDate));
-    
-    }
+    }    
 }

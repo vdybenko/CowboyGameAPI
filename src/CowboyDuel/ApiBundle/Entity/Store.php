@@ -71,6 +71,20 @@ class Store
     private $img;
 
     /**
+     * @var string $bigImg
+     *
+     * @ORM\Column(type="string", length=60, nullable=true)
+     */
+    private $bigImg;
+    
+    /**
+     * @var string $bigImg
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $sound;    
+    
+    /**
      * @var string $description
      *
      * @ORM\Column(name="description", type="string", length=100, nullable=true)
@@ -187,7 +201,6 @@ class Store
     {
         return $this->golds;
     }
-
     /**
      * Set inappid
      *
@@ -246,7 +259,6 @@ class Store
     
         return $this;
     }
-
     /**
      * Get img
      *
@@ -255,6 +267,50 @@ class Store
     public function getImg()
     {
         return $this->img;
+    }
+
+    /**
+     * Set bigImg
+     *
+     * @param string $bigImg
+     * @return Store
+     */
+    public function setBigImg($bigImg)
+    {
+    	$this->bigImg = $bigImg;
+    
+    	return $this;
+    }
+    /**
+     * Get bigImg
+     *
+     * @return string
+     */
+    public function getBigImg()
+    {
+    	return $this->bigImg;
+    }
+    
+    /**
+     * Set sound
+     *
+     * @param string $sound
+     * @return Store
+     */
+    public function setSound($sound)
+    {
+    	$this->sound = $sound;
+    
+    	return $this;
+    }
+    /**
+     * Get sound
+     *
+     * @return string
+     */
+    public function getSound()
+    {
+    	return $this->sound;
     }
 
     /**
