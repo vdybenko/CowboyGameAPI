@@ -7,19 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
 	Symfony\Component\HttpFoundation\Response;
 
-use CowboyDuel\ApiBundle\Entity\Store;
+use CowboyDuel\ApiBundle\Entity\Store,
+	CowboyDuel\ApiBundle\Form\StoreType;
 
 /**
- * @Route("/admin", name="admin")
+ * @Route("/admin")
  */
 class AdminController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="admin")
+     * @Template()
      */
     public function indexAction()
     {
-        return new Response("Admin");
+        return array();
     }
     
     /**
@@ -31,7 +33,7 @@ class AdminController extends Controller
     	$request = $this->getRequest(); 	    	    	
     	
     	$entity  = new Store();
-    	$form = $this->createForm(new RecipeType($cheeseAll), $entity);    	
+    	$form = $this->createForm(new StoreType(), $entity);    	
     	
     	if ($request->getMethod() == 'POST')
     	{    		       	

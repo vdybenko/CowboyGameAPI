@@ -24,7 +24,7 @@ class Store
     /**
      * @var string $type
      *
-     * @ORM\Column(name="type", type="string", length=20, nullable=true)
+     * @ORM\Column(name="type", type="string", length=20)
      */
     private $type;
 
