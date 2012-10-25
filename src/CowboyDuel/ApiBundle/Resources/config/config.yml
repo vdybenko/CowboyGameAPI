@@ -15,4 +15,5 @@ parameters:
     S3_topBoard_uri: top.scriptJson
 
     S3_listOfStoreItems_file_upload: bundles/cowboyduelapi/uploads/list_of_store_items.scriptJson.txt
-    S3_listOfStoreItems_uri: list_of_store_items.scriptJson
+    S3_listOfStoreItems_uri: list_of_store_items
+    S3_type_file: .scriptJson

@@ -29,9 +29,9 @@ class Settings
     private $name;
 
     /**
-     * @var integer $value
+     * @var string $value
      *
-     * @ORM\Column(name="value", type="integer", nullable=false)
+     * @ORM\Column(type="string", nullable=false)
      */
     private $value;
 
@@ -73,7 +73,7 @@ class Settings
     /**
      * Set value
      *
-     * @param integer $value
+     * @param string $value
      * @return Settings
      */
     public function setValue($value)
@@ -86,7 +86,7 @@ class Settings
     /**
      * Get value
      *
-     * @return integer 
+     * @return string 
      */
     public function getValue()
     {

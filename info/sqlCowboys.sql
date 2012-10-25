@@ -3,7 +3,7 @@
 # Server version:               5.5.16-log
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2012-10-25 14:49:59
+# Date/time:                    2012-10-25 16:26:14
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -146,16 +146,17 @@ INSERT INTO `rank` (`level`, `rank_name`) VALUES
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) COLLATE utf8_bin NOT NULL,
-  `value` int(11) NOT NULL,
+  `value` varchar(11) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.settings: 3 rows
+# Dumping data for table cowboys.settings: 4 rows
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `name`, `value`) VALUES
-	(1, 'refresh_content', 1),
-	(2, 'timeLastRefresh', 1350897595),
-	(3, 'versionListOfStoreItems', 1);
+	(1, 'refresh_content', '1'),
+	(2, 'timeLastRefresh', '1350897595'),
+	(3, 'versionListOfStoreItems', '1'),
+	(4, 'program_version', '2.2');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 
@@ -170,20 +171,19 @@ CREATE TABLE IF NOT EXISTS `store` (
   `thumb` varchar(60) COLLATE utf8_bin DEFAULT '',
   `img` varchar(60) COLLATE utf8_bin DEFAULT '',
   `sound` varchar(50) COLLATE utf8_bin DEFAULT '',
-  `bigImg` varchar(60) COLLATE utf8_bin DEFAULT '',
+  `bigImg` varchar(60) COLLATE utf8_bin DEFAULT NULL,
   `description` varchar(100) COLLATE utf8_bin DEFAULT '',
   `levelLock` int(10) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.store: ~8 rows (approximately)
+# Dumping data for table cowboys.store: ~4 rows (approximately)
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
 INSERT INTO `store` (`id`, `type`, `title`, `damageOrDefense`, `golds`, `inAppId`, `thumb`, `img`, `sound`, `bigImg`, `description`, `levelLock`) VALUES
 	(1, 'weapons', 'Револьвер М60', 10, 100, 0, '', '', '', '', '', 4),
 	(2, 'defenses', 'Револьвер П8', 54, 100, 0, '', '', '', '', '', 10),
 	(3, 'defenses', 'Кімано', 10, 300, 0, '', '', '', '', '', 10),
-	(4, 'defenses', 'Шапка ушанка', 7, 99, 0, '', '', '', '', 'іва', 6),
-	(5, 'weapons', 'РПГ', 100, 9999, 0, '', '', '', '', '', 100);
+	(4, 'defenses', 'Шапка ушанка', 7, 99, 0, '', '', '', '', 'іва', 6);
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
 
 
