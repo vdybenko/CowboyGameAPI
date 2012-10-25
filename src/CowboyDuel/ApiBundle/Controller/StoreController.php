@@ -38,7 +38,7 @@ class StoreController extends Controller
     	$store['defenses'] = $queryHolds->getStoreItems("defenses");
     	
     	$storeJson = json_encode($store);
-    	 
+    	
     	$helperMethod = new HelperMethod($this->container);
     	$helperMethod->sendStatS3($this->container->getParameter('S3_listOfStoreItems_file_upload'),
     							  'v_'.$v_of_store_list.'_'.$this->container->getParameter('S3_listOfStoreItems_uri'),
