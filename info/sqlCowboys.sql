@@ -3,7 +3,7 @@
 # Server version:               5.5.16-log
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2012-10-23 16:03:12
+# Date/time:                    2012-10-25 14:49:59
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -19,16 +19,17 @@ CREATE TABLE IF NOT EXISTS `buyitemsstore` (
   `transactionsId` int(100) NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.buyitemsstore: ~3 rows (approximately)
+# Dumping data for table cowboys.buyitemsstore: ~6 rows (approximately)
 /*!40000 ALTER TABLE `buyitemsstore` DISABLE KEYS */;
 INSERT INTO `buyitemsstore` (`id`, `authenUser`, `itemIdStore`, `transactionsId`, `date`) VALUES
 	(1, 'F:1667761963', 1, 0, 0),
 	(3, 'F:100004072748849', 2, 0, 10),
 	(4, 'F:100004072748849', 1, 3201, 200),
 	(5, 'F:100004072748849', 2, 3201, 1350995941),
-	(6, 'F:100004072748849', 1, 3201, 1350995948);
+	(6, 'F:100004072748849', 1, 3201, 1350995948),
+	(7, 'F:100004072748849', 1, 3201, 1351000482);
 /*!40000 ALTER TABLE `buyitemsstore` ENABLE KEYS */;
 
 
@@ -161,25 +162,28 @@ INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 # Dumping structure for table cowboys.store
 CREATE TABLE IF NOT EXISTS `store` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `type` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `title` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `type` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `title` varchar(50) COLLATE utf8_bin DEFAULT '',
   `damageOrDefense` int(10) DEFAULT '0',
-  `golds` int(11) DEFAULT NULL,
-  `inAppId` int(11) DEFAULT NULL,
-  `thumb` varchar(60) COLLATE utf8_bin DEFAULT NULL,
-  `img` varchar(60) COLLATE utf8_bin DEFAULT NULL,
-  `bigImg` varchar(60) COLLATE utf8_bin DEFAULT NULL,
-  `sound` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `description` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `levelLock` int(10) DEFAULT NULL,
+  `golds` int(11) DEFAULT '0',
+  `inAppId` int(11) DEFAULT '0',
+  `thumb` varchar(60) COLLATE utf8_bin DEFAULT '',
+  `img` varchar(60) COLLATE utf8_bin DEFAULT '',
+  `sound` varchar(50) COLLATE utf8_bin DEFAULT '',
+  `bigImg` varchar(60) COLLATE utf8_bin DEFAULT '',
+  `description` varchar(100) COLLATE utf8_bin DEFAULT '',
+  `levelLock` int(10) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.store: ~2 rows (approximately)
+# Dumping data for table cowboys.store: ~8 rows (approximately)
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
-INSERT INTO `store` (`id`, `type`, `title`, `damageOrDefense`, `golds`, `inAppId`, `thumb`, `img`, `bigImg`, `sound`, `description`, `levelLock`) VALUES
-	(1, 'weapons', 'Револьвер М60', 20, 50, NULL, NULL, NULL, NULL, NULL, NULL, 2),
-	(2, 'defenses', 'Каска', 5, 40, NULL, NULL, NULL, NULL, NULL, NULL, 3);
+INSERT INTO `store` (`id`, `type`, `title`, `damageOrDefense`, `golds`, `inAppId`, `thumb`, `img`, `sound`, `bigImg`, `description`, `levelLock`) VALUES
+	(1, 'weapons', 'Револьвер М60', 10, 100, 0, '', '', '', '', '', 4),
+	(2, 'defenses', 'Револьвер П8', 54, 100, 0, '', '', '', '', '', 10),
+	(3, 'defenses', 'Кімано', 10, 300, 0, '', '', '', '', '', 10),
+	(4, 'defenses', 'Шапка ушанка', 7, 99, 0, '', '', '', '', 'іва', 6),
+	(5, 'weapons', 'РПГ', 100, 9999, 0, '', '', '', '', '', 100);
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
 
 

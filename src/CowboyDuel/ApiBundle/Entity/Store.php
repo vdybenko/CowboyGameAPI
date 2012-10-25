@@ -31,72 +31,72 @@ class Store
     /**
      * @var string $title
      *
-     * @ORM\Column(name="title", type="string", length=50, nullable=true)
+     * @ORM\Column(name="title", type="string", length=50)
      */
     private $title;
 
     /**
      * @var integer $damagedefense
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
-    private $damageOrDefense;
+    private $damageOrDefense = 0;
 
     /**
      * @var integer $golds
      *
-     * @ORM\Column(name="golds", type="integer", nullable=true)
+     * @ORM\Column(name="golds", type="integer")
      */
-    private $golds;
+    private $golds = 0;
 
     /**
      * @var integer $inappid
      *
-     * @ORM\Column(name="inAppId", type="integer", nullable=true)
+     * @ORM\Column(name="inAppId", type="integer")
      */
-    private $inappid;
+    private $inappid = 0;
 
     /**
      * @var string $thumb
      *
      * @ORM\Column(name="thumb", type="string", length=60, nullable=true)
      */
-    private $thumb;
+    private $thumb = "";
 
     /**
      * @var string $img
      *
      * @ORM\Column(name="img", type="string", length=60, nullable=true)
      */
-    private $img;
+    private $img = "";
 
     /**
      * @var string $bigImg
      *
      * @ORM\Column(type="string", length=60, nullable=true)
      */
-    private $bigImg;
+    private $bigImg = "";
     
     /**
-     * @var string $bigImg
+     * @var string $sound
      *
      * @ORM\Column(type="string", nullable=true)
      */
-    private $sound;    
+    private $sound = "";    
     
     /**
      * @var string $description
      *
      * @ORM\Column(name="description", type="string", length=100, nullable=true)
      */
-    private $description;
+    private $description = "";
 
     /**
      * @var integer $levelLock
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
-    private $levelLock;
+    private $levelLock = 0;
 
 
 

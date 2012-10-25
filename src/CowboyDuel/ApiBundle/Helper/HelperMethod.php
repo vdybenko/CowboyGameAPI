@@ -17,7 +17,7 @@ class HelperMethod
 		S3::$use_ssl =  $this->container->getParameter('S3_use_ssl');
 		S3::setAuth($this->container->getParameter('S3_access_key'), $this->container->getParameter('S3_secret_key'));
 		
-		file_put_contents($file_upload, $data, FILE_APPEND);
+		file_put_contents($file_upload, $data);
 		
 		// List Buckets
 		//var_dump($this->s3->listBuckets());
