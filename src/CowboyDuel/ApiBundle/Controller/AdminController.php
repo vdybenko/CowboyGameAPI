@@ -38,6 +38,19 @@ class AdminController extends Controller
     	if ($request->getMethod() == 'POST')
     	{    		       	
        		$form->bindRequest($request);
+       		
+       		$thumb 	= $form['thumb']->getData();
+       		$img 	= $form['img']->getData();
+       		$bigImg = $form['bigImg']->getData();
+       		$sound 	= $form['sound']->getData();
+       		$description = $form['description']->getData();
+       		
+       		$entity->setThumb(is_null($thumb)?'':$thumb)
+       			   ->setImg(is_null($img)?'':$img)
+       			   ->setBigImg(is_null($bigImg)?'':$bigImg)
+       		       ->setSound(is_null($sound)?'':$sound)
+       			   ->setDescription(is_null($description)?'':$description)
+       		;
 
         	if ($form->isValid()) 
         	{

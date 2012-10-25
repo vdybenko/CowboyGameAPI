@@ -20,6 +20,7 @@ class StoreType extends AbstractType
 			->add('inappid')
 			->add('thumb')
 			->add('img')
+			->add('bigImg')
 			->add('sound')
 			->add('description')
 			->add('levelLock')

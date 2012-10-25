@@ -59,14 +59,14 @@ class Store
     /**
      * @var string $thumb
      *
-     * @ORM\Column(name="thumb", type="string", length=60, nullable=true)
+     * @ORM\Column(type="string", length=60, nullable=true)
      */
     private $thumb = "";
 
     /**
      * @var string $img
      *
-     * @ORM\Column(name="img", type="string", length=60, nullable=true)
+     * @ORM\Column(type="string", length=60, nullable=true)
      */
     private $img = "";
 
@@ -87,7 +87,7 @@ class Store
     /**
      * @var string $description
      *
-     * @ORM\Column(name="description", type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $description = "";
 
