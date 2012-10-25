@@ -32,6 +32,8 @@ class StoreController extends Controller
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryHolds($em);
     	
+    	$v_of_store_list = $queryHolds->getSettings('versionListOfStoreItems')->getValue();
+    	
     	$store['weapons'] = $queryHolds->getStoreItems("weapons");
     	$store['defenses'] = $queryHolds->getStoreItems("defenses");
     	
@@ -39,7 +41,7 @@ class StoreController extends Controller
     	 
     	$helperMethod = new HelperMethod($this->container);
     	$helperMethod->sendStatS3($this->container->getParameter('S3_listOfStoreItems_file_upload'),
-    							  $this->container->getParameter('S3_listOfStoreItems_uri'),
+    							  'v_'.$v_of_store_list.'_'.$this->container->getParameter('S3_listOfStoreItems_uri'),
     							  $storeJson);
     	
     	return new Response($storeJson);
