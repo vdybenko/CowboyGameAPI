@@ -1,27 +1,37 @@
-{% extends 'CowboyDuelApiBundle::layout.html.twig' %}
+{% extends 'CowboyDuelAdminBundle::layout.html.twig' %}
 
 {% block title %}Login admin{% endblock %}
 
-{% block content %}        
-
-<h2>Login admin</h2>
-<form id="loginForm" action="{{ path('admin_auth_check') }}" method="post">
-    <h2 class="fontTitleCenter">Авторизация</h2>
-    {% if error %}
-        <div>{{ error.message }}</div>
-    {% endif %}
-    <div class="field">
-    	<label for="username">Електронна пошта:</label>
-   	    <input type="email" id="username" name="_username" value="{{ last_username }}" /><br>
+{% block content %}      
+<div id="wrapper" class="login">	
+	<div class="box">
+		<div class="title">
+			Авторизуйтесь
+			<span class="hide"></span>
+		</div>
+		<div class="content">
+			{% if error %}
+				<div class="message inner blue">
+					<span><b>Information</b>:{{ error.message }}</span>
+				</div>        
+    		{% endif %}		
+			<form action="{{ path('admin_auth_check') }}">
+				<div class="row">
+					<label>Електронна пошта</label>
+					<div class="right"><input type="email" value="{{ last_username }}" /></div>
+				</div>
+				<div class="row">
+					<label>Пароль</label>
+					<div class="right"><input type="password" value="" /></div>
+				</div>
+				<div class="row">
+					<div class="right">
+						<button type="submit"><span>Відправити</span></button>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
-	<div class="field">
-   		<label for="password">Пароль:</label>
-   		<input type="password" id="password" name="_password" /><br>
-    </div>
-    <br>
-	<div class="submit">
-    	<button type="submit" class="submit1">Відправити</button>
-    </div>
-</form>
+</div>
 
 {% endblock %}

@@ -29,9 +29,9 @@ class AdminController extends Controller
 		$queryHolds = new HelperQueryStatistic($em);
 		
 		$data['countDuelsInDay'] = $queryHolds->getCountDuelsInDay(array(
-				'today' => null, 
+				'today' => 1, 
 				'users' => null,
-				'region' => "en_US")
+				'region' => null)
 		);
 		
 		print_r($data);
