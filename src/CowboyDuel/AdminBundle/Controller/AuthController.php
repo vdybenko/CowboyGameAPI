@@ -20,8 +20,8 @@ class AuthController extends Controller
 	{ 
 		$sec = $this->get('security.context');
 		//Первірка на авторизованого адміна
-		//if($sec->isGranted('ROLE_ADMIN'))
-		//	return $this->redirect($this->generateUrl('admin_list_recipe'));
+		if($sec->isGranted('ROLE_ADMIN'))
+			return $this->redirect($this->generateUrl('admin_index'));
 		
 		$request = $this->getRequest();
         $session = $request->getSession();
