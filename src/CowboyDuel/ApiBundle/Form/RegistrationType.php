@@ -26,7 +26,7 @@ class RegistrationType extends AbstractType
 			->add('age')
 			->add('homeTown')
 			->add('friends')
-			->add('facebookName')
+			->add('identifier')
 			->add('level')
 			->add('points')
 			->add('duelsWin')

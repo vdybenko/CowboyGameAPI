@@ -77,7 +77,7 @@ class HelperQueryHolds
 				SELECT u.userId AS user_id, u.nickname, u.money, u.sessionId AS session_id, u.level, u.points, 
 					   u.duelsWin AS duels_win, u.duelsLost AS duels_lost, u.bigestWin AS bigest_win, 
 				       u.removeAds AS remove_ads, u.avatar, u.age, u.homeTown AS home_town, u.friends, 
-					   u.facebookName AS facebook_name				
+					   u.identifier AS identifier				
 				FROM CowboyDuelApiBundle:Users u
 				WHERE u.authen='$authen'"
 		);
@@ -96,19 +96,17 @@ class HelperQueryHolds
 	
 	public function setUser($authen, $app_ver, $device_name, $nickname, $os, $region, $current_language,
 							$level, $points, $money, $duels_win, $duels_lost, $bigest_win, $remove_ads, $avatar, $age,$home_town,
-							$friends, $facebook_name, $snetwork)
+							$friends, $identifier, $snetwork)
 	{
 		$user = new Users();
 		
 		$user
 			 ->setAuthen($authen)
 			 ->setNickname($nickname)
-			 //->setDeviceToken($device_token)
 			 ->setAppVer($app_ver)
 			 ->setDeviceName($device_name)
 			 ->setFirstLogin(time())
 			 ->setMoney($money)
-			 //->setType($type)		
 			 ->setOs($os)
 			 ->setRegion($region)
 			 ->setCurrentLanguage($current_language)
@@ -122,7 +120,7 @@ class HelperQueryHolds
 			 ->setAge($age)
 			 ->setHomeTown($home_town)
 			 ->setFriends($friends)
-			 ->setFacebookName($facebook_name)
+			 ->setidentifier($identifier)
 			 ->setSnetwork($snetwork)
 			 
 			 ->setLastLogin(0)
@@ -138,7 +136,7 @@ class HelperQueryHolds
 	
 	public function setUserInfo($authen, $app_ver, $device_name, $nickname, $type, $os, $region,
 								$current_language, $level, $points, $money, $duels_win, $duels_lost, $bigest_win, 
-								$remove_ads, $avatar, $age, $home_town, $friends, $facebook_name)
+								$remove_ads, $avatar, $age, $home_town, $friends, $identifier)
 	{
 		$user = new Users();
 	
@@ -163,7 +161,7 @@ class HelperQueryHolds
 		if($age) $user->setAge($age);
 		if($home_town) $user->setHomeTown($home_town);
 		if($friends) $user->setFriends($friends);
-		if($facebook_name) $user->setFacebookName($facebook_name);
+		if($identifier) $user->setIdentifier($identifier);
 	
 		$this->em->persist($user);
 		$this->em->flush();

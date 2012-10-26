@@ -90,7 +90,7 @@ class ApiController extends Controller
     	$age 	    = $request->get('age');
     	$home_town 	= $request->get('homeTown');
     	$friends   	= $request->get('friends');
-    	$facebook_name = $request->get('facebookName');
+    	$identifier = $request->get('identifier');
     	
     	$level 		= $request->get('level');
     	$points 	= $request->get('points');
@@ -120,7 +120,7 @@ class ApiController extends Controller
     	$word = strtoupper($authen{0});
     	$word_old = strtoupper($authen_old{0});
     	
-    	if(($word == 'F' ) && ($word_old == 'A' ))
+    	if(($word == 'F' ||  $word == 'E') && ($word_old == 'A' ))
     	{    			
     		$user_info = $queryHolds->getUserWithAuthenOld($authen, null);
     		
@@ -141,10 +141,10 @@ class ApiController extends Controller
     			$region = $user_info->getRegion();;
     			
     			//update info
-    			$snetwork='F';
+    			$snetwork = $word;
     			$queryHolds->setUser($authen, $device_token, $app_ver, $device_name, $nickname, $type, $os,$region,
     								 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
-    								 $remove_ads, $avatar, $age,$home_town, $friends, $facebook_name, $snetwork);
+    								 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);
     			//update session    			
     			$queryHolds->update_session($authen, $session_id);
     			
@@ -160,7 +160,7 @@ class ApiController extends Controller
     							      'money' => $money, 'duels_win' => $duels_win, 'duels_lost' => $duels_lost, 
     							      'bigest_win' => $bigest_win, 'remove_ads' => $remove_ads, 'avatar' => $avatar,
     		   					      'age' => $age, 'home_town' => $home_town, 'friends'=> $friends, 
-    		   					  	  'facebook_name' => $facebook_name
+    		   					  	  'identifier' => $identifier
     		   					 	 );  			
     			return new Response(json_encode($responseDate));
     		}
@@ -194,12 +194,12 @@ class ApiController extends Controller
     		$money = 200; $points = 0; $duels_win = 0; $duels_lost = 0; $bigest_win = 0;
     		$word = strtoupper($authen{0});
     		
-    		if ($word=='F' ) { $snetwork='F';}
-    		 else { $snetwork='0'; }    	
+    		if ($word == 'F' || $word == 'E' ) { $snetwork = $word;}
+    		 else { $snetwork = '0'; }    	
     	
     		$queryHolds->setUser($authen, $app_ver, $device_name, $nickname, $os,$region,
     		 					 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
-    		 					 $remove_ads, $avatar, $age,$home_town, $friends, $facebook_name, $snetwork);
+    		 					 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);
     		
     		//send email
     		/*	
@@ -235,7 +235,7 @@ class ApiController extends Controller
 			$age 		= $user_info->getAge();
 			$home_town  = $user_info->getHomeTown();
 			$friends	= $user_info->getFriends();
-			$facebook_name = $user_info->getFacebookName();
+			$identifier = $user_info->getIdentifier();
     		
     		if (isset($change_nick))
     		{
@@ -253,7 +253,7 @@ class ApiController extends Controller
     			$age 	    = $request->get('age');
     			$home_town 	= $request->get('homeTown');
     			$friends   	= $request->get('friends');
-    			$facebook_name = $request->get('facebookName');
+    			$identifier = $request->get('identifier');
     			 
     			$level 		= $request->get('level');
     			$points 	= $request->get('points');
@@ -263,12 +263,12 @@ class ApiController extends Controller
     			$remove_ads = $request->get('removeAds');
     		
     			$word = strtoupper($authen{0});
-    			if ($word=='F' ) { $snetwork='F'; }
-    			 else { $snetwork='0'; }
+    			if ($word == 'F' || $word == 'E' ) { $snetwork = $word;}
+    		 	 else { $snetwork = '0'; }
     		
     			$queryHolds->setUserInfo($authen, $app_ver, $device_name, $nickname, $type, $os,$region,
     			 						 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
-    			 						 $remove_ads, $avatar, $age,$home_town, $friends, $facebook_name, $snetwork);
+    			 						 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);
     		}
     	
     	}

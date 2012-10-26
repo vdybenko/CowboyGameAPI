@@ -199,16 +199,16 @@ class Users
     /**
      * @var string $facebookName
      *
-     * @ORM\Column(name="facebook_name", type="string", length=30, nullable=false)
+     * @ORM\Column(type="string", length=30, nullable=false)
      */
-    private $facebookName;
+    private $identifier;
 
 
 
     /**
      * Get userId
      *
-     * @return integer 
+     * @return integer
      */
     public function getUserId()
     {
@@ -224,14 +224,14 @@ class Users
     public function setAuthen($authen)
     {
         $this->authen = $authen;
-    
+
         return $this;
     }
 
     /**
      * Get authen
      *
-     * @return string 
+     * @return string
      */
     public function getAuthen()
     {
@@ -247,14 +247,14 @@ class Users
     public function setNickname($nickname)
     {
         $this->nickname = $nickname;
-    
+
         return $this;
     }
 
     /**
      * Get nickname
      *
-     * @return string 
+     * @return string
      */
     public function getNickname()
     {
@@ -270,14 +270,14 @@ class Users
     public function setDeviceName($deviceName)
     {
         $this->deviceName = $deviceName;
-    
+
         return $this;
     }
 
     /**
      * Get deviceName
      *
-     * @return string 
+     * @return string
      */
     public function getDeviceName()
     {
@@ -293,14 +293,14 @@ class Users
     public function setSnetwork($snetwork)
     {
         $this->snetwork = $snetwork;
-    
+
         return $this;
     }
 
     /**
      * Get snetwork
      *
-     * @return string 
+     * @return string
      */
     public function getSnetwork()
     {
@@ -316,14 +316,14 @@ class Users
     public function setLastLogin($lastLogin)
     {
         $this->lastLogin = $lastLogin;
-    
+
         return $this;
     }
 
     /**
      * Get lastLogin
      *
-     * @return integer 
+     * @return integer
      */
     public function getLastLogin()
     {
@@ -339,14 +339,14 @@ class Users
     public function setFirstLogin($firstLogin)
     {
         $this->firstLogin = $firstLogin;
-    
+
         return $this;
     }
 
     /**
      * Get firstLogin
      *
-     * @return string 
+     * @return string
      */
     public function getFirstLogin()
     {
@@ -362,14 +362,14 @@ class Users
     public function setType($type)
     {
         $this->type = $type;
-    
+
         return $this;
     }
 
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -385,14 +385,14 @@ class Users
     public function setRegion($region)
     {
         $this->region = $region;
-    
+
         return $this;
     }
 
     /**
      * Get region
      *
-     * @return string 
+     * @return string
      */
     public function getRegion()
     {
@@ -408,14 +408,14 @@ class Users
     public function setCurrentLanguage($currentLanguage)
     {
         $this->currentLanguage = $currentLanguage;
-    
+
         return $this;
     }
 
     /**
      * Get currentLanguage
      *
-     * @return string 
+     * @return string
      */
     public function getCurrentLanguage()
     {
@@ -431,14 +431,14 @@ class Users
     public function setOs($os)
     {
         $this->os = $os;
-    
+
         return $this;
     }
 
     /**
      * Get os
      *
-     * @return string 
+     * @return string
      */
     public function getOs()
     {
@@ -454,14 +454,14 @@ class Users
     public function setAppVer($appVer)
     {
         $this->appVer = $appVer;
-    
+
         return $this;
     }
 
     /**
      * Get appVer
      *
-     * @return string 
+     * @return string
      */
     public function getAppVer()
     {
@@ -477,14 +477,14 @@ class Users
     public function setDeviceToken($deviceToken)
     {
         $this->deviceToken = $deviceToken;
-    
+
         return $this;
     }
 
     /**
      * Get deviceToken
      *
-     * @return string 
+     * @return string
      */
     public function getDeviceToken()
     {
@@ -500,14 +500,14 @@ class Users
     public function setDate($date)
     {
         $this->date = $date;
-    
+
         return $this;
     }
 
     /**
      * Get date
      *
-     * @return integer 
+     * @return integer
      */
     public function getDate()
     {
@@ -523,14 +523,14 @@ class Users
     public function setMoney($money)
     {
         $this->money = $money;
-    
+
         return $this;
     }
 
     /**
      * Get money
      *
-     * @return integer 
+     * @return integer
      */
     public function getMoney()
     {
@@ -546,14 +546,14 @@ class Users
     public function setSessionId($sessionId)
     {
         $this->sessionId = $sessionId;
-    
+
         return $this;
     }
 
     /**
      * Get sessionId
      *
-     * @return string 
+     * @return string
      */
     public function getSessionId()
     {
@@ -569,14 +569,14 @@ class Users
     public function setLevel($level)
     {
         $this->level = $level;
-    
+
         return $this;
     }
 
     /**
      * Get level
      *
-     * @return integer 
+     * @return integer
      */
     public function getLevel()
     {
@@ -592,14 +592,14 @@ class Users
     public function setPoints($points)
     {
         $this->points = $points;
-    
+
         return $this;
     }
 
     /**
      * Get points
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoints()
     {
@@ -615,14 +615,14 @@ class Users
     public function setDuelsWin($duelsWin)
     {
         $this->duelsWin = $duelsWin;
-    
+
         return $this;
     }
 
     /**
      * Get duelsWin
      *
-     * @return integer 
+     * @return integer
      */
     public function getDuelsWin()
     {
@@ -638,14 +638,14 @@ class Users
     public function setDuelsLost($duelsLost)
     {
         $this->duelsLost = $duelsLost;
-    
+
         return $this;
     }
 
     /**
      * Get duelsLost
      *
-     * @return integer 
+     * @return integer
      */
     public function getDuelsLost()
     {
@@ -661,14 +661,14 @@ class Users
     public function setBigestWin($bigestWin)
     {
         $this->bigestWin = $bigestWin;
-    
+
         return $this;
     }
 
     /**
      * Get bigestWin
      *
-     * @return integer 
+     * @return integer
      */
     public function getBigestWin()
     {
@@ -684,14 +684,14 @@ class Users
     public function setRemoveAds($removeAds)
     {
         $this->removeAds = $removeAds;
-    
+
         return $this;
     }
 
     /**
      * Get removeAds
      *
-     * @return integer 
+     * @return integer
      */
     public function getRemoveAds()
     {
@@ -707,14 +707,14 @@ class Users
     public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
-    
+
         return $this;
     }
 
     /**
      * Get avatar
      *
-     * @return string 
+     * @return string
      */
     public function getAvatar()
     {
@@ -730,14 +730,14 @@ class Users
     public function setAge($age)
     {
         $this->age = $age;
-    
+
         return $this;
     }
 
     /**
      * Get age
      *
-     * @return string 
+     * @return string
      */
     public function getAge()
     {
@@ -753,14 +753,14 @@ class Users
     public function setHomeTown($homeTown)
     {
         $this->homeTown = $homeTown;
-    
+
         return $this;
     }
 
     /**
      * Get homeTown
      *
-     * @return string 
+     * @return string
      */
     public function getHomeTown()
     {
@@ -776,14 +776,14 @@ class Users
     public function setFriends($friends)
     {
         $this->friends = $friends;
-    
+
         return $this;
     }
 
     /**
      * Get friends
      *
-     * @return integer 
+     * @return integer
      */
     public function getFriends()
     {
@@ -791,25 +791,25 @@ class Users
     }
 
     /**
-     * Set facebookName
+     * Set identifier
      *
-     * @param string $facebookName
+     * @param string $identifier
      * @return Users
      */
-    public function setFacebookName($facebookName)
+    public function setIdentifier($identifier)
     {
-        $this->facebookName = $facebookName;
-    
+        $this->identifier = $identifier;
+
         return $this;
     }
 
     /**
-     * Get facebookName
+     * Get identifier
      *
-     * @return string 
+     * @return string
      */
-    public function getFacebookName()
+    public function getIdentifier()
     {
-        return $this->facebookName;
+        return $this->identifier;
     }
 }
