@@ -3,18 +3,10 @@ namespace CowboyDuel\ApiBundle\Helper;
 
 use CowboyDuel\ApiBundle\Entity\Online,
 	CowboyDuel\ApiBundle\Entity\Users,
-	CowboyDuel\ApiBundle\Entity\Duels,
-	CowboyDuel\ApiBundle\Entity\BuyItemsStore;
+	CowboyDuel\ApiBundle\Entity\Duels;
 
-class HelperQueryHolds
+class HelperQueryHolds extends HelperAbstractDb
 {
-	private $em;
-	
-	public function __construct($em)
-	{
-		$this->em = $em;
-	}
-	
 	public function get_top_users()
 	{		
 		return $q = $this->em->createQuery('
@@ -276,53 +268,5 @@ class HelperQueryHolds
 		);
 		
 		return $q->getResult();
-	}
-	
-	public function getStoreItems($type)
-	{
-		$dStr = null;
-		switch ($type)
-		{
-			case 'weapons': 
-				  $dStr = 's.id, s.title, s.damageOrDefense AS damage, s.golds, s.inappid, s.thumb, 
-				           s.img, s.bigImg, s.sound, s.description, s.levelLock'; 
-			  break;
-			case 'defenses': 
-				  $dStr = 's.id, s.title, s.damageOrDefense AS defense, s.golds, s.inappid, s.thumb, 
-				           s.img, s.description, s.levelLock'; 
-			  break;
-		}		
-		$q = $this->em->createQuery("
-				SELECT $dStr
-				FROM CowboyDuelApiBundle:Store s
-				WHERE s.type='$type'"
-		);		
-		return $q->getResult();
-	}
-	
-	public function setBuyItemStore($authenUser, $itemIdStore, $transactionsId)
-	{
-		$itemStore = new BuyItemsStore();
-		
-		$itemStore->setAuthenuser($authenUser)
-				  ->setItemIdStore($itemIdStore)
-				  ->setTransactionsId($transactionsId)
-				  ->setDate(time());
-		
-		$this->em->persist($itemStore);
-		$this->em->flush();
-	}
-	
-	public function getLastBuyItemStore($authen, $type)
-	{
-		$q = $this->em->createQuery("				
-			 	SELECT b.id
-				FROM CowboyDuelApiBundle:BuyItemsStore b, CowboyDuelApiBundle:Store s
-				WHERE b.authenuser='$authen' AND s.type='$type' AND b.itemIdStore = s.id			
-			    ORDER BY b.date DESC"
-		);
-		$e = $q->getResult();
-		
-		return $e[0];
 	}
 }

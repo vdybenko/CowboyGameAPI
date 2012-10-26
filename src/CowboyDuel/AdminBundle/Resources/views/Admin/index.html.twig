@@ -1,0 +1,12 @@
+{% extends 'CowboyDuelAdminBundle::layout.html.twig' %}
+{% block title %}Admin action{% endblock %}
+
+
+{% block content %}
+<h2>Admin action</h2>
+
+<ul>
+	<li><a href="{{ path("admin_add_store_item") }}">Add store item</a></li>
+	<li><a href="{{ path("store_list_items") }}">Send to S3 store list items</a></li>
+</ul>
+{% endblock %}

@@ -1,3 +1,8 @@
+cowboy_duel_admin:
+    resource: "@CowboyDuelAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 cowboy_duel_api:
     resource: "@CowboyDuelApiBundle/Controller/"
     type:     annotation

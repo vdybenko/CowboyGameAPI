@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>    
+                
+        {% block stylesheets %}{% endblock %}             
+        <link rel="stylesheet" href="{{ asset('') }}" type="text/css"/>                    
+        
+        {% block javascript %}{% endblock %}  
+        
+        <link rel="shortcut icon" href="{{ asset('') }}" />                       
+    </head>
+    <body>    
+     	<div class="content">
+          {% block content%}
+          {% endblock %}
+        </div>
+        {% block containerFother %}
+        {% endblock %}           
+    </body>
+</html>

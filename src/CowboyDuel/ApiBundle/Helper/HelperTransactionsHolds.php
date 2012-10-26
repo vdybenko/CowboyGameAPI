@@ -3,15 +3,8 @@ namespace CowboyDuel\ApiBundle\Helper;
 
 use CowboyDuel\ApiBundle\Entity\Transactions;
 
-class HelperTransactionsHolds 
+class HelperTransactionsHolds extends HelperAbstractDb
 {
-	private $em;
-	
-	public function __construct($em)
-	{
-		$this->em = $em;
-	}
-	
 	public function setTransaction($authen, $value, $description)
 	{
 		$transaction = new Transactions();

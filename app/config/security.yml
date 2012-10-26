@@ -1,43 +1,50 @@
 jms_security_extra:
-    secure_all_services: false
-    expressions: true
+   secure_all_services: true
+   expressions: true
 
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        CowboyDuel\ApiBundle\Entity\Users: plaintext
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            memory:
+        chain_provider:
+            chain:
+                providers: [in_memory, user_db]
+        in_memory:          
+             memory:
                 users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+                     user:  { password: userpass,roles: [ 'ROLE_USER' ] }
+                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        user_db:
+             entity: { class: CowboyDuel\ApiBundle\Entity\Users, property: nickname}
 
-    firewalls:
+    firewalls: 
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        login_firewall:
+           pattern:    ^/login$
+           anonymous:  ~
 
-        login:
-            pattern:  ^/demo/secured/login$
-            security: false
-
-        secured_area:
-            pattern:    ^/demo/secured/
+        admin_secured_area:                
+            pattern:    /(.*)           
+            anonymous: ~            
             form_login:
-                check_path: /demo/secured/login_check
-                login_path: /demo/secured/login
+                login_path: /admin/auth/login
+                check_path: /admin/auth/login_check 
+                default_target_path: /admin
             logout:
-                path:   /demo/secured/logout
-                target: /demo/
+                path:   /admin/auth/logout
+                target: /admin
+              
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
