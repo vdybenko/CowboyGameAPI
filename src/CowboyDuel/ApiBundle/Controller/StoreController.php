@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 	JMS\SecurityExtraBundle\Annotation\Secure;
 
 use CowboyDuel\ApiBundle\Helper\HelperQueryHolds,
-	CowboyDuel\AdminBundle\Helper\HelperQueryStore,
+	CowboyDuel\ApiBundle\Helper\HelperQueryStore,
 	CowboyDuel\ApiBundle\Helper\HelperMethod;
 
 /**

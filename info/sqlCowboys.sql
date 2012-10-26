@@ -3,13 +3,29 @@
 # Server version:               5.5.16-log
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2012-10-26 10:11:17
+# Date/time:                    2012-10-26 15:35:26
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+# Dumping structure for table cowboys.admin
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_bin NOT NULL,
+  `email` varchar(60) COLLATE utf8_bin NOT NULL,
+  `password` varchar(60) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+# Dumping data for table cowboys.admin: ~0 rows (approximately)
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` (`id`, `name`, `email`, `password`) VALUES
+	(1, 'admin', 'admin@a.a', '74913f5cd5f61ec0bcfdb775414c2fb3d161b620');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+
 
 # Dumping structure for table cowboys.buyitemsstore
 CREATE TABLE IF NOT EXISTS `buyitemsstore` (
@@ -175,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `store` (
   `description` varchar(100) COLLATE utf8_bin DEFAULT '',
   `levelLock` int(10) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 # Dumping data for table cowboys.store: ~4 rows (approximately)
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
@@ -248,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`, `last_login`, `first_login`, `type`, `region`, `current_language`, `os`, `app_ver`, `device_token`, `date`, `money`, `session_id`, `level`, `points`, `duels_win`, `duels_lost`, `bigest_win`, `remove_ads`, `avatar`, `age`, `home_town`, `friends`, `identifier`) VALUES
 	(145925, 'F:100001850844084', 'Тарас Кошмар123', 'x86_64', 'F', 1349772450, '1348728319', '0', 'en_US', 'ru', '5.0', '1.4', '', 0, 300, '507bc2a61e572', 3, 46, 2, 1, 352, 0, 'Тарас Кошмар', '02/01/1990', 'Cherkasy', 45, 'Тарас Кокшаров'),
-	(145922, 'A:de76bac288', 'iphone', 'iPhone3G', '0', 1349794640, '1347737232', '0', 'uk_UA', 'ru', '4.2.1', '1.4', '', 0, 138, '50743d5f9c420', 3, 46, 5, 9, 21, 0, 'iphone', '', '', 0, ''),
+	(145922, 'A:de76bac288', 'iphone', 'iPhone3G', '0', 1349794640, '1347737232', '0', 'uk_UA', 'ru', '4.2.1', '1.4', '', 0, 138, 'c', 3, 46, 5, 9, 21, 0, 'iphone', '', '', 0, ''),
 	(145923, 'A:67851e4c55', 'Anonymous', 'iPad2GSM', '0', 0, '1348149579', '0', 'es_ES', 'es', '5.1.1', '1.4', '', 0, 200, '505cc91de9a30', 0, 0, 0, 0, 0, 0, '0', '', '', 0, ''),
 	(145915, 'A:11630265df', 'Anonymous', 'iPhone4S', '0', 0, '1346421230', '0', 'ru_UA', 'ru', '5.1.1', '1.4', '', 0, 200, '50549f67bec08', 0, 0, 0, 0, 0, 0, '0', '', '', 0, ''),
 	(145916, 'F:1667761963', 'Olya Dybenko', 'iPhone4S', 'F', 1346429215, '1346421279', '0', 'ru_UA', 'ru', '5.1.1', '1.4', '', 0, 197, '50549fa45c09f', 1, 12, 2, 7, 30, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-ash2/371491_1667761963_203212700_q.jpg', '02/22/1983', 'Cherkasy', 230, 'Olya Dybenko'),

@@ -2,15 +2,14 @@
 
 namespace CowboyDuel\ApiBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM, Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * CowboyDuel\ApiBundle\Entity\Users
  *
  * @ORM\Table(name="users")
  * @ORM\Entity
  */
-class Users implements UserInterface {
+class Users
+{
 	/**
 	 * @var integer $userId
 	 *
@@ -755,24 +754,5 @@ class Users implements UserInterface {
 	 */
 	public function getIdentifier() {
 		return $this->identifier;
-	}
-	
-	
-	public function getRoles() 
-	{
-		return array('ROLE_ADMIN');
-	}
-	public function getPassword() 
-	{
-		return $this->sessionId;
-	}
-	public function getSalt() 
-	{
-		return '';
-	}
-	public function getUsername() 
-	{
-		return $this->nickname;
-	}
-	public function eraseCredentials() {}
+	}	
 }

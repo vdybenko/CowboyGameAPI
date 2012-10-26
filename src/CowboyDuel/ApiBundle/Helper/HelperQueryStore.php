@@ -1,7 +1,7 @@
 <?php
 namespace CowboyDuel\AdminBundle\Helper;
 
-use CowboyDuel\ApiBundle\Entity\BuyItemsStore;
+use CowboyDuel\AdminBundle\Entity\BuyItemsStore;
 
 class HelperQueryStore extends  \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 {
