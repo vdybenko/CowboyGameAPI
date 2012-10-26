@@ -1,9 +1,9 @@
 <?php
-namespace CowboyDuel\AdminBundle\Helper;
+namespace CowboyDuel\ApiBundle\Helper;
 
-use CowboyDuel\AdminBundle\Entity\BuyItemsStore;
+use CowboyDuel\ApiBundle\Entity\BuyItemsStore;
 
-class HelperQueryStore extends  \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
+class HelperQueryStore extends HelperAbstractDb
 {
 	public function getStoreItems($type)
 	{
