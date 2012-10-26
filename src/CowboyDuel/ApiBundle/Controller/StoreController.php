@@ -5,10 +5,11 @@ namespace CowboyDuel\ApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
-	Symfony\Component\HttpFoundation\Response;
+	Symfony\Component\HttpFoundation\Response,
+	JMS\SecurityExtraBundle\Annotation\Secure;
 
 use CowboyDuel\ApiBundle\Helper\HelperQueryHolds,
-	CowboyDuel\ApiBundle\Helper\HelperTransactionsHolds,
+	CowboyDuel\AdminBundle\Helper\HelperQueryStore,
 	CowboyDuel\ApiBundle\Helper\HelperMethod;
 
 /**
@@ -31,11 +32,12 @@ class StoreController extends Controller
     {
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryHolds($em);
+    	$queryStore = new HelperQueryStore($em);
     	
     	$program_version = $queryHolds->getSettings('program_version')->getValue();
     	
-    	$store['weapons'] = $queryHolds->getStoreItems("weapons");
-    	$store['defenses'] = $queryHolds->getStoreItems("defenses");
+    	$store['weapons'] = $queryStore->getStoreItems("weapons");
+    	$store['defenses'] = $queryStore->getStoreItems("defenses");
     	
     	$storeJson = json_encode($store);
     	
@@ -66,8 +68,7 @@ class StoreController extends Controller
     	else 
     	{    	
     		$em = $this->getDoctrine()->getEntityManager();
-    		$queryHolds = new HelperQueryHolds($em);    		
-    		$transactionsHolds = new HelperTransactionsHolds($em);
+    		$queryStore = new HelperQueryStore($em);    		
     	
     		$queryHolds->setBuyItemStore($authen, $itemId, $transactionsId);
     		    		
