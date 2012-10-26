@@ -3,7 +3,7 @@
 # Server version:               5.5.16-log
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2012-10-25 16:26:14
+# Date/time:                    2012-10-26 10:11:17
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `online` (
 INSERT INTO `online` (`id`, `authen`, `online`, `enterTime`, `exitTime`) VALUES
 	(1, 'F:537141553', 0, '1349953425', '1349953513'),
 	(2, 'F:100001785186331', 1, '1349787186', '0'),
-	(3, 'F:100004072748849', 1, '1350899659', '0'),
+	(3, 'F:100004072748849', 1, '1351235018', '0'),
 	(4, 'A:951059A5-3', 1, '1349789821', '0'),
 	(5, 'A:be56be4e39', 0, '1349939100', '1349940389'),
 	(6, 'F:100001850844084', 1, '1349958778', '0'),
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `store` (
   `description` varchar(100) COLLATE utf8_bin DEFAULT '',
   `levelLock` int(10) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 # Dumping data for table cowboys.store: ~4 rows (approximately)
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
@@ -236,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `age` text CHARACTER SET utf8 NOT NULL,
   `home_town` varchar(256) CHARACTER SET utf8 NOT NULL,
   `friends` int(11) NOT NULL,
-  `facebook_name` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `identifier` varchar(30) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`user_id`),
   KEY `nickname` (`nickname`),
   KEY `authen` (`authen`),
@@ -246,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 # Dumping data for table cowboys.users: 54 rows
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`, `last_login`, `first_login`, `type`, `region`, `current_language`, `os`, `app_ver`, `device_token`, `date`, `money`, `session_id`, `level`, `points`, `duels_win`, `duels_lost`, `bigest_win`, `remove_ads`, `avatar`, `age`, `home_town`, `friends`, `facebook_name`) VALUES
+INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`, `last_login`, `first_login`, `type`, `region`, `current_language`, `os`, `app_ver`, `device_token`, `date`, `money`, `session_id`, `level`, `points`, `duels_win`, `duels_lost`, `bigest_win`, `remove_ads`, `avatar`, `age`, `home_town`, `friends`, `identifier`) VALUES
 	(145925, 'F:100001850844084', 'Тарас Кошмар123', 'x86_64', 'F', 1349772450, '1348728319', '0', 'en_US', 'ru', '5.0', '1.4', '', 0, 300, '507bc2a61e572', 3, 46, 2, 1, 352, 0, 'Тарас Кошмар', '02/01/1990', 'Cherkasy', 45, 'Тарас Кокшаров'),
 	(145922, 'A:de76bac288', 'iphone', 'iPhone3G', '0', 1349794640, '1347737232', '0', 'uk_UA', 'ru', '4.2.1', '1.4', '', 0, 138, '50743d5f9c420', 3, 46, 5, 9, 21, 0, 'iphone', '', '', 0, ''),
 	(145923, 'A:67851e4c55', 'Anonymous', 'iPad2GSM', '0', 0, '1348149579', '0', 'es_ES', 'es', '5.1.1', '1.4', '', 0, 200, '505cc91de9a30', 0, 0, 0, 0, 0, 0, '0', '', '', 0, ''),
@@ -290,7 +290,7 @@ INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`,
 	(145813, 'F:100003825983743', 'Hugo Gana', '', 'F', 0, '', '', '', '', '', '', '', 0, 100, '', 1, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/187316_100003825983743_1090117352_q.jpg', '1987-27-11', '', 39, 'Hugo Gana'),
 	(145814, 'F:100003804058651', 'Quang Minh', '', 'F', 0, '', '', '', '', '', '', '', 0, 100, '', 1, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/370252_100003804058651_1443939224_q.jpg', '1993-20-08', '', 158, 'Quang Minh'),
 	(145815, 'F:100003443034588', 'Andrey Fedirko', '', 'F', 0, '', '', '', '', '', '', '', 0, 100, '', 1, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/49541_100003443034588_461883270_q.jpg', '1976-15-09', '', 41, 'Andrey Fedirko'),
-	(145928, 'F:100004072748849', 'Q', 'x86_64', 'F', 1349364404, '1349348039', '0', 'en_US', 'en', '5.1', '1.4', '', 0, 146, '508517cb380dd', 2, 29, 0, 3, 0, 0, '', '07/01/1990', '', 2, 'John  Newbie'),
+	(145928, 'F:100004072748849', 'Q', 'x86_64', 'F', 1349364404, '1349348039', '0', 'en_US', 'en', '5.1', '1.4', '', 0, 146, '508a35ca33ecd', 2, 29, 0, 3, 0, 0, '', '07/01/1990', '', 2, 'John  Newbie'),
 	(145927, 'A:00000000-0', 'Q', 'x86_64', '0', 1349939590, '1349347995', '0', 'en_US', 'en', '5.1', '1.4', '', 0, 482, '507c04563d136', 3, 44, 8, 1, 26, 0, 'Q', '', '', 0, ''),
 	(145926, 'A:bc0f35c120', 'Anonymous', 'iPad3,3', '0', 0, '1349205178', '0', 'en_US', 'en', '6.0', '1.4', '', 0, 200, '', 0, 0, 0, 0, 0, 0, '0', '', '', 0, ''),
 	(145917, 'A:6e70744811', 'Anonymous', 'iPhone4', '0', 0, '1346421347', '0', 'ru_UA', 'en', '6.0', '1.4', '', 0, 200, '50628a6b8a26a', 0, 0, 0, 0, 0, 0, '0', '', '', 0, ''),
