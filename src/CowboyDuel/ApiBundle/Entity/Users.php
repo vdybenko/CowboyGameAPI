@@ -2,6 +2,8 @@
 
 namespace CowboyDuel\ApiBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * CowboyDuel\ApiBundle\Entity\Users
  *

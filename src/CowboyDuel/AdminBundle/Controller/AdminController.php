@@ -2,6 +2,8 @@
 
 namespace CowboyDuel\AdminBundle\Controller;
 
+use CowboyDuel\AdminBundle\Helper\HelperQueryStatistic;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
@@ -23,7 +25,18 @@ class AdminController extends Controller
 	 */
 	public function indexAction()
 	{
-		return array();
+		$em = $this->getDoctrine()->getEntityManager();
+		$queryHolds = new HelperQueryStatistic($em);
+		
+		$data['countDuelsInDay'] = $queryHolds->getCountDuelsInDay(array(
+				'today' => null, 
+				'users' => null,
+				'region' => "en_US")
+		);
+		
+		print_r($data);
+		
+		return array('data' => $data);
 	}
     
     /**
