@@ -30,7 +30,7 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 	{
 		$q = $this->em->createQuery("
 				SELECT COUNT(u)
-				FROM CowboyDuelApiBundle:Users u
+				FROM CowboyDuelApiBundle:Users u"
 		);
 		return  $q->getResult();
 	}
