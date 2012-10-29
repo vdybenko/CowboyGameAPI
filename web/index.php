@@ -8,6 +8,10 @@ switch (getenv('APPLICATION_ENV'))
 	case 'jura':
 			$nameSpace = "jura";
 		break;
+    case 'tepalenko':
+                $nameSpace = "tepalenko";
+            break;
+
 	case 'testing':
 			$nameSpace = "test";
 		break;
