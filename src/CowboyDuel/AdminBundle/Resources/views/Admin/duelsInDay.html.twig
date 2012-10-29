@@ -11,27 +11,86 @@
 			<span class="hide"></span>
 		</div>
 		<div class="content">
-		 duelsInDay_users_new<br>
+         <div class="chart-caption"> duelsInDay_users_new</div>
+         <table class="chart" style="width : 100%;">
+         <thead>
+         <tr>
+             <th></th>
+             <th style="color : #e10000;">unique visitors</th>
+             <th style="color : #000000;">pageviews</th>
+         </tr>
+         </thead>
+         <tbody>
 		 {% for e in  data.duelsInDay_users_new %}
 			 sum:{{ e.sum }} month:{{ e.month}}<br>
-		 {% endfor%}	
+         <tr>
+             <th>{{ e.sum }}</th><td>{{ e.month}}</td>
+         </tr>
+		 {% endfor%}
+         </tbody>
+         </table>
 		 <br>
-		 duelsInDay_users_old<br>
-		 {% for e in  data.duelsInDay_users_old %}
-			 sum:{{ e.sum }} month:{{ e.month}}<br>
-		 {% endfor%}	
+
+         <div class="chart-caption"> duelsInDay_users_old</div>
+         <table class="chart" style="width : 100%;">
+         <thead>
+         <tr>
+             <th></th>
+             <th style="color : #e10000;">unique visitors</th>
+             <th style="color : #000000;">pageviews</th>
+         </tr>
+         </thead>
+         <tbody>
+         {% for e in  data.duelsInDay_users_old %}
+         <tr>
+             <th>{{ e.sum }}</th><td>{{ e.month}}</td>
+         </tr>
+		 {% endfor%}
+         </tbody>
+         </table>
+         <br>
 		 <br>
-		 duelsInDay_lastDay_10<br>
+
+         <div class="chart-caption"> duelsInDay_lastDay_10</div>
+         <table class="chart" style="width : 100%;">
+         <thead>
+         <tr>
+             <th></th>
+             <th style="color : #e10000;">unique visitors</th>
+             <th style="color : #000000;">pageviews</th>
+         </tr>
+         </thead>
+         <tbody>
 		 {% for e in  data.duelsInDay_lastDay_10 %}
-			 sum:{{ e.sum }} month:{{ e.month}}<br>
-		 {% endfor%}	
+         <tr>
+             <th>{{ e.sum }}</th><td>{{ e.month}}</td>
+         </tr>
+		 {% endfor%}
+         </tbody>
+         </table>
 		 <br>
-		 duelsInDay_region<br>
+         <div class="chart-caption"> duelsInDay_region</div>
+         <table class="chart" style="width : 100%;">
+         <thead>
+         <tr>
+             <th></th>
+             <th style="color : #e10000;">unique visitors</th>
+             <th style="color : #000000;">pageviews</th>
+         </tr>
+         </thead>
+         <tbody>
 		 {% for e in  data.duelsInDay_region %}
-			 sum:{{ e.sum }} month:{{ e.month}}<br>
-		 {% endfor%}	
-		 <br>	
+         <tr>
+             <th>{{ e.sum }}</th><td>{{ e.month}}</td>
+         </tr>
+		 {% endfor%}
+         </tbody>
+         </table>
+		 <br>
+
+
 		</div>
+
 	</div>
 </div>
 

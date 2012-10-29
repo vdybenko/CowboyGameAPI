@@ -23,7 +23,7 @@ class AppKernel extends Kernel
             new CowboyDuel\AdminBundle\CowboyDuelAdminBundle(),
         );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test', 'jura'))) {
+        if (in_array($this->getEnvironment(), array('dev', 'test', 'jura', 'tepalenko'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
