@@ -26,13 +26,28 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		return $q[0][1];
 	}
 	
-	public function getCountRegisteredUsers()
+	public function getCountRegisteredUsers($snetwork)
 	{
+		$q = "SELECT COUNT(u) FROM CowboyDuelApiBundle:Users u ";
+		if(!is_null($snetwork)) $q .= "WHERE u.snetwork = 'F'";
+		$q = $this->em->createQuery($q)->getResult();
+		return  $q[0][1];
+	}
+	public function getCountUsersAttendedDuels()
+	{		
+		$q = $this->em->createQuery("SELECT COUNT(u) FROM CowboyDuelApiBundle:Users u WHERE u.points > 0");
+		$q = $q->getResult();
+		return  $q[0][1];
+	}
+	public function getRatioUsersOfRolledQuantityDuels()
+	{
+		$count = $this->getCountUsersAttendedDuels();
 		$q = $this->em->createQuery("
-				SELECT COUNT(u)
-				FROM CowboyDuelApiBundle:Users u"
-		);
-		return  $q->getResult();
+				SELECT COUNT(t)/$count
+				FROM CowboyDuelApiBundle:Transactions t 
+				WHERE t.value != 10");
+		$q = $q->getResult();
+		return  $q[0][1];
 	}
 
 }

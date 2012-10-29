@@ -34,6 +34,11 @@ class AdminController extends Controller
 				'region' => null)
 		);
 		
+		$data['countRegisteredUsers'] =  $queryHolds->getCountRegisteredUsers(null);
+		$data['countRegisteredUsersFromFacebook'] =  $queryHolds->getCountRegisteredUsers('F');
+		$data['countUsersAttendedDuels'] =  $queryHolds->getCountUsersAttendedDuels();
+		$data['ratioUsersOfRolledQuantityDuel'] = $queryHolds->getRatioUsersOfRolledQuantityDuels();
+		
 		print_r($data);
 		
 		return array('data' => $data,
