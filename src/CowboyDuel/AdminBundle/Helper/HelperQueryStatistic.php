@@ -40,13 +40,6 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		return  $q[0][1];
 	}
 	
-	function createQuery($sql)
-	{		
-		$stmt = $this->em->getConnection()->prepare($sql);
-		$stmt->execute();
-		return $stmt->fetchAll();
-	}
-	
 	public function getRatioUsersOfRolledQuantityDuels()
 	{
 		/*$count = $this->getCountUsersAttendedDuels();
@@ -64,14 +57,38 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		return $q[0]['r'];
 	}
 	
-	public function getDuelsInDay()
+	public function getDuelsInDay($filters)
 	{	
-		$where = "" ;
-		 
+		$from = "";
+		$where = "";
+		
+		if(isset($filters['region']) || isset($filters['users'])) 
+			$from = " INNER JOIN `users` u ON t.authen = u.authen";
+		
+		if(isset($filters['lastDay'])) 
+		{
+			$datePrew = strtotime(date('Y-m-d')) - $filters['lastDay'] * 43200;			
+			$where = "AND date BETWEEN $datePrew AND CURRENT_TIMESTAMP()";
+		}
+		
+		if(isset($filters['region']))
+			$where = "AND u.region='".$filters['region']."'";
+		
+		if(isset($filters['users']))
+		{			
+			$data = strtotime(date('Y-m-d'));
+		 	switch($filters['users'])
+		 	{
+				case 'new': $where = "AND u.first_login BETWEEN $data AND CURRENT_TIMESTAMP()"; break;	
+				case 'old': $where = "AND u.first_login NOT BETWEEN $data AND CURRENT_TIMESTAMP()"; break;
+		 	}
+		}
+			
    		$q = $this->createQuery("
-   			SELECT COUNT(`id`) AS `sum`,DAYOFYEAR(FROM_UNIXTIME(`date`, '%Y-%m-%d %H:%i:%s')) AS `month`
-			FROM `transactions`
-			GROUP BY DAYOFYEAR(FROM_UNIXTIME(`date`, '%Y-%m-%d %H:%i:%s'))
+   			SELECT COUNT(t.id) AS `sum`, DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s')) AS `month`
+			FROM `transactions` t $from
+   			WHERE t.value != 10 $where
+			GROUP BY DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s'))
    		");	
    		return $q;	
 	}

@@ -111,7 +111,13 @@ class AdminController extends Controller
     	$queryHolds = new HelperQueryStatistic($em);   	
     	
     	$data = $this->setDataStatistic($queryHolds);
-    	$data['duelsInDay'] = $queryHolds->getDuelsInDay(); 
+    	
+    	$data['duelsInDay_users_new'] = $queryHolds->getDuelsInDay(array('users' => 'new')); 
+    	$data['duelsInDay_users_old'] = $queryHolds->getDuelsInDay(array('users' => 'old'));
+    	
+    	$data['duelsInDay_lastDay_10'] = $queryHolds->getDuelsInDay(array('lastDay' => 10));
+    	$data['duelsInDay_region'] = $queryHolds->getDuelsInDay(array('region' => 'ru_UA'));
+    	
 
     	print_r($data);
     	return array('data' => $data,

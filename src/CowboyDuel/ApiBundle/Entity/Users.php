@@ -57,9 +57,9 @@ class Users
 	private $lastLogin;
 
 	/**
-	 * @var string $firstLogin
+	 * @var integer $firstLogin
 	 *
-	 * @ORM\Column(name="first_login", type="string", length=20, nullable=false)
+	 * @ORM\Column(name="first_login", type="integer", length=20, nullable=false)
 	 */
 	private $firstLogin;
 
@@ -320,7 +320,7 @@ class Users
 	/**
 	 * Set firstLogin
 	 *
-	 * @param string $firstLogin
+	 * @param integer $firstLogin
 	 * @return Users
 	 */
 	public function setFirstLogin($firstLogin) {
@@ -332,7 +332,7 @@ class Users
 	/**
 	 * Get firstLogin
 	 *
-	 * @return string
+	 * @return integer
 	 */
 	public function getFirstLogin() {
 		return $this->firstLogin;

@@ -11,9 +11,26 @@
 			<span class="hide"></span>
 		</div>
 		<div class="content">
-		 {% for e in  data.duelsInDay %}
+		 duelsInDay_users_new<br>
+		 {% for e in  data.duelsInDay_users_new %}
 			 sum:{{ e.sum }} month:{{ e.month}}<br>
-		 {% endfor%}		
+		 {% endfor%}	
+		 <br>
+		 duelsInDay_users_old<br>
+		 {% for e in  data.duelsInDay_users_old %}
+			 sum:{{ e.sum }} month:{{ e.month}}<br>
+		 {% endfor%}	
+		 <br>
+		 duelsInDay_lastDay_10<br>
+		 {% for e in  data.duelsInDay_lastDay_10 %}
+			 sum:{{ e.sum }} month:{{ e.month}}<br>
+		 {% endfor%}	
+		 <br>
+		 duelsInDay_region<br>
+		 {% for e in  data.duelsInDay_region %}
+			 sum:{{ e.sum }} month:{{ e.month}}<br>
+		 {% endfor%}	
+		 <br>	
 		</div>
 	</div>
 </div>

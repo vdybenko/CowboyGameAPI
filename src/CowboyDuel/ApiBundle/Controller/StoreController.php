@@ -40,13 +40,13 @@ class StoreController extends Controller
     	$store['defenses'] = $queryStore->getStoreItems("defenses");
     	
     	$storeJson = json_encode($store);
-    	
+    	    	
     	$helperMethod = new HelperMethod($this->container);
     	$helperMethod->sendStatS3($this->container->getParameter('S3_listOfStoreItems_file_upload'),
     							  $this->container->getParameter('S3_listOfStoreItems_uri')
     							  .'_v'.$program_version.$this->container->getParameter('S3_type_file'),
     							  $storeJson);
-    	
+    	$queryHolds->setSettings('timeLastRefresh', time());
     	return new Response($storeJson);
     }
     

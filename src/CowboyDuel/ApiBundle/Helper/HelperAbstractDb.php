@@ -9,4 +9,11 @@ class HelperAbstractDb
 	{
 		$this->em = $em;
 	}
+	
+	protected function createQuery($sql)
+	{
+		$stmt = $this->em->getConnection()->prepare($sql);
+		$stmt->execute();
+		return $stmt->fetchAll();
+	}
 }
