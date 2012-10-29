@@ -18,6 +18,20 @@ use CowboyDuel\ApiBundle\Entity\Store,
  */
 class AdminController extends Controller
 {
+	function setDataStatistic($q)
+	{
+		$data['countDuelsInDay'] = $q->getCountDuelsInDay(array(
+				'today' => 1,
+				'users' => null,
+				'region' => null)
+		);		
+		$data['countRegisteredUsers'] =  $q->getCountRegisteredUsers(null);
+		$data['countRegisteredUsersFromFacebook'] =  $q->getCountRegisteredUsers('F');
+		$data['countUsersAttendedDuels'] =  $q->getCountUsersAttendedDuels();
+		$data['ratioUsersOfRolledQuantityDuel'] = $q->getRatioUsersOfRolledQuantityDuels();
+		
+		return $data;
+	}
 	/**
 	 * @Route("/", name="admin_index")
 	 * @Secure(roles="ROLE_ADMIN")
@@ -28,16 +42,8 @@ class AdminController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		$queryHolds = new HelperQueryStatistic($em);
 		
-		$data['countDuelsInDay'] = $queryHolds->getCountDuelsInDay(array(
-				'today' => 1, 
-				'users' => null,
-				'region' => null)
-		);
-		
-		$data['countRegisteredUsers'] =  $queryHolds->getCountRegisteredUsers(null);
-		$data['countRegisteredUsersFromFacebook'] =  $queryHolds->getCountRegisteredUsers('F');
-		$data['countUsersAttendedDuels'] =  $queryHolds->getCountUsersAttendedDuels();
-		$data['ratioUsersOfRolledQuantityDuel'] = $queryHolds->getRatioUsersOfRolledQuantityDuels();
+		$data = $this->setDataStatistic($queryHolds);		
+		$data['duelsInDay'] = $queryHolds->getDuelsInDay();
 		
 		print_r($data);
 		
@@ -66,12 +72,14 @@ class AdminController extends Controller
        		$bigImg = $form['bigImg']->getData();
        		$sound 	= $form['sound']->getData();
        		$description = $form['description']->getData();
+       		$inAppId = $form['inAppId']->getData();
        		
        		$entity->setThumb(is_null($thumb)?'':$thumb)
        			   ->setImg(is_null($img)?'':$img)
        			   ->setBigImg(is_null($bigImg)?'':$bigImg)
        		       ->setSound(is_null($sound)?'':$sound)
        			   ->setDescription(is_null($description)?'':$description)
+       			   ->setInappid(is_null($inAppId)?'0':$inAppId);
        		;
 
         	if ($form->isValid()) 
@@ -84,10 +92,13 @@ class AdminController extends Controller
         	}
     	}
     	
+  
+    	$queryHolds = new HelperQueryStatistic($this->getDoctrine()->getEntityManager());   	
     	return array(
 				'entity'   => $entity,
 				'form'     => $form->createView(),
-				'location' => 'admin_add_store_item'
+				'location' => 'admin_add_store_item',
+    			'data' 	   => $this->setDataStatistic($queryHolds)
 		);
     }
 }

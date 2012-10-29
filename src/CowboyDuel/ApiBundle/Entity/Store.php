@@ -52,9 +52,9 @@ class Store
     /**
      * @var integer $inappid
      *
-     * @ORM\Column(name="inAppId", type="integer")
+     * @ORM\Column(name="inAppId", type="string")
      */
-    private $inappid = 0;
+    private $inappid = "";
 
     /**
      * @var string $thumb
@@ -204,7 +204,7 @@ class Store
     /**
      * Set inappid
      *
-     * @param integer $inappid
+     * @param string $inappid
      * @return Store
      */
     public function setInappid($inappid)
@@ -217,7 +217,7 @@ class Store
     /**
      * Get inappid
      *
-     * @return integer 
+     * @return string 
      */
     public function getInappid()
     {

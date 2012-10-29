@@ -39,15 +39,39 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		$q = $q->getResult();
 		return  $q[0][1];
 	}
+	
+	function createQuery($sql)
+	{		
+		$stmt = $this->em->getConnection()->prepare($sql);
+		$stmt->execute();
+		return $stmt->fetchAll();
+	}
+	
 	public function getRatioUsersOfRolledQuantityDuels()
 	{
-		$count = $this->getCountUsersAttendedDuels();
+		/*$count = $this->getCountUsersAttendedDuels();
 		$q = $this->em->createQuery("
 				SELECT COUNT(t)/$count
 				FROM CowboyDuelApiBundle:Transactions t 
 				WHERE t.value != 10");
 		$q = $q->getResult();
-		return  $q[0][1];
+		return  $q[0][1];*/
+		
+		$q = $this->createQuery("
+				SELECT (COUNT(*)/(SELECT COUNT(*) FROM `users` WHERE points > 0)) AS r 
+				FROM `transactions` 
+				WHERE value != 10");
+		return $q[0]['r'];
+	}
+	
+	public function getDuelsInDay()
+	{	
+   		$q = $this->createQuery("
+   			SELECT COUNT(`id`) AS `sum`,DAYOFYEAR(FROM_UNIXTIME(`date`, '%Y-%m-%d %H:%i:%s')) AS `MONTH`
+			FROM `transactions`
+			GROUP BY DAYOFYEAR(FROM_UNIXTIME(`date`, '%Y-%m-%d %H:%i:%s'))
+   		");	
+   		return $q;	
 	}
 
 }
