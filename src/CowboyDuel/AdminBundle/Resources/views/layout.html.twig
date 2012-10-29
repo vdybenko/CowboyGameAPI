@@ -93,6 +93,9 @@
 							<li {% if location == 'store_list_items' %} class="current" {% endif %}>
 								<a href="{{ path("store_list_items") }}">Send to S3 store list items</a>
 							</li>
+							<li {% if location == 'admin_duels_in_day' %} class="current" {% endif %}>
+								<a href="{{ path("admin_duels_in_day") }}">Duels In Day</a>
+							</li>
 							{% block menu %}
         					{% endblock %}
 						</ul>
@@ -110,7 +113,7 @@
 					</div>	
 					-->
 					<div class="box statics">
-				    <div class="content">
+				      <div class="content">
 					    <ul>
 						    <li><h2>Статистика</h2></li>
 						    <li>Дуелей всего <div class="info red"><span>{{ data.countDuelsInDay }}</span></div></li>
@@ -119,8 +122,8 @@
 						    <li>Сразились в дуели <div class="info black"><span>{{ data.countUsersAttendedDuels }}</span></div></li>
 						    <li>Соотнонение к кол. пользов <div class="info black"><span>{{ data.ratioUsersOfRolledQuantityDuel }}</span></div></li>
 					    </ul>
+				      </div>
 				    </div>
-			    </div>
 					{% block left %}
         			{% endblock %}	
 				</div>		

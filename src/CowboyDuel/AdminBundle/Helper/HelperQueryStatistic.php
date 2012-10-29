@@ -66,8 +66,10 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 	
 	public function getDuelsInDay()
 	{	
+		$where = "" ;
+		 
    		$q = $this->createQuery("
-   			SELECT COUNT(`id`) AS `sum`,DAYOFYEAR(FROM_UNIXTIME(`date`, '%Y-%m-%d %H:%i:%s')) AS `MONTH`
+   			SELECT COUNT(`id`) AS `sum`,DAYOFYEAR(FROM_UNIXTIME(`date`, '%Y-%m-%d %H:%i:%s')) AS `month`
 			FROM `transactions`
 			GROUP BY DAYOFYEAR(FROM_UNIXTIME(`date`, '%Y-%m-%d %H:%i:%s'))
    		");	

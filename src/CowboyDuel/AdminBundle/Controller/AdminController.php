@@ -43,8 +43,6 @@ class AdminController extends Controller
 		$queryHolds = new HelperQueryStatistic($em);
 		
 		$data = $this->setDataStatistic($queryHolds);		
-		$data['duelsInDay'] = $queryHolds->getDuelsInDay();
-		
 		print_r($data);
 		
 		return array('data' => $data,
@@ -101,4 +99,22 @@ class AdminController extends Controller
     			'data' 	   => $this->setDataStatistic($queryHolds)
 		);
     }
+    
+    /**
+     * @Route("/duels_in_day", name="admin_duels_in_day")
+     * @Secure(roles="ROLE_ADMIN")
+     * @Template()
+     */
+    public function duelsInDayAction()
+    {
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$queryHolds = new HelperQueryStatistic($em);   	
+    	
+    	$data = $this->setDataStatistic($queryHolds);
+    	$data['duelsInDay'] = $queryHolds->getDuelsInDay(); 
+
+    	print_r($data);
+    	return array('data' => $data,
+    				 'location' => 'admin_duels_in_day');
+    }    
 }
