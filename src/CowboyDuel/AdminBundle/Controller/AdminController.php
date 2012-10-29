@@ -36,7 +36,8 @@ class AdminController extends Controller
 		
 		print_r($data);
 		
-		return array('data' => $data);
+		return array('data' => $data,
+					 'location' => 'admin_index');
 	}
     
     /**
@@ -81,6 +82,7 @@ class AdminController extends Controller
     	return array(
 				'entity'   => $entity,
 				'form'     => $form->createView(),
+				'location' => 'admin_add_store_item'
 		);
     }
 }

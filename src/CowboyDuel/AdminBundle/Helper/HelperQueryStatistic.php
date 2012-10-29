@@ -25,4 +25,14 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		$q = $this->em->createQuery($q)->getResult();
 		return $q[0][1];
 	}
+	
+	public function getCountRegisteredUsers()
+	{
+		$q = $this->em->createQuery("
+				SELECT COUNT(u)
+				FROM CowboyDuelApiBundle:Users u
+		);
+		return  $q->getResult();
+	}
+
 }

@@ -2,15 +2,18 @@
 {% block title %}Admin action{% endblock %}
 
 
-{% block content %}
-<h2>Admin action</h2>
+{% block right %}
 
-<ul>
-	<li><a href="{{ path("admin_add_store_item") }}">Add store item</a></li>
-	<li><a href="{{ path("store_list_items") }}">Send to S3 store list items</a></li>
-</ul>
-
-Statistic:<br>
-countDuelsInDay: {{ data.countDuelsInDay }}
+<div class="section">
+	<div class="box">
+		<div class="title">
+			Statistic
+			<span class="hide"></span>
+		</div>
+		<div class="content">
+			countDuelsInDay: {{ data.countDuelsInDay }}			
+		</div>
+	</div>
+</div>
 
 {% endblock %}
