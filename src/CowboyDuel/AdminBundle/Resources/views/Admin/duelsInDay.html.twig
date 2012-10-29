@@ -24,7 +24,7 @@
 		 {% for e in  data.duelsInDay_users_new %}
 			 sum:{{ e.sum }} month:{{ e.month}}<br>
          <tr>
-             <th>{{ e.sum }}</th><td>{{ e.month}}</td>
+             <th>{{ e.month}}</th><td>{{ e.sum }}</td>
          </tr>
 		 {% endfor%}
          </tbody>
@@ -43,7 +43,7 @@
          <tbody>
          {% for e in  data.duelsInDay_users_old %}
          <tr>
-             <th>{{ e.sum }}</th><td>{{ e.month}}</td>
+             <th>{{ e.month}}</th><td>{{ e.sum }}</td>
          </tr>
 		 {% endfor%}
          </tbody>
@@ -63,7 +63,7 @@
          <tbody>
 		 {% for e in  data.duelsInDay_lastDay_10 %}
          <tr>
-             <th>{{ e.sum }}</th><td>{{ e.month}}</td>
+             <th>{{ e.month}}</th><td>{{ e.sum }}</td>
          </tr>
 		 {% endfor%}
          </tbody>
@@ -81,7 +81,7 @@
          <tbody>
 		 {% for e in  data.duelsInDay_region %}
          <tr>
-             <th>{{ e.sum }}</th><td>{{ e.month}}</td>
+             <th>{{ e.month}}</th><td>{{ e.sum }}</td>
          </tr>
 		 {% endfor%}
          </tbody>
