@@ -1,6 +1,18 @@
 {% extends 'CowboyDuelAdminBundle::layout.html.twig' %}
 {% block title %}Add store item{% endblock %}
 
+{% form_theme form _self %}
+
+{% block field_row %}
+    <div class="row">
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        <div class="right">
+        	{{ form_widget(form) }}
+        </div>
+    </div>
+{% endblock field_row %}
+
 {% block right %}
 <div class="section">
 	<div class="box">
@@ -8,12 +20,13 @@
 			Add store item
 			<span class="hide"></span>
 		</div>
-		<div class="content">
+		<div class="content">		
 			<form action="{{ path('admin_add_store_item') }}" method="post">
-				{{ form_widget(form) }}
-    			<p>
-        			<button type="submit">Submit</button>
-   		 		</p>
+				{{ form_widget(form) }}	
+				   			
+   		 		<div class="row">
+					<div class="right"><button type="submit"><span>Submit</span></button></div>
+				</div>
 			</form>
 		</div>
 	</div>

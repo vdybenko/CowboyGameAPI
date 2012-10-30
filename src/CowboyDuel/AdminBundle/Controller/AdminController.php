@@ -42,8 +42,7 @@ class AdminController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		$queryHolds = new HelperQueryStatistic($em);
 		
-		$data = $this->setDataStatistic($queryHolds);		
-		print_r($data);
+		$data = $this->setDataStatistic($queryHolds);
 		
 		return array('data' => $data,
 					 'location' => 'admin_index');
@@ -112,14 +111,11 @@ class AdminController extends Controller
     	
     	$data = $this->setDataStatistic($queryHolds);
     	
-    	$data['duelsInDay_users_new'] = $queryHolds->getDuelsInDay(array('users' => 'new')); 
-    	$data['duelsInDay_users_old'] = $queryHolds->getDuelsInDay(array('users' => 'old'));
-    	
+    	$data['duelsInDay_users_new']  = $queryHolds->getDuelsInDay(array('users' => 'new')); 
+    	$data['duelsInDay_users_old']  = $queryHolds->getDuelsInDay(array('users' => 'old'));    	
     	$data['duelsInDay_lastDay_10'] = $queryHolds->getDuelsInDay(array('lastDay' => 10));
-    	$data['duelsInDay_region'] = $queryHolds->getDuelsInDay(array('region' => 'ru_UA'));
+    	$data['duelsInDay_region'] 	   = $queryHolds->getDuelsInDay(array('region' => 'ru_UA'));
     	
-
-    	print_r($data);
     	return array('data' => $data,
     				 'location' => 'admin_duels_in_day');
     }   
@@ -138,9 +134,7 @@ class AdminController extends Controller
     	
     	$data['sales_Of_Goods_buy_golds'] = $queryHolds->getSalesOfGoods(array('typeBuy' => 'golds'));
     	$data['sales_Of_Goods_buy_inApp'] = $queryHolds->getSalesOfGoods(array('typeBuy' => 'inApp'));
-    	$data['sales_Of_Goods_region'] = $queryHolds->getSalesOfGoods(array('typeBuy' => 'region'));
-    	
-    	print_r($data);
+    	$data['sales_Of_Goods_region']    = $queryHolds->getSalesOfGoods(array('typeBuy' => 'region'));
     	
     	return array('data' => $data,
     				 'location' => 'admin_sales_of_goods');
@@ -156,11 +150,8 @@ class AdminController extends Controller
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryStatistic($em);
     
-    	$data = $this->setDataStatistic($queryHolds);
-    	 
+    	$data = $this->setDataStatistic($queryHolds);    	 
     	$data['registered_Users_Of_Percentage'] = $queryHolds->getAllRegisteredUsersPercentage();
-    	 
-    	print_r($data);
     	 
     	return array('data' => $data,
     				 'location' => 'admin_registered_users_of_percentages');
