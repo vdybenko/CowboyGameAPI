@@ -28,11 +28,22 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 	
 	public function getCountRegisteredUsers($snetwork)
 	{
-		$q = "SELECT COUNT(u) FROM CowboyDuelApiBundle:Users u ";
-		if(!is_null($snetwork)) $q .= "WHERE u.snetwork = 'F'";
+		$q = "SELECT COUNT(u) FROM CowboyDuelApiBundle:Users u ";		
+		if(!is_null($snetwork)) $q .= "WHERE u.snetwork = '$snetwork'";
+		
 		$q = $this->em->createQuery($q)->getResult();
 		return  $q[0][1];
 	}
+	public function getAllRegisteredUsersPercentage()
+	{
+		$q = $this->createQuery("
+   			SELECT u.snetwork AS `key`, (COUNT(u.user_id) * 100 / (SELECT COUNT(*) FROM `users`)) AS `percentage`
+			FROM `users` u
+			GROUP BY u.snetwork
+   		");	
+		return  $q;
+	}
+	
 	public function getCountUsersAttendedDuels()
 	{		
 		$q = $this->em->createQuery("SELECT COUNT(u) FROM CowboyDuelApiBundle:Users u WHERE u.points > 0");

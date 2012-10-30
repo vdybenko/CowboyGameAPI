@@ -1,0 +1,30 @@
+{% extends 'CowboyDuelAdminBundle::layout.html.twig' %}
+{% block title %}Pеєстрація користувачів{% endblock %}
+
+
+{% block right %}
+
+<div class="section">
+	<div class="box">
+		<div class="title">
+			Pеєстрація користувачів
+			<span class="hide"></span>
+		</div>
+			<table>
+				<thead>
+        		 	<tr>
+             			<th>key</th><th>percentage</th>
+             		</tr>
+             	</thead>
+				<tbody>
+				  {% for e in  data.registered_Users_Of_Percentage %}			
+          			<tr>
+             			<th>{{ e.key }}</th><td>{{ e.percentage }}</td>
+         			</tr>
+		 		  {% endfor%}
+				</tbody>
+			</table>
+	</div>
+</div>
+
+{% endblock %}

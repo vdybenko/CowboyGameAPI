@@ -145,4 +145,24 @@ class AdminController extends Controller
     	return array('data' => $data,
     				 'location' => 'admin_sales_of_goods');
     }
+    
+    /**
+     * @Route("/registered_users_of_percentage", name="admin_registered_users_of_percentage")
+     * @Secure(roles="ROLE_ADMIN")
+     * @Template()
+     */
+    public function registeredUsersOfPercentageAction()
+    {
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$queryHolds = new HelperQueryStatistic($em);
+    
+    	$data = $this->setDataStatistic($queryHolds);
+    	 
+    	$data['registered_Users_Of_Percentage'] = $queryHolds->getAllRegisteredUsersPercentage();
+    	 
+    	print_r($data);
+    	 
+    	return array('data' => $data,
+    				 'location' => 'admin_registered_users_of_percentages');
+    }
 }

@@ -99,6 +99,9 @@
 							<li {% if location == 'admin_sales_of_goods' %} class="current" {% endif %}>
 								<a href="{{ path("admin_sales_of_goods") }}">Продаж товарів</a>
 							</li>
+							<li {% if location == 'admin_registered_users_of_percentage' %} class="current" {% endif %}>
+								<a href="{{ path("admin_registered_users_of_percentage") }}">Pеєстрація користувачів</a>
+							</li>
 							{% block menu %}
         					{% endblock %}
 						</ul>
