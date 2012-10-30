@@ -68,29 +68,61 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		if(isset($filters['lastDay'])) 
 		{
 			$datePrew = strtotime(date('Y-m-d')) - $filters['lastDay'] * 43200;			
-			$where = "AND date BETWEEN $datePrew AND CURRENT_TIMESTAMP()";
+			$where .= " AND t.date BETWEEN $datePrew AND CURRENT_TIMESTAMP()";
 		}
 		
 		if(isset($filters['region']))
-			$where = "AND u.region='".$filters['region']."'";
+			$where .= " AND u.region='".$filters['region']."'";
 		
 		if(isset($filters['users']))
 		{			
 			$data = strtotime(date('Y-m-d'));
 		 	switch($filters['users'])
 		 	{
-				case 'new': $where = "AND u.first_login BETWEEN $data AND CURRENT_TIMESTAMP()"; break;	
-				case 'old': $where = "AND u.first_login NOT BETWEEN $data AND CURRENT_TIMESTAMP()"; break;
+				case 'new': $where .= " AND u.first_login BETWEEN $data AND CURRENT_TIMESTAMP()"; break;	
+				case 'old': $where .= " AND u.first_login NOT BETWEEN $data AND CURRENT_TIMESTAMP()"; break;
 		 	}
 		}
 			
    		$q = $this->createQuery("
-   			SELECT COUNT(t.id) AS `sum`, DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s')) AS `month`
+   			SELECT COUNT(t.id) AS `sum`, DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s')) AS `day`
 			FROM `transactions` t $from
    			WHERE t.value != 10 $where
 			GROUP BY DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s'))
    		");	
    		return $q;	
+	}
+	
+	public function getSalesOfGoods($filters)
+	{		
+		$where = "";
+		$groupBy = "";
+		
+		if(isset($filters['lastDay']))
+		{
+			$datePrew = strtotime(date('Y-m-d')) - $filters['lastDay'] * 43200;
+			$where .= " AND bu.date BETWEEN $datePrew AND CURRENT_TIMESTAMP()";
+		}
+		
+		if(isset($filters['typeBuy']))
+		{			
+		 	switch($filters['typeBuy'])
+		 	{
+				case 'golds': $where .= " AND s.golds != 0"; break;	
+				case 'inApp': $where .= " AND s.inAppId != '0'"; break;
+		 	}
+		}
+		
+		if(isset($filters['region'])) $groupBy .= ", u.region";
+					
+		$q = $this->createQuery("
+			SELECT s.type AS `key`, COUNT(bu.id) AS `count`, DAYOFYEAR(FROM_UNIXTIME(bu.date, '%Y-%m-%d %H:%i:%s')) AS `day`,
+				   u.region
+			FROM `buyitemsstore` bu, `store` s, `users` u
+   			WHERE bu.itemIdStore = s.id AND bu.authenUser = u.authen $where
+			GROUP BY DAYOFYEAR(FROM_UNIXTIME(bu.date, '%Y-%m-%d %H:%i:%s')) $groupBy
+		");
+		return $q;
 	}
 
 }

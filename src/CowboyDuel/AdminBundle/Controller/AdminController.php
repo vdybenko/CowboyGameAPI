@@ -122,5 +122,27 @@ class AdminController extends Controller
     	print_r($data);
     	return array('data' => $data,
     				 'location' => 'admin_duels_in_day');
-    }    
+    }   
+     
+    /**
+     * @Route("/sales_of_goods", name="admin_sales_of_goods")
+     * @Secure(roles="ROLE_ADMIN")
+     * @Template()
+     */
+    public function salesOfGoodsAction()
+    {
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$queryHolds = new HelperQueryStatistic($em);
+    	 
+    	$data = $this->setDataStatistic($queryHolds);
+    	
+    	$data['sales_Of_Goods_buy_golds'] = $queryHolds->getSalesOfGoods(array('typeBuy' => 'golds'));
+    	$data['sales_Of_Goods_buy_inApp'] = $queryHolds->getSalesOfGoods(array('typeBuy' => 'inApp'));
+    	$data['sales_Of_Goods_region'] = $queryHolds->getSalesOfGoods(array('typeBuy' => 'region'));
+    	
+    	print_r($data);
+    	
+    	return array('data' => $data,
+    				 'location' => 'admin_sales_of_goods');
+    }
 }
