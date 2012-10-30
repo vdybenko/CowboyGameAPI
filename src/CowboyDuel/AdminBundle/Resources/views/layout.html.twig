@@ -88,13 +88,13 @@
 					<div id="menu">
 						<ul> 
 							<li {% if location == 'admin_add_store_item' %} class="current" {% endif %}>
-								<a href="{{ path("admin_add_store_item") }}">Add store item</a>
+								<a href="{{ path("admin_add_store_item") }}">Додати товар</a>
 							</li> 
 							<li {% if location == 'store_list_items' %} class="current" {% endif %}>
-								<a href="{{ path("store_list_items") }}">Send to S3 store list items</a>
+								<a href="{{ path("store_list_items") }}">Відіслати на S3 список магазину</a>
 							</li>
 							<li {% if location == 'admin_duels_in_day' %} class="current" {% endif %}>
-								<a href="{{ path("admin_duels_in_day") }}">Duels In Day</a>
+								<a href="{{ path("admin_duels_in_day") }}">Дуелі в день</a>
 							</li>
 							<li {% if location == 'admin_sales_of_goods' %} class="current" {% endif %}>
 								<a href="{{ path("admin_sales_of_goods") }}">Продаж товарів</a>
