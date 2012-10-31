@@ -21,7 +21,11 @@
           			<tr>
              			<td>
              			{% if e.key == '0' %}
-             			Не авторизирован
+             			    Не авторизирован
+             			{% elseif e.key == 'F' %}
+             			    Facebook
+             			{% elseif e.key == 'E' %}
+                            Email
                         {% endif %}
              			</td><td>{{ e.percentage }}</td>
          			</tr>
