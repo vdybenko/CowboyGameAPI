@@ -76,7 +76,24 @@
 		 		  {% endfor%}
 				</tbody>
 			</table>
-			
+			<div class="chart-caption"> Продажи по регионам</div>
+            <table class="chart" style="width : 100%;">
+            <thead>
+            <tr>
+                <th></th>
+                <th style="color : #e10000;">unique visitors</th>
+                <th style="color : #000000;">pageviews</th>
+            </tr>
+            </thead>
+            <tbody>
+		    {% for e in  data.sales_Of_Goods_region %}
+          			<tr>
+             			<th>{{ e.day }}</th><td>{{ e.count }}</td>
+         			</tr>
+		    {% endfor%}
+            </tbody>
+            </table>
+		    <br>
 			<h3>sales Of Goods region</h3>
 			<table>
 				<thead>
