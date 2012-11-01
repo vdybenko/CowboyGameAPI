@@ -106,12 +106,13 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 	
 	public function getSalesOfGoods($filters)
 	{		
+		$select = "s.type AS `key`,";
 		$where = "";
-		$groupBy = "";
+		$groupBy = ", s.type";
 		
 		if(isset($filters['lastDay']))
 		{
-			$datePrew = strtotime(date('Y-m-d')) - $filters['lastDay'] * 43200;
+			$datePrew = strtotime(date('Y-m-d')) - $filters['lastDay'] * 86400;
 			$where .= " AND bu.date BETWEEN $datePrew AND CURRENT_TIMESTAMP()";
 		}
 		
@@ -124,10 +125,14 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		 	}
 		}
 		
-		if(isset($filters['region'])) $groupBy .= ", u.region";
+		if(isset($filters['region'])) 
+		{
+			$select = "";
+			$groupBy = ", u.region";
+		}
 					
 		$q = $this->createQuery("
-			SELECT s.type AS `key`, COUNT(bu.id) AS `count`, DAYOFYEAR(FROM_UNIXTIME(bu.date, '%Y-%m-%d %H:%i:%s')) AS `day`,
+			SELECT $select COUNT(bu.id) AS `count`, DAYOFYEAR(FROM_UNIXTIME(bu.date, '%Y-%m-%d %H:%i:%s')) AS `day`,
 				   u.region
 			FROM `buyitemsstore` bu, `store` s, `users` u
    			WHERE bu.itemIdStore = s.id AND bu.authenUser = u.authen $where

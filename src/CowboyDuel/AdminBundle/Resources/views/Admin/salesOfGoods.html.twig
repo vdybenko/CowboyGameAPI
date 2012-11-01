@@ -98,13 +98,13 @@
 			<table>
 				<thead>
         		 	<tr>
-             			<th>key</th><th>day</th><th>count</th><th>region</th>
+             			<th>day</th><th>count</th><th>region</th>
              		</tr>
              	</thead>
 				<tbody>
 				  {% for e in  data.sales_Of_Goods_region %}			
           			<tr>
-             			<th>{{ e.key }}</th><td>{{ e.day }}</td><td>{{ e.count }}</td><td>{{ e.region }}</td>
+             			<td>{{ e.day }}</td><td>{{ e.count }}</td><td>{{ e.region }}</td>
          			</tr>
 		 		  {% endfor%}
 				</tbody>
