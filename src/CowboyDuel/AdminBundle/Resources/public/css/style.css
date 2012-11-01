@@ -229,7 +229,7 @@ img { border: 0; }
 
 #wrapper #container #left {
 	float : left;
-	position : relative;
+	position : absolute;
 	overflow : hidden;
 	width : 230px;
 }
