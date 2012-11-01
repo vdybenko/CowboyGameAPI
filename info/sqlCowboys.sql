@@ -1,9 +1,9 @@
 # --------------------------------------------------------
-# Host:                         127.0.0.1
-# Server version:               5.5.16-log
-# Server OS:                    Win32
+# Host:                         cowboyduel.c6algyr0odj4.eu-west-1.rds.amazonaws.com
+# Server version:               5.5.20-log
+# Server OS:                    Linux
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2012-10-29 15:16:40
+# Date/time:                    2012-11-01 11:50:17
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -11,7 +11,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-# Dumping structure for table cowboys.admin
+# Dumping structure for table duels_v201.admin
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_bin NOT NULL,
@@ -20,14 +20,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.admin: ~1 rows (approximately)
+# Dumping data for table duels_v201.admin: ~1 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` (`id`, `name`, `email`, `password`) VALUES
 	(1, 'admin', 'admin@a.a', '74913f5cd5f61ec0bcfdb775414c2fb3d161b620');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 
-# Dumping structure for table cowboys.buyitemsstore
+# Dumping structure for table duels_v201.buyitemsstore
 CREATE TABLE IF NOT EXISTS `buyitemsstore` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `authenUser` varchar(50) COLLATE utf8_bin NOT NULL,
@@ -35,9 +35,9 @@ CREATE TABLE IF NOT EXISTS `buyitemsstore` (
   `transactionsId` int(100) NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.buyitemsstore: ~6 rows (approximately)
+# Dumping data for table duels_v201.buyitemsstore: ~10 rows (approximately)
 /*!40000 ALTER TABLE `buyitemsstore` DISABLE KEYS */;
 INSERT INTO `buyitemsstore` (`id`, `authenUser`, `itemIdStore`, `transactionsId`, `date`) VALUES
 	(1, 'F:1667761963', 1, 0, 0),
@@ -45,11 +45,15 @@ INSERT INTO `buyitemsstore` (`id`, `authenUser`, `itemIdStore`, `transactionsId`
 	(4, 'F:100004072748849', 1, 3201, 200),
 	(5, 'F:100004072748849', 2, 3201, 1350995941),
 	(6, 'F:100004072748849', 1, 3201, 1350995948),
-	(7, 'F:100004072748849', 1, 3201, 1351000482);
+	(7, 'F:100004072748849', 1, 3201, 1351000482),
+	(8, 'F:100004072748849', 4, 4234, 1351612323),
+	(9, 'A:de76bac288', 3, 45, 1351698723),
+	(10, 'A:de76bac288', 3, 45, 1351353123),
+	(11, 'A:de76bac288', 3, 45, 1351439523);
 /*!40000 ALTER TABLE `buyitemsstore` ENABLE KEYS */;
 
 
-# Dumping structure for table cowboys.duels
+# Dumping structure for table duels_v201.duels
 CREATE TABLE IF NOT EXISTS `duels` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `opponent` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -67,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `duels` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.duels: 18 rows
+# Dumping data for table duels_v201.duels: 18 rows
 /*!40000 ALTER TABLE `duels` DISABLE KEYS */;
 INSERT INTO `duels` (`id`, `opponent`, `rate_fire`, `device_name`, `app_ver`, `authen`, `date`, `system_name`, `system_version`, `unique_identifier`, `lat`, `lon`, `GPS`) VALUES
 	(7, 'F:12312342', '9', 'iphone', '', 'T:1153984783', '	1351257745', '', '', '', '12.1234123', '65.345345', 'on'),
@@ -91,7 +95,7 @@ INSERT INTO `duels` (`id`, `opponent`, `rate_fire`, `device_name`, `app_ver`, `a
 /*!40000 ALTER TABLE `duels` ENABLE KEYS */;
 
 
-# Dumping structure for table cowboys.online
+# Dumping structure for table duels_v201.online
 CREATE TABLE IF NOT EXISTS `online` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `authen` varchar(50) CHARACTER SET utf8 NOT NULL,
@@ -101,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `online` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.online: 28 rows
+# Dumping data for table duels_v201.online: 28 rows
 /*!40000 ALTER TABLE `online` DISABLE KEYS */;
 INSERT INTO `online` (`id`, `authen`, `online`, `enterTime`, `exitTime`) VALUES
 	(1, 'F:537141553', 0, '1349953425', '1349953513'),
@@ -135,14 +139,14 @@ INSERT INTO `online` (`id`, `authen`, `online`, `enterTime`, `exitTime`) VALUES
 /*!40000 ALTER TABLE `online` ENABLE KEYS */;
 
 
-# Dumping structure for table cowboys.rank
+# Dumping structure for table duels_v201.rank
 CREATE TABLE IF NOT EXISTS `rank` (
   `level` int(11) NOT NULL,
   `rank_name` varchar(20) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`level`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.rank: 10 rows
+# Dumping data for table duels_v201.rank: 10 rows
 /*!40000 ALTER TABLE `rank` DISABLE KEYS */;
 INSERT INTO `rank` (`level`, `rank_name`) VALUES
 	(1, 'Junior'),
@@ -158,7 +162,7 @@ INSERT INTO `rank` (`level`, `rank_name`) VALUES
 /*!40000 ALTER TABLE `rank` ENABLE KEYS */;
 
 
-# Dumping structure for table cowboys.settings
+# Dumping structure for table duels_v201.settings
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) COLLATE utf8_bin NOT NULL,
@@ -166,17 +170,17 @@ CREATE TABLE IF NOT EXISTS `settings` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.settings: 4 rows
+# Dumping data for table duels_v201.settings: 4 rows
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 	(1, 'refresh_content', '1'),
-	(2, 'timeLastRefresh', '1351514745'),
+	(2, 'timeLastRefresh', '1351686583'),
 	(3, 'versionListOfStoreItems', '1'),
 	(4, 'program_version', '2.2');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 
-# Dumping structure for table cowboys.store
+# Dumping structure for table duels_v201.store
 CREATE TABLE IF NOT EXISTS `store` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `type` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -193,17 +197,17 @@ CREATE TABLE IF NOT EXISTS `store` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.store: ~4 rows (approximately)
+# Dumping data for table duels_v201.store: ~4 rows (approximately)
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
 INSERT INTO `store` (`id`, `type`, `title`, `damageOrDefense`, `golds`, `inAppId`, `thumb`, `img`, `sound`, `bigImg`, `description`, `levelLock`) VALUES
-	(1, 'weapons', 'Револьвер М60', 10, 100, '0', '', '', '', '', '', 4),
+	(1, 'weapons', 'Револьвер М60', 10, 0, '', 'http://artdiz.at.ua/_nw/0/s23977883.jpg', 'http://artdiz.at.ua/_nw/0/s23977883.jpg', 'http://bidoncd.s3.amazonaws.com/Test.mp3', 'http://artdiz.at.ua/_nw/0/s23977883.jpg', 'description gun', 4),
 	(2, 'defenses', 'Револьвер П8', 54, 100, '0', '', '', '', '', '', 10),
-	(3, 'defenses', 'Кімано', 10, 300, '0', '', '', '', '', '', 10),
+	(3, 'defenses', 'Кімано', 10, 0, '45', '', '', '', '', '', 10),
 	(4, 'defenses', 'Шапка ушанка', 7, 99, '0', '', '', '', '', 'іва', 6);
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
 
 
-# Dumping structure for table cowboys.transactions
+# Dumping structure for table duels_v201.transactions
 CREATE TABLE IF NOT EXISTS `transactions` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
   `authen` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -211,20 +215,21 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `description` varchar(255) CHARACTER SET utf8 NOT NULL,
   `date` varchar(15) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=129380 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=129381 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.transactions: 5 rows
+# Dumping data for table duels_v201.transactions: 6 rows
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
 INSERT INTO `transactions` (`id`, `authen`, `value`, `description`, `date`) VALUES
 	(3997, 'T:1153984783', 10, 'Daily money', '1313537114'),
 	(4004, 'T:1153984783', 10, 'Duel', '1351514124'),
 	(4033, 'A:11630265df', 50, 'Duel', '1351513880'),
-	(4123, 'A:11630265df', 100, 'Daily money', '1351514676'),
-	(4979, 'F:1667761963', 20, 'Daily money', '1351514124');
+	(4123, 'A:11630265df', 100, 'Daily money', '	1351427480'),
+	(4979, 'F:1667761963', 20, 'Daily money', '1351168280'),
+	(129380, 'A:11630265df', 22, 'Duel', '1351427480');
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 
 
-# Dumping structure for table cowboys.users
+# Dumping structure for table duels_v201.users
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `authen` varchar(50) CHARACTER SET utf8 NOT NULL,
@@ -260,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `Snetwork` (`snetwork`)
 ) ENGINE=MyISAM AUTO_INCREMENT=145933 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.users: 54 rows
+# Dumping data for table duels_v201.users: 54 rows
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`, `last_login`, `first_login`, `type`, `region`, `current_language`, `os`, `app_ver`, `device_token`, `date`, `money`, `session_id`, `level`, `points`, `duels_win`, `duels_lost`, `bigest_win`, `remove_ads`, `avatar`, `age`, `home_town`, `friends`, `identifier`) VALUES
 	(145925, 'F:100001850844084', 'Тарас Кошмар123', 'x86_64', 'F', 1349772450, 1348728319, '0', 'en_US', 'ru', '5.0', '1.4', '', 0, 300, '507bc2a61e572', 3, 46, 2, 1, 352, 0, 'Тарас Кошмар', '02/01/1990', 'Cherkasy', 45, 'Тарас Кокшаров'),
@@ -273,7 +278,7 @@ INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`,
 	(145845, 'F:100003377230107', 'Jay Macaspac', '', 'F', 0, 0, '', '', '', '', '', '', 0, 100, '', 1, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/195288_100003377230107_289931950_q.jpg', '1993-01-11', '', 395, 'Jay Macaspac'),
 	(145843, 'F:89156000001487', 'Elizabeth Yangstein', '', 'F', 0, 0, '', '', '', '', '', '', 0, 100, '5078300a74aac', 1, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/static-ak/rsrc.php/v2/y9/r/IB7NOFmPw2a.gif', '1980-22-03', '', 8, 'Elizabeth Yangstein'),
 	(145844, 'F:1058865100', 'Sergio Netavsky', '', 'F', 0, 0, '', '', '', '', '', '', 0, 100, '507bba84c10b3', 1, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-ash2/48900_1058865100_803177_q.jpg', '1984-19-02', 'Augsburg, Germany', 274, 'Sergio Netavsky'),
-	(45755, 'F:100003963310974', 'Alexander Shevchuk', '', 'F', 0, 0, '', '', '', '', '', '', 0, 200, '', 1, 0, 0, 0, 0, 0, 'https://graph.facebook.com/100003963310974/picture?type=large', '0000-00-00', '', 0, ''),
+	(45755, 'F:100003963310974', 'Alexander Shevchuk', '', 'E', 0, 0, '', '', '', '', '', '', 0, 200, '', 1, 0, 0, 0, 0, 0, 'https://graph.facebook.com/100003963310974/picture?type=large', '0000-00-00', '', 0, ''),
 	(45758, 'F:100003956230861', 'Sasha Chernov', '', 'F', 0, 0, '', '', '', '', '', '', 0, 0, '', 1, 0, 0, 0, 0, 0, 'https://graph.facebook.com/100003308531413/picture?type=large', '0000-00-00', '', 0, ''),
 	(45769, 'F:100000828016792', 'Olya Dzigora', '', 'F', 0, 0, '', '', '', '', '', '', 0, 100, '', 1, 0, 0, 0, 0, 0, 'https://graph.facebook.com/100000828016792/picture?type=large', '0000-00-00', '', 0, ''),
 	(145772, 'F:100001337965647', 'Pavel Kovalenko', '', 'F', 0, 0, '', '', '', '', '', '', 0, 100, '', 1, 0, 0, 0, 0, 0, 'https://graph.facebook.com/100001337965647/picture?type=large', '0000-00-00', '', 0, ''),
@@ -320,7 +325,7 @@ INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`,
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 
-# Dumping structure for table cowboys.users_favorites
+# Dumping structure for table duels_v201.users_favorites
 CREATE TABLE IF NOT EXISTS `users_favorites` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `user_id` int(8) NOT NULL,
@@ -329,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `users_favorites` (
   KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=391 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table cowboys.users_favorites: 162 rows
+# Dumping data for table duels_v201.users_favorites: 162 rows
 /*!40000 ALTER TABLE `users_favorites` DISABLE KEYS */;
 INSERT INTO `users_favorites` (`id`, `user_id`, `user_favorite`) VALUES
 	(1, 45459, 45169),

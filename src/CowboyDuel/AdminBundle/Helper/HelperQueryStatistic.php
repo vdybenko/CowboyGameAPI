@@ -70,8 +70,10 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 	
 	public function getDuelsInDay($filters)
 	{	
+		$select = "";
 		$from = "";
 		$where = "";
+		$groupBy = "";
 		
 		if(isset($filters['region']) || isset($filters['users'])) 
 			$from = " INNER JOIN `users` u ON t.authen = u.authen";
@@ -82,8 +84,11 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 			$where .= " AND t.date BETWEEN $datePrew AND CURRENT_TIMESTAMP()";
 		}
 		
-		if(isset($filters['region']))
-			$where .= " AND u.region='".$filters['region']."'";
+		if(isset($filters['region'])) 
+		{
+			$select = "u.region, ";
+			$groupBy = ", u.region";
+		}
 		
 		if(isset($filters['users']))
 		{			
@@ -96,10 +101,10 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		}
 			
    		$q = $this->createQuery("
-   			SELECT COUNT(t.id) AS `sum`, DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s')) AS `day`
+   			SELECT $select COUNT(t.id) AS `sum`, DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s')) AS `day`
 			FROM `transactions` t $from
    			WHERE t.value != 10 $where
-			GROUP BY DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s'))
+			GROUP BY DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s')) $groupBy
    		");	
    		return $q;	
 	}
@@ -127,17 +132,54 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		
 		if(isset($filters['region'])) 
 		{
-			$select = "";
+			$select = "DISTINCT u.region, ";
 			$groupBy = ", u.region";
 		}
 					
 		$q = $this->createQuery("
-			SELECT $select COUNT(bu.id) AS `count`, DAYOFYEAR(FROM_UNIXTIME(bu.date, '%Y-%m-%d %H:%i:%s')) AS `day`,
-				   u.region
+			SELECT $select COUNT(bu.id) AS `count`, DAYOFYEAR(FROM_UNIXTIME(bu.date, '%Y-%m-%d %H:%i:%s')) AS `day`
 			FROM `buyitemsstore` bu, `store` s, `users` u
    			WHERE bu.itemIdStore = s.id AND bu.authenUser = u.authen $where
 			GROUP BY DAYOFYEAR(FROM_UNIXTIME(bu.date, '%Y-%m-%d %H:%i:%s')) $groupBy
 		");
+	    
+		if(isset($filters['region']))
+		{
+			$tmpRegion = array();
+			$tmpData = array();
+			$isAdd = true;
+			
+			$tmpRegion[] = $q[0]['region'];
+			foreach ($q as $ki => $vi)
+			  if(array_search($vi['region'], $tmpRegion) < 1);	
+				$tmpRegion[] = $vi['region'];						
+			
+	    	foreach ($q as $ki => $vi)
+	   	 	{  	 		
+	   	 		$tmpCount = array();	    		
+	    		foreach ($q as $kj => $vj)
+	    			if($vi['day'] == $vj['day'] && $vi['region'] == $vj['region'])
+	    			{
+	    				$key = array_search($vj['region'], $tmpRegion);
+	    				if($key >= 0)
+	    				 	$tmpCount[$key] = $vj['count'];
+	    				else 
+	    					$tmpCount[] = $vj['count'];
+	    			}
+	    		    else  
+	    		      if(count($tmpRegion) > $kj)
+	    		    	$tmpCount[] = 0;
+	    		
+	    		$tmpData[] = array('day' => $vi['day'],'count' => $tmpCount);
+	    	}
+	    	
+	   		$result['region'] = $tmpRegion;
+	   		$result['data'] = $tmpData;
+	    
+	   		print_r($result);
+	   		
+	   		return $result;
+		}		
 		return $q;
 	}
 

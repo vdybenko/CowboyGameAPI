@@ -71,20 +71,20 @@
 		 <br>
          <div class="chart-caption"> duelsInDay_region</div>
          <table class="chart" style="width : 100%;">
-         <thead>
-         <tr>
-             <th></th>
-             <th style="color : #e10000;">unique visitors</th>
-             <th style="color : #000000;">pageviews</th>
-         </tr>
-         </thead>
-         <tbody>
-		 {% for e in  data.duelsInDay_region %}
-         <tr>
-             <th>{{ e.day}}</th><td>{{ e.sum }}</td>
-         </tr>
-		 {% endfor%}
-         </tbody>
+         	<thead>
+         		<tr>
+            		<th></th>
+             		<th style="color : #e10000;">unique visitors</th>
+             		<th style="color : #000000;">pageviews</th>
+        	 	</tr>
+         	</thead>
+         	<tbody>
+		 		{% for e in  data.duelsInDay_region %}
+         		 <tr>
+             		<th>{{ e.day}}</th><td>{{ e.sum }}</td><td>{{ e.region }}</td>
+         	 	</tr>
+		 		{% endfor%}
+         	</tbody>
          </table>
 		 <br>
 

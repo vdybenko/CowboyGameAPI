@@ -78,33 +78,45 @@
 			</table>
 			<div class="chart-caption"> Продажи по регионам</div>
             <table class="chart" style="width : 100%;">
-            <thead>
-            <tr>
-                <th></th>
-                <th style="color : #e10000;">unique visitors</th>
-                <th style="color : #000000;">pageviews</th>
-            </tr>
-            </thead>
-            <tbody>
-		    {% for e in  data.sales_Of_Goods_region %}
+            	<thead>
+            		<tr>
+               			 <th></th>
+                		 <th style="color : #e10000;">unique visitors</th>
+                		 
+                		 {% for e in  data.sales_Of_Goods_region.region %}
+             				<th style="color: #000000;">{{ e }}</th>
+             			 {% endfor%}
+            		</tr>
+           		</thead>
+            	<tbody>
+				  {% for e in  data.sales_Of_Goods_region.data %}			
           			<tr>
-             			<th>{{ e.day }}</th><td>{{ e.count }}</td>
+             			<td>{{ e.day }}</td>
+             			{% for j in  e.count %}
+             				<td>{{ j }}</td>
+             			{% endfor%}
          			</tr>
-		    {% endfor%}
-            </tbody>
+		 		  {% endfor%}
+           		</tbody>
             </table>
 		    <br>
 			<h3>sales Of Goods region</h3>
 			<table>
 				<thead>
         		 	<tr>
-             			<th>day</th><th>count</th><th>region</th>
+             			<th>day</th>
+             			{% for e in  data.sales_Of_Goods_region.region %}
+             				<th>{{ e }}</th>
+             			{% endfor%}
              		</tr>
              	</thead>
 				<tbody>
-				  {% for e in  data.sales_Of_Goods_region %}			
+				  {% for e in  data.sales_Of_Goods_region.data %}			
           			<tr>
-             			<td>{{ e.day }}</td><td>{{ e.count }}</td><td>{{ e.region }}</td>
+             			<td>{{ e.day }}</td>
+             			{% for j in  e.count %}
+             				<td>{{ j }}</td>
+             			{% endfor%}
          			</tr>
 		 		  {% endfor%}
 				</tbody>
