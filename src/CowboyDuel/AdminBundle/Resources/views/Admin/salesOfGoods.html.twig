@@ -80,11 +80,9 @@
             <table class="chart" style="width : 100%;">
             	<thead>
             		<tr>
-               			 <th></th>
-                		 <th style="color : #e10000;">unique visitors</th>
-                		 
+               			 <th></th>           		 
                 		 {% for e in  data.sales_Of_Goods_region.region %}
-             				<th style="color: #000000;">{{ e }}</th>
+             				<th style="color: #{{ loop.index * 85}};">{{ e }}</th>
              			 {% endfor%}
             		</tr>
            		</thead>

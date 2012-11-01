@@ -68,6 +68,42 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		return $q[0]['r'];
 	}
 	
+	function convertDataRegion($q)
+	{
+		$tmpRegion = array();
+		$tmpData = array();
+		$isAdd = true;			
+	
+		foreach ($q as $ki => $vi)
+			$tmpRegion[] = $vi['region'];		
+		$tmpRegion = array_unique($tmpRegion);
+			
+		foreach ($q as $ki => $vi)
+		{
+			$tmpCount = array();
+			foreach ($q as $kj => $vj)
+				if($vi['day'] == $vj['day'] && $vi['region'] == $vj['region'])
+				{
+					$key = array_search($vj['region'], $tmpRegion);
+					if($key >= 0)
+						$tmpCount[$key] = $vj['count'];
+					else
+						$tmpCount[] = $vj['count'];
+				}
+				else
+					if(count($tmpRegion) > $kj)
+					$tmpCount[] = 0;
+				 
+				$tmpData[] = array('day' => $vi['day'],'count' => $tmpCount);
+		}
+		
+		$result['region'] = $tmpRegion;
+		$result['data'] = $tmpData;
+		
+		return $result;
+	}
+
+	
 	public function getDuelsInDay($filters)
 	{	
 		$select = "";
@@ -101,11 +137,15 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		}
 			
    		$q = $this->createQuery("
-   			SELECT $select COUNT(t.id) AS `sum`, DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s')) AS `day`
+   			SELECT $select COUNT(t.id) AS `count`, DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s')) AS `day`
 			FROM `transactions` t $from
    			WHERE t.value != 10 $where
 			GROUP BY DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s')) $groupBy
    		");	
+   		
+   		if(isset($filters['region']))
+   			return $this->convertDataRegion($q);
+   		
    		return $q;	
 	}
 	
@@ -132,7 +172,7 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		
 		if(isset($filters['region'])) 
 		{
-			$select = "DISTINCT u.region, ";
+			$select = "u.region, ";
 			$groupBy = ", u.region";
 		}
 					
@@ -144,42 +184,8 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		");
 	    
 		if(isset($filters['region']))
-		{
-			$tmpRegion = array();
-			$tmpData = array();
-			$isAdd = true;
-			
-			$tmpRegion[] = $q[0]['region'];
-			foreach ($q as $ki => $vi)
-			  if(array_search($vi['region'], $tmpRegion) < 1);	
-				$tmpRegion[] = $vi['region'];						
-			
-	    	foreach ($q as $ki => $vi)
-	   	 	{  	 		
-	   	 		$tmpCount = array();	    		
-	    		foreach ($q as $kj => $vj)
-	    			if($vi['day'] == $vj['day'] && $vi['region'] == $vj['region'])
-	    			{
-	    				$key = array_search($vj['region'], $tmpRegion);
-	    				if($key >= 0)
-	    				 	$tmpCount[$key] = $vj['count'];
-	    				else 
-	    					$tmpCount[] = $vj['count'];
-	    			}
-	    		    else  
-	    		      if(count($tmpRegion) > $kj)
-	    		    	$tmpCount[] = 0;
-	    		
-	    		$tmpData[] = array('day' => $vi['day'],'count' => $tmpCount);
-	    	}
-	    	
-	   		$result['region'] = $tmpRegion;
-	   		$result['data'] = $tmpData;
-	    
-	   		print_r($result);
-	   		
-	   		return $result;
-		}		
+			return $this->convertDataRegion($q);
+		
 		return $q;
 	}
 

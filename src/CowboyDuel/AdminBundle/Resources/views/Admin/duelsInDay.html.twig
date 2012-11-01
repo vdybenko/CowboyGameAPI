@@ -1,7 +1,6 @@
 {% extends 'CowboyDuelAdminBundle::layout.html.twig' %}
 {% block title %}Duels In Day{% endblock %}
 
-
 {% block right %}
 
 <div class="section">
@@ -22,9 +21,9 @@
          </thead>
          <tbody>
 		 {% for e in  data.duelsInDay_users_new %}
-			 sum:{{ e.sum }} day:{{ e.day}}<br>
+			 count:{{ e.count }} day:{{ e.day}}<br>
          <tr>
-             <th>{{ e.day}}</th><td>{{ e.sum }}</td>
+             <th>{{ e.day}}</th><td>{{ e.count }}</td>
          </tr>
 		 {% endfor%}
          </tbody>
@@ -43,7 +42,7 @@
          <tbody>
          {% for e in  data.duelsInDay_users_old %}
          <tr>
-             <th>{{ e.day}}</th><td>{{ e.sum }}</td>
+             <th>{{ e.day}}</th><td>{{ e.count }}</td>
          </tr>
 		 {% endfor%}
          </tbody>
@@ -63,7 +62,7 @@
          <tbody>
 		 {% for e in  data.duelsInDay_lastDay_10 %}
          <tr>
-             <th>{{ e.day}}</th><td>{{ e.sum }}</td>
+             <th>{{ e.day}}</th><td>{{ e.count }}</td>
          </tr>
 		 {% endfor%}
          </tbody>
@@ -74,23 +73,44 @@
          	<thead>
          		<tr>
             		<th></th>
-             		<th style="color : #e10000;">unique visitors</th>
-             		<th style="color : #000000;">pageviews</th>
+             		{% for e in  data.duelsInDay_region.region %}
+             			<th style="color: #{{ loop.index * 85}};">{{ e }}</th>
+             		{% endfor%}
         	 	</tr>
          	</thead>
          	<tbody>
-		 		{% for e in  data.duelsInDay_region %}
-         		 <tr>
-             		<th>{{ e.day}}</th><td>{{ e.sum }}</td><td>{{ e.region }}</td>
-         	 	</tr>
-		 		{% endfor%}
+				  {% for e in  data.duelsInDay_region.data %}			
+          			<tr>
+             			<td>{{ e.day }}</td>
+             			{% for j in  e.count %}
+             				<td>{{ j }}</td>
+             			{% endfor%}
+         			</tr>
+		 		  {% endfor%}
          	</tbody>
          </table>
 		 <br>
-
-
+			<table>
+				<thead>
+        		 	<tr>
+             			<th>day</th>
+             			{% for e in  data.duelsInDay_region.region %}
+             				<th>{{ e }}</th>
+             			{% endfor%}
+             		</tr>
+             	</thead>
+				<tbody>
+				  {% for e in  data.duelsInDay_region.data %}			
+          			<tr>
+             			<td>{{ e.day }}</td>
+             			{% for j in  e.count %}
+             				<td>{{ j }}</td>
+             			{% endfor%}
+         			</tr>
+		 		  {% endfor%}
+				</tbody>
+			</table>
 		</div>
-
 	</div>
 </div>
 
