@@ -1,6 +1,7 @@
 button::-moz-focus-inner {border:0;padding:0;margin:0;}
 
-button{
+button, .btn
+{
 	display : inline-block;
 	background : none;
 	-moz-box-shadow: 1px 1px 0 #ededed;
@@ -15,19 +16,28 @@ button{
     overflow : visible;
 	cursor : pointer;
 	width : auto;
-	height : 27px;
+	height : 27px;	
 }
 
-button:first-child{
+.btn
+{
+	text-decoration: none !important;
+}
+
+button:first-child, .btn:first-child
+{
 	margin : 0 0 1px 0;
+	text-decoration: none;
 }
 
-button:hover{
+button:hover, .btn:hover
+{
 	opacity : 0.7;
 	filter : alpha(opacity=70);
 }
 
-button span {
+button span, .btn span
+ {
 	display : block;
 	background : url(../gfx/forms-btn.gif) repeat-x left top #FFFFFF;
 	padding : 0 15px;

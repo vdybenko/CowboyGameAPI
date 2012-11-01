@@ -24,8 +24,13 @@
 			<form action="{{ path('admin_add_store_item') }}" method="post">
 				{{ form_widget(form) }}	
 				   			
-   		 		<div class="row">
-					<div class="right"><button type="submit"><span>Submit</span></button></div>
+   		 		<div class="row">   		 		
+					<div class="right">						
+						<button type="submit"><span>Submit</span></button>
+						<a href="{{ path("store_list_items") }}" target="blank"  class="btn">
+							<span>Відіслати на S3 список магазину<span>
+						</a>
+					</div>
 				</div>
 			</form>
 		</div>
