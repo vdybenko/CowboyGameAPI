@@ -2,8 +2,6 @@
 
 namespace CowboyDuel\AdminBundle\Controller;
 
-use CowboyDuel\AdminBundle\Helper\HelperQueryStatistic;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
@@ -11,27 +9,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 	JMS\SecurityExtraBundle\Annotation\Secure;
 
 use CowboyDuel\ApiBundle\Entity\Store,
-	CowboyDuel\ApiBundle\Form\StoreType;
+	CowboyDuel\ApiBundle\Form\StoreType,
+	CowboyDuel\AdminBundle\Helper\HelperQueryStatistic,
+	CowboyDuel\AdminBundle\Helper\HelperMethod;
 
 /**
  * @Route("/admin")
  */
 class AdminController extends Controller
 {
-	function setDataStatistic($q)
-	{
-		$data['countDuelsInDay'] = $q->getCountDuelsInDay(array(
-				'today' => 1,
-				'users' => null,
-				'region' => null)
-		);		
-		$data['countRegisteredUsers'] =  $q->getCountRegisteredUsers(null);
-		$data['countRegisteredUsersFromFacebook'] =  $q->getCountRegisteredUsers('F');
-		$data['countUsersAttendedDuels'] =  $q->getCountUsersAttendedDuels();
-		$data['ratioUsersOfRolledQuantityDuel'] = $q->getRatioUsersOfRolledQuantityDuels();
-		
-		return $data;
-	}
+	
 	/**
 	 * @Route("/", name="admin_index")
 	 * @Secure(roles="ROLE_ADMIN")
@@ -42,7 +29,7 @@ class AdminController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		$queryHolds = new HelperQueryStatistic($em);
 		
-		$data = $this->setDataStatistic($queryHolds);
+		$data = HelperMethod::setDataStatistic($em);
 		
 		return array('data' => $data,
 					 'location' => 'admin_index');
@@ -88,14 +75,12 @@ class AdminController extends Controller
             	return $this->redirect($this->generateUrl('admin_index'));            
         	}
     	}
-    	
-  
-    	$queryHolds = new HelperQueryStatistic($this->getDoctrine()->getEntityManager());   	
+ 	
     	return array(
 				'entity'   => $entity,
 				'form'     => $form->createView(),
 				'location' => 'admin_add_store_item',
-    			'data' 	   => $this->setDataStatistic($queryHolds)
+    			'data' 	   => HelperMethod::setDataStatistic($this->getDoctrine()->getEntityManager())
 		);
     }
     
@@ -109,7 +94,7 @@ class AdminController extends Controller
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryStatistic($em);   	
     	
-    	$data = $this->setDataStatistic($queryHolds);
+    	$data = HelperMethod::setDataStatistic($em);
     	
     	$lastDay = $this->container->getParameter('showDataLastDay');
     	$data['duelsInDay_users_new']  = $queryHolds->getDuelsInDay(array('users' => 'new', 'lastDay' => $lastDay)); 
@@ -131,7 +116,7 @@ class AdminController extends Controller
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryStatistic($em);
     	 
-    	$data = $this->setDataStatistic($queryHolds);
+    	$data = HelperMethod::setDataStatistic($em);
     	
     	$lastDay = $this->container->getParameter('showDataLastDay');    	
     	$data['sales_Of_Goods_buy_golds'] = $queryHolds->getSalesOfGoods(array('typeBuy' => 'golds', 'lastDay' => $lastDay));
@@ -152,7 +137,7 @@ class AdminController extends Controller
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryStatistic($em);
     
-    	$data = $this->setDataStatistic($queryHolds);    	 
+    	$data = HelperMethod::setDataStatistic($em);    	 
     	$data['registered_Users_Of_Percentage'] = $queryHolds->getAllRegisteredUsersPercentage();
     	 
     	return array('data' => $data,

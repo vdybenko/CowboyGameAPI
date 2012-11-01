@@ -99,6 +99,9 @@
 							<li {% if location == 'admin_registered_users_of_percentage' %} class="current" {% endif %}>
 								<a href="{{ path("admin_registered_users_of_percentage") }}">Pеєстрація користувачів</a>
 							</li>
+							<li {% if location == 'users_index' %} class="current" {% endif %}>
+								<a href="{{ path("users_index") }}">Користувачі</a>
+							</li>
 							{% block menu %}
         					{% endblock %}
 						</ul>
