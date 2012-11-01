@@ -21,6 +21,16 @@ button, .btn
 
 .btn
 {
+	display: inline-block;
+	background: url(../gfx/forms-btn.gif) repeat-x left top #FFFFFF;
+	padding: 0 15px;
+	margin: 0px 5px;
+	font: 12px/25px Arial;
+	font-weight: bold;
+	letter-spacing: 0.08em;
+	color: #7d7c7c !important;
+	text-transform: uppercase;
+	height: 25px;
 	text-decoration: none !important;
 }
 
@@ -36,7 +46,7 @@ button:hover, .btn:hover
 	filter : alpha(opacity=70);
 }
 
-button span, .btn span
+button span
  {
 	display : block;
 	background : url(../gfx/forms-btn.gif) repeat-x left top #FFFFFF;
