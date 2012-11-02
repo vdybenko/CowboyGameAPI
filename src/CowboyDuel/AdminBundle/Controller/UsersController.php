@@ -24,9 +24,12 @@ class UsersController extends Controller
 	{
 		$em = $this->getDoctrine()->getEntityManager();
 		$queryHolds = new HelperQuery($em);	
+		
+		$query = $this->getRequest()->query;
+		$sort = $query->get('sort');
 		 
 		$data = HelperMethod::setDataStatistic($em);		 
-		$data['list_users'] = $queryHolds->getUsers(null);
+		$data['list_users'] = $queryHolds->getUsers($sort);
 	
 		return array('data' => $data,
 					 'location' => 'users_index');

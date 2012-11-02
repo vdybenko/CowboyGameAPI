@@ -7,7 +7,7 @@ class HelperQuery extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 	{
 		$orderBy = "";		
 		if(!is_null($sort)) 
-			$orderBy = "ORDER BY $sort";
+			$orderBy = "ORDER BY u.$sort DESC";
 		
 		$q = $this->em->createQuery("
 				SELECT u

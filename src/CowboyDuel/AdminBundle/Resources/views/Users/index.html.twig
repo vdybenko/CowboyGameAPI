@@ -18,9 +18,9 @@
             		<th>First login</th>
             		<th>Last login</th>
             		<th>Region</th>
-            		<th>Money</th>
+            		<th><a href="{{ path("users_index", { 'sort': 'money' }) }}">Money</a></th>
             		<th>Level</th>
-            		<th>Points</th>
+            		<th><a href="{{ path("users_index", { 'sort': 'points' }) }}">Points</a></th>
             		<th>Age</th>
             		<th>HomeTown</th>
         	 	</tr>
@@ -28,9 +28,9 @@
          	<tbody>
 				 {% for e in  data.list_users %}			
           			<tr>
-             			<td>{{ e.nickname }}</td>
-             			<td>{{ e.firstLogin }}</td>
-             			<td>{{ e.lastLogin }}</td>
+             			<td><a href="">{{ e.nickname }}<a></td>
+             			<td>{{ e.firstLogin|date('d/m/Y') }}</td>
+             			<td>{{ e.lastLogin|date('d/m/Y') }}</td>
              			<td>{{ e.region }}</td>
              			<td>{{ e.money }}</td>
              			<td>{{ e.level }}</td>
