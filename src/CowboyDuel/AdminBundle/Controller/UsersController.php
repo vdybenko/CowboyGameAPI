@@ -49,6 +49,7 @@ class UsersController extends Controller
 		$entity = $em->getRepository('CowboyDuelApiBundle:Users')->find($id);
 		
 		$entityInfo['buy_items_store'] = $queryHolds->getBuyItemsStoreOfUser($id);
+		$entityInfo['duels'] = $queryHolds->getDuelsUser($id);
 	
 		return array('data' 	=> $data,
 					 'entity' 	=> $entity,

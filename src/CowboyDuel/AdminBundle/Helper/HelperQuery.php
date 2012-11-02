@@ -27,4 +27,15 @@ class HelperQuery extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
    		");	
 		return  $q;
 	}
+	
+	public function getDuelsUser($id)
+	{
+		$q = $this->createQuery("
+				SELECT t.date, u.user_id
+				FROM `transactions` t INNER JOIN `users` u ON t.authen = u.authen
+				WHERE u.user_id = $id
+				ORDER BY t.date DESC
+				");
+		return  $q;
+	}
 }
