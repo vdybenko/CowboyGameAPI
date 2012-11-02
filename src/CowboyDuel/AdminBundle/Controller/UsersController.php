@@ -31,8 +31,30 @@ class UsersController extends Controller
 		$data = HelperMethod::setDataStatistic($em);		 
 		$data['list_users'] = $queryHolds->getUsers($sort);
 	
-		return array('data' => $data,
+		return array('data' 	=> $data,
 					 'location' => 'users_index');
 	}
+	
+	/**
+	 * @Route("/{id}/show", name="users_show_user")
+	 * @Secure(roles="ROLE_ADMIN")
+	 * @Template()
+	 */
+	public function showUserAction($id)
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+		$queryHolds = new HelperQuery($em);	
+		 
+		$data = HelperMethod::setDataStatistic($em);		 
+		$entity = $em->getRepository('CowboyDuelApiBundle:Users')->find($id);
+		
+		$entityInfo['buy_items_store'] = $queryHolds->getBuyItemsStoreOfUser($id);
+	
+		return array('data' 	=> $data,
+					 'entity' 	=> $entity,
+					 'entityInfo' => $entityInfo,
+					 'location' => 'users_show_user');
+	}
+	
 
 }

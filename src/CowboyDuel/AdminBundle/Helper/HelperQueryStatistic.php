@@ -102,7 +102,6 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		
 		return $result;
 	}
-
 	
 	public function getDuelsInDay($filters)
 	{	
