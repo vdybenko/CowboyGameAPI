@@ -54,6 +54,11 @@ class AdminController extends Controller
        		$thumb 	= $form['thumb']->getData();
        		$img 	= $form['img']->getData();
        		$bigImg = $form['bigImg']->getData();
+       		
+       		$thumbRetina 	= $form['thumbRetina']->getData();
+       		$imgRetina 	= $form['imgRetina']->getData();
+       		$bigImgRetina = $form['bigImgRetina']->getData();
+       		
        		$sound 	= $form['sound']->getData();
        		$description = $form['description']->getData();
        		$inAppId = $form['inAppId']->getData();
@@ -61,6 +66,11 @@ class AdminController extends Controller
        		$entity->setThumb(is_null($thumb)?'':$thumb)
        			   ->setImg(is_null($img)?'':$img)
        			   ->setBigImg(is_null($bigImg)?'':$bigImg)
+       			   
+       			   ->setThumb(is_null($thumbRetina)?'':$thumbRetina)
+       			   ->setImg(is_null($imgRetina)?'':$imgRetina)
+       			   ->setBigImg(is_null($bigImgRetina)?'':$bigImgRetina)
+       			   
        		       ->setSound(is_null($sound)?'':$sound)
        			   ->setDescription(is_null($description)?'':$description)
        			   ->setInappid(is_null($inAppId)?'0':$inAppId);

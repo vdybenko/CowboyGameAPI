@@ -36,14 +36,14 @@ class HelperQuery extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		return  $q;
 	}
 	
-	public function getDuelsUser($id) //in processing
+	public function getDuelsUser($id)
 	{
 		$q = $this->createQuery("
-				SELECT t.date, u.user_id
-				FROM `transactions` t INNER JOIN `users` u ON t.authen = u.authen
-				WHERE u.user_id = $id
+				SELECT t.date, u.nickname, u.user_id AS userId
+				FROM `transactions` t INNER JOIN `users` u ON t.opponent_authen = u.authen
+				WHERE t.authen = (SELECT authen FROM `users` u WHERE u.user_id = $id)
 				ORDER BY t.date DESC
-				");
+			");
 		return  $q;
 	}
 }

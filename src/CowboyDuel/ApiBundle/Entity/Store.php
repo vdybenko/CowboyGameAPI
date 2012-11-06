@@ -62,6 +62,13 @@ class Store
      * @ORM\Column(type="string", length=60, nullable=true)
      */
     private $thumb = "";
+    
+    /**
+     * @var string $thumbRetina
+     *
+     * @ORM\Column(type="string", length=60, nullable=true)
+     */
+    private $thumbRetina = "";
 
     /**
      * @var string $img
@@ -69,6 +76,13 @@ class Store
      * @ORM\Column(type="string", length=60, nullable=true)
      */
     private $img = "";
+    
+    /**
+     * @var string $imgRetina
+     *
+     * @ORM\Column(type="string", length=60, nullable=true)
+     */
+    private $imgRetina = "";
 
     /**
      * @var string $bigImg
@@ -76,6 +90,13 @@ class Store
      * @ORM\Column(type="string", length=60, nullable=true)
      */
     private $bigImg = "";
+    
+    /**
+     * @var string $bigImgRetina
+     *
+     * @ORM\Column(type="string", length=60, nullable=true)
+     */
+    private $bigImgRetina = "";
     
     /**
      * @var string $sound
@@ -236,7 +257,6 @@ class Store
     
         return $this;
     }
-
     /**
      * Get thumb
      *
@@ -245,6 +265,28 @@ class Store
     public function getThumb()
     {
         return $this->thumb;
+    }
+    
+    /**
+     * Set thumbRetina
+     *
+     * @param string $thumbRetina
+     * @return Store
+     */
+    public function setThumbRetina($thumbRetina)
+    {
+    	$this->thumbRetina = $thumbRetina;
+    
+    	return $this;
+    }
+    /**
+     * Get thumbRetina
+     *
+     * @return string
+     */
+    public function getThumbRetina()
+    {
+    	return $this->thumbRetina;
     }
 
     /**
@@ -268,6 +310,28 @@ class Store
     {
         return $this->img;
     }
+    
+    /**
+     * Set imgRetina
+     *
+     * @param string $imgRetina
+     * @return Store
+     */
+    public function setImgRetina($imgRetina)
+    {
+    	$this->imgRetina = $imgRetina;
+    
+    	return $this;
+    }
+    /**
+     * Get imgRetina
+     *
+     * @return string
+     */
+    public function getImgRetina()
+    {
+    	return $this->imgRetina;
+    }    
 
     /**
      * Set bigImg
@@ -289,6 +353,28 @@ class Store
     public function getBigImg()
     {
     	return $this->bigImg;
+    }
+    
+    /**
+     * Set bigImgRetina
+     *
+     * @param string $bigImgRetina
+     * @return Store
+     */
+    public function setBigImgRetina($bigImgRetina)
+    {
+    	$this->bigImgRetina = $bigImgRetina;
+    
+    	return $this;
+    }
+    /**
+     * Get bigImgRetina
+     *
+     * @return string
+     */
+    public function getBigImgRetina()
+    {
+    	return $this->bigImgRetina;
     }
     
     /**
@@ -325,7 +411,6 @@ class Store
     
         return $this;
     }
-
     /**
      * Get description
      *
