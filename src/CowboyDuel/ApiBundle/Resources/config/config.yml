@@ -10,10 +10,14 @@ parameters:
     S3_verify_peer: true
     S3_access_key: AKIAJW77I5OAC63UVOXQ
     S3_secret_key: 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
-    
-    S3_topBoard_file_upload: bundles/cowboyduelapi/uploads/top.scriptJson.txt
-    S3_topBoard_uri: top.scriptJson
+    # S3 file
+    S3_type_file: .json
 
-    S3_listOfStoreItems_file_upload: bundles/cowboyduelapi/uploads/list_of_store_items.scriptJson.txt
+    S3_topBoard_file_upload: bundles/cowboyduelapi/uploads/top.json.txt
+    S3_topBoard_uri: top_board
+
+    S3_listOfStoreItems_file_upload: bundles/cowboyduelapi/uploads/list_of_store_items.json.txt
     S3_listOfStoreItems_uri: list_of_store_items
-    S3_type_file: .scriptJson
+    
+    S3_bot_file_upload: bundles/cowboyduelapi/uploads/bot.json.txt
+    S3_bot_uri: bot_id

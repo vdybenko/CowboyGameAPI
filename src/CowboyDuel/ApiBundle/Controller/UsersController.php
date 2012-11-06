@@ -25,7 +25,7 @@ class UsersController extends Controller
     }
     
     /**
-     * @Route("/top.json", name="users_top_board")
+     * @Route("/top_board.json", name="users_top_board_json")
      */
     public function top_boardAction()
     {
@@ -36,10 +36,32 @@ class UsersController extends Controller
     	
     	$helperMethod = new HelperMethod($this->container);
     	$helperMethod->sendStatS3($this->container->getParameter('S3_topBoard_file_upload'),
-    							  $this->container->getParameter('S3_topBoard_uri'),
+    							  $this->container->getParameter('S3_topBoard_uri')
+    							  .$this->container->getParameter('S3_type_file'),
     							  $entitiesJson);   		
     	$queryHolds->setSettings('timeLastRefresh',time());
     	
+    	return new Response($entitiesJson);
+    }
+    
+    /**
+     * @Route("/botId.json", name="users_botId_json")
+     */
+    public function botJsonAction()
+    {
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$queryHolds = new HelperQueryHolds($em);
+    	 
+    	$entitiesJson = json_encode($queryHolds->getBotId());
+    	 
+    	$helperMethod = new HelperMethod($this->container);
+    	$helperMethod->sendStatS3($this->container->getParameter('S3_bot_file_upload'),
+    							  $this->container->getParameter('S3_bot_uri')
+    							  .$this->container->getParameter('S3_type_file'),
+    							  $entitiesJson);
+    	
+    	//$queryHolds->setSettings('timeLastRefresh',time());
+    	 
     	return new Response($entitiesJson);
     }
     

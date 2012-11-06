@@ -16,7 +16,15 @@ class HelperQueryHolds extends HelperAbstractDb
 			 ')->setMaxResults(100)
 			   ->getResult();
 	}
-	
+	public function getBotId()
+	{		
+		$q = $this->em->createQuery("
+				SELECT u.userId AS id
+				FROM CowboyDuelApiBundle:Users u
+				WHERE u.snetwork = 'B'
+			");
+		return $q->getResult();
+	}
 	public function get_my_rank_on_interspace($authen)
 	{
 		if($authen == null) return null;

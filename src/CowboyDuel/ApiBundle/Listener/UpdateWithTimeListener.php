@@ -32,8 +32,9 @@ class UpdateWithTimeListener
     		 
     		$helperMethod = new HelperMethod($this->container);
     		$helperMethod->sendStatS3($this->container->getParameter('S3_topBoard_file_upload'),
-    							 	  $this->container->getParameter('S3_topBoard_uri'),
-    							  	  $entitiesJson);   		
+    							  	  $this->container->getParameter('S3_topBoard_uri')
+    							  	  .$this->container->getParameter('S3_type_file'),
+    							  	  $entitiesJson);    		
     		$queryHolds->setSettings('timeLastRefresh',time());
     	}
     }

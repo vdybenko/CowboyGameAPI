@@ -1,0 +1,58 @@
+{% extends 'CowboyDuelAdminBundle::layout.html.twig' %}
+{% block title %}Список гравців{% endblock %}
+
+{% block right %}
+
+<div class="section">
+	<div class="box">
+		<div class="title">
+			Операції
+			<span class="hide"></span>
+		</div>
+		<div class="content">
+			<a href="{{ path("users_botId_json") }}" target="blank" class="btn">
+				Відіслати на S3 id ботів
+			</a>
+		</div>
+	</div>
+	<div class="box">
+		<div class="title">
+			Список ботів
+			<span class="hide"></span>
+		</div>
+		<div class="content">
+		  <table>
+         	<thead>
+         		<tr>
+            		<th>Nickname</th>
+            		<th>First login</th>
+            		<th>Last login</th>
+            		<th>Region</th>
+            		<th><a href="{{ path("users_index", { 'sort': 'money' }) }}">Money</a></th>
+            		<th>Level</th>
+            		<th><a href="{{ path("users_index", { 'sort': 'points' }) }}">Points</a></th>
+            		<th>Age</th>
+            		<th>HomeTown</th>
+        	 	</tr>
+         	</thead>
+         	<tbody>
+				 {% for e in  data.list_bot %}			
+          			<tr>
+             			<td><a href="{{ path("users_show_user", { 'id': e.userId }) }}">{{ e.nickname }}<a></td>
+             			<td>{{ e.firstLogin|date('d/m/Y') }}</td>
+             			<td>{{ e.lastLogin|date('d/m/Y') }}</td>
+             			<td>{{ e.region }}</td>
+             			<td>{{ e.money }}</td>
+             			<td>{{ e.level }}</td>
+             			<td>{{ e.points }}</td>  
+             			<td>{{ e.age }}</td> 
+             			<td>{{ e.homeTown }}</td>			
+         			</tr>
+		 		 {% endfor%}
+         	</tbody>
+           </table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

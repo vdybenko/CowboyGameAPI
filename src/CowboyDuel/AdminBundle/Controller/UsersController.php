@@ -29,7 +29,7 @@ class UsersController extends Controller
 		$sort = $query->get('sort');
 		 
 		$data = HelperMethod::setDataStatistic($em);		 
-		$data['list_users'] = $queryHolds->getUsers($sort);
+		$data['list_users'] = $queryHolds->getUsers(array('sort' => $sort, 'snetwork_not' => 'B'));
 	
 		return array('data' 	=> $data,
 					 'location' => 'users_index');
@@ -57,5 +57,23 @@ class UsersController extends Controller
 					 'location' => 'users_show_user');
 	}
 	
-
+	/**
+	 * @Route("/bot", name="users_getAllBot")
+	 * @Secure(roles="ROLE_ADMIN")
+	 * @Template()
+	 */
+	public function getAllBotAction()
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+		$queryHolds = new HelperQuery($em);
+	
+		$query = $this->getRequest()->query;
+		$sort = $query->get('sort');
+			
+		$data = HelperMethod::setDataStatistic($em);
+		$data['list_bot'] = $queryHolds->getUsers(array('sort' => $sort, 'snetwork' => 'B'));
+	
+		return array('data' 	=> $data,
+				'location' => 'users_getAllBot');
+	}
 }

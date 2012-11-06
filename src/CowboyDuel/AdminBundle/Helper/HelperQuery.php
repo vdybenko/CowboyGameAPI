@@ -3,15 +3,23 @@ namespace CowboyDuel\AdminBundle\Helper;
 
 class HelperQuery extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 {
-	public function getUsers($sort)
+	public function getUsers($filters)
 	{
+		$where = "WHERE ";
 		$orderBy = "";		
-		if(!is_null($sort)) 
-			$orderBy = "ORDER BY u.$sort DESC";
+		if(isset($filters['sort'])) 
+			$orderBy = "ORDER BY u.".$filters['sort']." DESC";
+		
+		if(isset($filters['snetwork']))
+		    $where .= "u.snetwork='".$filters['snetwork']."'";
+		
+		if(isset($filters['snetwork_not']))
+			$where .= "u.snetwork<>'".$filters['snetwork_not']."'";		
 		
 		$q = $this->em->createQuery("
 				SELECT u
 				FROM CowboyDuelApiBundle:Users u
+				$where
 				$orderBy
 		");
 		return $q->getResult();

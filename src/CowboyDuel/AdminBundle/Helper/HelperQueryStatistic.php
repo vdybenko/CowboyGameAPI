@@ -87,8 +87,6 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		}
 		$tmpRegion = $tmpR;
 		
-		print_r($tmpRegion);
-		
 		foreach ($q as $ki => $vi)
 		{
 			$tmpCount = array();			

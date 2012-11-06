@@ -26,7 +26,7 @@ class StoreController extends Controller
     }
     
     /**
-     * @Route("/listOfStoreItems.json", name="store_list_items")
+     * @Route("/listOfStoreItems.json", name="store_list_items_json")
      */
     public function listOfStoreItemsAction()
     {
@@ -46,7 +46,8 @@ class StoreController extends Controller
     							  $this->container->getParameter('S3_listOfStoreItems_uri')
     							  .'_v'.$program_version.$this->container->getParameter('S3_type_file'),
     							  $storeJson);
-    	$queryHolds->setSettings('timeLastRefresh', time());
+    	print_r($this->container->getParameter('S3_listOfStoreItems_uri')
+    							  .'_v'.$program_version.$this->container->getParameter('S3_type_file'));
     	return new Response($storeJson);
     }
     
