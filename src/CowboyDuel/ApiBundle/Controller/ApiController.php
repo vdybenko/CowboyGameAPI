@@ -352,9 +352,10 @@ class ApiController extends Controller
     {
     	$request = $this->getRequest()->request;
     	
-    	$authen 	  = $request->get('authentification');
-    	$session_id   = $request->get('session_id');
-    	$transactions = $request->get('transactions');
+    	$authen 	  	 = $request->get('authentification');
+    	$session_id   	 = $request->get('session_id');
+    	$opponent_authen = $request->get('opponent_authen');
+    	$transactions 	 = $request->get('transactions');
     	
     	if ($authen == null)
     	{
@@ -400,14 +401,16 @@ class ApiController extends Controller
     					
     				$transactionsHolds->setTransaction($authen, 
     												   $transaction->{'transaction'}->{'transaction_id'}, 
-    												   $transaction->{'transaction'}->{'description'});
+    												   $transaction->{'transaction'}->{'description'},
+    												   $opponent_authen
+    				);
     				$sum = $sum + $transaction->{'transaction'}->{'transaction_id'};
     			}
     		}
     			
     		$queryHolds->setUserMoney($authen, $sum);
     		
-    		$sum= $sum ^ $secure_value;
+    		$sum = $sum ^ $secure_value;
     		$responseData['money'] = $sum;
     	}
     	 else

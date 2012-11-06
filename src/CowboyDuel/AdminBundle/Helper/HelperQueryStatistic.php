@@ -74,31 +74,42 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		$tmpData = array();
 		$isAdd = true;			
 	
-		foreach ($q as $ki => $vi)
-			$tmpRegion[] = $vi['region'];		
+		foreach ($q as $ki => $vi)		
+			$tmpRegion[] = $vi['region'];			
 		$tmpRegion = array_unique($tmpRegion);
-			
+		
+		$index = 1;	
+		$tmpR = array();
+		foreach ($tmpRegion as $ki => $vi)
+		{
+			$tmpR[$index] = $vi;
+			$index++;
+		}
+		$tmpRegion = $tmpR;
+		
+		print_r($tmpRegion);
+		
 		foreach ($q as $ki => $vi)
 		{
-			$tmpCount = array();
-			foreach ($q as $kj => $vj)
-				if($vi['day'] == $vj['day'] && $vi['region'] == $vj['region'])
+			$tmpCount = array();			
+			foreach ($q as $kj => $vj)			
+			   if($vi['day'] == $vj['day'] && $vi['region'] == $vj['region'])
 				{
-					$key = array_search($vj['region'], $tmpRegion);
-					if($key >= 0)
-						$tmpCount[$key] = $vj['count'];
-					else
-						$tmpCount[] = $vj['count'];
+					$key = array_search($vj['region'], $tmpRegion);		
+					if(isset($tmpCount[$key - 1]) && $tmpCount[$key - 1] == 0 
+												  && count($tmpRegion) > count($tmpCount))	
+						$tmpCount[] = 0;
+					$tmpCount[$key - 1] = $vj['count'];							
 				}
 				else
-					if(count($tmpRegion) > $kj)
-					$tmpCount[] = 0;
+				  if(count($tmpRegion) > $kj)
+					$tmpCount[] = 0;		
 				 
 				$tmpData[] = array('day' => $vi['day'],'count' => $tmpCount);
 		}
 		
 		$result['region'] = $tmpRegion;
-		$result['data'] = $tmpData;
+		$result['data']   = $tmpData;
 		
 		return $result;
 	}

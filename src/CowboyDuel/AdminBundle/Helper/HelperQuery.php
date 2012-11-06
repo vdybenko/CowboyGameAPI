@@ -28,7 +28,7 @@ class HelperQuery extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		return  $q;
 	}
 	
-	public function getDuelsUser($id)
+	public function getDuelsUser($id) //in processing
 	{
 		$q = $this->createQuery("
 				SELECT t.date, u.user_id

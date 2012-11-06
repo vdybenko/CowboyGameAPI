@@ -48,8 +48,13 @@ class Transactions
      * @ORM\Column(name="date", type="string", length=15, nullable=false)
      */
     private $date;
-
-
+    
+    /**
+     * @var string $opponentAuthen
+     *
+     * @ORM\Column(name="opponent_authen", type="string")
+     */
+    private $opponentAuthen;
 
     /**
      * Get id
@@ -151,5 +156,28 @@ class Transactions
     public function getDate()
     {
         return $this->date;
+    }
+    
+    /**
+     * Set date
+     *
+     * @param string $opponentAuthen
+     * @return Transactions
+     */
+    public function setOpponentAuthen($opponentAuthen)
+    {
+    	$this->opponentAuthen = $opponentAuthen;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get opponentAuthen
+     *
+     * @return string
+     */
+    public function getOpponentAuthen()
+    {
+    	return $this->opponentAuthen;
     }
 }
