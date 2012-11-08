@@ -98,5 +98,28 @@ class StoreController extends Controller
     	}
     	
     	return new Response(json_encode($responseDate));
+    }
+    /**
+     * @Route("/get_buy_items_user", name="store_get_buy_items_user")
+     */
+    public function getBuyItemsStoreUserAction()
+    {
+    	$request = $this->getRequest()->request;
+    	$authen = $request->get('authentification');
+    
+    	if ($authen == null)
+    	{
+    		$responseDate['err_code'] = (int) - 4;
+    		$responseDate['err_description'] = 'Invalid value';
+    	}
+    	else
+    	{
+    		$em = $this->getDoctrine()->getEntityManager();
+    		$queryStore = new HelperQueryStore($em);
+    		 
+    		$responseDate = $queryStore->getAllBuyItemsStore($authen);   		
+    	}
+    	 
+    	return new Response(json_encode($responseDate));
     }    
 }

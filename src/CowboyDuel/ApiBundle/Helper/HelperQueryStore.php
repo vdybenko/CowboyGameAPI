@@ -49,9 +49,19 @@ class HelperQueryStore extends HelperAbstractDb
 				WHERE b.authenuser='$authen' AND s.type='$type' AND b.itemIdStore = s.id
 				ORDER BY b.date DESC"
 		);
-				$e = $q->getResult();
+		$e = $q->getResult();
 	
-				return $e[0];
+		return $e[0];
+	}
+	public function getAllBuyItemsStore($authen)
+	{
+		$q = $this->em->createQuery("
+				SELECT b.id
+				FROM CowboyDuelApiBundle:BuyItemsStore b, CowboyDuelApiBundle:Store s
+				WHERE b.authenuser='$authen' AND b.itemIdStore = s.id				
+			");	
+	
+		return $q->getResult();
 	}
 
 }
