@@ -12,11 +12,12 @@ class HelperQueryStore extends HelperAbstractDb
 		{
 			case 'weapons':
 				$dStr = 's.id, s.title, s.damageOrDefense AS damage, s.golds, s.inappid, s.thumb,
-				s.img, s.bigImg, s.sound, s.description, s.levelLock';
+				s.img, s.bigImg, s.sound, s.description, s.levelLock,
+				s.thumbRetina, s.imgRetina, s.bigImgRetina';
 				break;
 			case 'defenses':
 				$dStr = 's.id, s.title, s.damageOrDefense AS defense, s.golds, s.inappid, s.thumb,
-				s.img, s.description, s.levelLock';
+				s.img, s.description, s.levelLock, s.thumbRetina, s.imgRetina';
 				break;
 		}
 		$q = $this->em->createQuery("

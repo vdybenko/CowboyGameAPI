@@ -33,21 +33,42 @@ class StoreController extends Controller
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryHolds($em);
     	$queryStore = new HelperQueryStore($em);
+    	$helperMethod = new HelperMethod($this->container);
     	
     	$program_version = $queryHolds->getSettings('program_version')->getValue();
     	
-    	$store['weapons'] = $queryStore->getStoreItems("weapons");
-    	$store['defenses'] = $queryStore->getStoreItems("defenses");
-    	
-    	$storeJson = json_encode($store);
+    	$storeRetina['weapons'] = $store['weapons']  = $queryStore->getStoreItems("weapons");
+    	$storeRetina['defenses'] = $store['defenses'] = $queryStore->getStoreItems("defenses");
     	    	
-    	$helperMethod = new HelperMethod($this->container);
+    	
+    	$store['weapons'] = $helperMethod->deleteElmInMas($store['weapons'],
+    						 array(0 => 'thumbRetina',
+    							   1 => 'imgRetina',
+    							   2 => 'bigImgRetina' ));
+    	$store['defenses'] = $helperMethod->deleteElmInMas($store['weapons'],
+    						  array(0 => 'thumbRetina',
+    							    1 => 'imgRetina',));
+    	
+    	$storeRetina['weapons'] = $helperMethod->deleteElmInMas($storeRetina['weapons'],
+    								array(0 => 'thumb',
+    									  1 => 'img',
+    									  2 => 'bigImg' ));
+    	$storeRetina['defenses'] = $helperMethod->deleteElmInMas($storeRetina['weapons'],
+    								array(0 => 'thumb',
+    									  1 => 'img',));
+    	
+    	$storeJson = json_encode($store);    	
+    	$storeRetinaJson = json_encode($storeRetina);    	    	
+    	
     	$helperMethod->sendStatS3($this->container->getParameter('S3_listOfStoreItems_file_upload'),
     							  $this->container->getParameter('S3_listOfStoreItems_uri')
     							  .'_v'.$program_version.$this->container->getParameter('S3_type_file'),
     							  $storeJson);
-    	print_r($this->container->getParameter('S3_listOfStoreItems_uri')
-    							  .'_v'.$program_version.$this->container->getParameter('S3_type_file'));
+    	$helperMethod->sendStatS3($this->container->getParameter('S3_listOfStoreItemsRetina_file_upload'),
+    							  $this->container->getParameter('S3_listOfStoreItemsRetina_uri')
+    							  .'_v'.$program_version.$this->container->getParameter('S3_type_file'),
+    							  $storeRetinaJson);
+    	
     	return new Response($storeJson);
     }
     

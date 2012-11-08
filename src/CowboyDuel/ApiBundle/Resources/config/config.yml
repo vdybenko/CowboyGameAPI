@@ -18,6 +18,9 @@ parameters:
 
     S3_listOfStoreItems_file_upload: bundles/cowboyduelapi/uploads/list_of_store_items.json.txt
     S3_listOfStoreItems_uri: list_of_store_items
+
+    S3_listOfStoreItemsRetina_file_upload: bundles/cowboyduelapi/uploads/list_of_store_items_retina.json.txt
+    S3_listOfStoreItemsRetina_uri: list_of_store_items_retina
     
     S3_bot_file_upload: bundles/cowboyduelapi/uploads/bot.json.txt
     S3_bot_uri: bot_id

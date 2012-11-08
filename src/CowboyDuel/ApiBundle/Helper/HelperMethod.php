@@ -26,4 +26,17 @@ class HelperMethod
 					  $bucket, 
 					  $uri, S3::ACL_PUBLIC_READ);
 	}
+	
+	public function deleteElmInMas($m, $unsetStr)
+	{
+		$newM = array();
+  		foreach ($m as $ki => $vi)
+  		{
+   			for($i = 0; $i < count($unsetStr); $i++)
+   			  unset($vi[$unsetStr[$i]]);   			
+       		$newM[] = $vi;   
+  		}		
+		
+		return $newM;
+	}
 }
