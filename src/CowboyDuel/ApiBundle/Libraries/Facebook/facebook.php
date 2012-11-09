@@ -1,4 +1,5 @@
 <?php
+namespace CowboyDuel\ApiBundle\Libraries\Facebook;
 /**
  * Copyright 2011 Facebook, Inc.
  *
@@ -14,7 +15,6 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-namespace CowboyDuel\ApiBundle\Libraries\Facebook;
 
 /**
  * Extends the BaseFacebook class with the intent of using

@@ -131,7 +131,8 @@
          	<thead>
          		<tr>
             		<th>Nickname</th>
-            		<th>Date</th>            		
+            		<th>Date</th>
+            		<th>isFriend</th>            		
         	 	</tr>
          	</thead>
          	<tbody>
@@ -139,6 +140,7 @@
           			<tr> 
           				<td><a href="{{ path("users_show_user", { 'id': e.userId }) }}">{{ e.nickname }}<a></td>            			
              			<td>{{ e.date|date('d/m/Y') }}</td>
+             			<td>{{ e.isFriend }}</td>
          			</tr>
 		 		 {% endfor%}
          	</tbody>

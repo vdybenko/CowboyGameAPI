@@ -49,18 +49,24 @@ class UsersController extends Controller
 		$data = HelperMethod::setDataStatistic($em);		 
 		$entity = $em->getRepository('CowboyDuelApiBundle:Users')->find($id);
 		
-		$entityInfo['buy_items_store'] = $queryHolds->getBuyItemsStoreOfUser($id);
-		$entityInfo['duels'] = $queryHolds->getDuelsUser($id);
-	
 		$facebook = new Facebook(array(
 				'appId'  => $this->container->getParameter('facebook_appId'),
 				'secret' => $this->container->getParameter('facebook_secret'),
 		));
 		
-		$user = $facebook->getUser("AAACEdEose0cBAAHwFd8NhiD4554KYjuZCQi4o2XUhuEvx4tyCgI8thM4T4BXZAYEkIqqTzQZCMWFGZAaDyFcMJibNPdHBBOgivZCA3GmEGCFUVJITO0nA");
+		$userFriends = null;
+		if($entity->getSnetwork() == 'F')
+		{
+			$idAuthenFacebook = HelperMethod::convertToFacebookId($entity->getAuthen());
+		  	$userFriends = $facebook->api("/$idAuthenFacebook/friends");
+		  	$userFriends = $userFriends['data'];
+		}
 		
-		print_r($user);
+		//print_r($userFriends);
 		
+		$entityInfo['buy_items_store'] = $queryHolds->getBuyItemsStoreOfUser($id);
+		$entityInfo['duels'] = HelperMethod::getDuelsWithFriends($queryHolds->getDuelsUser($id), $userFriends);		
+				
 		return array('data' 	=> $data,
 					 'entity' 	=> $entity,
 					 'entityInfo' => $entityInfo,

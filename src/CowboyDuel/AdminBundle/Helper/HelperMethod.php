@@ -19,4 +19,26 @@ class HelperMethod
 		
 		return $data;
 	}
+	
+	public static function convertToFacebookId($authen)
+	{
+		return substr($authen, 2, strlen($authen) - 2);		
+	}
+	
+	public static function getDuelsWithFriends($duels, $friends)
+	{
+		for($i = 0; $i < count($duels); $i++)
+		{
+			$idUser = self::convertToFacebookId($duels[$i]['authen']);
+			foreach ($friends as $kj => $vj)						
+			   if($vj['id'] == $idUser)
+				{
+					$duels[$i]['isFriend'] = 'Так';
+					break;
+				}
+				else 
+					$duels[$i]['isFriend'] = 'Ні';
+		}
+		return $duels;
+	}
 }

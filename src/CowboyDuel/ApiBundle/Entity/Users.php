@@ -203,13 +203,6 @@ class Users
 	 */
 	private $identifier;
 	
-	/**
-	 * @var string $accessToken
-	 *
-	 * @ORM\Column(name="access_token")
-	 */
-	private $accessToken;
-	
 
 	/**
 	 * Get userId
@@ -764,24 +757,4 @@ class Users
 	public function getIdentifier() {
 		return $this->identifier;
 	}	
-	
-	/**
-	 * Set accessToken
-	 *
-	 * @param string $accessToken
-	 * @return Users
-	 */
-	public function setAccessToken($accessToken) {
-		$this->accessToken = $accessToken;
-	
-		return $this;
-	}
-	/**
-	 * Get accessToken
-	 *
-	 * @return string
-	 */
-	public function getAccessToken() {
-		return $this->accessToken;
-	}
 }
