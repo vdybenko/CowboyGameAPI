@@ -24,3 +24,7 @@ parameters:
     
     S3_bot_file_upload: bundles/cowboyduelapi/uploads/bot.json.txt
     S3_bot_uri: bot_id
+
+    # Facebook Configuration
+    facebook_appId: 284932561559672
+    facebook_secret: 985311896c75dba974b8171e2bf76799

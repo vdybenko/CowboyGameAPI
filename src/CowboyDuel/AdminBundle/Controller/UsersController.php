@@ -9,7 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 
 use CowboyDuel\AdminBundle\Helper\HelperQuery,
 	CowboyDuel\AdminBundle\Helper\HelperMethod,
-	CowboyDuel\AdminBundle\Helper\HelperQueryStatistic;
+	CowboyDuel\AdminBundle\Helper\HelperQueryStatistic,
+	CowboyDuel\ApiBundle\Libraries\Facebook\Facebook;
 /**
  * @Route("/users")
  */
@@ -51,6 +52,15 @@ class UsersController extends Controller
 		$entityInfo['buy_items_store'] = $queryHolds->getBuyItemsStoreOfUser($id);
 		$entityInfo['duels'] = $queryHolds->getDuelsUser($id);
 	
+		$facebook = new Facebook(array(
+				'appId'  => $this->container->getParameter('facebook_appId'),
+				'secret' => $this->container->getParameter('facebook_secret'),
+		));
+		
+		$user = $facebook->getUser("AAACEdEose0cBAAHwFd8NhiD4554KYjuZCQi4o2XUhuEvx4tyCgI8thM4T4BXZAYEkIqqTzQZCMWFGZAaDyFcMJibNPdHBBOgivZCA3GmEGCFUVJITO0nA");
+		
+		print_r($user);
+		
 		return array('data' 	=> $data,
 					 'entity' 	=> $entity,
 					 'entityInfo' => $entityInfo,

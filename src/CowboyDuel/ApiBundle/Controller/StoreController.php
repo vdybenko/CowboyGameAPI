@@ -92,7 +92,7 @@ class StoreController extends Controller
     		$em = $this->getDoctrine()->getEntityManager();
     		$queryStore = new HelperQueryStore($em);    		
     	
-    		$queryHolds->setBuyItemStore($authen, $itemId, $transactionsId);
+    		$queryStore->setBuyItemStore($authen, $itemId, $transactionsId);
     		    		
     		$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');
     	}

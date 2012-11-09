@@ -202,6 +202,14 @@ class Users
 	 * @ORM\Column(type="string", length=30, nullable=false)
 	 */
 	private $identifier;
+	
+	/**
+	 * @var string $accessToken
+	 *
+	 * @ORM\Column(name="access_token" type="string")
+	 */
+	private $accessToken;
+	
 
 	/**
 	 * Get userId
@@ -748,7 +756,6 @@ class Users
 
 		return $this;
 	}
-
 	/**
 	 * Get identifier
 	 *
@@ -757,4 +764,24 @@ class Users
 	public function getIdentifier() {
 		return $this->identifier;
 	}	
+	
+	/**
+	 * Set accessToken
+	 *
+	 * @param string $accessToken
+	 * @return Users
+	 */
+	public function setAccessToken($accessToken) {
+		$this->accessToken = $accessToken;
+	
+		return $this;
+	}
+	/**
+	 * Get accessToken
+	 *
+	 * @return string
+	 */
+	public function getAccessToken() {
+		return $this->accessToken;
+	}
 }

@@ -33,9 +33,9 @@ class HelperQueryStore extends HelperAbstractDb
 		$itemStore = new BuyItemsStore();
 	
 		$itemStore->setAuthenuser($authenUser)
-		->setItemIdStore($itemIdStore)
-		->setTransactionsId($transactionsId)
-		->setDate(time());
+			->setItemIdStore($itemIdStore)
+			->setTransactionsId($transactionsId)
+			->setDate(time());
 	
 		$this->em->persist($itemStore);
 		$this->em->flush();
