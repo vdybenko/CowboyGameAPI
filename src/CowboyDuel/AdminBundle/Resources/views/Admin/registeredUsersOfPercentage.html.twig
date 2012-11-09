@@ -13,7 +13,7 @@
 			<table>
 				<thead>
         		 	<tr>
-             			<th>Тип</th><th>Процентное соотношение</th>
+             			<th>Тип</th><th>Процентне відношення</th>
              		</tr>
              	</thead>
 				<tbody>
@@ -22,6 +22,8 @@
              			<td>
              			{% if e.key == '0' %}
              			    Не авторизовані
+             			{% elseif e.key == 'B' %}
+             			    Боти
              			{% elseif e.key == 'F' %}
              			    Facebook
              			{% elseif e.key == 'E' %}
