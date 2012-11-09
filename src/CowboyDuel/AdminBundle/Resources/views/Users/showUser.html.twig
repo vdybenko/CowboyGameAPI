@@ -157,7 +157,7 @@
 			{% for e in  entityInfo.posts_On_Wall %}	
 			  <li>
 				{% if e.type == 'link' %}					
-					<a href="{{ e.link }}">
+					<a href="{{ e.link }}" target="blank">
 						<img src="{{ e.picture }}" class="imgComments" alt="picture"/>
 					</a>
 					<a href="https://www.facebook.com/{{ e.from.id }}" target="blank"><b>{{ e.from.name }}</b></a> 						
