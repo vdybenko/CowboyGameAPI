@@ -11,15 +11,21 @@ class HelperQuery extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 			$orderBy = "ORDER BY u.".$filters['sort']." DESC";
 		
 		if(isset($filters['snetwork']))
-		    $where .= "u.snetwork='".$filters['snetwork']."'";
+		    $where .= "u.snetwork='".$filters['snetwork']."' AND";
 		
 		if(isset($filters['snetwork_not']))
-			$where .= "u.snetwork<>'".$filters['snetwork_not']."'";		
+			$where .= "u.snetwork<>'".$filters['snetwork_not']."' AND";		
+		
+		if(isset($filters['frozen']))
+		{
+			$datePrew = strtotime(date('Y-m-d')) - 604800;
+			$where .= "u.lastLogin < $datePrew AND";
+		}
 		
 		$q = $this->em->createQuery("
 				SELECT u
 				FROM CowboyDuelApiBundle:Users u
-				$where
+				$where 1=1
 				$orderBy
 		");
 		return $q->getResult();

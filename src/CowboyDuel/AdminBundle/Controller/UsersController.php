@@ -48,15 +48,15 @@ class UsersController extends Controller
 		 
 		$data = HelperMethod::setDataStatistic($em);		 
 		$entity = $em->getRepository('CowboyDuelApiBundle:Users')->find($id);
-		
-		$facebook = new Facebook(array(
-				'appId'  => $this->container->getParameter('facebook_appId'),
-				'secret' => $this->container->getParameter('facebook_secret'),
-		));
-		
+			
 		$userFriends = null;
 		if($entity->getSnetwork() == 'F')
 		{
+			$facebook = new Facebook(array(
+					'appId'  => $this->container->getParameter('facebook_appId'),
+					'secret' => $this->container->getParameter('facebook_secret'),
+			));
+			
 			$idAuthenFacebook = HelperMethod::convertToFacebookId($entity->getAuthen());
 		  	$userFriends = $facebook->api("/$idAuthenFacebook/friends");
 		  	$userFriends = $userFriends['data'];
@@ -94,5 +94,25 @@ class UsersController extends Controller
 	
 		return array('data' 	=> $data,
 				'location' => 'users_getAllBot');
+	}
+	
+	/**
+	 * @Route("/frozen", name="users_getFrozen")
+	 * @Secure(roles="ROLE_ADMIN")
+	 * @Template()
+	 */
+	public function getFrozenAction()
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+		$queryHolds = new HelperQuery($em);
+	
+		$query = $this->getRequest()->query;
+		$sort = $query->get('sort');
+			
+		$data = HelperMethod::setDataStatistic($em);
+		$data['list_frozen'] = $queryHolds->getUsers(array('sort' => $sort, 'frozen' => 1));
+	
+		return array('data' 	=> $data,
+					 'location' => 'users_getFrozen');
 	}
 }

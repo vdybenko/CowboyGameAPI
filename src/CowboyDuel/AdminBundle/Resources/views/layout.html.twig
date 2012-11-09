@@ -102,6 +102,9 @@
 							<li {% if location == 'users_index' %} class="current" {% endif %}>
 								<a href="{{ path("users_index") }}">Гравці</a>
 							</li>
+							<li {% if location == 'users_getFrozen' %} class="current" {% endif %}>
+								<a href="{{ path("users_getFrozen") }}">Заморожені</a>
+							</li>
 							<li {% if location == 'users_getAllBot' %} class="current" {% endif %}>
 								<a href="{{ path("users_getAllBot") }}">Боти</a>
 							</li>
