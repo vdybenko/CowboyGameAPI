@@ -206,7 +206,7 @@ class Users
 	/**
 	 * @var string $accessToken
 	 *
-	 * @ORM\Column(name="access_token" type="string")
+	 * @ORM\Column(name="access_token")
 	 */
 	private $accessToken;
 	
