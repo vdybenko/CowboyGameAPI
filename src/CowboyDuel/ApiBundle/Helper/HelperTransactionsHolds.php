@@ -5,7 +5,7 @@ use CowboyDuel\ApiBundle\Entity\Transactions;
 
 class HelperTransactionsHolds extends HelperAbstractDb
 {
-	public function setTransaction($authen, $value, $description, $opponentAuthen)
+	public function setTransaction($authen, $value, $description, $opponentAuthen, $localId)
 	{
 		$transaction = new Transactions();
 		
@@ -15,6 +15,7 @@ class HelperTransactionsHolds extends HelperAbstractDb
 					->setDescription($description)
 					->setDate(time())
 					->setOpponentAuthen($opponentAuthen)
+					->setLocalId($localId)					
 		;
 		
 		$this->em->persist($online);

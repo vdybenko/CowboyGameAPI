@@ -355,6 +355,7 @@ class ApiController extends Controller
     	$authen 	  	 = $request->get('authentification');
     	$session_id   	 = $request->get('session_id');
     	$opponent_authen = $request->get('opponent_authen');
+    	$local_id 		 = $request->get('local_id');
     	$transactions 	 = $request->get('transactions');
     	
     	if ($authen == null)
@@ -402,7 +403,8 @@ class ApiController extends Controller
     				$transactionsHolds->setTransaction($authen, 
     												   $transaction->{'transaction'}->{'transaction_id'}, 
     												   $transaction->{'transaction'}->{'description'},
-    												   $opponent_authen
+    												   $opponent_authen,
+    												   $local_id
     				);
     				$sum = $sum + $transaction->{'transaction'}->{'transaction_id'};
     			}

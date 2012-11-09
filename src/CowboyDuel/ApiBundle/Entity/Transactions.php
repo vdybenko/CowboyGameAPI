@@ -55,6 +55,13 @@ class Transactions
      * @ORM\Column(name="opponent_authen", type="string")
      */
     private $opponentAuthen;
+    
+    /**
+     * @var string $localId
+     *
+     * @ORM\Column(name="local_id")
+     */
+    private $localId;    
 
     /**
      * Get id
@@ -159,7 +166,7 @@ class Transactions
     }
     
     /**
-     * Set date
+     * Set opponentAuthen
      *
      * @param string $opponentAuthen
      * @return Transactions
@@ -169,8 +176,7 @@ class Transactions
     	$this->opponentAuthen = $opponentAuthen;
     
     	return $this;
-    }
-    
+    }    
     /**
      * Get opponentAuthen
      *
@@ -179,5 +185,27 @@ class Transactions
     public function getOpponentAuthen()
     {
     	return $this->opponentAuthen;
+    }
+    
+    /**
+     * Set localIdv
+     *
+     * @param integer $opponentAuthen
+     * @return Transactions
+     */
+    public function setLocalId($localId)
+    {
+    	$this->localId = $localId;
+    
+    	return $this;
+    }
+    /**
+     * Get localId
+     *
+     * @return integer
+     */
+    public function getLocalId()
+    {
+    	return $this->localId;
     }
 }

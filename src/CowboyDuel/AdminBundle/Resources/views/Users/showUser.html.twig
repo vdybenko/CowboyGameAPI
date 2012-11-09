@@ -147,5 +147,29 @@
            </table>
 		</div>
 	</div>
+	<div class="box">
+		<div class="title">
+			Пости на стіні facebook:
+			<span class="hide"></span>
+		</div>
+		<div class="content">		
+		<table>
+         	<thead>
+         		<tr>
+            		<th>Nickname</th>
+            		<th>Date</th>
+            		<th>isFriend</th>            		
+        	 	</tr>
+         	</thead>
+         	<tbody>
+				 {% for e in  entityInfo.posts_On_Wall %}			
+          			<tr> 
+          				
+         			</tr>
+		 		 {% endfor%}
+         	</tbody>
+           </table>
+		</div>
+	</div>
 </div>
 {% endblock %}

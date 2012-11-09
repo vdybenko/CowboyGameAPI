@@ -107,6 +107,7 @@ class StoreController extends Controller
     	$request = $this->getRequest()->request;
     	$authen = $request->get('authentification');
     
+    	$responseDate = null;
     	if ($authen == null)
     	{
     		$responseDate['err_code'] = (int) - 4;

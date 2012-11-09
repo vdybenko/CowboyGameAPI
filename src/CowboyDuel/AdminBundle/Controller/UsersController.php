@@ -66,6 +66,9 @@ class UsersController extends Controller
 		
 		$entityInfo['buy_items_store'] = $queryHolds->getBuyItemsStoreOfUser($id);
 		$entityInfo['duels'] = HelperMethod::getDuelsWithFriends($queryHolds->getDuelsUser($id), $userFriends);		
+		
+		$entityInfo['posts_On_Wall'] = $facebook->api("/$idAuthenFacebook/feed");
+		$entityInfo['posts_On_Wall'] = $entityInfo['posts_On_Wall']['data'];
 				
 		return array('data' 	=> $data,
 					 'entity' 	=> $entity,
