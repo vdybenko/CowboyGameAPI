@@ -152,23 +152,36 @@
 			Пости на стіні facebook:
 			<span class="hide"></span>
 		</div>
-		<div class="content">		
-		<table>
-         	<thead>
-         		<tr>
-            		<th>Nickname</th>
-            		<th>Date</th>
-            		<th>isFriend</th>            		
-        	 	</tr>
-         	</thead>
-         	<tbody>
-				 {% for e in  entityInfo.posts_On_Wall %}			
-          			<tr> 
-          				
-         			</tr>
-		 		 {% endfor%}
-         	</tbody>
-           </table>
+		<div class="content">	
+		  <ul class="comments">	
+			{% for e in  entityInfo.posts_On_Wall %}	
+			  <li>
+				{% if e.type == 'link' %}					
+					<a href="{{ e.link }}">
+						<img src="{{ e.picture }}" class="imgComments" alt="picture"/>
+					</a>
+					<a href="https://www.facebook.com/{{ e.from.id }}" target="blank"><b>{{ e.from.name }}</b></a> 						
+					<div class="rightInlineBlock">{{ e.created_time|date('d/m/Y h:m') }}</div>
+					<br/>
+					{% if 'story' in e|keys %}
+						<a href="https://www.facebook.com/{{ e.id }}" target="blank">{{ e.story }}</a> 
+					{% endif %}
+					<br/><br/>
+					{% if 'description' in e|keys %}
+						{{ e.description }}
+					{% endif %}				  	         			
+		  		{% endif %}
+		  		{% if e.type == 'status' %}										
+					<a href="https://www.facebook.com/{{ e.from.id }}" target="blank"><b>{{ e.from.name }}</b></a> 						
+					<div class="rightInlineBlock">{{ e.created_time|date('d/m/Y h:m') }}</div>
+					<br/>
+					{% if 'story' in e|keys %}
+						<a href="https://www.facebook.com/{{ e.id }}" target="blank">{{ e.story }}</a> 
+					{% endif %}				  	    			
+		  		{% endif %}
+		  	  </li> 
+		 	{% endfor%}  
+		  </ul>       
 		</div>
 	</div>
 </div>

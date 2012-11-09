@@ -1,3 +1,14 @@
+.rightInlineBlock
+{
+	display: inline-block;
+	float: right;
+}
+.imgComments
+{
+	height: 65px;
+}
+
+
 /*
 Template Name: Mustache
 Author: Rory Kranendonk
