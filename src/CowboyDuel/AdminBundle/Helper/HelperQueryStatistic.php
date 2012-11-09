@@ -64,7 +64,7 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		$q = $this->createQuery("
 				SELECT (COUNT(*)/(SELECT COUNT(*) FROM `users` WHERE points > 0)) AS r 
 				FROM `transactions` 
-				WHERE value != 10");
+				WHERE description = 'Duel'");
 		return $q[0]['r'];
 	}
 	
@@ -147,7 +147,7 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
    		$q = $this->createQuery("
    			SELECT $select COUNT(t.id) AS `count`, DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s')) AS `day`
 			FROM `transactions` t $from
-   			WHERE t.value != 10 $where
+   			WHERE t.description = 'Duel' $where
 			GROUP BY DAYOFYEAR(FROM_UNIXTIME(t.date, '%Y-%m-%d %H:%i:%s')) $groupBy
    		");	
    		

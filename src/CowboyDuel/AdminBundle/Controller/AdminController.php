@@ -110,7 +110,7 @@ class AdminController extends Controller
     	$data['duelsInDay_users_new']  = $queryHolds->getDuelsInDay(array('users' => 'new', 'lastDay' => $lastDay)); 
     	$data['duelsInDay_users_old']  = $queryHolds->getDuelsInDay(array('users' => 'old', 'lastDay' => $lastDay));    	
     	$data['duelsInDay_lastDay_10'] = $queryHolds->getDuelsInDay(array('lastDay' => $lastDay));
-    	$data['duelsInDay_region'] 	   = $queryHolds->getDuelsInDay(array('region' => 'ru_UA', 'lastDay' => $lastDay));
+    	$data['duelsInDay_region'] 	   = $queryHolds->getDuelsInDay(array('region' => 1, 'lastDay' => $lastDay));
     	
     	return array('data' => $data,
     				 'location' => 'admin_duels_in_day');
