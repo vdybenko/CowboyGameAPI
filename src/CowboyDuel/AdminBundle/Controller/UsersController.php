@@ -111,6 +111,7 @@ class UsersController extends Controller
 			
 		$data = HelperMethod::setDataStatistic($em);
 		$data['list_frozen'] = $queryHolds->getUsers(array('sort' => $sort, 'frozen' => 1));
+		$data['list_frozen_count'] = count($data['list_frozen']);
 	
 		return array('data' 	=> $data,
 					 'location' => 'users_getFrozen');
