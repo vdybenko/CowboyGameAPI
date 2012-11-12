@@ -10,7 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 use CowboyDuel\AdminBundle\Helper\HelperQuery,
 	CowboyDuel\AdminBundle\Helper\HelperMethod,
 	CowboyDuel\AdminBundle\Helper\HelperQueryStatistic,
-	CowboyDuel\ApiBundle\Libraries\Facebook\Facebook;
+	CowboyDuel\ApiBundle\Libraries\Facebook\Facebook,
+	CowboyDuel\ApiBundle\Form\UserType;
+    
 /**
  * @Route("/users")
  */
@@ -74,6 +76,46 @@ class UsersController extends Controller
 					 'entity' 	=> $entity,
 					 'entityInfo' => $entityInfo,
 					 'location' => 'users_show_user');
+	}
+	
+	/**
+	 * @Route("/{id}/edit", name="users_edit_user")
+	 * @Secure(roles="ROLE_ADMIN")
+	 * @Template()
+	 */
+	public function editUserAction($id)
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+		$queryHolds = new HelperQuery($em);
+		
+		$entityInfo['buy_items_store'] = $queryHolds->getBuyItemsStoreOfUser($id);
+			
+		$data = HelperMethod::setDataStatistic($em);
+		$entity = $em->getRepository('CowboyDuelApiBundle:Users')->find($id);
+
+		if (!$entity) {
+			throw $this->createNotFoundException('Unable to find entity.');
+		}
+		
+		$editForm = $this->createForm(new UserType(), $entity);		
+		$request = $this->getRequest();
+		if ($request->getMethod() == 'POST')
+		{
+			$editForm->bindRequest($request);
+		
+			if ($editForm->isValid())
+			{
+				$em->persist($entity);
+				$em->flush();
+		
+				return $this->redirect($this->generateUrl('users_show_user', array('id' => $entity->getUserId())));
+			}
+		}
+			
+		return array('data' 	=> $data,
+					 'edit_form'=> $editForm->createView(),
+					 'entity' 	=> $entity,
+					 'location' => 'users_edit_user');
 	}
 	
 	/**
