@@ -111,7 +111,7 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		{
 			for($j = $ki + 1; $j <= count($tmpData); $j++)
 			{				
-				if($vi['day'] == $tmpData[$j]['day'])
+				if(isset($tmpData[$j]) && $vi['day'] == $tmpData[$j]['day'])
 				{
 					foreach ($vi['count'] as $kij => &$vij)
 					{
