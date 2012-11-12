@@ -71,66 +71,65 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 	function convertDataRegion($q)
 	{
 		$tmpRegion = array();
-		$tmpData = array();
-		$isAdd = true;			
-	
-		foreach ($q as $ki => $vi)		
-			$tmpRegion[] = $vi['region'];			
-		$tmpRegion = array_unique($tmpRegion);
-		
-		$index = 1;	
-		$tmpR = array();
-		foreach ($tmpRegion as $ki => $vi)
-		{
-			$tmpR[$index] = $vi;
-			$index++;
-		}
-		$tmpRegion = $tmpR;
-			
-		//Транспонування
-		foreach ($q as $ki => $vi)
-		{
-			$tmpCount = array();			
-			foreach ($q as $kj => $vj)			
-			   if($vi['day'] == $vj['day'] && $vi['region'] == $vj['region'])
-				{
-					$key = array_search($vj['region'], $tmpRegion);		
-					if(isset($tmpCount[$key - 1]) && $tmpCount[$key - 1] == 0 
-												  && count($tmpRegion) > count($tmpCount))	
-						$tmpCount[] = 0;
-					$tmpCount[$key - 1] = $vj['count'];							
-				}
-				else
-				  if(count($tmpRegion) > $kj)
-					$tmpCount[] = 0;		
-								
-				$tmpData[] = array('day' => $vi['day'],'count' => $tmpCount);	
-		}
-		//Видалення рядків і ущільнення
-		foreach ($tmpData as $ki => &$vi)
-		{
-			for($j = $ki + 1; $j <= count($tmpData); $j++)
-			{				
-				if(isset($tmpData[$j]) && $vi['day'] == $tmpData[$j]['day'])
-				{
-					foreach ($vi['count'] as $kij => &$vij)
-					{
-						if($vij == 0)
-						{
-							$tmpData[$ki]['count'][$kij] = $tmpData[$j]['count'][$kij];
-						}
-					}
-					unset($tmpData[$j]);
-					break;
-				}
-			}
-			
-		}
-	
-		$result['region'] = $tmpRegion;
-		$result['data']   = $tmpData;
-		
-		return $result;
+        $tmpData = array();
+        $isAdd = true;
+
+        foreach ($q as $ki => $vi)
+            $tmpRegion[] = $vi['region'];
+        $tmpRegion = array_unique($tmpRegion);
+
+        $index = 1;
+        $tmpR = array();
+        foreach ($tmpRegion as $ki => $vi)
+        {
+            $tmpR[$index] = $vi;
+            $index++;
+        }
+        $tmpRegion = $tmpR;
+
+        //Транспонування
+        foreach ($q as $ki => $vi)
+        {
+            $tmpCount = array();
+            foreach ($q as $kj => $vj)
+               if($vi['day'] == $vj['day'] && $vi['region'] == $vj['region'])
+                {
+                    $key = array_search($vj['region'], $tmpRegion);
+                    if(isset($tmpCount[$key - 1]) && $tmpCount[$key - 1] == 0
+                                                  && count($tmpRegion) > count($tmpCount))
+                        $tmpCount[] = 0;
+                    $tmpCount[$key - 1] = $vj['count'];
+                }
+                else
+                  if(count($tmpRegion) > $kj)
+                    $tmpCount[] = 0;
+
+                $tmpData[] = array('day' => $vi['day'],'count' => $tmpCount);
+        }
+        //Видалення рядків і ущільнення
+        foreach ($tmpData as $ki => &$vi)
+        {
+            for($j = $ki + 1; $j <= count($tmpData); $j++)
+            {
+                if(isset($tmpData[$j]) && $vi['day'] == $tmpData[$j]['day'])
+                {
+                    foreach ($vi['count'] as $kij => &$vij)
+                    {
+                        if($vij == 0)
+                        {
+                            $tmpData[$ki]['count'][$kij] = $tmpData[$j]['count'][$kij];
+                        }
+                    }
+                    unset($tmpData[$j]);
+                    break;
+                }
+            }
+        }
+
+        $result['region'] = $tmpRegion;
+        $result['data']   = $tmpData;
+
+        return $result;
 	}
 	
 	public function getDuelsInDay($filters)
