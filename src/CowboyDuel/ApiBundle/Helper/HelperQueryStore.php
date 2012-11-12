@@ -51,7 +51,7 @@ class HelperQueryStore extends HelperAbstractDb
 		);
 		$e = $q->getResult();
 	
-		return $e[0];
+		return array_shift($e);
 	}
 	public function getAllBuyItemsStore($authen)
 	{
