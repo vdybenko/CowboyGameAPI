@@ -3,6 +3,7 @@
 namespace CowboyDuel\ApiBundle\Controller;
 
 use CowboyDuel\ApiBundle\Helper\HelperQueryHolds,
+	CowboyDuel\ApiBundle\Helper\HelperQueryStore,
 	CowboyDuel\ApiBundle\Helper\HelperMethod;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
@@ -104,11 +105,12 @@ class UsersController extends Controller
     	{
     		$em = $this->getDoctrine()->getEntityManager();
     		$queryHolds = new HelperQueryHolds($em);
+    		$queryHoldsStore = new HelperQueryStore($em);
     
-    		$responseDate = $queryHolds->getUserData($authen);  
+    		$responseDate = $queryHolds->getUserData($authen);    		
 
-    		$responseDate['weapons'] = $queryHolds->getLastBuyItemStore($authen, 'weapons');
-    		$responseDate['defenses'] = $queryHolds->getLastBuyItemStore($authen, 'defenses');
+    		$responseDate['weapons'] = $queryHoldsStore->getLastBuyItemStore($authen, 'weapons');
+    		$responseDate['defenses'] = $queryHoldsStore->getLastBuyItemStore($authen, 'defenses');
     	}
     
     	return new Response(json_encode($responseDate));
