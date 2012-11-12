@@ -30,6 +30,7 @@ class HelperMethod
 		for($i = 0; $i < count($duels); $i++)
 		{
 			$idUser = self::convertToFacebookId($duels[$i]['authen']);
+			$duels[$i]['isFriend'] = '';
 			foreach ($friends as $kj => $vj)						
 			   if($vj['id'] == $idUser)
 				{

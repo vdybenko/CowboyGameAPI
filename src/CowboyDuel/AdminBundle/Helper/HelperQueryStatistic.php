@@ -109,7 +109,7 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		//Видалення рядків і ущільнення
 		foreach ($tmpData as $ki => &$vi)
 		{
-			for($j = $ki + 1; $j < count($tmpData); $j++)
+			for($j = $ki + 1; $j <= count($tmpData); $j++)
 			{				
 				if($vi['day'] == $tmpData[$j]['day'])
 				{

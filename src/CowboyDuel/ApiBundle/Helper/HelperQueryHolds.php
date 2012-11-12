@@ -83,7 +83,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		);
 		$e = $q->getResult();
 		 
-		return  $e[0];	
+		return  (isset($e[0]))? $e[0]: null;	
 	}
 	
 	public function getUserWithAuthenOld($authen, $authen_old)
@@ -213,7 +213,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		);
 		$e = $q->getResult();
 		
-		return $e[0];
+		return (isset($e[0]))? $e[0]: null;
 	}
 	public function setSettings($name, $value)
 	{

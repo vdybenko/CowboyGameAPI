@@ -59,6 +59,7 @@ class UsersController extends Controller
 			));
 			
 			$idAuthenFacebook = HelperMethod::convertToFacebookId($entity->getAuthen());
+			
 		  	$userFriends = $facebook->api("/$idAuthenFacebook/friends");
 		  	$userFriends = $userFriends['data'];
 		  	
@@ -92,7 +93,7 @@ class UsersController extends Controller
 		$data['list_bot'] = $queryHolds->getUsers(array('sort' => $sort, 'snetwork' => 'B'));
 	
 		return array('data' 	=> $data,
-				'location' => 'users_getAllBot');
+					 'location' => 'users_getAllBot');
 	}
 	
 	/**
