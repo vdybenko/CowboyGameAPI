@@ -68,7 +68,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		);			
 	    $e = $q->getResult();
 	    
-		return  $e[0];
+		return  (isset($e[0]))? $e[0]: null;
 	}	
 	
 	public function getUserData($authen)
