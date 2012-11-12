@@ -16,10 +16,10 @@ class HelperQueryHolds extends HelperAbstractDb
 			 ')->setMaxResults(100)
 			   ->getResult();
 	}
-	public function getBotId()
+	public function getBot()
 	{		
 		$q = $this->em->createQuery("
-				SELECT u.userId AS id
+				SELECT u.authen AS authentification
 				FROM CowboyDuelApiBundle:Users u
 				WHERE u.snetwork = 'B'
 			");

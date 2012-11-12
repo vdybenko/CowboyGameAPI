@@ -45,14 +45,14 @@ class UsersController extends Controller
     }
     
     /**
-     * @Route("/botId.json", name="users_botId_json")
+     * @Route("/bot.json", name="users_bot_json")
      */
     public function botJsonAction()
     {
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryHolds($em);
     	 
-    	$entitiesJson = json_encode($queryHolds->getBotId());
+    	$entitiesJson = json_encode($queryHolds->getBot());
     	 
     	$helperMethod = new HelperMethod($this->container);
     	$helperMethod->sendStatS3($this->container->getParameter('S3_bot_file_upload'),
