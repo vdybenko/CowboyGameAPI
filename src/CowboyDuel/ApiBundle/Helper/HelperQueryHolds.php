@@ -86,6 +86,23 @@ class HelperQueryHolds extends HelperAbstractDb
 		return  (isset($e[0]))? $e[0]: null;	
 	}
 	
+	public function setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win)
+	{
+		$user = $this->getUser($authen);
+		
+		if($user == null) return null;
+		
+		$user->setLevel($level)
+			 ->setPoints($points)
+			 ->setDuelsWin($duels_win)
+			 ->setDuelsLost($duels_lost)
+			 ->setBigestWin($bigest_win)
+		;
+		
+		$this->em->persist($user);
+		$this->em->flush();
+	}
+	
 	public function getUserWithAuthenOld($authen, $authen_old)
 	{
 		if (!$authen_old)  

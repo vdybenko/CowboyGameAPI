@@ -113,7 +113,39 @@ class UsersController extends Controller
     		$responseDate['defenses'] = $queryHoldsStore->getLastBuyItemStore($authen, 'defenses');
     	}
     
-    	return new Response(json_encode($responseDate));
+    	return new Response(json_encode($responseDate));   
+    }
     
+    /**
+     * @Route("/set_user_data", name="user_user_data")
+     */
+    public function setUserDataAction()
+    {
+    	$request = $this->getRequest()->request;
+    	$authen  = $request->get('authentification');
+    	$level 	 = $request->get('level');
+    	$points  = $request->get('points');
+    	$duels_win 	= $request->get('duels_win');
+    	$duels_lost = $request->get('duels_lost');
+    	$bigest_win = $request->get('bigest_win');
+    
+    	if ($authen == null)
+    	{
+    		$responseDate = array("err_code" => (int) 4, "err_description" => 'Invalid value');
+    	}
+    	else
+    	{
+    		$em = $this->getDoctrine()->getEntityManager();
+    		$queryHolds = new HelperQueryHolds($em);    		
+    		
+    		if($queryHolds == null) 
+    			$responseDate = array("err_code" => (int) 4, "err_description" => 'Invalid value');
+    		
+    		$result = $queryHolds->setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win);    	
+
+    		$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');
+    	}
+    
+    	return new Response(json_encode($responseDate));
     }
 }
