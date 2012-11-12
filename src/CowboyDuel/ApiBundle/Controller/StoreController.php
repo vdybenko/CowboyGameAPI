@@ -45,7 +45,7 @@ class StoreController extends Controller
     						 array(0 => 'thumbRetina',
     							   1 => 'imgRetina',
     							   2 => 'bigImgRetina' ));
-    	$store['defenses'] = $helperMethod->deleteElmInMas($store['weapons'],
+    	$store['defenses'] = $helperMethod->deleteElmInMas($store['defenses'],
     						  array(0 => 'thumbRetina',
     							    1 => 'imgRetina',));
     	
@@ -53,7 +53,7 @@ class StoreController extends Controller
     								array(0 => 'thumb',
     									  1 => 'img',
     									  2 => 'bigImg' ));
-    	$storeRetina['defenses'] = $helperMethod->deleteElmInMas($storeRetina['weapons'],
+    	$storeRetina['defenses'] = $helperMethod->deleteElmInMas($storeRetina['defenses'],
     								array(0 => 'thumb',
     									  1 => 'img',));
     	
