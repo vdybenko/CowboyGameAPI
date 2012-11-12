@@ -20,15 +20,14 @@
          </tr>
          </thead>
          <tbody>
-		 {% for e in  data.duelsInDay_users_new %}
-			 count:{{ e.count }} day:{{ e.day}}<br>
+		 {% for e in  data.duelsInDay_users_new %}			
          <tr>
              <th>{{ e.day}}</th><td>{{ e.count }}</td>
          </tr>
 		 {% endfor%}
          </tbody>
          </table>
-		 <br>
+		 <br><br>
 
          <div class="chart-caption"> duelsInDay_users_old</div>
          <table class="chart" style="width : 100%;">
@@ -47,9 +46,8 @@
 		 {% endfor%}
          </tbody>
          </table>
-         <br>
-		 <br>
-
+         <br><br>
+         
          <div class="chart-caption"> duelsInDay_lastDay_10</div>
          <table class="chart" style="width : 100%;">
          	<thead>
@@ -68,7 +66,7 @@
          	</tbody>
          </table>
          
-		 <br>
+		 <br><br>
          <div class="chart-caption"> duelsInDay_region</div>
          <table class="chart" style="width : 100%;">
          	<thead>
