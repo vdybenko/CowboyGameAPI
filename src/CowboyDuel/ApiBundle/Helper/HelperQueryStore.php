@@ -49,9 +49,9 @@ class HelperQueryStore extends HelperAbstractDb
 				WHERE b.authenuser='$authen' AND s.type='$type' AND b.itemIdStore = s.id
 				ORDER BY b.date DESC"
 		);
-		$e = $q->getResult();
+		$e = $q->setMaxResults(1)->getResult();
 	
-		return array_shift($e);
+		return $e[0];
 	}
 	public function getAllBuyItemsStore($authen)
 	{
