@@ -51,7 +51,7 @@ class HelperQueryStore extends HelperAbstractDb
 		);
 		$e = $q->setMaxResults(1)->getResult();
 	
-		return $e[0];
+		return (isset($e[0]))?$e[0]: '';
 	}
 	public function getAllBuyItemsStore($authen)
 	{
