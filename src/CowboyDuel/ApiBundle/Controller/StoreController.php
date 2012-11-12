@@ -69,7 +69,7 @@ class StoreController extends Controller
     							  .'_v'.$program_version.$this->container->getParameter('S3_type_file'),
     							  $storeRetinaJson);
     	
-    	return new Response($storeJson);
+    	return new Response(json_encode(array('store' => $store, 'storeRetina' => $storeRetina)));
     }
     
     /**
