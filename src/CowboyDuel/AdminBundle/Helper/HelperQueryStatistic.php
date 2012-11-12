@@ -86,7 +86,8 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 			$index++;
 		}
 		$tmpRegion = $tmpR;
-		
+			
+		//Транспонування
 		foreach ($q as $ki => $vi)
 		{
 			$tmpCount = array();			
@@ -102,10 +103,30 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 				else
 				  if(count($tmpRegion) > $kj)
 					$tmpCount[] = 0;		
-				 
-				$tmpData[] = array('day' => $vi['day'],'count' => $tmpCount);
+								
+				$tmpData[] = array('day' => $vi['day'],'count' => $tmpCount);	
 		}
-		
+		//Видалення рядків і ущільнення
+		foreach ($tmpData as $ki => &$vi)
+		{
+			for($j = $ki + 1; $j < count($tmpData); $j++)
+			{				
+				if($vi['day'] == $tmpData[$j]['day'])
+				{
+					foreach ($vi['count'] as $kij => &$vij)
+					{
+						if($vij == 0)
+						{
+							$tmpData[$ki]['count'][$kij] = $tmpData[$j]['count'][$kij];
+						}
+					}
+					unset($tmpData[$j]);
+					break;
+				}
+			}
+			
+		}
+	
 		$result['region'] = $tmpRegion;
 		$result['data']   = $tmpData;
 		

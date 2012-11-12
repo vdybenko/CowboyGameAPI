@@ -158,7 +158,9 @@
 			  <li>
 				{% if e.type == 'link' %}					
 					<a href="{{ e.link }}" target="blank">
+					  {% if 'picture' in e|keys %}
 						<img src="{{ e.picture }}" class="imgComments" alt="picture"/>
+					  {% endif %}	
 					</a>
 					<a href="https://www.facebook.com/{{ e.from.id }}" target="blank"><b>{{ e.from.name }}</b></a> 						
 					<div class="rightInlineBlock">{{ e.created_time|date('d/m/Y h:m') }}</div>
