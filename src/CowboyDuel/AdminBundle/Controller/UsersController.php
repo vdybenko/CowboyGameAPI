@@ -50,6 +50,7 @@ class UsersController extends Controller
 		$entity = $em->getRepository('CowboyDuelApiBundle:Users')->find($id);
 			
 		$userFriends = null;
+		$entityInfo['posts_On_Wall'] = null;
 		if($entity->getSnetwork() == 'F')
 		{
 			$facebook = new Facebook(array(
