@@ -42,9 +42,9 @@ class StoreController extends Controller
     	    	
     	
     	$store['weapons'] = $helperMethod->deleteElmInMas($store['weapons'],
-    						 array(0 => 'thumbRetina',
-    							   1 => 'imgRetina',
-    							   2 => 'bigImgRetina' ));
+    						  array(0 => 'thumbRetina',
+    							    1 => 'imgRetina',
+    							    2 => 'bigImgRetina'));
     	$store['defenses'] = $helperMethod->deleteElmInMas($store['defenses'],
     						  array(0 => 'thumbRetina',
     							    1 => 'imgRetina',));
@@ -52,10 +52,13 @@ class StoreController extends Controller
     	$storeRetina['weapons'] = $helperMethod->deleteElmInMas($storeRetina['weapons'],
     								array(0 => 'thumb',
     									  1 => 'img',
-    									  2 => 'bigImg' ));
+    									  2 => 'bigImg'));
+    	$storeRetina['weapons'] = $helperMethod->replaceKeyInMas($storeRetina['weapons'],'Retina');
+    	
     	$storeRetina['defenses'] = $helperMethod->deleteElmInMas($storeRetina['defenses'],
     								array(0 => 'thumb',
     									  1 => 'img',));
+    	$storeRetina['defenses'] = $helperMethod->replaceKeyInMas($storeRetina['defenses'],'Retina');
     	
     	$storeJson = json_encode($store);    	
     	$storeRetinaJson = json_encode($storeRetina);    	    	

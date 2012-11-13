@@ -28,14 +28,28 @@ class HelperMethod
 	}
 	
 	public function deleteElmInMas($m, $unsetStr)
-	{
+	{	
 		$newM = array();
   		foreach ($m as $ki => $vi)
-  		{
-   			for($i = 0; $i < count($unsetStr); $i++)
+  		{  			
+   			for($i = 0; $i < count($unsetStr); $i++)   		
    			  unset($vi[$unsetStr[$i]]);   			
-       		$newM[] = $vi;   
+       		$newM[] = $vi;
   		}		
+		
+		return $newM;
+	}
+	
+	public function replaceKeyInMas($m, $str)
+	{		
+		$newM = array();
+		foreach ($m as $ki => $vi)
+		{
+			$newR = array();
+			foreach ($vi as $kj => $vj)				 
+				$newR[str_replace($str, '', $kj)] = $vj;				
+			$newM[] = $newR;		
+		}
 		
 		return $newM;
 	}

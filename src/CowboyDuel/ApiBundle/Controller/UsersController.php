@@ -60,8 +60,6 @@ class UsersController extends Controller
     							  $this->container->getParameter('S3_bot_uri')
     							  .$this->container->getParameter('S3_type_file'),
     							  $entitiesJson);
-    	
-    	//$queryHolds->setSettings('timeLastRefresh',time());
     	 
     	return new Response($entitiesJson);
     }
