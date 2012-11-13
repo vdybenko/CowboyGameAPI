@@ -353,9 +353,7 @@ class ApiController extends Controller
     	$request = $this->getRequest()->request;
     	
     	$authen 	  	 = $request->get('authentification');
-    	$session_id   	 = $request->get('session_id');
-    	$opponent_authen = $request->get('opponent_authen');
-    	$local_id 		 = $request->get('local_id');
+    	$session_id   	 = $request->get('session_id');    	
     	$transactions 	 = $request->get('transactions');
     	
     	if ($authen == null)
@@ -384,14 +382,21 @@ class ApiController extends Controller
     	
     	$user_info = $queryHolds->getUser($authen);
     	
+    	if ($user_info == null)
+    	{
+    		$responseDate['err_code'] = (int) - 5;
+    		$responseDate['err_description'] = 'Entity not found';
+    		return new Response(json_encode($responseDate));
+    	}
+    	   
     	$sum = $user_info->getMoney();
     	settype($sum, "int");
     	
     	// echo $authen.'##'.$session_id.'##',$user_info['session_id']; die;
-    	if ($session_id == $user_info->getSessionId())
-    	{
+    	if ($session_id == $user_info->getSessionId() || $user_info->getSnetwork() == 'B')
+    	{    		
     		if(isset($transactions_obj->{'transactions'}))
-    		{
+    		{    			
     			foreach($transactions_obj->{'transactions'} as $transaction)
     			{
     				if(!isset($transaction->{'transaction'}->{'transaction_id'})) 
@@ -399,12 +404,16 @@ class ApiController extends Controller
     					
     				$transaction->{'transaction'}->{'transaction_id'} = $transaction->{'transaction'}->{'transaction_id'}^$secure_value;
     				$transaction->{'transaction'}->{'description'} = $transaction->{'transaction'}->{'description'}^$secure_value;
-    					
+    				
+    				$transaction->{'transaction'}->{'opponent_authen'} = $transaction->{'transaction'}->{'opponent_authen'}^$secure_value;
+    				$transaction->{'transaction'}->{'local_id'} = $transaction->{'transaction'}->{'local_id'}^$secure_value;
+    				
+    				
     				$transactionsHolds->setTransaction($authen, 
     												   $transaction->{'transaction'}->{'transaction_id'}, 
     												   $transaction->{'transaction'}->{'description'},
-    												   $opponent_authen,
-    												   $local_id
+    												   $transaction->{'transaction'}->{'opponent_authen'},
+    												   $transaction->{'transaction'}->{'local_id'}
     				);
     				$sum = $sum + $transaction->{'transaction'}->{'transaction_id'};
     			}
@@ -414,6 +423,7 @@ class ApiController extends Controller
     		
     		$sum = $sum ^ $secure_value;
     		$responseData['money'] = $sum;
+    		$responseData['user_id'] = $authen;
     	}
     	 else
     	{

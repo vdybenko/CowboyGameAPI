@@ -18,7 +18,7 @@ class HelperTransactionsHolds extends HelperAbstractDb
 					->setLocalId($localId)					
 		;
 		
-		$this->em->persist($online);
+		$this->em->persist($transaction);
 		$this->em->flush();
 	}
 }
