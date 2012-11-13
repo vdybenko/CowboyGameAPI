@@ -3,7 +3,7 @@
 # Server version:               5.5.20-log
 # Server OS:                    Linux
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2012-11-12 13:16:21
+# Date/time:                    2012-11-13 18:12:14
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -119,18 +119,18 @@ CREATE TABLE IF NOT EXISTS `online` (
   `enterTime` varchar(12) CHARACTER SET latin1 NOT NULL,
   `exitTime` varchar(12) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table duels_v201.online: 29 rows
+# Dumping data for table duels_v201.online: 30 rows
 /*!40000 ALTER TABLE `online` DISABLE KEYS */;
 INSERT INTO `online` (`id`, `authen`, `online`, `enterTime`, `exitTime`) VALUES
-	(1, 'F:537141553', 0, '1349953425', '1349953513'),
-	(2, 'F:100001785186331', 1, '1349787186', '0'),
-	(3, 'F:100004072748849', 1, '1351235018', '0'),
+	(1, 'F:537141553', 1, '1352810642', '1349953513'),
+	(2, 'F:100001785186331', 1, '1352729077', '0'),
+	(3, 'F:100004072748849', 1, '1352822593', '0'),
 	(4, 'A:951059A5-3', 1, '1349789821', '0'),
-	(5, 'A:be56be4e39', 1, '1352716370', '1349940389'),
-	(6, 'F:100001850844084', 1, '1349958778', '0'),
-	(7, 'A:00000000-0', 1, '1350304854', '0'),
+	(5, 'A:be56be4e39', 1, '1352823104', '1349940389'),
+	(6, 'F:100001850844084', 1, '1352822803', '0'),
+	(7, 'A:00000000-0', 1, '1352822341', '0'),
 	(8, 'A:6e70744811', 1, '1348635243', '0'),
 	(9, 'A:6b03703d44', 1, '1348728224', '0'),
 	(10, 'A:b19976b9a4', 1, '1344863089', '0'),
@@ -141,7 +141,7 @@ INSERT INTO `online` (`id`, `authen`, `online`, `enterTime`, `exitTime`) VALUES
 	(22, 'A:f306b82768', 1, '1346424500', '0'),
 	(15, 'A:de76bac288', 0, '1349795167', '1349795172'),
 	(16, 'F:697342199', 0, '1345569285', '1345569411'),
-	(17, 'F:100002141165315', 1, '1352717021', '1346404223'),
+	(17, 'F:100002141165315', 1, '1352817131', '1346404223'),
 	(18, 'A:f0d23ff457', 0, '1345478715', '1345478755'),
 	(19, 'A:79a7a438ad', 1, '1350292904', '0'),
 	(20, 'F:100000589834862', 0, '1346156417', '1346156427'),
@@ -152,7 +152,8 @@ INSERT INTO `online` (`id`, `authen`, `online`, `enterTime`, `exitTime`) VALUES
 	(26, '1', 1, '1349956976', ''),
 	(29, '6', 1, '1350305046', '0'),
 	(30, 'F:9030943201', 1, '1350563253', '0'),
-	(31, 'A:951059a530', 1, '1352715823', '0');
+	(31, 'A:951059a530', 1, '1352807820', '0'),
+	(32, 'A:9e8d5f97fb', 1, '1352822653', '0');
 /*!40000 ALTER TABLE `online` ENABLE KEYS */;
 
 
@@ -220,11 +221,11 @@ CREATE TABLE IF NOT EXISTS `store` (
 # Dumping data for table duels_v201.store: ~7 rows (approximately)
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
 INSERT INTO `store` (`id`, `type`, `title`, `damageOrDefense`, `levelLock`, `golds`, `inAppId`, `thumb`, `thumbRetina`, `img`, `imgRetina`, `sound`, `bigImg`, `bigImgRetina`, `description`) VALUES
-	(1, 'weapons', 'Револьвер М60', 10, 4, 0, '', 'http://artdiz.at.ua/_nw/0/s23977883.jpg', '', 'http://artdiz.at.ua/_nw/0/s23977883.jpg', '', 'http://bidoncd.s3.amazonaws.com/Test.mp3', 'http://artdiz.at.ua/_nw/0/s23977883.jpg', NULL, 'description gun'),
-	(2, 'weapons', 'Револьвер П8', 54, 10, 100, '0', '', '', '', '', '', '', NULL, ''),
-	(3, 'defenses', 'Кімано', 10, 10, 0, '45', '', '', '', '', '', '', NULL, ''),
-	(4, 'defenses', 'Шапка ушанка', 7, 6, 99, '0', '', '', '', '', '', '', NULL, 'іва'),
-	(5, 'weapons', 'Pepperbox', 8, 2, 8, '0', 'http://bidoncd.s3.amazonaws.com/store/IconPepperbox.png', 'http://bidoncd.s3.amazonaws.com/store/IconPepperbox%402x.png', 'http://bidoncd.s3.amazonaws.com/store/ImgPepperbox.png', 'http://bidoncd.s3.amazonaws.com/store/ImgPepperbox%402x.png', ' http://bidoncd.s3.amazonaws.com/store/pig4.mp3', 'http://bidoncd.s3.amazonaws.com/store/GunPepperbox.png', 'http://bidoncd.s3.amazonaws.com/store/GunPepperbox%402x.png', 'Pepperbox'),
+	(1, 'weapons', 'Револьвер М60', 10, 4, 0, '', 'http://artdiz.at.ua/_nw/0/s23977883.jpg', '', 'http://artdiz.at.ua/_nw/0/s23977883.jpg', '', 'http://bidoncd.s3.amazonaws.com/Test.mp3', 'http://artdiz.at.ua/_nw/0/s23977883.jpg', '', 'description gun'),
+	(2, 'weapons', 'Револьвер П8', 54, 10, 100, '0', '', '', '', '', '', '', '', ''),
+	(3, 'defenses', 'Кімано', 10, 10, 0, '45', '', '', '', '', '', '', ' ', ''),
+	(4, 'defenses', 'Шапка ушанка', 7, 6, 99, '0', '', '', '', '', '', '', ' ', 'іва'),
+	(5, 'weapons', 'Pepperbox', 8, 2, 8, '0', 'http://bidoncd.s3.amazonaws.com/store/IconPepperbox.png', 'http://bidoncd.s3.amazonaws.com/store/IconPepperbox%402x.png', 'http://bidoncd.s3.amazonaws.com/store/ImgPepperbox.png', 'http://bidoncd.s3.amazonaws.com/store/ImgPepperbox%402x.png', 'http://bidoncd.s3.amazonaws.com/store/pig4.mp3', 'http://bidoncd.s3.amazonaws.com/store/GunPepperbox.png', 'http://bidoncd.s3.amazonaws.com/store/GunPepperbox%402x.png', 'Pepperbox'),
 	(6, 'weapons', 'Navy', 9, 3, 9, '0', 'http://bidoncd.s3.amazonaws.com/store/IconNavy.png', 'http://bidoncd.s3.amazonaws.com/store/IconNavy%402x.png', 'http://bidoncd.s3.amazonaws.com/store/ImgNavy.png', 'http://bidoncd.s3.amazonaws.com/store/ImgNavy%402x.png', 'http://bidoncd.s3.amazonaws.com/store/cow1.mp3', 'http://bidoncd.s3.amazonaws.com/store/GunNavy.png', 'http://bidoncd.s3.amazonaws.com/store/GunNavy%402x.png', 'Navy'),
 	(7, 'weapons', 'Peacemaker', 10, 4, 10, '0', 'http://bidoncd.s3.amazonaws.com/store/IconPeacemaker.png', 'http://bidoncd.s3.amazonaws.com/store/IconPeacemaker%402x.png', 'http://bidoncd.s3.amazonaws.com/store/ImgPeacemaker.png', 'http://bidoncd.s3.amazonaws.com/store/ImgPeacemaker%402x.png', 'http://bidoncd.s3.amazonaws.com/store/dog5.mp3', 'http://bidoncd.s3.amazonaws.com/store/GunPeacemaker.png', 'http://bidoncd.s3.amazonaws.com/store/GunPeacemaker%402x.png', 'Peacemaker');
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
@@ -240,9 +241,9 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `opponent_authen` varchar(255) COLLATE utf8_bin NOT NULL,
   `local_id` int(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=129392 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=129401 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table duels_v201.transactions: 14 rows
+# Dumping data for table duels_v201.transactions: 21 rows
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
 INSERT INTO `transactions` (`id`, `authen`, `value`, `description`, `date`, `opponent_authen`, `local_id`) VALUES
 	(3997, 'A:de76bac288', 10, 'Daily money', '1313537114', '', 0),
@@ -258,7 +259,14 @@ INSERT INTO `transactions` (`id`, `authen`, `value`, `description`, `date`, `opp
 	(129386, 'F:100001850844084', 22, 'Duel', '1352709579', 'F:100001337965647', 0),
 	(129387, 'F:100001337965647', 22, 'Duel', '1352363979', 'F:100001337965647', 0),
 	(129388, 'F:100001337965647', 22, 'Duel', '1352709579', 'F:100000383244084', 0),
-	(129391, 'A:951059A5-3', 22, 'Duel', '1352709579', 'F:100001337965647', 0);
+	(129391, 'A:951059A5-3', 22, 'Duel', '1352709579', 'F:100001337965647', 0),
+	(129394, 'A:bc0f35c120', 21, '5348', '1352815546', '5348', -5349),
+	(129395, 'A:bc0f35c120', 48, '5348', '1352816679', '5348', -5349),
+	(129396, 'A:bc0f35c120', 48, '5348', '1352816846', '5348', -5349),
+	(129397, 'A:bc0f35c120', 48, '5348', '1352817177', '5348', -5349),
+	(129398, 'A:bc0f35c120', 48, '5348', '1352817660', '5348', -5349),
+	(129399, 'A:bc0f35c120', -549, '5348', '1352822840', '5348', -5349),
+	(129400, 'F:100004072748849', -549, '5348', '1352822840', '5348', -5349);
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 
 
@@ -296,12 +304,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `authen` (`authen`),
   KEY `money` (`money`),
   KEY `Snetwork` (`snetwork`)
-) ENGINE=MyISAM AUTO_INCREMENT=145934 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=145935 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table duels_v201.users: 55 rows
+# Dumping data for table duels_v201.users: 56 rows
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`, `last_login`, `first_login`, `type`, `region`, `current_language`, `os`, `app_ver`, `device_token`, `date`, `money`, `session_id`, `level`, `points`, `duels_win`, `duels_lost`, `bigest_win`, `remove_ads`, `avatar`, `age`, `home_town`, `friends`, `identifier`) VALUES
-	(145925, 'F:100001850844084', 'Тарас Кошмар123', 'x86_64', 'F', 1352450379, 1348728319, '0', 'en_US', 'ru', '5.0', '1.4', '', 0, 300, '507bc2a61e572', 3, 46, 2, 1, 352, 0, 'Тарас Кошмар', '02/01/1990', 'Cherkasy', 45, 'Тарас Кокшаров'),
+	(145925, 'F:100001850844084', 'Тарас Кошмар123', 'x86_64', 'F', 1352450379, 1348728319, '0', 'en_US', 'ru', '5.0', '1.4', '', 0, 300, '50a27013e9226', 3, 46, 2, 1, 352, 0, 'Тарас Кошмар', '02/01/1990', 'Cherkasy', 45, 'Тарас Кокшаров'),
 	(145922, 'A:de76bac288', 'iphone', 'iPhone3G', '0', 1349794640, 1347737232, '0', 'uk_UA', 'ru', '4.2.1', '1.4', '', 0, 138, 'c', 3, 46, 5, 9, 21, 0, 'iphone', '', '', 0, ''),
 	(145923, 'A:67851e4c55', 'Anonymous', 'iPad2GSM', '0', 1351514676, 1348149579, '0', 'es_ES', 'es', '5.1.1', '1.4', '', 0, 200, '505cc91de9a30', 0, 0, 0, 0, 0, 0, '0', '', '', 0, ''),
 	(145915, 'A:11630265df', 'Anonymous', 'iPhone4S', '0', 0, 1351513880, '0', 'ru_UA', 'ru', '5.1.1', '1.4', '', 0, 200, '50549f67bec08', 0, 0, 0, 0, 0, 0, '0', '', '', 0, ''),
@@ -344,18 +352,19 @@ INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`,
 	(145813, 'F:100003825983743', 'Hugo Gana', '', 'F', 0, 0, '', '', '', '', '', '', 0, 100, '', 1, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/187316_100003825983743_1090117352_q.jpg', '1987-27-11', '', 39, 'Hugo Gana'),
 	(145814, 'F:100003804058651', 'Quang Minh', '', 'F', 0, 0, '', '', '', '', '', '', 0, 100, '', 1, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/370252_100003804058651_1443939224_q.jpg', '1993-20-08', '', 158, 'Quang Minh'),
 	(145815, 'F:100003443034588', 'Andrey Fedirko', '', 'F', 0, 0, '', '', '', '', '', '', 0, 100, '', 1, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/49541_100003443034588_461883270_q.jpg', '1976-15-09', '', 41, 'Andrey Fedirko'),
-	(145928, 'F:100004072748849', 'Q', 'x86_64', 'F', 1349364404, 1349348039, '0', 'en_US', 'en', '5.1', '1.4', '', 0, 146, '508a35ca33ecd', 2, 29, 0, 3, 0, 0, '', '07/01/1990', '', 2, 'John  Newbie'),
-	(145927, 'A:00000000-0', 'Q', 'x86_64', 'B', 1349939590, 1349347995, '0', 'en_US', 'en', '5.1', '1.4', '', 0, 482, '507c04563d136', 3, 44, 8, 1, 26, 0, 'Q', '', '', 0, ''),
-	(145926, 'A:bc0f35c120', 'Anonymous', 'iPad3,3', 'B', 0, 1349205178, '0', 'en_US', 'en', '6.0', '1.4', '', 0, 200, '', 0, 0, 0, 0, 0, 0, '0', '', '', 0, ''),
+	(145928, 'F:100004072748849', 'Q', 'x86_64', 'F', 1349364404, 1349348039, '0', 'en_US', 'en', '5.1', '1.4', '', 0, -403, '50a26f41b24ed', 1, 1, 0, 1, 0, 0, '', '07/01/1990', '', 2, 'John  Newbie'),
+	(145927, 'A:00000000-0', 'Q', 'x86_64', 'B', 1349939590, 1349347995, '0', 'en_US', 'en', '5.1', '1.4', '', 0, 482, '50a26e45ca32a', 10, 10, 10, 10, 10, 0, 'Q', '', '', 0, ''),
+	(145926, 'A:bc0f35c120', 'Anonymous', 'iPad3,3', 'B', 0, 1349205178, '0', 'en_US', 'en', '6.0', '1.4', '', 0, -136, '50a256ecafcms', 31, 0, 0, 0, 0, 0, '0', '', '', 0, ''),
 	(145917, 'A:6e70744811', 'Anonymous', 'iPhone4', '0', 0, 1346421347, '0', 'ru_UA', 'en', '6.0', '1.4', '', 0, 200, '50628a6b8a26a', 0, 0, 0, 0, 0, 0, '0', '', '', 0, ''),
-	(145918, 'F:537141553', 'Vladimir Dybenko', 'iPhone4', 'F', 1349952545, 1346421369, '0', 'ru_UA', 'en', '6.0', '1.4', '', 0, 775, '5076a7919dd25', 2, 21, 6, 0, 40, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-ash4/273737_537141553_45330813_q.jpg', '06/29/1981', 'Cherkassy, Cherkas\'Ka Oblast\', Ukraine', 0, 'Vladimir Dybenko'),
-	(145919, 'A:be56be4e39', 'Anonymous', 'iPod3', 'B', 1349939590, 1346423403, '0', 'ru_UA', 'ru', '5.1.1', '1.4', '', 0, 214, '50a0d05209cc4', 3, 44, 4, 4, 53, 0, 'Anonymous', '', '', 0, ''),
+	(145918, 'F:537141553', 'Vladimir Dybenko', 'iPhone4', 'F', 1349952545, 1346421369, '0', 'ru_UA', 'en', '6.0', '1.4', '', 0, 775, '50a2409228301', 6, 311, 9, 3, 21, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-ash4/273737_537141553_45330813_q.jpg', '06/29/1981', 'Cherkassy, Cherkas\'Ka Oblast\', Ukraine', 0, 'Vladimir Dybenko'),
+	(145919, 'A:be56be4e39', 'Anonymous', 'iPod3', 'B', 1349939590, 1346423403, '0', 'ru_UA', 'ru', '5.1.1', '1.4', '', 0, 214, '50a27140307f1', 10, 0, 10, 0, 0, 0, 'Anonymous', '', '', 0, ''),
 	(145920, 'A:f306b82768', 'Anonymous', 'iPad2', '0', 0, 1346424484, '0', 'ru_UA', 'ru', '6.0', '1.4', '', 0, 200, '5040ceb439a5c', 0, 0, 0, 0, 0, 0, '0', '', '', 0, ''),
 	(145921, 'F:100000532245810', 'Игорь Ильченко', 'iPad2', 'F', 1346441436, 1346424500, '0', 'ru_UA', 'ru', '6.0', '1.4', '', 0, 234, '504110dc1939f', 1, 6, 1, 2, 25, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/211323_100000532245810_2129975069_q.jpg', '09/17/1985', '', 108, 'Игорь Ильченко'),
 	(145930, 'fgfh', 'df', 'ejjjj', 'F', 0, 1350310995, '0', '456', 'ed', 'qw', '345jhgj', '', 0, 200, '', 345, 0, 0, 0, 0, 56, 'fg', 'dfgdfgdf', 'gd', 345, '345'),
-	(145931, 'sdf', '234', '32', 'B', 0, 1350312438, '0', '423', '234', '23423', '434', '', 0, 200, '', 34, 0, 0, 0, 0, 3, '23', '423', '42', 4, '34'),
-	(145932, 'kjkh', 'sad', 'asdasd', 'B', 0, 1350391731, '0', 'asd', 'asd', '1', '1', '', 0, 200, '', 3, 0, 0, 0, 0, 3, 'asd', 'asd', 'asd', 2, '3'),
-	(145933, 's', 'dasd', 'd', '0', 0, 1352716090, '0', 'asd', 'sd', 'ds', 'as', '', 0, 200, '', 2, 0, 0, 0, 0, 2, 'as', 'asd', 'asd', 2, 'sad');
+	(145931, 'A:34234323', 'Fred', '32', 'B', 0, 1350312438, '0', '423', '234', '23423', '434', '', 0, 200, '50a256ecafcpk', 31, 0, 0, 0, 0, 3, '23', '423', '42', 4, '34'),
+	(145932, 'kjkh', 'sad', 'asdasd', 'B', 0, 1350391731, '0', 'asd', 'asd', '1', '1', '', 0, 200, '50a256ecaftr', 3, 0, 0, 0, 0, 3, 'asd', 'asd', 'asd', 2, '3'),
+	(145933, 's', 'dasd', 'd', '0', 0, 1352716090, '0', 'asd', 'sd', 'ds', 'as', '', 0, 200, '', 2, 0, 0, 0, 0, 2, 'as', 'asd', 'asd', 2, 'sad'),
+	(145934, 'F:100002141165315', 'sdfsdf', 'iPod3', 'F', 0, 1352821429, '0', 'у', 'ru', '5.1', '2.1', '', 0, 200, '', 1, 0, 0, 0, 0, 1, '12', '12', '12', 1, '12');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 
