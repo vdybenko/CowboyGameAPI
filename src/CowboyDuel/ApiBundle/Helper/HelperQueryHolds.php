@@ -88,8 +88,7 @@ class HelperQueryHolds extends HelperAbstractDb
 	
 	public function setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win)
 	{
-		$user = $this->getUser($authen);
-		
+		$user = $this->getUser($authen);		
 		if($user == null) return null;
 		
 		$user->setLevel($level)
@@ -140,7 +139,7 @@ class HelperQueryHolds extends HelperAbstractDb
 			 ->setidentifier($identifier)
 			 ->setSnetwork($snetwork)
 			 
-			 ->setLastLogin(0)
+			 ->setLastLogin(time())
 			 ->setType(0)
 			 ->setDeviceToken("")
 			 ->setDate(0)

@@ -77,27 +77,27 @@ class ApiController extends Controller
     	if ($request->get('authenOld')) $authen_old = $request->get('authenOld'); 
     	  else $authen_old = null;
     	      	
-    	$auth_key = $request->get('authKey');    	
-    	$app_ver  = $request->get('appVer');
+    	$auth_key = $request->get('auth_key');    	
+    	$app_ver  = $request->get('app_ver');
     	$os 	  = $request->get('os');
     	
-    	$device_name = $request->get('deviceName');
+    	$device_name = $request->get('device_name');
     	$region 	 = $request->get('region');
     	
-    	$current_language = $request->get('currentLanguage');
+    	$current_language = $request->get('current_language');
     	$nickname 	= $request->get('nickname');
     	$avatar   	= $request->get('avatar');
     	$age 	    = $request->get('age');
-    	$home_town 	= $request->get('homeTown');
+    	$home_town 	= $request->get('home_town');
     	$friends   	= $request->get('friends');
     	$identifier = $request->get('identifier');
     	
     	$level 		= $request->get('level');
     	$points 	= $request->get('points');
-    	$duels_win 	= $request->get('duelsWin');
-    	$duels_lost = $request->get('duelsLost');
-    	$bigest_win = $request->get('bigestWin');
-    	$remove_ads = $request->get('removeAds');
+    	$duels_win 	= $request->get('duels_win');
+    	$duels_lost = $request->get('duels_lost');
+    	$bigest_win = $request->get('bigest_win');
+    	$remove_ads = $request->get('remove_ads');
     	
     	/*$money 		= $request->get('money'); 
     	$device_token 	= $request->get('device_token');
