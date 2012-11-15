@@ -16,13 +16,12 @@ monolog:
 doctrine:
     dbal:
         driver:   %database_driver%
-        host:     cowboyduel.c6algyr0odj4.eu-west-1.rds.amazonaws.com
+        host:     %database_host%
         port:     %database_port%
-        dbname:   duels_v201
-        user:     duels
-        password: FTa9aueWYmWub8wb
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
         charset:  UTF8
-        unix_socket: /var/lib/mysql/mysql.sock
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
