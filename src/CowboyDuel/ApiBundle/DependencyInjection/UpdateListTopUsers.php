@@ -32,7 +32,7 @@ class UpdateListTopUsers
     		$wayStr = 'web/';
     	
     	$helperMethod = new HelperMethod($this->container);
-    	$helperMethod->sendStatS3($wayStr.'top.json',
+    	$helperMethod->sendStatS3($wayStr.$this->container->getParameter('S3_topBoard_file_upload'),
     							  $this->container->getParameter('S3_topBoard_uri')
     							  .$this->container->getParameter('S3_type_file'),
     							  $entitiesJson);  		
