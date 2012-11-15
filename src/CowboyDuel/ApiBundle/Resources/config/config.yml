@@ -1,7 +1,6 @@
 services:
-    kernel.listener.UpdateWithTimeListener:
-        class: CowboyDuel\ApiBundle\Listener\UpdateWithTimeListener
-        tags: [{name: kernel.event_listener, event: kernel.controller, method: onKernelController}]
+    CowboyDuel.UpdateListTopUsers:
+        class:  CowboyDuel\ApiBundle\DependencyInjection\UpdateListTopUsers
         arguments: [@service_container, @doctrine.orm.entity_manager] 
 
 parameters:
