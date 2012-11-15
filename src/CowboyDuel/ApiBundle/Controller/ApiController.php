@@ -403,11 +403,11 @@ class ApiController extends Controller
     					$transaction->{'transaction'}->{'transaction_id'} = 0;
     					
     				$transaction->{'transaction'}->{'transaction_id'} = $transaction->{'transaction'}->{'transaction_id'}^$secure_value;
-    				$transaction->{'transaction'}->{'description'} = $transaction->{'transaction'}->{'description'}^$secure_value;
+    				//$transaction->{'transaction'}->{'description'} = $transaction->{'transaction'}->{'description'}^$secure_value;
     				
-    				$transaction->{'transaction'}->{'opponent_authen'} = $transaction->{'transaction'}->{'opponent_authen'}^$secure_value;
-    				$transaction->{'transaction'}->{'local_id'} = $transaction->{'transaction'}->{'local_id'}^$secure_value;
-    				
+    				//$transaction->{'transaction'}->{'opponent_authen'} = $transaction->{'transaction'}->{'opponent_authen'}^$secure_value;
+    				//$transaction->{'transaction'}->{'local_id'} = $transaction->{'transaction'}->{'local_id'}^$secure_value;
+    			
     				
     				$transactionsHolds->setTransaction($authen, 
     												   $transaction->{'transaction'}->{'transaction_id'}, 
