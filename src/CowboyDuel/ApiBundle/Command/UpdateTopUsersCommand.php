@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand,
  	Symfony\Component\Console\Input\InputOption,
  	Symfony\Component\Console\Output\OutputInterface;
 
+ini_set("memory_limit","64M");
+
 class UpdateTopUsersCommand extends ContainerAwareCommand
 {
     protected function configure()
