@@ -65,6 +65,29 @@ class UsersController extends Controller
     }
     
     /**
+     * @Route("/get_bot_list", name="users_get_bot_list")
+     */
+    public function getBotListAction()
+    {
+    	$request = $this->getRequest()->request;
+    	$ids = $request->get('ids');
+    	
+    	$ids_obj = json_decode($ids);
+    	
+    	
+    	
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$queryHolds = new HelperQueryHolds($em);
+    
+    	$entitiesJson = json_encode($queryHolds->getBot());
+    
+    	$helperMethod = new HelperMethod($this->container);
+    	
+    
+    	return new Response($entitiesJson);
+    }
+    
+    /**
      * @Route("/top_rank_on_interspace", name="users_top_rank_on_interspace")
      */
     public function topRankOnInterspaceAction()
@@ -81,7 +104,7 @@ class UsersController extends Controller
     		$responseDate['err_code'] = (int) - 4;
     		$responseDate['err_description'] = 'Invalid value';    	
     	}
-    	 else { $responseDate = $entities; }    	
+    	 else { $responseDate = $entities; }
     	    	
     	return new Response(json_encode($responseDate));
     }
