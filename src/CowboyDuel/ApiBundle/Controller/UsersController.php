@@ -70,11 +70,15 @@ class UsersController extends Controller
     public function getBotListAction()
     {
     	$request = $this->getRequest()->request;
-    	$ids = $request->get('ids');
+    	$ids_obj = json_decode($request->get('ids'));
     	
-    	$ids_obj = json_decode($ids);
-    	
-    	
+    	if(isset($transactions_obj->{'ids'} ))
+    	{
+    		foreach($transactions_obj->{'transactions'} as $transaction)
+    		{
+    				
+    		}
+    	}
     	
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryHolds($em);
