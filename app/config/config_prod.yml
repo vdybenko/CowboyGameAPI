@@ -1,28 +1,27 @@
 imports:
     - { resource: config.yml }
 
-#monolog:
-    #handlers:
-        #main:
-            #type:         fingers_crossed
-            #action_level: error
-            #handler:      nested
-        #nested:
-            #type:  stream
-            #path:  %kernel.logs_dir%/%kernel.environment%.log
-            #level: debug
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
 
 # Doctrine Configuration
 doctrine:
     dbal:
         driver:   %database_driver%
-        host:     %database_host%
+        host:     cowboyduel.c6algyr0odj4.eu-west-1.rds.amazonaws.com
         port:     %database_port%
-        dbname:   %database_name%
-        user:     %database_user%
-        password: %database_password%
+        dbname:   duels_v201
+        user:     duels
+        password: FTa9aueWYmWub8wb
         charset:  UTF8
-
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
