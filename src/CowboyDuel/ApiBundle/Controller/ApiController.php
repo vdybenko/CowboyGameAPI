@@ -197,7 +197,7 @@ class ApiController extends Controller
     		if ($word == 'F' || $word == 'E' ) { $snetwork = $word;}
     		 else { $snetwork = '0'; }    	
     	
-    		$queryHolds->setUser($authen, $app_ver, $device_name, $nickname, $os,$region,
+    		$queryHolds->setUser($authen, $app_ver, $device_name, $nickname, $os, $region,
     		 					 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
     		 					 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);
     		
@@ -420,6 +420,12 @@ class ApiController extends Controller
     		}
     			
     		$queryHolds->setUserMoney($authen, $sum);
+    		
+    		if($user_info->getSnetwork() == 'B')
+    		{    			
+    			$helperMethod = new HelperMethod($this->container);    			 
+    			$entitiesJson = $helperMethod->sendBotListToS3($em);
+    		}
     		
     		$sum = $sum ^ $secure_value;
     		$responseData['money'] = $sum;

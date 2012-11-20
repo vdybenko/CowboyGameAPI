@@ -50,59 +50,12 @@ class UsersController extends Controller
      */
     public function botJsonAction()
     {
-    	$em = $this->getDoctrine()->getEntityManager();
-    	$queryHolds = new HelperQueryHolds($em);
-    	 
-    	$entitiesJson = json_encode($queryHolds->getBots());
-    	 
+    	$em = $this->getDoctrine()->getEntityManager();   	
     	$helperMethod = new HelperMethod($this->container);
-    	$helperMethod->sendStatS3($this->container->getParameter('S3_bot_file_upload'),
-    							  $this->container->getParameter('S3_bot_uri')
-    							  .$this->container->getParameter('S3_type_file'),
-    							  $entitiesJson);
+    	
+    	$entitiesJson = $helperMethod->sendBotListToS3($em);
     	 
     	return new Response($entitiesJson);
-    }
-    
-    /**
-     * @Route("/get_bot_list", name="users_get_bot_list")
-     */
-    public function getBotListAction()
-    {
-    	$request = $this->getRequest()->request;
-    	$ids_obj = json_decode($request->get('ids'));
-    	
-    	if ($ids_obj == null)
-    	{
-    		$responseDate['err_code'] = (int) - 4;
-    		$responseDate['err_description'] = 'Invalid value';
-    	}
-    	else
-    	{
-    		$em = $this->getDoctrine()->getEntityManager();
-    		$queryHolds = new HelperQueryHolds($em);    	
-    		$bots = $queryHolds->getUserData(array('snetwork' => 'B'));
-    		
-    		if(isset($ids_obj->{'ids'}))
-    		{
-    			$i = 0;    		
-    			foreach($ids_obj->{'ids'} as $ids)
-    			{
-    				if($bots[i]['authen'] == $ids->{'id'})
-    					
-    				$bot = $bots[i];
-    				$bot['weapons'] = $queryHoldsStore->getLastBuyItemStore($bot['authen'], 'weapons');
-    				$bot['defenses'] = $queryHoldsStore->getLastBuyItemStore($bot['authen'], 'defenses');
-    				unset($bot['authen']);
-    				
-    				$botResult[] = $bot;    			
-    				$i++;
-    			}
-    			$responseDate['bots'] = $botResult;
-    		}
-    	}        
-    
-    	return new Response(json_encode($responseDate));
     }
     
     /**
