@@ -16,7 +16,12 @@ class HelperQueryHolds extends HelperAbstractDb
 			 ')->setMaxResults(100)
 			   ->getResult();
 	}
-	public function getBot()
+	
+	/**
+	 * Get bots
+	 * @return CowboyDuel\ApiBundle\Entity\Users
+	 */
+	public function getBots()
 	{		
 		$q = $this->em->createQuery("
 				SELECT u.authen AS authentification
@@ -71,19 +76,30 @@ class HelperQueryHolds extends HelperAbstractDb
 		return  (isset($e[0]))? $e[0]: null;
 	}	
 	
-	public function getUserData($authen)
+	public function getUserData($filters)
 	{
+		$select = "";
+		$where = "";
+		
+		if(isset($filters['authen']))
+			$where = "WHERE u.authen='".$filters['authen']."'";
+		 else 
+			$select = "u.authen,";
+		
+		if(isset($filters['snetwork']))
+			$where = "WHERE u.snetwork='".$filters['snetwork']."'";
+					
 		$q = $this->em->createQuery("
-				SELECT u.userId AS user_id, u.nickname, u.money, u.sessionId AS session_id, u.level, u.points, 
+				SELECT $select u.userId AS user_id, u.nickname, u.money, u.sessionId AS session_id, u.level, u.points, 
 					   u.duelsWin AS duels_win, u.duelsLost AS duels_lost, u.bigestWin AS bigest_win, 
 				       u.removeAds AS remove_ads, u.avatar, u.age, u.homeTown AS home_town, u.friends, 
 					   u.identifier AS identifier				
 				FROM CowboyDuelApiBundle:Users u
-				WHERE u.authen='$authen'"
+				$where"
 		);
 		$e = $q->getResult();
 		 
-		return  (isset($e[0]))? $e[0]: null;	
+		return (isset($e[0]) && isset($filters['authen']))? $e[0]: $e;	
 	}
 	
 	public function setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win)

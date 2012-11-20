@@ -53,7 +53,7 @@ class UsersController extends Controller
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryHolds($em);
     	 
-    	$entitiesJson = json_encode($queryHolds->getBot());
+    	$entitiesJson = json_encode($queryHolds->getBots());
     	 
     	$helperMethod = new HelperMethod($this->container);
     	$helperMethod->sendStatS3($this->container->getParameter('S3_bot_file_upload'),
@@ -72,23 +72,37 @@ class UsersController extends Controller
     	$request = $this->getRequest()->request;
     	$ids_obj = json_decode($request->get('ids'));
     	
-    	if(isset($transactions_obj->{'ids'} ))
+    	if ($ids_obj == null)
     	{
-    		foreach($transactions_obj->{'transactions'} as $transaction)
-    		{
-    				
-    		}
+    		$responseDate['err_code'] = (int) - 4;
+    		$responseDate['err_description'] = 'Invalid value';
     	}
-    	
-    	$em = $this->getDoctrine()->getEntityManager();
-    	$queryHolds = new HelperQueryHolds($em);
+    	else
+    	{
+    		$em = $this->getDoctrine()->getEntityManager();
+    		$queryHolds = new HelperQueryHolds($em);    	
+    		$bots = $queryHolds->getUserData(array('snetwork' => 'B'));
+    		
+    		if(isset($ids_obj->{'ids'}))
+    		{
+    			$i = 0;    		
+    			foreach($ids_obj->{'ids'} as $ids)
+    			{
+    				if($bots[i]['authen'] == $ids->{'id'})
+    					
+    				$bot = $bots[i];
+    				$bot['weapons'] = $queryHoldsStore->getLastBuyItemStore($bot['authen'], 'weapons');
+    				$bot['defenses'] = $queryHoldsStore->getLastBuyItemStore($bot['authen'], 'defenses');
+    				unset($bot['authen']);
+    				
+    				$botResult[] = $bot;    			
+    				$i++;
+    			}
+    			$responseDate['bots'] = $botResult;
+    		}
+    	}        
     
-    	$entitiesJson = json_encode($queryHolds->getBot());
-    
-    	$helperMethod = new HelperMethod($this->container);
-    	
-    
-    	return new Response($entitiesJson);
+    	return new Response(json_encode($responseDate));
     }
     
     /**
@@ -132,7 +146,7 @@ class UsersController extends Controller
     		$queryHolds = new HelperQueryHolds($em);
     		$queryHoldsStore = new HelperQueryStore($em);
     
-    		$responseDate = $queryHolds->getUserData($authen);    		
+    		$responseDate = $queryHolds->getUserData(array('authen' => $authen));    		
 
     		$responseDate['weapons'] = $queryHoldsStore->getLastBuyItemStore($authen, 'weapons');
     		$responseDate['defenses'] = $queryHoldsStore->getLastBuyItemStore($authen, 'defenses');
