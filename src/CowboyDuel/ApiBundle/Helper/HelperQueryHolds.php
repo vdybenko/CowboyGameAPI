@@ -84,8 +84,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		if(isset($filters['authen']))
 			$where = "WHERE u.authen='".$filters['authen']."'";
 		 else 
-			$select = "u.authen,";
-		
+			$select = "u.authen,";		
 		if(isset($filters['snetwork']))
 			$where = "WHERE u.snetwork='".$filters['snetwork']."'";
 					
