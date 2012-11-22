@@ -10,7 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 	Symfony\Component\HttpFoundation\Response;
 
 use CowboyDuel\ApiBundle\Helper\HelperQueryHolds,
-	CowboyDuel\ApiBundle\Helper\HelperTransactionsHolds;
+	CowboyDuel\ApiBundle\Helper\HelperTransactionsHolds,
+	CowboyDuel\ApiBundle\Helper\HelperMethod;
 
 /**
  * @Route("/api")
