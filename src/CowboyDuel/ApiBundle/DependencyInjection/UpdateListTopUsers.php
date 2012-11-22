@@ -23,8 +23,14 @@ class UpdateListTopUsers
     	$queryHolds = new HelperQueryHolds($this->em);    	
     	$entitiesJson = json_encode($queryHolds->get_top_users());
     	
+    	$env = $this->container->get('kernel')->getEnvironment();
+    	 
+    	$wayStr = '';
+    	if($env != 'prod')    		
+    		$wayStr = 'web/';    	 
+    	
     	$helperMethod = new HelperMethod($this->container);
-    	$helperMethod->sendStatS3($this->container->getParameter('S3_topBoard_file_upload'),
+    	$helperMethod->sendStatS3($wayStr.$this->container->getParameter('S3_topBoard_file_upload'),
     							  $this->container->getParameter('S3_topBoard_uri')
     							  .$this->container->getParameter('S3_type_file'),
     							  $entitiesJson);  		
