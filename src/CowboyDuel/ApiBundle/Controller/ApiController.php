@@ -187,8 +187,7 @@ class ApiController extends Controller
     		{
     			$session_id = $user_info['session_id'];
     	
-    		}
-    		$queryHolds->update_session($authen, $session_id);
+    		}    		
     	} 	
     	
     	if(empty($user_info))
@@ -274,7 +273,7 @@ class ApiController extends Controller
     		}
     	
     	}
-    	
+    	$queryHolds->update_session($authen, $session_id);
     	$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');    	
     	$responseDate += array('session_id' => $session_id, 'avatar' => $avatar, 'level' => $level, 'name' => $nickname,
     						  'points' => $points, 'money' => $money, 'duels_win' => $duels_win, 'duels_lost' => $duels_lost, 

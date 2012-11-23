@@ -260,8 +260,8 @@ class HelperQueryHolds extends HelperAbstractDb
 	{
 		$q = $this->em->createQuery("
 				UPDATE CowboyDuelApiBundle:Users u
-				SET u.sessionId='".$session_id."'
-			    WHERE u.authen='".$authen."'"
+				SET u.sessionId='$session_id'
+			    WHERE u.authen='$authen'"
 		);
 		
 		return $q->getResult();
