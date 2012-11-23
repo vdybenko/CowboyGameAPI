@@ -185,9 +185,10 @@ class ApiController extends Controller
     		}
     		else
     		{
-    			$session_id=$user_info['session_id'];
+    			$session_id = $user_info['session_id'];
     	
     		}
+    		$queryHolds->update_session($authen, $session_id);
     	} 	
     	
     	if(empty($user_info))
