@@ -185,8 +185,7 @@ class ApiController extends Controller
     		}
     		else
     		{
-    			$session_id = $user_info['session_id'];
-    	
+    			$session_id = $user_info['session_id'];    	
     		}    		
     	} 	
     	
