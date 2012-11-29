@@ -43,8 +43,15 @@ class HelperQueryStore extends HelperAbstractDb
 	
 	public function getLastBuyItemStore($authen, $type)
 	{
+		$select = "s.id";		
+		switch($type)
+		{
+			case 'weapons': $select = "s.id"; break;
+			case 'defenses': $select = "s.damageOrDefense AS value"; break;
+		}
+		
 		$q = $this->em->createQuery("
-				SELECT b.id
+				SELECT $select
 				FROM CowboyDuelApiBundle:BuyItemsStore b, CowboyDuelApiBundle:Store s
 				WHERE b.authenuser='$authen' AND s.type='$type' AND b.itemIdStore = s.id
 				ORDER BY b.date DESC"
