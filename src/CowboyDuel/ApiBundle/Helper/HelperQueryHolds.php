@@ -169,7 +169,7 @@ class HelperQueryHolds extends HelperAbstractDb
 								$current_language, $level, $points, $money, $duels_win, $duels_lost, $bigest_win, 
 								$remove_ads, $avatar, $age, $home_town, $friends, $identifier)
 	{
-		$user = new Users();
+		$user = $this->getUser($authen);
 	
 		if($authen) $user->setAuthen($authen);
 		if($nickname) $user->setNickname($nickname);

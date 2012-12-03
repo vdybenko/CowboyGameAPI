@@ -75,7 +75,7 @@ class ApiController extends Controller
     	$request = $this->getRequest()->request;
     	
     	$authen = $request->get('authentification');    	
-    	if ($request->get('authenOld')) $authen_old = $request->get('authenOld'); 
+    	if ($request->get('authen_old')) $authen_old = $request->get('authen_old'); 
     	  else $authen_old = null;
     	      	
     	$auth_key = $request->get('auth_key');    	
@@ -240,27 +240,27 @@ class ApiController extends Controller
     		if (isset($change_nick))
     		{
     			$authen = $request->get('authentification');
-    			$auth_key = $request->get('authKey');
-    			$app_ver  = $request->get('appVer');
+    			$auth_key = $request->get('auth_key');
+    			$app_ver  = $request->get('app_ver');
     			$os 	  = $request->get('os');
     			 
-    			$device_name = $request->get('devicename');
+    			$device_name = $request->get('device_name');
     			$region 	 = $request->get('region');
     			 
-    			$current_language = $request->get('currentLanguage');
+    			$current_language = $request->get('current_language');
     			$nickname 	= $request->get('nickname');
     			$avatar   	= $request->get('avatar');
     			$age 	    = $request->get('age');
-    			$home_town 	= $request->get('homeTown');
+    			$home_town 	= $request->get('home_town');
     			$friends   	= $request->get('friends');
     			$identifier = $request->get('identifier');
     			 
     			$level 		= $request->get('level');
     			$points 	= $request->get('points');
-    			$duels_win 	= $request->get('duelsWin');
-    			$duels_lost = $request->get('duelsLost');
-    			$bigest_win = $request->get('bigestWin');
-    			$remove_ads = $request->get('removeAds');
+    			$duels_win 	= $request->get('duels_win');
+    			$duels_lost = $request->get('duels_lost');
+    			$bigest_win = $request->get('bigest_win');
+    			$remove_ads = $request->get('remove_ads');
     		
     			$word = strtoupper($authen{0});
     			if ($word == 'F' || $word == 'E' ) { $snetwork = $word;}
