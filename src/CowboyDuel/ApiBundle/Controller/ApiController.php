@@ -125,10 +125,9 @@ class ApiController extends Controller
     	{    			
     		$user_info = $queryHolds->getUserWithAuthenOld($authen, null);
     		
-    		if (empty($user_info) && (!empty($authen_old)))
+    		if ($user_info == null && (!empty($authen_old)))
     		{    			
     			$user_info = $queryHolds->getUserWithAuthenOld($authen, $authen_old);
-    			
     			$money 	= $user_info->getMoney();
 				$points	= $user_info->getPoints();
 				$level	= $user_info->getLevel();
