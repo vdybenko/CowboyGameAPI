@@ -212,6 +212,17 @@ class Users
 	public function getUserId() {
 		return $this->userId;
 	}
+	/**
+	 * Set userId
+	 *
+	 * @param integer $userId
+	 * @return Users
+	 */
+	public function setUserId($userId) {
+		$this->userId = $userId;
+	
+		return $this;
+	}
 
 	/**
 	 * Set authen

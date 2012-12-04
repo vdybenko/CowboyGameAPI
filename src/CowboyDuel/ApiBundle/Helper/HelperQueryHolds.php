@@ -165,12 +165,12 @@ class HelperQueryHolds extends HelperAbstractDb
 		$this->em->flush();
 	}
 	
-	public function setUserInfo($authen, $app_ver, $device_name, $nickname, $type, $os, $region,
+	public function setUserInfo($authen, $authen_old, $app_ver, $device_name, $nickname, $type, $os, $region,
 								$current_language, $level, $points, $money, $duels_win, $duels_lost, $bigest_win, 
 								$remove_ads, $avatar, $age, $home_town, $friends, $identifier)
 	{
-		$user = $this->getUser($authen);
-	
+		$user = $this->getUserWithAuthenOld($authen, $authen_old);
+		
 		if($authen) $user->setAuthen($authen);
 		if($nickname) $user->setNickname($nickname);
 		if($app_ver) $user->setAppVer($app_ver);
@@ -194,7 +194,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		if($friends) $user->setFriends($friends);
 		if($identifier) $user->setIdentifier($identifier);
 	
-		$this->em->persist($user);
+		$this->em->merge($user);
 		$this->em->flush();
 	}
 	

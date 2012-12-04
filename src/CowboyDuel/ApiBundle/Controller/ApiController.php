@@ -123,11 +123,9 @@ class ApiController extends Controller
     	
     	if(($word == 'F' ||  $word == 'E') && ($word_old == 'A' ))
     	{    			
-    		$user_info = $queryHolds->getUserWithAuthenOld($authen, null);
-    		
-    		if ($user_info == null && ($authen_old != null))
-    		{    			
-    			$user_info = $queryHolds->getUserWithAuthenOld($authen, $authen_old);
+    		$user_info = $queryHolds->getUserWithAuthenOld($authen, $authen_old);    		
+    		if ($user_info != null && $authen_old != null)
+    		{   			
     			$money 	= $user_info->getMoney();
 				$points	= $user_info->getPoints();
 				$level	= $user_info->getLevel();
@@ -142,19 +140,11 @@ class ApiController extends Controller
     			
     			//update info
     			$snetwork = $word;
-    			$queryHolds->setUser($authen, $device_token, $app_ver, $device_name, $nickname, $type, $os,$region,
-    								 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
-    								 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);
+    			$queryHolds->setUserInfo($authen, $authen_old, $device_token, $app_ver, $device_name, $nickname, $type, $os,$region,
+    								     $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
+    								 	 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);
     			//update session    			
     			$queryHolds->update_session($authen, $session_id);
-    			
-    			/*
-    			$user_achivments = $this->musers->get_achivments($authen);
-    			foreach($user_achivments as $achivment)
-    			{
-    				$response['achivments'][] =$achivment['achivment_id'];
-    			}
-    				*/
     			
     			$responseDate = array('session_id' => $session_id, 'level' => $level, 'name' => $nickname, 'points' => $points,
     							      'money' => $money, 'duels_win' => $duels_win, 'duels_lost' => $duels_lost, 
@@ -167,13 +157,13 @@ class ApiController extends Controller
     		 else
     		{
     			if (isset($authen))	$authen_old = null;
-    			$user_info = $queryHolds->getUser($authen, $authen_old);
+    			$user_info = $queryHolds->getUserWithAuthenOld($authen, $authen_old);
     		}
     	}
     	 else
     	{
     		if (isset($authen))	$authen_old = null;
-    		$user_info = $queryHolds->getUser($authen, $authen_old);
+    		$user_info = $queryHolds->getUserWithAuthenOld($authen, $authen_old);
     	}
     	
     	if (!isset($session_id))
@@ -198,20 +188,7 @@ class ApiController extends Controller
     	
     		$queryHolds->setUser($authen, $app_ver, $device_name, $nickname, $os, $region,
     		 					 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
-    		 					 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);
-    		
-    		//send email
-    		/*	
-    		$this->load->library('email');
-    		$this->email->from('info@webkate.com', 'Cowboy');
-    		$this->email->to('dybenko@webkate.com');
-    		$list = array('taras@webkate.com', 'gordiychuk@webkate.com', 'sobol@webkate.com');
-    		$this->email->cc($list);
-    			
-    		$this->email->subject('Cowboy New User');
-    		$this->email->message(print_r($_POST, 1));
-    		$this->email->send();*/
-    	
+    		 					 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);    	
     	}
     	else
     	{    	
@@ -265,7 +242,7 @@ class ApiController extends Controller
     			if ($word == 'F' || $word == 'E' ) { $snetwork = $word;}
     		 	 else { $snetwork = '0'; }
     		
-    			$queryHolds->setUserInfo($authen, $app_ver, $device_name, $nickname, $type, $os,$region,
+    			$queryHolds->setUserInfo($authen, $authen_old, $app_ver, $device_name, $nickname, $type, $os,$region,
     			 						 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
     			 						 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);
     		}
