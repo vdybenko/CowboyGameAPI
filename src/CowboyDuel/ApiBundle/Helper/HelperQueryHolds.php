@@ -120,9 +120,9 @@ class HelperQueryHolds extends HelperAbstractDb
 	public function getUserWithAuthenOld($authen, $authen_old)
 	{
 		if (!$authen_old)  
-			return getUser($authen);
+			return $this->getUser($authen);
 		 else 
-		 	return getUser($authen_old);	
+		 	return $this->getUser($authen_old);	
 	}
 	
 	public function setUser($authen, $app_ver, $device_name, $nickname, $os, $region, $current_language,
