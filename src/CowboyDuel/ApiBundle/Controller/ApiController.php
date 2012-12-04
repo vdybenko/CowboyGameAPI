@@ -125,7 +125,7 @@ class ApiController extends Controller
     	{    			
     		$user_info = $queryHolds->getUserWithAuthenOld($authen, null);
     		
-    		if (empty($user_info['session_id']) && (!empty($authen_old)))
+    		if ($user_info->getSessionId() == null && (!empty($authen_old)))
     		{    			
     			$user_info = $queryHolds->getUserWithAuthenOld($authen, $authen_old);
     			
