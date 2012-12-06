@@ -34,7 +34,7 @@
              			<td>{{ e.money }}</td>
              			<td>{{ e.level }}</td>
              			<td>{{ e.points }}</td>  
-             			<td>{{ e.age }}</td> 
+             			<td>{{ e.age|date('d/m/Y') }}</td> 
              			<td>{{ e.homeTown }}</td>			
          			</tr>
 		 		 {% endfor%}
