@@ -27,6 +27,7 @@ class HelperMethod
 	
 	public static function getDuelsWithFriends($duels, $friends)
 	{
+		if(empty($friends)) return null;
 		for($i = 0; $i < count($duels); $i++)
 		{
 			$idUser = self::convertToFacebookId($duels[$i]['authen']);
