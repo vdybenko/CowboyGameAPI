@@ -33,66 +33,7 @@ class AdminController extends Controller
 		
 		return array('data' => $data,
 					 'location' => 'admin_index');
-	}
-    
-    /**
-     * @Route("/add_store_item", name="admin_add_store_item")
-     * @Secure(roles="ROLE_ADMIN")
-     * @Template()
-     */
-    public function addStoreItemAction()
-    {    	
-    	$request = $this->getRequest(); 	    	    	
-    	
-    	$entity  = new Store();
-    	$form = $this->createForm(new StoreType(), $entity);    	
-    	
-    	if ($request->getMethod() == 'POST')
-    	{    		       	
-       		$form->bindRequest($request);
-       		
-       		$thumb 	= $form['thumb']->getData();
-       		$img 	= $form['img']->getData();
-       		$bigImg = $form['bigImg']->getData();
-       		
-       		$thumbRetina 	= $form['thumbRetina']->getData();
-       		$imgRetina 	= $form['imgRetina']->getData();
-       		$bigImgRetina = $form['bigImgRetina']->getData();
-       		
-       		$sound 	= $form['sound']->getData();
-       		$description = $form['description']->getData();
-       		$inAppId = $form['inAppId']->getData();
-       		
-       		$entity->setThumb(is_null($thumb)?'':$thumb)
-       			   ->setImg(is_null($img)?'':$img)
-       			   ->setBigImg(is_null($bigImg)?'':$bigImg)
-       			   
-       			   ->setThumb(is_null($thumbRetina)?'':$thumbRetina)
-       			   ->setImg(is_null($imgRetina)?'':$imgRetina)
-       			   ->setBigImg(is_null($bigImgRetina)?'':$bigImgRetina)
-       			   
-       		       ->setSound(is_null($sound)?'':$sound)
-       			   ->setDescription(is_null($description)?'':$description)
-       			   ->setInappid(is_null($inAppId)?'0':$inAppId);
-       		;
-
-        	if ($form->isValid()) 
-        	{
-        		$em = $this->getDoctrine()->getEntityManager();
-            	$em->persist($entity);
-            	$em->flush();
-
-            	return $this->redirect($this->generateUrl('admin_index'));            
-        	}
-    	}
- 	
-    	return array(
-				'entity'   => $entity,
-				'form'     => $form->createView(),
-				'location' => 'admin_add_store_item',
-    			'data' 	   => HelperMethod::setDataStatistic($this->getDoctrine()->getEntityManager())
-		);
-    }
+	}   
     
     /**
      * @Route("/duels_in_day", name="admin_duels_in_day")

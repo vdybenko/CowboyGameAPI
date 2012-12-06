@@ -86,9 +86,6 @@ class UsersController extends Controller
 	public function editUserAction($id)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
-		$queryHolds = new HelperQuery($em);
-		
-		$entityInfo['buy_items_store'] = $queryHolds->getBuyItemsStoreOfUser($id);
 			
 		$data = HelperMethod::setDataStatistic($em);
 		$entity = $em->getRepository('CowboyDuelApiBundle:Users')->find($id);

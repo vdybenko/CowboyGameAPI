@@ -87,27 +87,35 @@
 					</div>
 					<div id="menu">
 						<ul> 
-							<li {% if location == 'admin_add_store_item' %} class="current" {% endif %}>
-								<a href="{{ path("admin_add_store_item") }}">Додати товар</a>
-							</li> 
-							<li {% if location == 'admin_duels_in_day' %} class="current" {% endif %}>
-								<a href="{{ path("admin_duels_in_day") }}">Дуелі</a>
-							</li>
-							<li {% if location == 'admin_sales_of_goods' %} class="current" {% endif %}>
-								<a href="{{ path("admin_sales_of_goods") }}">Продаж товарів</a>
-							</li>
-							<li {% if location == 'admin_registered_users_of_percentage' %} class="current" {% endif %}>
-								<a href="{{ path("admin_registered_users_of_percentage") }}">Pеєстрація користувачів</a>
+							<li {% if location == 'store_index' %} class="current" {% endif %}>
+								<a href="{{ path("store_index") }}">Товари</a>
+								<ul> 
+									<li {% if location == 'store_add_item' %} class="current" {% endif %}>
+										<a href="{{ path("store_add_item") }}">Додати товар</a></li>	
+									<li><a href="{{ path("store_list_items_json") }}" target="blank">
+										Відіслати на S3</a></li>															
+								</ul>								
 							</li>
 							<li {% if location == 'users_index' %} class="current" {% endif %}>
 								<a href="{{ path("users_index") }}">Гравці</a>
+								<ul> 
+									<li {% if location == 'users_getFrozen' %} class="current" {% endif %}>
+										<a href="{{ path("users_getFrozen") }}">Заморожені</a></li>
+									<li {% if location == 'users_getAllBot' %} class="current" {% endif %}>
+									<a href="{{ path("users_getAllBot") }}">Боти</a></li>
+								</ul>
 							</li>
-							<li {% if location == 'users_getFrozen' %} class="current" {% endif %}>
-								<a href="{{ path("users_getFrozen") }}">Заморожені</a>
-							</li>
-							<li {% if location == 'users_getAllBot' %} class="current" {% endif %}>
-								<a href="{{ path("users_getAllBot") }}">Боти</a>
-							</li>
+							<li {% if location == '#' %} class="current" {% endif %}>
+								<a href="#">Статистика</a>
+								<ul> 
+									<li {% if location == 'admin_duels_in_day' %} class="current" {% endif %}>
+										<a href="{{ path("admin_duels_in_day") }}">Дуелі</a></li>
+									<li {% if location == 'admin_sales_of_goods' %} class="current" {% endif %}>
+										<a href="{{ path("admin_sales_of_goods") }}">Продаж товарів</a></li>
+									<li {% if location == 'admin_registered_users_of_percentage' %} class="current" {% endif %}>
+										<a href="{{ path("admin_registered_users_of_percentage") }}">Pеєстрація користувачів</a></li>
+								</ul>
+							</li>														
 							{% block menu %}
         					{% endblock %}
 						</ul>
