@@ -52,4 +52,15 @@ class HelperQuery extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 			");
 		return  $q;
 	}
+	
+	public function getBuyItemsStore()
+	{
+		$q = $this->createQuery("
+				SELECT b.transactionsId, b. date, s.type, s.title, s.id, s.thumb, u.userId, u.nickname
+				FROM `buyitemsstore` b INNER JOIN `store` s ON b.itemIdStore = s.id, `users` u
+				WHERE u.authen = b.authenuser
+				ORDER BY t.date DESC
+			");
+				return  $q;
+	}
 }

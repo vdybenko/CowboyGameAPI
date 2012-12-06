@@ -176,9 +176,9 @@ class Users
 	private $avatar;
 
 	/**
-	 * @var date $age
+	 * @var string $age
 	 *
-	 * @ORM\Column(name="age", type="date", nullable=false)
+	 * @ORM\Column(name="age", type="text", nullable=false)
 	 */
 	private $age;
 
@@ -689,7 +689,7 @@ class Users
 	/**
 	 * Set age
 	 *
-	 * @param date $age
+	 * @param string $age
 	 * @return Users
 	 */
 	public function setAge($age) {
@@ -701,7 +701,7 @@ class Users
 	/**
 	 * Get age
 	 *
-	 * @return date
+	 * @return string
 	 */
 	public function getAge() {
 		return $this->age;

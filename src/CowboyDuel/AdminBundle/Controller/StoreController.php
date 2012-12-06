@@ -131,4 +131,22 @@ class StoreController extends Controller
     				 'entity' 	=> $entity,
     				 'location' => 'users_edit_user');
     }
+    
+    /**
+     * @Route("/", name="store_purchased_list")
+     * @Secure(roles="ROLE_ADMIN")
+     * @Template()
+     */
+    public function getPurchasedListAction()
+    {
+    	$em = $this->getDoctrine()->getEntityManager();    	
+    	$helperQuery = new HelperQuery($em);
+    
+    	$data = HelperMethod::setDataStatistic($em);
+    	$list_purchased = $helperQuery->getBuyItemsStore();
+    
+    	return array('list_purchased' => $list_purchased,
+    				 'data' => $data,
+    				 'location' => 'store_purchased_list');
+    }
 }

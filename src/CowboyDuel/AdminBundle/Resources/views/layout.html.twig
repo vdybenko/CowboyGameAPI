@@ -91,7 +91,9 @@
 								<a href="{{ path("store_index") }}">Товари</a>
 								<ul> 
 									<li {% if location == 'store_add_item' %} class="current" {% endif %}>
-										<a href="{{ path("store_add_item") }}">Додати товар</a></li>	
+										<a href="{{ path("store_add_item") }}">Додати товар</a></li>
+									<li {% if location == 'store_purchased_list' %} class="current" {% endif %}>
+										<a href="{{ path("store_purchased_list") }}">Куплені</a></li>
 									<li><a href="{{ path("store_list_items_json") }}" target="blank">
 										Відіслати на S3</a></li>															
 								</ul>								

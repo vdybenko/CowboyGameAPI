@@ -1,0 +1,72 @@
+{% extends 'CowboyDuelAdminBundle::layout.html.twig' %}
+{% block title %}Список гравців{% endblock %}
+
+{% block right %}
+
+<div class="section">
+	<div class="box">
+		<div class="title">
+			Зброя
+			<span class="hide"></span>
+		</div>
+		<div class="content">
+		  <table>
+         	<thead>
+         		<tr>
+            		<th>Title</th>            	
+            		<th>Thumb</th>
+            		<th>Nick name</th>
+            		<th>Date</th>
+            		<th>Transactions Id</th>
+        	 	</tr>
+         	</thead>
+         	<tbody>
+				 {% for e in  list_purchased %}
+				 	{% if e.type == 'weapons' %}
+          				<tr>
+             				<td><a href="{{ path("store_edit_item", { 'id': e.id }) }}">{{ e.title }}<a></td>				
+             				<td><img src='{{ e.thumb }}' alt="thumb" /></td>             				
+             				<td><a href="{{ path("users_show_user", { 'id': e.userId }) }}">{{ e.nickname }}<a></td>
+             				<td>{{ e.date|date('d/m/Y') }}</td>
+             				<td>{{ e.transactionsId }}</td>
+         				</tr>
+         			{% endif %}
+		 		 {% endfor%}
+         	</tbody>
+           </table>
+		</div>
+	</div>
+	<div class="box">
+		<div class="title">
+			Захист
+			<span class="hide"></span>
+		</div>
+		<div class="content">
+		  <table>
+         	<thead>
+         		<tr>
+            		<th>Title</th>            	
+            		<th>Thumb</th>
+            		<th>Nick name</th>
+            		<th>Date</th>
+            		<th>Transactions Id</th>
+        	 	</tr>
+         	</thead>
+         	<tbody>
+				 {% for e in  list_purchased %}
+				 	{% if e.type == 'defenses' %}
+          				<tr>
+             				<td><a href="{{ path("store_edit_item", { 'id': e.id }) }}">{{ e.title }}<a></td>				
+             				<td><img src='{{ e.thumb }}' alt="thumb" /></td>             				
+             				<td><a href="{{ path("users_show_user", { 'id': e.userId }) }}">{{ e.nickname }}<a></td>
+             				<td>{{ e.date|date('d/m/Y') }}</td>
+             				<td>{{ e.transactionsId }}</td>
+         				</tr>
+         			{% endif %}
+		 		 {% endfor%}
+         	</tbody>
+           </table>
+		</div>
+	</div>
+</div>
+{% endblock %}
