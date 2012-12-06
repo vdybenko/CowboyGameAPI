@@ -30,11 +30,11 @@
              				<td>{{ e.damageOrDefense }}</td>
              				<td>{{ e.golds }}</td>  				
              				<td><img src='{{ e.thumb }}' alt="thumb" /></td>             				        				
-             				<td>
-             					<audio id="audio{{ e.id }}" src="{{ e.sound }}"></audio>
-             					<div> 
- 									<button onclick="document.getElementById('audio{{ e.id }}').play()">Play</button>
- 								</div> 								         					
+             				<td align="center">
+             					<audio id="audio{{ e.id }}" src="{{ e.sound }}"></audio>             								
+ 								<a href="#play" onclick="document.getElementById('audio{{ e.id }}').play()" class="item small">
+ 									<img src="{{ asset('bundles/cowboydueladmin/gfx/icons/small/volume.png') }}" alt="Play" />
+ 								</a>				         					
              				</td>
              				<td>{{ e.Description }}</td>
              				<td>{{ e.levelLock }}</td>
@@ -58,7 +58,6 @@
             		<th>Defense</th>
             		<th>Golds</th>
             		<th>Thumb</th>
-            		<th>Sound</th>
             		<th>Description</th>
             		<th>Level Lock</th>
         	 	</tr>
@@ -70,13 +69,7 @@
              				<td><a href="{{ path("store_edit_item", { 'id': e.id }) }}">{{ e.title }}<a></td>
              				<td>{{ e.damageOrDefense }}</td>
              				<td>{{ e.golds }}</td>          				
-             				<td><img src='{{ e.thumb }}' alt="thumb" /></td>             				        				
-             				<td>
-             					<audio id="audio{{ e.id }}" src="{{ e.sound }}"></audio>
-             					<div> 
- 									<button onclick="document.getElementById('audio{{ e.id }}').play()">Play</button>
- 								</div> 								         					
-             				</td>
+             				<td><img src='{{ e.thumb }}' alt="thumb" /></td>
              				<td>{{ e.Description }}</td>
              				<td>{{ e.levelLock }}</td>
          				</tr>
