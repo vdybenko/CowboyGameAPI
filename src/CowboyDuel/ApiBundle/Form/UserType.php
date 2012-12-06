@@ -15,7 +15,7 @@ class UserType extends AbstractType
 		$builder			
 			->add('authen')	
 			->add('nickname')
-			->add('age')
+			->add('age','date', array('years' => range(date('Y') - 40, date('Y'))))
 			->add('region')
 			->add('homeTown')
 			->add('level')

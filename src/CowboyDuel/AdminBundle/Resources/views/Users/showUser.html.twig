@@ -50,7 +50,7 @@
 		  	</div>	  	
 		  	<div class="row">
 				<label class="notInForn">Age</label>
-				<div class="right">{{ entity.age|default('не вказано') }}</div>
+				<div class="right">{{ entity.age|date('d/m/Y') }}</div>
 		  	</div>
 		  	<div class="row">
 				<label class="notInForn">Home town</label>
@@ -109,7 +109,18 @@
 			Покупки
 			<span class="hide"></span>
 		</div>
-		<div class="content">
+		<div class="content">		
+		<div class="row">
+			<label class="notInForn">Item store id</label>
+			<div class="right">
+				<form action="{{ path("store_bought") }}" method="post">
+					<input type='text' name='itemId' id="sizeLittle"/>
+					<input type='hidden' name='authentification' value="{{ entity.authen }}"/>
+					<input type='hidden' name='transactionsId' value="-1"/>					
+					<button type="submit"><span>Купити</span></button>
+				</form>	
+			</div>
+		</div>	
 		<table>
          	<thead>
          		<tr>
