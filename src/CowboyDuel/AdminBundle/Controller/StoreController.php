@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 
 use CowboyDuel\ApiBundle\Entity\Store,
 	CowboyDuel\ApiBundle\Form\StoreType,
-	CowboyDuel\AdminBundle\Helper\HelperQueryStatistic,
+	CowboyDuel\AdminBundle\Helper\HelperQuery,
 	CowboyDuel\AdminBundle\Helper\HelperMethod;
 
 /**
@@ -133,7 +133,7 @@ class StoreController extends Controller
     }
     
     /**
-     * @Route("/", name="store_purchased_list")
+     * @Route("/purchased", name="store_purchased_list")
      * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
