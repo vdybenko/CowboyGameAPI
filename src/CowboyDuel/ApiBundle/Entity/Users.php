@@ -2,6 +2,8 @@
 
 namespace CowboyDuel\ApiBundle\Entity;
 
+use Symfony\Component\Validator\Constraints\Type;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -697,7 +699,6 @@ class Users
 
 		return $this;
 	}
-
 	/**
 	 * Get age
 	 *
@@ -705,6 +706,31 @@ class Users
 	 */
 	public function getAge() {
 		return $this->age;
+	}
+	
+	/**
+	 * Set dataAge
+	 *
+	 * @param \DateTime $dataAge
+	 * @return Users
+	 */
+	public function setDataAge($dataAge) {
+		$date = strtotime($dataAge);
+		$this->age = date('d/m/Y', $date);	
+		return $this;
+	}
+	/**
+	 * Get dataAge
+	 *
+	 * @return \DateTime
+	 */
+	public function getDataAge() {
+		
+		$date = strtotime($this->age);
+		return date('d/m/Y', $date);
+	}
+	public function isDataAge() {
+		return true;
 	}
 
 	/**

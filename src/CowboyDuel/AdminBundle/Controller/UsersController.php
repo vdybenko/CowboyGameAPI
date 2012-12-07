@@ -1,6 +1,8 @@
 <?php
 namespace CowboyDuel\AdminBundle\Controller;
 
+use CowboyDuel\ApiBundle\Entity\Users;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
@@ -114,6 +116,61 @@ class UsersController extends Controller
 					 'entity' 	=> $entity,
 					 'location' => 'users_edit_user');
 	}
+	
+	/**
+	 * @Route("/add", name="users_add_user")
+	 * @Secure(roles="ROLE_ADMIN")
+	 * @Template()
+	 */
+	public function addUserAction()
+	{
+		$em = $this->getDoctrine()->getEntityManager();			
+		$data = HelperMethod::setDataStatistic($em);
+		
+		$entity = new Users();		
+		$snetwork = $this->getRequest()->query->get('snetwork');
+		if(!empty($snetwork))
+		{
+			$entity
+				->setSnetwork($snetwork)
+				->setAuthen($snetwork.":")
+				->setIdentifier($snetwork.":")
+				->setDataAge("now")
+				->setMoney(200)
+				->setLevel(0)
+				->setPoints(0)
+				->setDuelsWin(0)
+				->setDuelsLost(0)
+				->setBigestWin(0)
+				->setFriends(0)
+			;
+		}		
+		$addForm = $this->createForm(new UserType(), $entity);
+		$request = $this->getRequest();
+		if ($request->getMethod() == 'POST')
+		{
+			$addForm->bindRequest($request);	
+			if ($addForm->isValid())
+			{
+				$entity				
+					->setLastLogin(0)
+					->setFirstLogin(0)
+					->setType("")
+					->setDeviceToken("")
+					->setDate(time());
+				;
+				
+				$em->persist($entity);
+				$em->flush();
+	
+				return $this->redirect($this->generateUrl('users_show_user', array('id' => $entity->getUserId())));
+			}
+		}			
+		return array('data' 	=> $data,
+					 'add_form' => $addForm->createView(),
+					 'entity' 	=> $entity,
+					 'location' => 'users_add_user');
+	}	
 	
 	/**
 	 * @Route("/bot", name="users_getAllBot")

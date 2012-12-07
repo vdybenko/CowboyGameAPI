@@ -5,7 +5,7 @@ use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilderInterface;
 
 class UserType extends AbstractType
-{
+{	
 	/*
 	 * @param FormBuilderInterface $builder The form builder
  	 * @param array                $options The options
@@ -15,16 +15,19 @@ class UserType extends AbstractType
 		$builder			
 			->add('authen')	
 			->add('nickname')
-			->add('age','date', array('years' => range(date('Y') - 40, date('Y'))))
+			->add('avatar')
+			->add('dataAge')
 			->add('region')
 			->add('homeTown')
 			->add('level')
 			->add('currentLanguage')
 			->add('app_ver')
 			->add('deviceName')
+			->add('snetwork')			
 			->add('os')
 			->add('points')
 			->add('money')
+			->add('session_id')			
 			->add('duelsWin')
 			->add('duelsLost')
 			->add('bigestWin')
