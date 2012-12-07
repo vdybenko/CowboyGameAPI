@@ -87,7 +87,7 @@
          	<tbody>
 		 		{% for e in  data.duelsInDay_lastDay_10 %}
          			<tr>
-             			<th>{{ e.day}}</th><td>{{ e.count }}</td>
+             			<th>{{ e.day|date('d') }}</th><td>{{ e.count }}</td>
          			</tr>
 		 		{% endfor%}
          	</tbody>
