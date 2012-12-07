@@ -25,48 +25,31 @@
 				{{ form_errors(add_form) }} 
 				{{ form_row(add_form.authen) }}
 				{{ form_row(add_form.nickname) }}
-				{{ form_row(add_form.avatar) }}
-												
+				{{ form_row(add_form.avatar) }}												
 				<div class="row">
         			<label class="required">Age</label>        
         			<div class="right">
-        				<div id="age">        				 					
-        					<select id="age_day" name="age[day]" required="required"> add_form.age|date("d")
-        						{% for i in 0..31 %}
-   									<option {% if entity.age|date("d") == i %} selected {% endif %} value="{{ i }}">{{ i }}</option>
-								{% endfor %}
-							</select>
-							-
-							<select id="age_month" name="age[month]" required="required">
-        						{% for i in 0..12 %}
-   									<option {% if entity.age|date("m") == i %} selected {% endif %} value="{{ i }}">{{ i }}</option>
-								{% endfor %}        						
-        					</select>
-							-
-        					<select id="age_year" name="age[year]" required="required">
+        				<div id="age">
+        					<select id="age_year" name="age_year" required="required">
         						{% for i in ("now"|date("Y") - 40)..("now"|date("Y") + 5) %}
    									<option {% if entity.age|date("Y") == i %} selected {% endif %} value="{{ i }}">{{ i }}</option>
 								{% endfor %}
-        					</select>        					
+        					</select>
+        					-  	
+        					<select id="age_month" name="age_month" required="required">
+        						{% for i in 1..12 %}
+   									<option {% if entity.age|date("m") == i %} selected {% endif %} value="{{ i }}">{{ i }}</option>
+								{% endfor %}        						
+        					</select>
+        					-		 					
+        					<select id="age_day" name="age_day" required="required">
+        						{% for i in 1..31 %}
+   									<option {% if entity.age|date("d") == i %} selected {% endif %} value="{{ i }}">{{ i }}</option>
+								{% endfor %}
+							</select>        					    					
         				</div>
    		 			</div>
-   		 		</div>
-				
-				{{ form_row(add_form.region) }}
-				{{ form_row(add_form.homeTown) }}
-				{{ form_row(add_form.level) }}
-				{{ form_row(add_form.currentLanguage) }}
-				{{ form_row(add_form.snetwork) }}
-				{{ form_row(add_form.os) }}
-				{{ form_row(add_form.points) }}
-				{{ form_row(add_form.session_id) }}
-				{{ form_row(add_form.duelsWin) }}
-				{{ form_row(add_form.duelsLost) }}
-				{{ form_row(add_form.bigestWin) }}
-				{{ form_row(add_form.removeAds) }}
-				{{ form_row(add_form.friends) }}
-				{{ form_row(add_form.identifier) }}
-				
+   		 		</div>				
 				{{ form_rest(add_form) }}
 				<div class="row">   		 		
 					<div class="right">						
