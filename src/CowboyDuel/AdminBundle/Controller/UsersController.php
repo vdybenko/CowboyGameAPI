@@ -97,18 +97,42 @@ class UsersController extends Controller
 		}
 		
 		$editForm = $this->createForm(new UserType(), $entity);		
-		$request = $this->getRequest();
+		$request = $this->getRequest();		
 		if ($request->getMethod() == 'POST')
 		{
-			$editForm->bindRequest($request);
+			//$editForm->bindRequest($request);
+			
+			$entity
+				->setAuthen($request->get('authen'))
+				->setNickname($request->get('nickname'))
+				->setAvatar($request->get('avatar'))
+				->setAge($request->get('age_year').'-'
+						.$request->get('age_month').'-'
+						.$request->get('age_day')) 
+				->setRegion($request->get('region'))
+				->setHomeTown($request->get('homeTown'))
+				->setCurrentLanguage($request->get('currentLanguage'))
+				->setDeviceName($request->get('deviceName'))
+				->setSnetwork($request->get('snetwork'))
+				->setOs($request->get('os'))
+				->setPoints($request->get('points'))
+				->setMoney($request->get('money'))
+				->setSessionId($request->get('session_id'))
+				->setDuelsWin($request->get('duelsWin'))
+				->setDuelsLost($request->get('duelsLost'))
+				->setRemoveAds($request->get('removeAds'))				
+				->setSnetwork($request->get('friends'))
+				->setSnetwork($request->get('identifier'))	
+				->setAppVer($request->get('app_ver'))
+				->setLevel($request->get('level'))
+				->setBigestWin($request->get('bigestWin'))
+				->setFriends($request->get('friends'))
+				->setIdentifier($request->get('identifier'))				
+			;		
+			$em->persist($entity);
+			$em->flush();
 		
-			if ($editForm->isValid())
-			{
-				$em->persist($entity);
-				$em->flush();
-		
-				return $this->redirect($this->generateUrl('users_show_user', array('id' => $entity->getUserId())));
-			}
+			return $this->redirect($this->generateUrl('users_show_user', array('id' => $entity->getUserId())));
 		}
 			
 		return array('data' 	=> $data,
@@ -148,23 +172,44 @@ class UsersController extends Controller
 		$addForm = $this->createForm(new UserType(), $entity);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST')
-		{
-			$addForm->bindRequest($request);	
-			if ($addForm->isValid())
-			{
-				$entity				
-					->setLastLogin(0)
-					->setFirstLogin(0)
-					->setType("")
-					->setDeviceToken("")
-					->setDate(time());
-				;
+		{			
+			$entity
+				->setAuthen($request->get('authen'))
+				->setNickname($request->get('nickname'))
+				->setAvatar($request->get('avatar'))
+				->setAge($request->get('age_year').'-'
+						.$request->get('age_month').'-'
+						.$request->get('age_day')) 
+				->setRegion($request->get('region'))
+				->setHomeTown($request->get('homeTown'))
+				->setCurrentLanguage($request->get('currentLanguage'))
+				->setDeviceName($request->get('deviceName'))
+				->setSnetwork($request->get('snetwork'))
+				->setOs($request->get('os'))
+				->setPoints($request->get('points'))
+				->setMoney($request->get('money'))
+				->setSessionId($request->get('session_id'))
+				->setDuelsWin($request->get('duelsWin'))
+				->setDuelsLost($request->get('duelsLost'))
+				->setRemoveAds($request->get('removeAds'))				
+				->setSnetwork($request->get('friends'))
+				->setSnetwork($request->get('identifier'))	
+				->setAppVer($request->get('app_ver'))
+				->setLevel($request->get('level'))
+				->setBigestWin($request->get('bigestWin'))
+				->setFriends($request->get('friends'))
+				->setIdentifier($request->get('identifier'))				
+				->setLastLogin(0)
+				->setFirstLogin(0)				
+				->setType("")
+				->setDeviceToken("")
+				->setDate(time());
+			;
 				
-				$em->persist($entity);
-				$em->flush();
+			$em->persist($entity);
+			$em->flush();
 	
-				return $this->redirect($this->generateUrl('users_show_user', array('id' => $entity->getUserId())));
-			}
+			return $this->redirect($this->generateUrl('users_show_user', array('id' => $entity->getUserId())));
 		}			
 		return array('data' 	=> $data,
 					 'add_form' => $addForm->createView(),

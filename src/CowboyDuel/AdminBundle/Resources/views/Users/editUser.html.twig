@@ -21,8 +21,36 @@
 			<span class="hide"></span>
 		</div>
 		<div class="content">		
-			<form action="{{ path("users_edit_user", { 'id': entity.userId }) }}" method="post">
-				{{ form_widget(edit_form) }}	  
+			<form action="{{ path("users_edit_user", { 'id': entity.userId }) }}" method="post">				
+				{{ form_errors(edit_form) }} 
+				{{ form_row(edit_form.authen) }}
+				{{ form_row(edit_form.nickname) }}
+				{{ form_row(edit_form.avatar) }}												
+				<div class="row">
+        			<label class="required">Age</label>        
+        			<div class="right">
+        				<div id="age">
+        					<select id="age_year" name="age_year" required="required">
+        						{% for i in ("now"|date("Y") - 40)..("now"|date("Y") + 5) %}
+   									<option {% if entity.age|date("Y") == i %} selected {% endif %} value="{{ i }}">{{ i }}</option>
+								{% endfor %}
+        					</select>
+        					-  	
+        					<select id="age_month" name="age_month" required="required">
+        						{% for i in 1..12 %}
+   									<option {% if entity.age|date("m") == i %} selected {% endif %} value="{{ i }}">{{ i }}</option>
+								{% endfor %}        						
+        					</select>
+        					-		 					
+        					<select id="age_day" name="age_day" required="required">
+        						{% for i in 1..31 %}
+   									<option {% if entity.age|date("d") == i %} selected {% endif %} value="{{ i }}">{{ i }}</option>
+								{% endfor %}
+							</select>        					    					
+        				</div>
+   		 			</div>
+   		 		</div>				
+				{{ form_rest(edit_form) }}
 				<div class="row">   		 		
 					<div class="right">						
 						<button type="submit"><span>Submit</span></button>						

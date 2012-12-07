@@ -6,6 +6,10 @@ use Symfony\Component\Form\AbstractType,
 
 class UserType extends AbstractType
 {	
+	public 
+		$age_day,
+		$age_month,
+		$age_year;
 	/*
 	 * @param FormBuilderInterface $builder The form builder
  	 * @param array                $options The options
@@ -15,8 +19,7 @@ class UserType extends AbstractType
 		$builder			
 			->add('authen')	
 			->add('nickname')
-			->add('avatar')
-			->add('dataAge')
+			->add('avatar')		
 			->add('region')
 			->add('homeTown')
 			->add('level')
