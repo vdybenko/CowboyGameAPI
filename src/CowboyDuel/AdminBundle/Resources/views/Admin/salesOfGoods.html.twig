@@ -13,20 +13,19 @@
 			<br>
 		    <div class="chart-caption"> Товари куплені за золото</div>
             <table class="chart" style="width : 100%;">
-            <thead>
-            <tr>
-                <th></th>
-                <th style="color : #e10000;">unique visitors</th>
-                <th style="color : #000000;">pageviews</th>
-            </tr>
-            </thead>
-            <tbody>
-		    {% for e in  data.sales_Of_Goods_buy_golds %}
-                <tr>
-                    <th>{{ e.day }}</th><td>{{ e.count }}</td>
-                </tr>
-		    {% endfor%}
-            </tbody>
+            	<thead>
+            		<tr>
+                		<th></th>
+                		<th style="color : #e10000;">Visitors</th>
+            		</tr>
+            	</thead>
+            	<tbody>
+		    	  {% for e in  data.sales_Of_Goods_buy_golds %}
+                	 <tr>
+                    	<th>{{ e.day|date('d') }}</th><td>{{ e.count }}</td>
+                	</tr>
+		    	  {% endfor%}
+            	</tbody>
             </table>
 		    <br>			
 			<table>
@@ -38,28 +37,28 @@
 				<tbody>
 				  {% for e in  data.sales_Of_Goods_buy_golds %}			
           			<tr>
-             			<td>{{ e.key }}</td><td>{{ e.day }}</td><td>{{ e.count }}</td>
+             			<td>{{ e.key }}</td><td>{{ e.day|date('d/m/Y') }}</td><td>{{ e.count }}</td>
          			</tr>
 		 		  {% endfor%}
 				</tbody>
 			</table>
 			<br>
+			
 			<div class="chart-caption">Товари куплені в додатку</div>
-            <table class="chart" style="width : 100%;">
-            <thead>
-            <tr>
-                <th></th>
-                <th style="color : #e10000;">unique visitors</th>
-                <th style="color : #000000;">pageviews</th>
-            </tr>
-            </thead>
-            <tbody>
-		    {% for e in  data.sales_Of_Goods_buy_inApp %}
+            <table class="chart" style="width: 100%;">
+            	<thead>
+            		<tr>
+                		<th></th>
+                		<th style="color : #e10000;">Visitors</th>
+            		</tr>
+            	</thead>
+            	<tbody>
+		    	   {% for e in  data.sales_Of_Goods_buy_inApp %}
           			<tr>
-             			<th>{{ e.day }}</th><td>{{ e.count }}</td>
+             			<th>{{ e.day|date('d') }}</th><td>{{ e.count }}</td>
          			</tr>
-		    {% endfor%}
-            </tbody>
+		    	  {% endfor%}
+            	</tbody>
             </table>
 		    <br>
 			<table>
@@ -71,13 +70,13 @@
 				<tbody>
 				  {% for e in  data.sales_Of_Goods_buy_inApp %}			
           			<tr>
-             			<td>{{ e.key }}</td><td>{{ e.day }}</td><td>{{ e.count }}</td>
+             			<td>{{ e.key }}</td><td>{{ e.day|date('d/m/Y') }}</td><td>{{ e.count }}</td>
          			</tr>
 		 		  {% endfor%}
 				</tbody>
 			</table>
 			<br>
-			<div class="chart-caption"> Продажи по регионам</div>
+			<div class="chart-caption">Продажи по регионам</div>
             <table class="chart" style="width : 100%;">
             	<thead>
             		<tr>
@@ -90,7 +89,7 @@
             	<tbody>
 				  {% for e in  data.sales_Of_Goods_region.data %}			
           			<tr>
-             			<td>{{ e.day }}</td>
+             			<td>{{ e.day|date('d') }}</td>
              			{% for j in  e.count %}
              				<td>{{ j }}</td>
              			{% endfor%}
@@ -111,7 +110,7 @@
 				<tbody>
 				  {% for e in  data.sales_Of_Goods_region.data %}			
           			<tr>
-             			<td>{{ e.day }}</td>
+             			<td>{{ e.day|date('d/m/Y') }}</td>
              			{% for j in  e.count %}
              				<td>{{ j }}</td>
              			{% endfor%}

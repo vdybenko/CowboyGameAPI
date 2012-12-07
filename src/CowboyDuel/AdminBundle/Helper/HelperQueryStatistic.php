@@ -104,7 +104,7 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
                   if(count($tmpRegion) > $kj)
                     $tmpCount[] = 0;
 
-                $tmpData[] = array('day' => $vi['day'],'count' => $tmpCount);
+                $tmpData[] = array('day' => \DateTime::createFromFormat('z', $vi['day']),'count' => $tmpCount);
         }
         //Видалення рядків і ущільнення
         foreach ($tmpData as $ki => &$vi)
@@ -130,6 +130,14 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
         $result['data']   = $tmpData;
 
         return $result;
+	}
+	
+	function convertZDataToNorm($data)
+	{
+		for($i = 0; $i < count($data); $i++)
+        	$data[$i]['day'] = \DateTime::createFromFormat('z', $data[$i]['day'])->getTimestamp();
+		
+		return $data;
 	}
 	
 	public function getDuelsInDay($filters)
@@ -174,7 +182,7 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
    		if(isset($filters['region']))
    			return $this->convertDataRegion($q);
    		
-   		return $q;	
+   		return $this->convertZDataToNorm($q);	
 	}
 	
 	public function getSalesOfGoods($filters)
@@ -214,7 +222,7 @@ class HelperQueryStatistic extends \CowboyDuel\ApiBundle\Helper\HelperAbstractDb
 		if(isset($filters['region']))
 			return $this->convertDataRegion($q);
 		
-		return $q;
+		return $this->convertZDataToNorm($q);
 	}
 
 }
