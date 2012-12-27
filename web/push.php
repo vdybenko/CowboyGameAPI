@@ -6,7 +6,7 @@ class pushNotifications
 {
 	private $apnsHost = 'gateway.sandbox.push.apple.com';
 	//private $apnsHost = 'gateway.push.apple.com';	
-	private $apnsPort = '2195';	
+	private $apnsPort = '2196';	
 	private $sslPem = 'apns-dev.pem';	
 	private $passPhrase = '1111';			
 	
