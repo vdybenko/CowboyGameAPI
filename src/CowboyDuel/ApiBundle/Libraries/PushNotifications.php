@@ -2,17 +2,18 @@
 namespace CowboyDuel\ApiBundle\Libraries;
 
 class PushNotifications 
-{
+{		
 		private $apnsHost = 'gateway.sandbox.push.apple.com';
 		//private $apnsHost = 'gateway.push.apple.com';
-		private $apnsPort = '2196';
+		private $apnsPort = '2195';
 		private $sslPem = 'apns-dev.pem';
 		private $passPhrase = '1111';
-	
+		
 		private $apnsConnection;
 	
-		function __construct()
+		function __construct($container)
 		{
+			$this->sslPem = $container->get('kernel')->getRootdir().'/apns-dev.pem';		
 			$this->connectToAPNS();
 		}
 	
@@ -39,5 +40,14 @@ class PushNotifications
 		function closeConnection()
 		{
 			fclose($this->apnsConnection);
+		}
+		
+		public function send($device_token, $msg, $badge = 3)
+		{
+			$payload['aps'] = array('alert' => $msg, 'badge' => (int) $badge, 'sound' => 'default');
+			$payload_json = json_encode($payload);
+			
+			$pushNotifications->sendNotification($device_token, $payload_json);
+			$pushNotifications->closeConnection();
 		}
 	}

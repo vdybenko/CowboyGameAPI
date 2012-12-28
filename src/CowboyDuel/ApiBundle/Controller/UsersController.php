@@ -140,4 +140,34 @@ class UsersController extends Controller
     
     	return new Response(json_encode($responseDate));
     }
+    
+    /**
+     * @Route("/add_to_favorites", name="user_add_to_favorites")
+     */
+    public function addToFavoritesAction()
+    {
+    	$request 		 = $this->getRequest()->request;
+    	$user_authen  		 = $request->get('user_authen');
+    	$favorite_authen = $request->get('favorite_authen');
+    	$session_id   	 = $request->get('session_id');
+    	
+    	if ($user_authen == null)
+    	{
+    		$responseDate = array("err_code" => (int) 4, "err_description" => 'Invalid value');
+    	}
+    	else
+    	{
+    		$em = $this->getDoctrine()->getEntityManager();
+    		$queryHolds = new HelperQueryHolds($em);    		    		
+    		
+    		if($queryHolds == null)
+    			$responseDate = array("err_code" => (int) 4, "err_description" => 'Not found entity');
+    	
+    		$result = $queryHolds->addToFavorites($user_authen, $favorite_authen);
+
+    		$responseDate = array("err_code" => (int) 4, "err_description" => $e->getMessage());    		   		
+    	}
+    	
+    	return new Response(json_encode($responseDate));    	
+    }
 }

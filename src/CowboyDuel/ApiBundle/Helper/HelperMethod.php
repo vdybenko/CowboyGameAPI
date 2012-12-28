@@ -30,6 +30,27 @@ class HelperMethod
 					  $uri, S3::ACL_PUBLIC_READ);
 	}
 	
+	public function sendBotListToS3($em)
+	{
+		$queryHolds = new HelperQueryHolds($em);
+		$queryHoldsStore = new HelperQueryStore($em);
+	
+		$bots = $queryHolds->getUserData(array('snetwork' => 'B'));
+	
+		for($i = 0; $i < count($bots); $i++)
+		{
+		$bots[$i]['weapons']  = $queryHoldsStore->getLastBuyItemStore($bots[$i]['authen'], 'weapons');
+		$bots[$i]['defenses'] = $queryHoldsStore->getLastBuyItemStore($bots[$i]['authen'], 'defenses');
+		}
+		$entitiesJson = json_encode($bots);
+	
+		$this->sendStatS3($this->container->getParameter('S3_bot_file_upload'),
+				$this->container->getParameter('S3_bot_uri')
+				.$this->container->getParameter('S3_type_file'),
+				$entitiesJson);
+				return $entitiesJson;
+	}
+	
 	public function deleteElmInMas($m, $unsetStr)
 	{	
 		$newM = array();
@@ -55,26 +76,5 @@ class HelperMethod
 		}
 		
 		return $newM;
-	}
-	
-	public function sendBotListToS3($em)
-	{		
-		$queryHolds = new HelperQueryHolds($em);
-		$queryHoldsStore = new HelperQueryStore($em);
-		
-		$bots = $queryHolds->getUserData(array('snetwork' => 'B'));
-		
-		for($i = 0; $i < count($bots); $i++)
-		{
-			$bots[$i]['weapons']  = $queryHoldsStore->getLastBuyItemStore($bots[$i]['authen'], 'weapons');
-			$bots[$i]['defenses'] = $queryHoldsStore->getLastBuyItemStore($bots[$i]['authen'], 'defenses');
-		}
-		$entitiesJson = json_encode($bots);
-		
-		$this->sendStatS3($this->container->getParameter('S3_bot_file_upload'),
-						  $this->container->getParameter('S3_bot_uri')
-						  .$this->container->getParameter('S3_type_file'),
-						  $entitiesJson);
-		return $entitiesJson;
 	}
 }

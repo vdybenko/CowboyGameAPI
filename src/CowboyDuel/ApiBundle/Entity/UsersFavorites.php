@@ -22,20 +22,18 @@ class UsersFavorites
     private $id;
 
     /**
-     * @var integer $userId
+     * @var integer $userAuthen
      *
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     * @ORM\Column(name="user_authen", type="string", nullable=false)
      */
-    private $userId;
+    private $userAuthen;
 
     /**
-     * @var integer $userFavorite
+     * @var integer $favoriteAuthen
      *
-     * @ORM\Column(name="user_favorite", type="integer", nullable=false)
+     * @ORM\Column(name="favorite_authen", type="string", nullable=false)
      */
-    private $userFavorite;
-
-
+    private $favoriteAuthen;
 
     /**
      * Get id
@@ -48,48 +46,48 @@ class UsersFavorites
     }
 
     /**
-     * Set userId
+     * Set userAuthen
      *
-     * @param integer $userId
+     * @param string $userAuthen
      * @return UsersFavorites
      */
-    public function setUserId($userId)
+    public function setUserAuthen($userAuthen)
     {
-        $this->userId = $userId;
+        $this->userAuthen = $userAuthen;
     
         return $this;
     }
 
     /**
-     * Get userId
+     * Get userAuthen
      *
-     * @return integer 
+     * @return string 
      */
-    public function getUserId()
+    public function getUserAuthen()
     {
-        return $this->userId;
+        return $this->userAuthen;
     }
 
     /**
-     * Set userFavorite
+     * Set favoriteAuthen
      *
-     * @param integer $userFavorite
+     * @param string $favoriteAuthen
      * @return UsersFavorites
      */
-    public function setUserFavorite($userFavorite)
+    public function setFavoriteAuthen($favoriteAuthen)
     {
-        $this->userFavorite = $userFavorite;
+        $this->favoriteAuthen = $favoriteAuthen;
     
         return $this;
     }
 
     /**
-     * Get userFavorite
+     * Get favoriteAuthen
      *
-     * @return integer 
+     * @return string 
      */
-    public function getUserFavorite()
+    public function getFavoriteAuthen()
     {
-        return $this->userFavorite;
+        return $this->favoriteAuthen;
     }
 }

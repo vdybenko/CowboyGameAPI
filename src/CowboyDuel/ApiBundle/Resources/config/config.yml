@@ -1,7 +1,10 @@
 services:
     CowboyDuel.UpdateListTopUsers:
         class:  CowboyDuel\ApiBundle\DependencyInjection\UpdateListTopUsers
-        arguments: [@service_container, @doctrine.orm.entity_manager] 
+        arguments: [@service_container, @doctrine.orm.entity_manager]
+    CowboyDuel.PushNotifications:
+        class:  CowboyDuel\ApiBundle\Libraries\PushNotifications
+        arguments: [@service_container]
 
 parameters:
     # S3 Configuration

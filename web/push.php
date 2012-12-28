@@ -6,7 +6,7 @@ class pushNotifications
 {
 	private $apnsHost = 'gateway.sandbox.push.apple.com';
 	//private $apnsHost = 'gateway.push.apple.com';	
-	private $apnsPort = '2196';	
+	private $apnsPort = '2195';	
 	private $sslPem = 'apns-dev.pem';	
 	private $passPhrase = '1111';			
 	
@@ -53,7 +53,7 @@ if (isset($_POST['submit']))
     
     $payload_max_size = 219;
     $payload['aps'] = array('alert' => $msg_body, 'badge' => (int)$badge, 'sound' => $sound);    
-    $payload_json = json_encode($payload);    
+    $payload_json = json_encode($payload);
     
     // Push notification
     $pushNotifications = new pushNotifications();
@@ -83,7 +83,7 @@ if (isset($_POST['submit']))
     <table>
       <tr>
         <td>Device token</td>
-        <td><input type="text" name="token" value="bb472315da3cdccb718bc92b1f613fe2d8d0914ab8c0edc6b0307dcf5bde90ff" /></td>
+        <td><input type="text" name="token" value="a663603ed6f7d0fcbf78f6ca57396d0adb7619210a5b4d073ed8526cafd344c1" /></td>
       </tr>
       <tr>
         <td>Badge</td>

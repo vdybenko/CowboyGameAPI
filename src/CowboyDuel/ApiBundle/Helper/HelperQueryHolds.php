@@ -3,7 +3,8 @@ namespace CowboyDuel\ApiBundle\Helper;
 
 use CowboyDuel\ApiBundle\Entity\Online,
 	CowboyDuel\ApiBundle\Entity\Users,
-	CowboyDuel\ApiBundle\Entity\Duels;
+	CowboyDuel\ApiBundle\Entity\Duels,
+	CowboyDuel\ApiBundle\Entity\UsersFavorites;
 
 class HelperQueryHolds extends HelperAbstractDb
 {
@@ -307,5 +308,16 @@ class HelperQueryHolds extends HelperAbstractDb
 		);
 		
 		return $q->getResult();
+	}
+	
+	public function addToFavorites($user_authen, $favorite_authen)
+	{
+		$uf = new UsersFavorites();
+				
+		$uf->setUserAuthen($user_authen)
+		   ->setFavoriteAuthen($favorite_authen);
+		
+		$this->em->persist($uf);
+		$this->em->flush();
 	}
 }

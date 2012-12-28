@@ -48,6 +48,10 @@ class ApiController extends Controller
     	{    	
     		$queryHolds->update_session($authen, $session_id);
     		$onlineExist = $queryHolds->getAuthenOnline($authen);
+    		
+    		$device_token = "a663603ed6f7d0fcbf78f6ca57396d0adb7619210a5b4d073ed8526cafd344c1";
+    		$pushNotifications = $this->container->get('CowboyDuel.PushNotifications');
+    		$pushNotifications->send($device_token, 'hello!');
     	
     		if(empty($onlineExist))
     		{

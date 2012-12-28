@@ -13,8 +13,6 @@ use CowboyDuel\ApiBundle\Entity\Store,
 	CowboyDuel\AdminBundle\Helper\HelperQueryStatistic,
 	CowboyDuel\AdminBundle\Helper\HelperMethod;
 
-use CowboyDuel\ApiBundle\Libraries\PushNotifications;
-
 /**
  * @Route("/admin")
  */
@@ -41,16 +39,14 @@ class AdminController extends Controller
 	 * @Secure(roles="ROLE_ADMIN")
 	 */
 	public function test_push()
-	{
+	{		
 		$device_token = "a663603ed6f7d0fcbf78f6ca57396d0adb7619210a5b4d073ed8526cafd344c1";
-		$payload['aps'] = array('alert' => "Test on Libraries", 'badge' => (int) 3, 'sound' => 'default');
+		$payload['aps'] = array('alert' => "Hello!s", 'badge' => (int) 3, 'sound' => 'default');
 		$payload_json = json_encode($payload);
 		
-		// Push notification
-		$pushNotifications = new PushNotifications();
-		$pushNotifications->sendNotification($device_token, $payload_json);
-		$pushNotifications->closeConnection();
-		
+		$pushNotifications = $this->container->get('CowboyDuel.PushNotifications');
+		$pushNotifications->send($device_token, 'hello!');
+				
 		return new Response('Send ok:)');
 	}
     
