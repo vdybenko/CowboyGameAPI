@@ -3,7 +3,7 @@
 # Server version:               5.5.20-log
 # Server OS:                    Linux
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2012-12-28 15:02:13
+# Date/time:                    2012-12-28 16:28:58
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `online` (
 # Dumping data for table duels_v201.online: 22 rows
 /*!40000 ALTER TABLE `online` DISABLE KEYS */;
 INSERT INTO `online` (`id`, `authen`, `online`, `enterTime`, `exitTime`) VALUES
-	(1, 'F:100002141165315', 1, '1356689965', '0'),
+	(1, 'F:100002141165315', 1, '1356702429', '0'),
 	(2, 'A:6e70744811', 1, '1356012400', '0'),
 	(3, 'A:be56be4e39', 1, '1356683356', '0'),
 	(4, 'A:0000000000', 1, '1354808531', '0'),
@@ -123,15 +123,15 @@ INSERT INTO `online` (`id`, `authen`, `online`, `enterTime`, `exitTime`) VALUES
 	(11, 'A:4bb24acc21', 1, '1355243889', '0'),
 	(12, 'A:b19976b9a4', 1, '1354799327', '0'),
 	(13, 'A:7a67ec98e1', 1, '1355244007', '0'),
-	(14, 'A:951059a530', 1, '1356093254', '0'),
+	(14, 'A:951059a530', 1, '1356702489', '0'),
 	(15, 'F:1sdsd', 1, '1355145559', '0'),
 	(16, 'A:951059A5-3', 1, '1355405109', '0'),
 	(17, 'A:c5968883f3', 1, '1355508281', '0'),
 	(18, 'A:eea08069a2', 1, '1356013149', '0'),
 	(19, 'A:9e8d5f97fb', 1, '1356617743', '0'),
 	(20, 'F:100004846291828', 1, '1356683312', '0'),
-	(21, 'A:00000000-0', 1, '1356617470', '0'),
-	(22, 'F:100004508202200', 1, '1356695984', '0');
+	(21, 'A:00000000-0', 1, '1356701141', '0'),
+	(22, 'F:100004508202200', 1, '1356701156', '0');
 /*!40000 ALTER TABLE `online` ENABLE KEYS */;
 
 
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 	(1, 'refresh_content', '1'),
-	(2, 'timeLastRefresh', '1356696305'),
+	(2, 'timeLastRefresh', '1356703505'),
 	(3, 'versionListOfStoreItems', '1'),
 	(4, 'program_version', '2.2');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
@@ -218,9 +218,9 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `opponent_authen` varchar(255) COLLATE utf8_bin NOT NULL,
   `local_id` int(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=170 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=173 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-# Dumping data for table duels_v201.transactions: 169 rows
+# Dumping data for table duels_v201.transactions: 172 rows
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
 INSERT INTO `transactions` (`id`, `authen`, `value`, `description`, `date`, `opponent_authen`, `local_id`) VALUES
 	(1, 'F:537141553', -20, 'Duel', '1354698944', 'A:be56be4tyte39', 1),
@@ -391,7 +391,10 @@ INSERT INTO `transactions` (`id`, `authen`, `value`, `description`, `date`, `opp
 	(166, 'F:537141553', 44, 'Duel', '1356453948', 'A:697342135', 5),
 	(167, 'A:697342135', -44, 'Duel', '1356453950', 'F:537141553', -1),
 	(168, 'A:be56be4e39', 10, 'Daily money', '1356603259', '', 5),
-	(169, 'A:be56be4e39', 10, 'Daily money', '1356682717', '', 6);
+	(169, 'A:be56be4e39', 10, 'Daily money', '1356682717', '', 6),
+	(170, 'F:100002141165315', -51, 'Duel', '1356700495', 'F:100004508202200', 2),
+	(171, 'F:100002141165315', -46, 'Duel', '1356701082', 'F:100004508202200', 3),
+	(172, 'F:100002141165315', -41, 'Duel', '1356701191', 'F:100004508202200', 4);
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 
 
@@ -446,9 +449,9 @@ INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`,
 	(31, 'F:100003339232518', 'Захар Бочаров', 'iPhone4S', 'F', 1356013420, 1356013420, '0', 'ru_RU', 'ru', '6.0.1', '2.2', '', 0, 200, '50d31f6e530cb', 1, 3, 0, 1, 0, 0, '', '', '', 0, 'F:100003339232518'),
 	(13, 'F:100004072748849', 'John  Newbie', 'x86_64', 'F', 1354717227, 1354717227, '0', 'en_US', 'en', '6.0', '2.2', '', 0, 200, '50c0a2f4d2bae', 0, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-ash3/624017_100004072748849_788191727_q.jpg', '0000-00-00', '', 2, 'F:100004072748849'),
 	(16, 'F:583113312', 'Matthew Dixon', 'iPhone4S', 'F', 1354799329, 1354799329, '0', 'en_GB', 'en-GB', '6.0.1', '2.2', '', 0, 200, '50c098e080330', 0, 0, 0, 0, 0, 0, 'http://profile.ak.fbcdn.net/hprofile-ak-prn1/48686_583113312_1154091046_q.jpg', '0000-00-00', 'Stockholm, Sweden', 0, 'F:583113312'),
-	(28, 'F:100002141165315', 'Sergij Sobol. ', 'iPod3', 'F', 1355820683, 1356081468, '0', 'ru_UA', 'ru', '5.1.1', '2.2', '', 0, 514, '50dd722c66650', 2, 20, 2, 0, 18, 0, '', '10/26/1987', '', 0, 'F:100002141165315'),
+	(28, 'F:100002141165315', 'Sergij Sobol. ', 'iPod3', 'F', 1355820683, 1356081468, '0', 'ru_UA', 'ru', '5.1.1', '2.2', '', 0, 376, '50dda2dc8a027', 3, 75, 0, 3, 0, 0, '', '10/26/1987', '', 0, 'F:100002141165315'),
 	(32, 'F:100004846291828', 'iPod3', '2.2', '0', 1356453516, 1356602924, 'Sergij Sob', '5.1.1', 'ru_UA', '5.1.1', '2.2', '', 0, 9, '50dd585fd2a02', 0, 1, 261, 2, 1, 45, '', '10/26/1987', '', 0, 'A:be56be4e39'),
-	(29, 'F:100002141165315', 'x86_64', '2.2', '0', 1355931919, 1355931927, 'Sergij Sob', '6.0', 'en_US', '6.0', '2.2', '', 0, 514, '50dd722c66650', 0, 0, 200, 0, 0, 0, '', '10/26/1987', '10/26/1987', 0, 'A:951059a530'),
+	(29, 'F:100002141165315', 'x86_64', '2.2', '0', 1355931919, 1355931927, 'Sergij Sob', '6.0', 'en_US', '6.0', '2.2', '', 0, 376, '50dda2dc8a027', 0, 0, 200, 0, 0, 0, '', '10/26/1987', '10/26/1987', 0, 'A:951059a530'),
 	(33, 'F:100004846291828', 'iPod3', '2.2', '0', 1356603257, 1356603282, 'Sergij Sob', '5.1.1', 'ru_UA', '5.1.1', '2.2', '', 0, 210, '50dd585fd2a02', 0, 0, 210, 0, 0, 0, '', '', '', 0, 'A:be56be4e39'),
 	(34, 'F:100004846291828', 'iPod3', '2.2', '0', 1356682715, 1356682730, 'Sergij Sob', '5.1.1', 'ru_UA', '5.1.1', '2.2', '', 0, 210, '50dd585fd2a02', 0, 0, 210, 0, 0, 0, '', '', '', 0, 'A:be56be4e39'),
 	(35, 'F:100004846291828', 'iPod3', '2.2', '0', 1356683222, 1356683240, 'Sergij Sob', '5.1.1', 'ru_UA', '5.1.1', '2.2', '', 0, 200, '50dd585fd2a02', 0, 0, 200, 0, 0, 0, '', '', '', 0, 'A:be56be4e39'),
@@ -462,8 +465,7 @@ CREATE TABLE IF NOT EXISTS `users_favorites` (
   `user_authen` varchar(50) COLLATE utf8_bin NOT NULL,
   `favorite_authen` varchar(50) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `user_authen` (`user_authen`),
-  KEY `user_id` (`user_authen`)
+  KEY `user_authen` (`user_authen`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 # Dumping data for table duels_v201.users_favorites: 0 rows

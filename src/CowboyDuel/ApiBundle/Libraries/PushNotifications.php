@@ -47,7 +47,6 @@ class PushNotifications
 			$payload['aps'] = array('alert' => $msg, 'badge' => (int) $badge, 'sound' => 'default');
 			$payload_json = json_encode($payload);
 			
-			$pushNotifications->sendNotification($device_token, $payload_json);
-			$pushNotifications->closeConnection();
+			$this->sendNotification($device_token, $payload_json);
 		}
 	}

@@ -147,7 +147,7 @@ class UsersController extends Controller
     public function addToFavoritesAction()
     {
     	$request 		 = $this->getRequest()->request;
-    	$user_authen  		 = $request->get('user_authen');
+    	$user_authen  	 = $request->get('user_authen');
     	$favorite_authen = $request->get('favorite_authen');
     	$session_id   	 = $request->get('session_id');
     	
@@ -158,16 +158,23 @@ class UsersController extends Controller
     	else
     	{
     		$em = $this->getDoctrine()->getEntityManager();
-    		$queryHolds = new HelperQueryHolds($em);    		    		
-    		
-    		if($queryHolds == null)
+    		$queryHolds = new HelperQueryHolds($em);
+
+    		$user = $queryHolds->getUser($user_authen);    		
+    		if($user == null)
+    		{
     			$responseDate = array("err_code" => (int) 4, "err_description" => 'Not found entity');
+    			return new Response(json_encode($responseDate));
+    		}		
+    		if($user->getSessionId() != $session_id)
+    		{
+    			$responseDate = array("err_code" => (int) 4, "err_description" => 'Not found entity');
+    			return new Response(json_encode($responseDate));
+    		}
     	
     		$result = $queryHolds->addToFavorites($user_authen, $favorite_authen);
-
-    		$responseDate = array("err_code" => (int) 4, "err_description" => $e->getMessage());    		   		
-    	}
-    	
+    		$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');
+    	}    	
     	return new Response(json_encode($responseDate));    	
     }
 }

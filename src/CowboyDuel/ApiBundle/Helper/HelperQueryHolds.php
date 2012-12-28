@@ -320,4 +320,15 @@ class HelperQueryHolds extends HelperAbstractDb
 		$this->em->persist($uf);
 		$this->em->flush();
 	}
+	
+	public function getUserToPushNotifications($authen)
+	{
+		$q = $this->em->createQuery("
+				SELECT u.authen, u.nickname, u.deviceToken, uf.userAuthen, (SELECT us.nickname FROM CowboyDuelApiBundle:Users us WHERE us.authen='$authen') AS nn_user_on
+				FROM CowboyDuelApiBundle:UsersFavorites uf, CowboyDuelApiBundle:Users u
+				WHERE uf.favoriteAuthen = u.authen AND uf.userAuthen='$authen'
+			");
+		
+		return $q->getResult();
+	}
 }

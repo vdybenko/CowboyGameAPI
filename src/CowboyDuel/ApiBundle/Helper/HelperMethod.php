@@ -1,7 +1,8 @@
 <?php
 namespace CowboyDuel\ApiBundle\Helper;
 
-use CowboyDuel\ApiBundle\Libraries\S3;
+use CowboyDuel\ApiBundle\Libraries\S3,
+	CowboyDuel\ApiBundle\Libraries\PushNotifications;
 
 use CowboyDuel\ApiBundle\Helper\HelperQueryHolds,
 	CowboyDuel\ApiBundle\Helper\HelperQueryStore;
@@ -9,8 +10,9 @@ use CowboyDuel\ApiBundle\Helper\HelperQueryHolds,
 class HelperMethod 
 {
 	private $container;
+	private $em;
 	
-	public function __construct($_container)
+	public function __construct($_container = null)
 	{
 		$this->container = $_container;
 	}
@@ -76,5 +78,18 @@ class HelperMethod
 		}
 		
 		return $newM;
+	}
+	
+	public function sendPushUsersFavorites($user_authen, $queryHolds)
+	{
+		$users = $queryHolds->getUserToPushNotifications($user_authen);
+		$pushNotifications = new PushNotifications($this->container);
+		
+		foreach ($users as $ki => $vi)
+		{
+			$msg = 'Hi '.$vi['nickname'].'! '.$vi['nn_user_on'].' appeared online. You can play with him.';
+			$pushNotifications->send($vi['deviceToken'], $msg);
+		}
+		$pushNotifications->closeConnection();
 	}
 }
