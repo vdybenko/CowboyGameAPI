@@ -45,7 +45,7 @@ class AdminController extends Controller
 		$payload_json = json_encode($payload);
 		
 		$pushNotifications = $this->container->get('CowboyDuel.PushNotifications');
-		$pushNotifications->send($device_token, 'hello!');
+		$pushNotifications->send($device_token, 'Привіт!');
 				
 		return new Response('Send ok:)');
 	}

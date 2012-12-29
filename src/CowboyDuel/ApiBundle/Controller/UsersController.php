@@ -163,12 +163,12 @@ class UsersController extends Controller
     		$user = $queryHolds->getUser($user_authen);    		
     		if($user == null)
     		{
-    			$responseDate = array("err_code" => (int) 4, "err_description" => 'Not found entity');
+    			$responseDate = array("err_code" => (int) 3, "err_description" => 'Not found entity');
     			return new Response(json_encode($responseDate));
     		}		
     		if($user->getSessionId() != $session_id)
     		{
-    			$responseDate = array("err_code" => (int) 4, "err_description" => 'Not found entity');
+    			$responseDate = array("err_code" => (int) 4, "err_description" => 'Invalid session');
     			return new Response(json_encode($responseDate));
     		}
     	

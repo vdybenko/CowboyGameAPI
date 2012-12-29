@@ -44,6 +44,7 @@ class PushNotifications
 		
 		public function send($device_token, $msg, $badge = 3)
 		{
+			if($device_token == '' || $device_token == null) return false;
 			$payload['aps'] = array('alert' => $msg, 'badge' => (int) $badge, 'sound' => 'default');
 			$payload_json = json_encode($payload);
 			

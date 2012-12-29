@@ -87,8 +87,8 @@ class HelperMethod
 		
 		foreach ($users as $ki => $vi)
 		{
-			$msg = 'Hi '.$vi['nickname'].'! '.$vi['nn_user_on'].' appeared online. You can play with him.';
-			$pushNotifications->send($vi['deviceToken'], $msg);
+			$msg = 'Hi '.$vi['nn_user_on'].'! '.$vi['nickname'].' appeared online. You can play with him.';
+			$pushNotifications->send($vi['deviceToken'], $msg);			
 		}
 		$pushNotifications->closeConnection();
 	}
