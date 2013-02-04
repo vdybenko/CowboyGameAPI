@@ -172,28 +172,28 @@ class HelperQueryHolds extends HelperAbstractDb
 	{
 		$user = $this->getUserWithAuthenOld($authen, $authen_old);
 		
-		if($authen) $user->setAuthen($authen);
-		if($nickname) $user->setNickname($nickname);
-		if($app_ver) $user->setAppVer($app_ver);
-		if($device_name) $user->setDeviceName($device_name);
+		if(!is_null($authen)) $user->setAuthen($authen);
+		if(!is_null($nickname)) $user->setNickname($nickname);
+		if(!is_null($app_ver)) $user->setAppVer($app_ver);
+		if(!is_null($device_name)) $user->setDeviceName($device_name);
 		$user->setFirstLogin(time());
 		//if($device_token) $this->db->set('session_id',$session_id);
-		if($money) $user->setMoney($money);
-		if($type) $user->setType($type);
-		if($os) $user->setOs($os);
-		if($region) $user->setRegion($region);
-		if($current_language) $user->setCurrentLanguage($current_language);
-		if($level) $user->setLevel($level);
-		if($points) $user->setPoints($points);
-		if($duels_win) $user->setDuelsWin($duels_win);
-		if($duels_lost) $user->setDuelsLost($duels_lost);
-		if($bigest_win) $user->setBigestWin($bigest_win);
-		if($remove_ads) $user->setRemoveAds($remove_ads);
-		if($avatar) $user->setAvatar($avatar);
-		if($age) $user->setAge($age);
-		if($home_town) $user->setHomeTown($home_town);
-		if($friends) $user->setFriends($friends);
-		if($identifier) $user->setIdentifier($identifier);
+		if(!is_null($money)) $user->setMoney($money);
+		if(!is_null($type)) $user->setType($type);
+		if(!is_null($os)) $user->setOs($os);
+		if(!is_null($region)) $user->setRegion($region);
+		if(!is_null($current_language)) $user->setCurrentLanguage($current_language);
+		if(!is_null($level)) $user->setLevel($level);
+		if(!is_null($points)) $user->setPoints($points);
+		if(!is_null($duels_win)) $user->setDuelsWin($duels_win);
+		if(!is_null($duels_lost)) $user->setDuelsLost($duels_lost);
+		if(!is_null($bigest_win)) $user->setBigestWin($bigest_win);
+		if(!is_null($remove_ads)) $user->setRemoveAds($remove_ads);
+		if(!is_null($avatar)) $user->setAvatar($avatar);
+		if(!is_null($age)) $user->setAge($age);
+		if(!is_null($home_town)) $user->setHomeTown($home_town);
+		if(!is_null($friends)) $user->setFriends($friends);
+		if(!is_null($identifier)) $user->setIdentifier($identifier);
 	
 		$this->em->merge($user);
 		$this->em->flush();
