@@ -67,9 +67,9 @@ class StoreController extends Controller
        			   ->setImg(is_null($img)?'':$img)
        			   ->setBigImg(is_null($bigImg)?'':$bigImg)
        			   
-       			   ->setThumb(is_null($thumbRetina)?'':$thumbRetina)
-       			   ->setImg(is_null($imgRetina)?'':$imgRetina)
-       			   ->setBigImg(is_null($bigImgRetina)?'':$bigImgRetina)
+       			   ->setThumbRetina(is_null($thumbRetina)?'':$thumbRetina)
+       			   ->setImgRetina(is_null($imgRetina)?'':$imgRetina)
+       			   ->setBigImgRetina(is_null($bigImgRetina)?'':$bigImgRetina)
        			   
        		       ->setSound(is_null($sound)?'':$sound)
        			   ->setDescription(is_null($description)?'':$description)
