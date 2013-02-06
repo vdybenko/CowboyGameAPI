@@ -128,16 +128,18 @@ class UsersController extends Controller
     	else
     	{
     		$em = $this->getDoctrine()->getEntityManager();
-    		$queryHolds = new HelperQueryHolds($em);    		
-    		
-    		if($queryHolds == null) 
-    			$responseDate = array("err_code" => (int) 4, "err_description" => 'Invalid value');
-    		
+    		$queryHolds = new HelperQueryHolds($em);
+    				
     		$result = $queryHolds->setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win);    	
-
+			
+    		if($result == null)
+    		{
+    			$responseDate = array("err_code" => (int) 3, "err_description" => 'Not found entity');
+    			return new Response(json_encode($responseDate));
+    		}
+    		
     		$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');
-    	}
-    
+    	}    
     	return new Response(json_encode($responseDate));
     }
     
