@@ -134,7 +134,7 @@ class UsersController extends Controller
 			
     		if($result == null)
     		{
-    			$responseDate = array("err_code" => (int) 3, "err_description" => 'Not found entity');
+    			$responseDate = array("err_code" => (int) 3, "err_description" => 'Not found entity: '.$authen);
     			return new Response(json_encode($responseDate));
     		}
     		
