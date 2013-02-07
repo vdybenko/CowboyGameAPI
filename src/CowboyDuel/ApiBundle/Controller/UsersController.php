@@ -238,6 +238,9 @@ class UsersController extends Controller
     			$responseDate = array("err_code" => (int) 3, "err_description" => 'Not found entity');
     			return new Response(json_encode($responseDate));
     		}
+    		//for($i=)
+    		
+    		//case 'defenses': $select = "s.damageOrDefense AS value"; break;
     	}    	 
     	return new Response(json_encode($responseDate));
     }

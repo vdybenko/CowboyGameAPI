@@ -48,6 +48,7 @@ class HelperQueryStore extends HelperAbstractDb
 		{
 			case 'weapons': $select = "s.id"; break;
 			case 'defenses': $select = "s.damageOrDefense AS value"; break;
+			case 'defenses_value': $select = "s.damageOrDefense AS value"; break;
 		}
 		
 		$q = $this->em->createQuery("
