@@ -331,7 +331,7 @@ class HelperQueryHolds extends HelperAbstractDb
 	public function getFavorites($user_authen)
 	{
 		$q = $this->em->createQuery("
-				SELECT uf.fa
+				SELECT uf.favoriteAuthen AS fa
 				FROM CowboyDuelApiBundle:UsersFavorites uf
 				WHERE uf.userAuthen='$user_authen'");
 		return $q->getResult();
