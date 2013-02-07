@@ -75,7 +75,7 @@ class HelperQueryHolds extends HelperAbstractDb
 	    $e = $q->getResult();
 
 		return  (isset($e[0]))? $e[0]: null;
-	}	
+	}
 	
 	public function getUserData($filters)
 	{
@@ -320,6 +320,21 @@ class HelperQueryHolds extends HelperAbstractDb
 		
 		$this->em->persist($uf);
 		$this->em->flush();
+	}
+	public function deleteFavorites($user_authen, $favorite_authen)
+	{
+		$q = $this->em->createQuery("
+				DELETE FROM CowboyDuelApiBundle:UsersFavorites uf
+				WHERE uf.userAuthen='$user_authen' AND uf.favoriteAuthen='$favorite_authen'");
+		return $q->getResult();
+	}
+	public function getFavorites($user_authen)
+	{
+		$q = $this->em->createQuery("
+				SELECT uf.fa
+				FROM CowboyDuelApiBundle:UsersFavorites uf
+				WHERE uf.userAuthen='$user_authen'");
+		return $q->getResult();
 	}
 	
 	public function getUserToPushNotifications($authen)

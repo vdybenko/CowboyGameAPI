@@ -170,7 +170,7 @@ class UsersController extends Controller
     		}		
     		if($user->getSessionId() != $session_id)
     		{
-    			$responseDate = array("err_code" => (int) 4, "err_description" => 'Invalid session');
+    			$responseDate = array("err_code" => (int) 2, "err_description" => 'Invalid session');
     			return new Response(json_encode($responseDate));
     		}
     	
@@ -178,5 +178,67 @@ class UsersController extends Controller
     		$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');
     	}    	
     	return new Response(json_encode($responseDate));    	
+    }
+    /**
+     * @Route("/delete_favorites", name="user_delete_favorites")
+     */
+    public function deleteFavoritesAction()
+    {
+    	$request 		 = $this->getRequest()->request;
+    	$user_authen  	 = $request->get('user_authen');
+    	$favorite_authen = $request->get('favorite_authen');
+    	$session_id   	 = $request->get('session_id');
+    	 
+    	if ($user_authen == null)
+    	{
+    		$responseDate = array("err_code" => (int) 4, "err_description" => 'Invalid value');
+    	}
+    	else
+    	{
+    		$em = $this->getDoctrine()->getEntityManager();
+    		$queryHolds = new HelperQueryHolds($em);
+    		
+    		$user = $queryHolds->getUser($user_authen);   		
+    		if($user == null)
+    		{
+    			$responseDate = array("err_code" => (int) 3, "err_description" => 'Not found entity');
+    			return new Response(json_encode($responseDate));
+    		}
+    		if($user->getSessionId() != $session_id)
+    		{
+    			$responseDate = array("err_code" => (int) 2, "err_description" => 'Invalid session');
+    			return new Response(json_encode($responseDate));
+    		}    		 
+    		$queryHolds->deleteFavorites($user_authen, $favorite_authen);
+    		
+    		$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');
+    	}
+    	return new Response(json_encode($responseDate));
+    }
+    /**
+     * @Route("/get_favorites", name="users_get_favorites")
+     */
+    public function getFavoritesAction()
+    {
+    	$request 		 = $this->getRequest()->request;
+    	$user_authen  	 = $request->get('authen');
+    	
+    	if ($user_authen == null)
+    	{
+    		$responseDate = array("err_code" => (int) 4, "err_description" => 'Invalid value');
+    	}
+    	else
+    	{
+    		$em = $this->getDoctrine()->getEntityManager();
+    		$queryHolds = new HelperQueryHolds($em);
+    	
+    		$responseDate = $queryHolds->getFavorites($user_authen);
+    		if($responseDate == null)
+    		{
+    			$responseDate = array("err_code" => (int) 3, "err_description" => 'Not found entity');
+    			return new Response(json_encode($responseDate));
+    		}
+    	}    	 
+    	return new Response(json_encode($responseDate));
     }
 }
