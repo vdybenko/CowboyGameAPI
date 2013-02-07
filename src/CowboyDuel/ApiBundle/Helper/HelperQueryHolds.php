@@ -333,7 +333,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		$q = $this->em->createQuery("
 				SELECT u.authen, u.nickname, u.money, u.level, u.points, u.avatar
 				FROM CowboyDuelApiBundle:UsersFavorites uf, CowboyDuelApiBundle:Users u
-				WHERE uf.userAuthen='$user_authen' AND u.userId=fa.favoriteAuthen");
+				WHERE uf.userAuthen='$user_authen' AND u.userId=uf.favoriteAuthen");
 		return $q->getResult();
 	}
 	
