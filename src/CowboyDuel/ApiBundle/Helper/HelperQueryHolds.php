@@ -330,11 +330,12 @@ class HelperQueryHolds extends HelperAbstractDb
 	}
 	public function getFavorites($user_authen)
 	{
-		$q = $this->em->createQuery("
+		$q = $this->createQuery("
 				SELECT u.authen, u.nickname, u.money, u.level, u.points, u.avatar
-				FROM CowboyDuelApiBundle:UsersFavorites uf, CowboyDuelApiBundle:Users u
-				WHERE uf.userAuthen='$user_authen' AND u.userId=uf.favoriteAuthen");
-		return $q->getResult();
+				FROM `users_favorites` uf INNER JOIN `users` u ON uf.favorite_authen = u.authen
+				WHERE uf.user_authen='$user_authen'
+			");
+		return $q;
 	}
 	
 	public function getUserToPushNotifications($authen)

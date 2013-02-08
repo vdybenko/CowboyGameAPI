@@ -231,6 +231,7 @@ class UsersController extends Controller
     	{
     		$em = $this->getDoctrine()->getEntityManager();
     		$queryHolds = new HelperQueryHolds($em);
+    		$queryHoldsStore = new HelperQueryStore($em);
     	
     		$responseDate = $queryHolds->getFavorites($user_authen);
     		if($responseDate == null)
@@ -238,9 +239,11 @@ class UsersController extends Controller
     			$responseDate = array("err_code" => (int) 3, "err_description" => 'Not found entity');
     			return new Response(json_encode($responseDate));
     		}
-    		//for($i=)
-    		
-    		//case 'defenses': $select = "s.damageOrDefense AS value"; break;
+    		for($i=0; $i<count($responseDate); $i++)
+    		{
+    			$responseDate[$i]['weapons'] = $queryHoldsStore->getLastBuyItemStore($responseDate[$i]['authen'], 'weapons');
+    			$responseDate[$i]['defenses'] = $queryHoldsStore->getLastBuyItemStore($responseDate[$i]['authen'], 'defenses');
+    		}
     	}    	 
     	return new Response(json_encode($responseDate));
     }
