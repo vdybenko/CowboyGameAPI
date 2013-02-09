@@ -337,6 +337,14 @@ class HelperQueryHolds extends HelperAbstractDb
 			");
 		return $q;
 	}
+	public function getIsFavorites($user_authen, $favorite_authen)
+	{
+		$q = $this->em->createQuery("
+				SELECT uf
+				FROM CowboyDuelApiBundle:UsersFavorites uf
+				WHERE uf.userAuthen='$user_authen' AND uf.favoriteAuthen='$favorite_authen'");
+		return $q->getResult();
+	}
 	
 	public function getUserToPushNotifications($authen)
 	{

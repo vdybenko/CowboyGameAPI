@@ -173,6 +173,11 @@ class UsersController extends Controller
     			$responseDate = array("err_code" => (int) 2, "err_description" => 'Invalid session');
     			return new Response(json_encode($responseDate));
     		}
+    		if(count($queryHolds->getIsFavorites($user_authen,$favorite_authen)) <> 0)
+    		{
+    			$responseDate = array("err_code" => (int) 6, "err_description" => 'Already added to Favorites');
+    			return new Response(json_encode($responseDate));
+    		}
     	
     		$result = $queryHolds->addToFavorites($user_authen, $favorite_authen);
     		$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');
