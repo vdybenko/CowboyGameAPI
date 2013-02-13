@@ -127,7 +127,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		 	return $this->getUser($authen_old);	
 	}
 	
-	public function setUser($authen, $app_ver, $device_name, $nickname, $os, $region, $current_language,
+	public function setUser($authen, $app_ver, $device_name, $device_token, $nickname, $os, $region, $current_language,
 							$level, $points, $money, $duels_win, $duels_lost, $bigest_win, $remove_ads, $avatar, $age,$home_town,
 							$friends, $identifier, $snetwork)
 	{
@@ -138,6 +138,7 @@ class HelperQueryHolds extends HelperAbstractDb
 			 ->setNickname($nickname)
 			 ->setAppVer($app_ver)
 			 ->setDeviceName($device_name)
+			 ->setDeviceToken($device_token)
 			 ->setFirstLogin(time())
 			 ->setMoney($money)
 			 ->setOs($os)
@@ -158,7 +159,6 @@ class HelperQueryHolds extends HelperAbstractDb
 			 
 			 ->setLastLogin(time())
 			 ->setType(0)
-			 ->setDeviceToken("")
 			 ->setDate(0)
 			 ->setSessionId("")
 		;
@@ -167,7 +167,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		$this->em->flush();
 	}
 	
-	public function setUserInfo($authen, $authen_old, $app_ver, $device_name, $nickname, $type, $os, $region,
+	public function setUserInfo($authen, $authen_old, $app_ver, $device_name, $device_token, $nickname, $type, $os, $region,
 								$current_language, $level, $points, $money, $duels_win, $duels_lost, $bigest_win, 
 								$remove_ads, $avatar, $age, $home_town, $friends, $identifier)
 	{
@@ -178,7 +178,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		if(!is_null($app_ver)) $user->setAppVer($app_ver);
 		if(!is_null($device_name)) $user->setDeviceName($device_name);
 		$user->setFirstLogin(time());
-		//if($device_token) $this->db->set('session_id',$session_id);
+		if(!is_null($device_token)) $user->setDeviceToken($device_token);
 		if(!is_null($money)) $user->setMoney($money);
 		if(!is_null($type)) $user->setType($type);
 		if(!is_null($os)) $user->setOs($os);
