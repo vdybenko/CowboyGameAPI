@@ -16,6 +16,7 @@ class StoreType extends AbstractType
 			->add('type','choice', array('choices' => array('weapons' => 'weapons', 'defenses' => 'defenses')))	
 			->add('title')
 			->add('damageOrDefense')
+			->add('frequently')
 			->add('golds')
 			->add('inAppId')
 			->add('thumb')
