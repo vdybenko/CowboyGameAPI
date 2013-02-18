@@ -91,7 +91,7 @@ class HelperQueryHolds extends HelperAbstractDb
 					
 		$q = $this->em->createQuery("
 				SELECT $select u.userId AS user_id, u.nickname, u.money, u.sessionId AS session_id, u.level, u.points, 
-					   u.duelsWin AS duels_win, u.duelsLost AS duels_lost, u.bigestWin AS bigest_win, 
+					   u.duelsWin AS duels_win, u.duelsLost AS duels_lost, u.bigestWin AS bigest_win, u.damageValue AS damage_value, u.defenseValue AS defense_value,
 				       u.removeAds AS remove_ads, u.avatar, u.age, u.homeTown AS home_town, u.friends, 
 					   u.identifier AS identifier				
 				FROM CowboyDuelApiBundle:Users u

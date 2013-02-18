@@ -101,8 +101,8 @@ class UsersController extends Controller
     
     		$responseDate = $queryHolds->getUserData(array('authen' => $authen));    		
 
-    		$responseDate['weapons'] = $queryHoldsStore->getLastBuyItemStore($authen, 'weapons');
-    		$responseDate['defenses'] = $queryHoldsStore->getLastBuyItemStore($authen, 'defenses');
+    		/*$responseDate['weapons'] = $queryHoldsStore->getLastBuyItemStore($authen, 'weapons');
+    		$responseDate['defenses'] = $queryHoldsStore->getLastBuyItemStore($authen, 'defenses');*/
     	}
     
     	return new Response(json_encode($responseDate));   
@@ -125,7 +125,7 @@ class UsersController extends Controller
     
     	if ($authen == null)
     	{
-    		$responseDate = array("err_code" => (int) 4, "err_description" => 'Invalid value');
+    		$responseDate = array('err_code' => (int) 4, 'err_description' => 'Invalid value');
     	}
     	else
     	{
@@ -136,11 +136,11 @@ class UsersController extends Controller
     		
     		if($result == 0)
     		{
-    			$responseDate = array("err_code" => (int) 3, "err_description" => 'Not found entity: '.$authen);
+    			$responseDate = array('err_code' => (int) 3, 'err_description' => 'Not found entity: '.$authen);
     			return new Response(json_encode($responseDate));
     		}
     		
-    		$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');
+    		$responseDate = array('err_code' => (int) 1, 'err_description' => 'Ok');
     	}    
     	return new Response(json_encode($responseDate));
     }
