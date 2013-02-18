@@ -368,49 +368,50 @@ class ApiController extends Controller
     	settype($sum, "int");
     	
     	// echo $authen.'##'.$session_id.'##',$user_info['session_id']; die;
-    	if ($session_id == $user_info->getSessionId() || $user_info->getSnetwork() == 'B')
-    	{    		
-    		if(isset($transactions_obj->{'transactions'}))
-    		{    			
-    			foreach($transactions_obj->{'transactions'} as $transaction)
+    	if(isset($transactions_obj->{'transactions'}))
+    	{    			
+    		foreach($transactions_obj->{'transactions'} as $transaction)
+    		{
+    			/*$transaction->{'transaction'}->{'description'} = $transaction->{'transaction'}->{'description'}^$secure_value;    				
+    			$transaction->{'transaction'}->{'opponent_authen'} = $transaction->{'transaction'}->{'opponent_authen'}^$secure_value;
+    			$transaction->{'transaction'}->{'local_id'} = $transaction->{'transaction'}->{'local_id'}^$secure_value;*/		
+    				
+    			if($session_id == $user_info->getSessionId() || $user_info->getSnetwork() == 'B' 
+    			  || $transaction->{'transaction'}->{'description'} == 'Steal')
     			{
-    				if(!isset($transaction->{'transaction'}->{'transaction_id'})) 
+    				if(!isset($transaction->{'transaction'}->{'transaction_id'}))
     					$transaction->{'transaction'}->{'transaction_id'} = 0;
-    					
+    				
     				$transaction->{'transaction'}->{'transaction_id'} = $transaction->{'transaction'}->{'transaction_id'}^$secure_value;
-    				//$transaction->{'transaction'}->{'description'} = $transaction->{'transaction'}->{'description'}^$secure_value;
-    				
-    				//$transaction->{'transaction'}->{'opponent_authen'} = $transaction->{'transaction'}->{'opponent_authen'}^$secure_value;
-    				//$transaction->{'transaction'}->{'local_id'} = $transaction->{'transaction'}->{'local_id'}^$secure_value;
-    			
-    				
-    				$transactionsHolds->setTransaction($authen, 
-    												   $transaction->{'transaction'}->{'transaction_id'}, 
-    												   $transaction->{'transaction'}->{'description'},
-    												   $transaction->{'transaction'}->{'opponent_authen'},
-    												   $transaction->{'transaction'}->{'local_id'}
-    				);
-    				$sum = $sum + $transaction->{'transaction'}->{'transaction_id'};
+    					
+    				 $transactionsHolds->setTransaction($authen, 
+    											   $transaction->{'transaction'}->{'transaction_id'}, 
+    											   $transaction->{'transaction'}->{'description'},
+    											   $transaction->{'transaction'}->{'opponent_authen'},
+    											   $transaction->{'transaction'}->{'local_id'});
+    				 	
+    				 $sum = $sum + $transaction->{'transaction'}->{'transaction_id'};
     			}
+    			else
+    			{
+    				$responseData = array("err_code" => (int) - 1, "err_desc" => 'Сессия устарела. Авторизируйтесь');
+    				return new Response(json_encode($responseData));
+    			}				
     		}
+    	}
     			
-    		$queryHolds->setUserMoney($authen, $sum);
+    	$queryHolds->setUserMoney($authen, $sum);
     		
-    		if($user_info->getSnetwork() == 'B')
-    		{    			
+    	if($user_info->getSnetwork() == 'B')
+    	{    			
     			$helperMethod = new HelperMethod($this->container);    			 
     			$entitiesJson = $helperMethod->sendBotListToS3($em);
-    		}
+    	}
     		
-    		$sum = $sum ^ $secure_value;
-    		$responseData['money'] = $sum;
-    		$responseData['user_id'] = $authen;
-    	}
-    	 else
-    	{
-    		$responseData = array("err_code" => (int) - 1, "err_desc" => 'Сессия устарела. Авторизируйтесь') ;
-    	}
-    	
+    	$sum = $sum ^ $secure_value;
+    	$responseData['money'] = $sum;
+    	$responseData['user_id'] = $authen;
+    		
     	return new Response(json_encode($responseData));
     }
     
