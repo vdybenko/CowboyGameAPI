@@ -102,7 +102,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		return (isset($e[0]) && isset($filters['authen']))? $e[0]: $e;	
 	}
 	
-	public function setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win)
+	public function setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win, $damage_value, $defense_value)
 	{
 		$user = $this->getUser($authen);
 		if($user == null) return 0;
@@ -112,6 +112,8 @@ class HelperQueryHolds extends HelperAbstractDb
 			 ->setDuelsWin($duels_win)
 			 ->setDuelsLost($duels_lost)
 			 ->setBigestWin($bigest_win)
+			 ->setDamageValue($damage_value)
+			 ->setDefenseValue($defense_value)
 		;
 		
 		$this->em->persist($user);
@@ -331,7 +333,7 @@ class HelperQueryHolds extends HelperAbstractDb
 	public function getFavorites($user_authen)
 	{
 		$q = $this->createQuery("
-				SELECT u.authen, u.nickname, u.money, u.level, u.points, u.avatar
+				SELECT u.authen, u.nickname, u.money, u.level, u.points, u.avatar, u.damage_value, u.defense_value
 				FROM `users_favorites` uf INNER JOIN `users` u ON uf.favorite_authen = u.authen
 				WHERE uf.user_authen='$user_authen'
 			");
