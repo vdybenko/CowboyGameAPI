@@ -81,8 +81,9 @@ class ApiController extends Controller
     	$app_ver  = $request->get('app_ver');
     	$os 	  = $request->get('os');
     	
-    	$device_name = $request->get('device_name');
-    	$region 	 = $request->get('region');
+    	$device_token = $request->get('device_token');
+    	$device_name  = $request->get('device_name');
+    	$region 	  = $request->get('region');
     	
     	$current_language = $request->get('current_language');
     	$nickname 	= $request->get('nickname');
@@ -99,8 +100,7 @@ class ApiController extends Controller
     	$bigest_win = $request->get('bigest_win');
     	$remove_ads = $request->get('remove_ads');
     	
-    	/*$money 		= $request->get('money'); 
-    	$device_token 	= $request->get('device_token');
+    	/*$money 		= $request->get('money');
     	$type 	= $request->get('type');*/
     	
     	if ($authen == null)
@@ -139,7 +139,7 @@ class ApiController extends Controller
     			
     			//update info
     			$snetwork = $word;
-    			$queryHolds->setUserInfo($authen, $authen_old, $device_token, $app_ver, $device_name, $nickname, $type, $os,$region,
+    			$queryHolds->setUserInfo($authen, $authen_old, $app_ver, $device_name, $device_token, $nickname, $type, $os,$region,
     								     $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
     								 	 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);
     			//update session    			
@@ -185,7 +185,7 @@ class ApiController extends Controller
     		if ($word == 'F' || $word == 'E' ) { $snetwork = $word;}
     		 else { $snetwork = '0'; }    	
     	
-    		$queryHolds->setUser($authen, $app_ver, $device_name, $nickname, $os, $region,
+    		$queryHolds->setUser($authen, $app_ver, $device_name, $device_token, $nickname, $os, $region,
     		 					 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
     		 					 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);    	
     	}
@@ -241,7 +241,7 @@ class ApiController extends Controller
     			if ($word == 'F' || $word == 'E' ) { $snetwork = $word;}
     		 	 else { $snetwork = '0'; }
     		
-    			$queryHolds->setUserInfo($authen, $authen_old, $app_ver, $device_name, $nickname, $type, $os,$region,
+    			$queryHolds->setUserInfo($authen, $authen_old, $app_ver, $device_name, $device_token, $nickname, $type, $os,$region,
     			 						 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
     			 						 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);
     		}

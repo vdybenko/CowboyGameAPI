@@ -41,6 +41,13 @@ class Store
      * @ORM\Column(type="integer")
      */
     private $damageOrDefense = 0;
+    
+    /**
+     * @var float $frequently
+     *
+     * @ORM\Column(type="float")
+     */
+    private $frequently;
 
     /**
      * @var integer $golds
@@ -189,7 +196,6 @@ class Store
     
         return $this;
     }
-
     /**
      * Get damageOrDefense
      *
@@ -198,6 +204,28 @@ class Store
     public function getDamageOrDefense()
     {
         return $this->damageOrDefense;
+    }
+    
+    /**
+     * Set frequently
+     *
+     * @param float $frequently
+     * @return Store
+     */
+    public function setFrequently($frequently)
+    {
+    	$this->frequently = $frequently;
+    
+    	return $this;
+    }
+    /**
+     * Get frequently
+     *
+     * @return float
+     */
+    public function getFrequently()
+    {
+    	return $this->frequently;
     }
 
     /**

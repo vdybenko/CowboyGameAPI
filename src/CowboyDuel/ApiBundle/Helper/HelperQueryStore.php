@@ -11,7 +11,7 @@ class HelperQueryStore extends HelperAbstractDb
 		switch ($type)
 		{
 			case 'weapons':
-				$dStr = 's.id, s.title, s.damageOrDefense AS damage, s.golds, s.inappid, s.thumb,
+				$dStr = 's.id, s.title, s.damageOrDefense AS damage, s.frequently, s.golds, s.inappid, s.thumb,
 				s.img, s.bigImg, s.sound, s.description, s.levelLock,
 				s.thumbRetina, s.imgRetina, s.bigImgRetina';
 				break;
