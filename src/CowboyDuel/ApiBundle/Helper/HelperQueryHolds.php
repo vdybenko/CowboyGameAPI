@@ -91,7 +91,7 @@ class HelperQueryHolds extends HelperAbstractDb
 					
 		$q = $this->em->createQuery("
 				SELECT $select u.userId AS user_id, u.nickname, u.money, u.sessionId AS session_id, u.level, u.points, 
-					   u.duelsWin AS duels_win, u.duelsLost AS duels_lost, u.bigestWin AS bigest_win, u.damageValue AS damage_value, u.defenseValue AS defense_value,
+					   u.duelsWin AS duels_win, u.duelsLost AS duels_lost, u.bigestWin AS bigest_win,
 				       u.removeAds AS remove_ads, u.avatar, u.age, u.homeTown AS home_town, u.friends, 
 					   u.identifier AS identifier				
 				FROM CowboyDuelApiBundle:Users u
@@ -102,7 +102,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		return (isset($e[0]) && isset($filters['authen']))? $e[0]: $e;	
 	}
 	
-	public function setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win, $damage_value, $defense_value)
+	public function setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win)
 	{
 		$user = $this->getUser($authen);
 		if($user == null) return 0;
@@ -112,8 +112,8 @@ class HelperQueryHolds extends HelperAbstractDb
 			 ->setDuelsWin($duels_win)
 			 ->setDuelsLost($duels_lost)
 			 ->setBigestWin($bigest_win)
-			 ->setDamageValue($damage_value)
-			 ->setDefenseValue($defense_value)
+			 /*->setDamageValue($damage_value)
+			 ->setDefenseValue($defense_value)*/
 		;
 		
 		$this->em->persist($user);
@@ -333,7 +333,7 @@ class HelperQueryHolds extends HelperAbstractDb
 	public function getFavorites($user_authen)
 	{
 		$q = $this->createQuery("
-				SELECT u.authen, u.nickname, u.money, u.level, u.points, u.avatar, u.damage_value, u.defense_value
+				SELECT u.authen, u.nickname, u.money, u.level, u.points, u.avatar
 				FROM `users_favorites` uf INNER JOIN `users` u ON uf.favorite_authen = u.authen
 				WHERE uf.user_authen='$user_authen'
 			");

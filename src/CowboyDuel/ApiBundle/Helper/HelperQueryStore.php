@@ -46,8 +46,8 @@ class HelperQueryStore extends HelperAbstractDb
 		$select = "s.id";		
 		switch($type)
 		{
-			case 'weapons': $select = "s.damageOrDefense AS v"; break;
-			case 'defenses': $select = "s.damageOrDefense AS v"; break;
+			case 'weapons': $select = "s.id AS id"; break;
+			case 'defenses': $select = "s.id AS id"; break;
 		}
 		
 		$q = $this->em->createQuery("

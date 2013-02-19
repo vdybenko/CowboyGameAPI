@@ -101,8 +101,8 @@ class UsersController extends Controller
     
     		$responseDate = $queryHolds->getUserData(array('authen' => $authen));    		
 
-    		/*$responseDate['weapons'] = $queryHoldsStore->getLastBuyItemStore($authen, 'weapons');
-    		$responseDate['defenses'] = $queryHoldsStore->getLastBuyItemStore($authen, 'defenses');*/
+    		$responseDate['weapons'] = $queryHoldsStore->getLastBuyItemStore($authen, 'weapons');
+    		$responseDate['defenses'] = $queryHoldsStore->getLastBuyItemStore($authen, 'defenses');
     	}
     
     	return new Response(json_encode($responseDate));   
@@ -120,8 +120,8 @@ class UsersController extends Controller
     	$duels_win 	= $request->get('duels_win');
     	$duels_lost = $request->get('duels_lost');
     	$bigest_win = $request->get('bigest_win');
-    	$damage_value = $request->get('damage_value');
-    	$defense_value = $request->get('defense_value');
+    	/*$damage_value = $request->get('damage_value');
+    	$defense_value = $request->get('defense_value');*/
     
     	if ($authen == null)
     	{
@@ -132,7 +132,7 @@ class UsersController extends Controller
     		$em = $this->getDoctrine()->getEntityManager();
     		$queryHolds = new HelperQueryHolds($em);
     				
-    		$result = $queryHolds->setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win, $damage_value, $defense_value);
+    		$result = $queryHolds->setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win);
     		
     		if($result == 0)
     		{
@@ -246,11 +246,11 @@ class UsersController extends Controller
     			$responseDate = array("err_code" => (int) 3, "err_description" => 'Not found entity');
     			return new Response(json_encode($responseDate));
     		}
-    		/*for($i=0; $i<count($responseDate); $i++)
+    		for($i=0; $i<count($responseDate); $i++)
     		{
     			$responseDate[$i]['weapons'] = $queryHoldsStore->getLastBuyItemStore($responseDate[$i]['authen'], 'weapons');
     			$responseDate[$i]['defenses'] = $queryHoldsStore->getLastBuyItemStore($responseDate[$i]['authen'], 'defenses');
-    		}*/
+    		}
     	}    	 
     	return new Response(json_encode($responseDate));
     }
