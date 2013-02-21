@@ -42,7 +42,7 @@ class PushNotifications
 			fclose($this->apnsConnection);
 		}
 		
-		public function send($device_token, $msg, $name = '', $id = '', $type = 2)
+		public function send($device_token, $msg, $name = '', $id = '', $type = 1)
 		{
 			if($device_token == '' || $device_token == null) return false;
 			$payload['aps'] = array('alert' => $msg, 'badge' => (int) 1, 'sound' => 'default');
