@@ -2,6 +2,8 @@
 
 namespace CowboyDuel\ApiBundle\Controller;
 
+use CowboyDuel\ApiBundle\Libraries\PushNotifications;
+
 use CowboyDuel\ApiBundle\Entity\Users;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
@@ -418,6 +420,40 @@ class ApiController extends Controller
     	$responseData['user_id'] = $authen;
     		
     	return new Response(json_encode($responseData));
+    }
+    
+    /**
+     * @Route("/push", name="api_push")
+     */
+    public function pushAction()
+    {
+    	$request = $this->getRequest()->request;    	 
+    	$authen	 = $request->get('authen');
+    	$type    = $request->get('type');
+    	$message = $request->get('message');
+    	 
+    	if ($authen == null)
+    	{
+    		$responseDate = array('err_code' => (int) 4, 'err_descriptionє' => 'Invalid value');
+    		return new Response(json_encode($responseDate));
+    	}
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$queryHolds = new HelperQueryHolds($em);
+    	
+    	$user = $queryHolds->getUser($authen);
+    	if($user == null)
+    	{
+    		$responseDate = array("err_code" => (int) 3, "err_description" => 'Not found entity');
+    		return new Response(json_encode($responseDate));
+    	}
+    	
+    	$pushNotifications = new PushNotifications($this->container);
+    	
+		$pushNotifications->send($user->getDeviceToken(), $message, $user->getNickname(), $authen, $type);    	
+    	$pushNotifications->closeConnection();
+    	
+    	$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');    	 
+    	return new Response(json_encode($responseDate));
     }
     
 }

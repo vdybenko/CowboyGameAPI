@@ -42,10 +42,11 @@ class PushNotifications
 			fclose($this->apnsConnection);
 		}
 		
-		public function send($device_token, $msg, $badge = 1)
+		public function send($device_token, $msg, $name = '', $id = '', $type = 2)
 		{
 			if($device_token == '' || $device_token == null) return false;
-			$payload['aps'] = array('alert' => $msg, 'badge' => (int) $badge, 'sound' => 'default');
+			$payload['aps'] = array('alert' => $msg, 'badge' => (int) 1, 'sound' => 'default');
+			$payload['i'] =  array('t' => $type, 'n' => $name, 'id' => $id);
 			$payload_json = json_encode($payload);
 			
 			$this->sendNotification($device_token, $payload_json);
