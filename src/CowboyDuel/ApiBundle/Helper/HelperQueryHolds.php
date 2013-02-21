@@ -353,7 +353,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		$q = $this->em->createQuery("
 				SELECT u.authen, u.nickname, u.deviceToken, uf.userAuthen, (SELECT us.nickname FROM CowboyDuelApiBundle:Users us WHERE us.authen='$authen') AS nn_user_on
 				FROM CowboyDuelApiBundle:UsersFavorites uf, CowboyDuelApiBundle:Users u
-				WHERE uf.userAuthen = u.authen AND uf.favoriteAuthen='$authen'
+				WHERE uf.favoriteAuthen='$authen' AND uf.userAuthen=u.authen
 			");
 		
 		return $q->getResult();

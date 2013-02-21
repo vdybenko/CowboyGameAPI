@@ -24,7 +24,12 @@ class ApiController extends Controller
      */
     public function indexAction()
     {
-       return new Response("Api");
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$queryHolds = new HelperQueryHolds($em);
+    	$helperMethod = new HelperMethod($this->container);
+    	$helperMethod->sendPushUsersFavorites('F:100004508202200', $queryHolds);
+    	
+        return new Response("Api");
     }
     
     /**

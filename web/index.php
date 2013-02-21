@@ -27,7 +27,7 @@ require_once __DIR__.'/../app/AppCache.php';
 
 use Symfony\Component\HttpFoundation\Request;
 
-$kernel = new AppKernel($nameSpace, false);
+$kernel = new AppKernel($nameSpace, true);
 $kernel->loadClassCache();
 // wrap the default AppKernel with the AppCache one
 $kernel = new AppCache($kernel);
