@@ -13,7 +13,7 @@ class PushNotifications
 	
 		function __construct($container)
 		{
-			$this->sslPem = $container->get('kernel')->getRootdir().'/apns-dev.pem';		
+			$this->sslPem = $container->get('kernel')->getRootdir().'/apns.pem';		
 			$this->connectToAPNS();
 		}
 	
