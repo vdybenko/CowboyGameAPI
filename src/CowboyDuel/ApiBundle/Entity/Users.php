@@ -162,19 +162,6 @@ class Users
 	 * @ORM\Column(name="bigest_win", type="integer", nullable=false)
 	 */
 	private $bigestWin;
-	
-	/**
-	 * @var integer $damageValue
-	 *
-	 * @ORM\Column(name="damage_value", type="integer")
-	 */
-	private $damageValue;	
-	/**
-	 * @var integer $defenseValue
-	 *
-	 * @ORM\Column(name="defense_value", type="integer")
-	 */
-	private $defenseValue;
 
 	/**
 	 * @var integer $removeAds
@@ -686,52 +673,6 @@ class Users
     public function getBigestWin()
     {
         return $this->bigestWin;
-    }
-
-    /**
-     * Set damageValue
-     *
-     * @param integer $damageValue
-     * @return Users
-     */
-    public function setDamageValue($damageValue)
-    {
-        $this->damageValue = $damageValue;
-    
-        return $this;
-    }
-
-    /**
-     * Get damageValue
-     *
-     * @return integer 
-     */
-    public function getDamageValue()
-    {
-        return $this->damageValue;
-    }
-
-    /**
-     * Set defenseValue
-     *
-     * @param integer $defenseValue
-     * @return Users
-     */
-    public function setDefenseValue($defenseValue)
-    {
-        $this->defenseValue = $defenseValue;
-    
-        return $this;
-    }
-
-    /**
-     * Get defenseValue
-     *
-     * @return integer 
-     */
-    public function getDefenseValue()
-    {
-        return $this->defenseValue;
     }
 
     /**
