@@ -55,7 +55,7 @@ class ApiController extends Controller
     		$queryHolds->update_session($authen, $session_id);
     		$onlineExist = $queryHolds->getAuthenOnline($authen);
     		
-    		$helperMethod->sendPushUsersFavorites($authen, $queryHolds);
+    		//$helperMethod->sendPushUsersFavorites($authen, $queryHolds);
     	
     		if(empty($onlineExist))
     			$queryHolds->setAuthenOnline($authen, time());    		
