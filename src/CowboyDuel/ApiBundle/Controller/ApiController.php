@@ -28,8 +28,12 @@ class ApiController extends Controller
     {
     	$em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryHolds($em);
-    	$helperMethod = new HelperMethod($this->container);
-    	$helperMethod->sendPushUsersFavorites('F:100004508202200', $queryHolds);
+
+        $user = $queryHolds->getUser('test_push');
+        $pushNotifications = new PushNotifications($this->container);
+        $pushNotifications->send($user->getDeviceToken(), 'Hello! Test push.');
+
+        $pushNotifications->closeConnection();
     	
         return new Response("Api");
     }
