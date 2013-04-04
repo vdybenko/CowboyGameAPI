@@ -3,7 +3,6 @@ namespace CowboyDuel\ApiBundle\Helper;
 
 use CowboyDuel\ApiBundle\Entity\Online,
 	CowboyDuel\ApiBundle\Entity\Users,
-	CowboyDuel\ApiBundle\Entity\Duels,
 	CowboyDuel\ApiBundle\Entity\UsersFavorites;
 
 class HelperQueryHolds extends HelperAbstractDb
@@ -211,28 +210,6 @@ class HelperQueryHolds extends HelperAbstractDb
 		);
 	
 		return $q->getResult();
-	}
-	
-	public function setDuels($authen, $device_name, $system_name, $system_version, $rate_fire, $opponent,
-							 $gps, $lat, $lon, $date)
-	{
-		$duels = new Duels();
-		
-		$duels
-			  ->setAuthen($authen)
-			  ->setDeviceName($device_name)
-			  ->setSystemName($system_name)
-			  ->setSystemVersion($system_version)
-			  ->setRateFire($rate_fire)
-			  ->setOpponent($opponent)
-			  ->setGps($gps)
-			  ->setLat($lat)
-			  ->setLon($lon)
-			  ->setDate($date)
-		;
-		
-		$this->em->persist($duels);
-		$this->em->flush();
 	}
 	
 	/**
