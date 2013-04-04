@@ -1147,7 +1147,7 @@ abstract class BaseFacebook
         break;
     }
 
-    throw $e;
+    return $e;
   }
 
 

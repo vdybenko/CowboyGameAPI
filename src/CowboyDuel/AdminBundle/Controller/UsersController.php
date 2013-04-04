@@ -58,8 +58,6 @@ class UsersController extends Controller
         $idAuthenFacebook = '';
 		if($entity->getSnetwork() == 'F')
 		{
-            try
-            {
                 $facebook = new Facebook(array(
                     'appId'  => $this->container->getParameter('facebook_appId'),
                     'secret' => $this->container->getParameter('facebook_secret'),
@@ -72,8 +70,6 @@ class UsersController extends Controller
 
                 $entityInfo['posts_On_Wall'] = $facebook->api("/$idAuthenFacebook/feed");
                 $entityInfo['posts_On_Wall'] = $entityInfo['posts_On_Wall']['data'];
-            }
-            catch (FacebookApiException $e) { }
 		}	
 				
 		$entityInfo['buy_items_store'] = $queryHolds->getBuyItemsStoreOfUser($id);
