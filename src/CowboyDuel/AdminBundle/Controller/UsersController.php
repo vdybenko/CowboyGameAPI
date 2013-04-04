@@ -58,18 +58,22 @@ class UsersController extends Controller
         $idAuthenFacebook = '';
 		if($entity->getSnetwork() == 'F')
 		{
-			$facebook = new Facebook(array(
-					'appId'  => $this->container->getParameter('facebook_appId'),
-					'secret' => $this->container->getParameter('facebook_secret'),
-			));
-			
-			$idAuthenFacebook = HelperMethod::convertToFacebookId($entity->getAuthen());
-			
-		  	$userFriends = $facebook->api("/$idAuthenFacebook/friends");
-		  	$userFriends = $userFriends['data'];
-		  	
-		  	$entityInfo['posts_On_Wall'] = $facebook->api("/$idAuthenFacebook/feed");
-		  	$entityInfo['posts_On_Wall'] = $entityInfo['posts_On_Wall']['data'];
+            try
+            {
+                $facebook = new Facebook(array(
+                    'appId'  => $this->container->getParameter('facebook_appId'),
+                    'secret' => $this->container->getParameter('facebook_secret'),
+                ));
+
+                $idAuthenFacebook = HelperMethod::convertToFacebookId($entity->getAuthen());
+
+                $userFriends = $facebook->api("/$idAuthenFacebook/friends");
+                $userFriends = $userFriends['data'];
+
+                $entityInfo['posts_On_Wall'] = $facebook->api("/$idAuthenFacebook/feed");
+                $entityInfo['posts_On_Wall'] = $entityInfo['posts_On_Wall']['data'];
+            }
+            catch (Exception $e) { }
 		}	
 				
 		$entityInfo['buy_items_store'] = $queryHolds->getBuyItemsStoreOfUser($id);
