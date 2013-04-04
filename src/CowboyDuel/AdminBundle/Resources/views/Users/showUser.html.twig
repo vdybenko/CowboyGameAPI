@@ -151,7 +151,7 @@
 			<span class="hide"></span>
 		</div>
 		<div class="content">
-		<table>
+		<table class="all">
          	<thead>
          		<tr>
             		<th>Nickname</th>
@@ -164,7 +164,7 @@
           			<tr> 
           				<td><a href="{{ path("users_show_user", { 'id': e.userId }) }}">{{ e.nickname }}<a></td>            			
              			<td>{{ e.date|date('d/m/Y') }}</td>
-             			<td>{{ e.isFriend }}</td>
+             			<td>{% if e.isFriend is defined %}{{ e.isFriend }}{% else %}ні{% endif %}</td>
          			</tr>
 		 		 {% endfor%}
          	</tbody>

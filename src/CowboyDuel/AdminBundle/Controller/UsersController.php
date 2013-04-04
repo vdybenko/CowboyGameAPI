@@ -73,7 +73,7 @@ class UsersController extends Controller
 		}	
 				
 		$entityInfo['buy_items_store'] = $queryHolds->getBuyItemsStoreOfUser($id);
-		$entityInfo['duels'] = HelperMethod::getDuelsWithFriends($queryHolds->getDuelsUser($id), $userFriends);		
+		$entityInfo['duels'] = HelperMethod::getDuelsWithFriends($queryHolds->getDuelsUser($id), $userFriends);
 					
 		return array('idAuthenFacebook' => $idAuthenFacebook,
                      'data' 	        => $data,
