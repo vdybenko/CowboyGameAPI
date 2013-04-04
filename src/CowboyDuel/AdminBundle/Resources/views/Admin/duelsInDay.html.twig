@@ -21,7 +21,7 @@
          		<tbody>
 		 		 {% for e in  data.duelsInDay_users_new %}			
         		  <tr>
-             	 	 <th>{{ e.day|date('d') }}</th><td>{{ e.count }}</td>
+             	 	 <th>{{ e.day }}</th><td>{{ e.count }}</td>
          		  </tr>         		  
 		 		 {% endfor%}
          		</tbody>
@@ -36,7 +36,7 @@
 			<tbody>
 			  {% for e in  data.duelsInDay_users_new %}			
           		<tr>
-             		<td>{{ e.day|date('d/m/Y') }}</td><td>{{ e.count }}</td>
+             		<td>{{ e.day }} - {{ e.day|date('d/m/Y') }}</td><td>{{ e.count }}</td>
          		</tr>
 		 	 {% endfor%}
 			</tbody>
@@ -54,7 +54,7 @@
          		<tbody>
          		 {% for e in  data.duelsInDay_users_old %}
          		  <tr>
-             		<th>{{ e.day|date('d') }}</th><td>{{ e.count }}</td>
+             		<th>{{ e.day }}</th><td>{{ e.count }}</td>
          		  </tr>
 		 		 {% endfor%}
          		</tbody>
@@ -69,7 +69,7 @@
 			<tbody>
 			  {% for e in  data.duelsInDay_users_old %}			
           		<tr>
-             		<td>{{ e.day|date('d/m/Y') }}</td><td>{{ e.count }}</td>
+             		<td>{{ e.day }} - {{ e.day|date('d/m/Y') }}</td><td>{{ e.count }}</td>
          		</tr>
 		 	 {% endfor%}
 			</tbody>
@@ -87,7 +87,7 @@
          	<tbody>
 		 		{% for e in  data.duelsInDay_lastDay_10 %}
          			<tr>
-             			<th>{{ e.day|date('d') }}</th><td>{{ e.count }}</td>
+             			<th>{{ e.day }}</th><td>{{ e.count }}</td>
          			</tr>
 		 		{% endfor%}
          	</tbody>
@@ -107,7 +107,7 @@
          	<tbody>
 				  {% for e in  data.duelsInDay_region.data %}			
           			<tr>          				
-             			<td>{{ e.day|date('d') }}</td>
+             			<td>{{ e.day }}</td>
              			{% for j in  e.count %}
              				<td>{{ j }}</td>
              			{% endfor%}
@@ -128,7 +128,7 @@
 				<tbody>
 				  {% for e in  data.duelsInDay_region.data %}			
           			<tr>
-             			<td>{{ e.day|date('d/m/Y') }}</td>
+             			<td>{{ e.day }} - {{ e.day|date('d/m/Y') }}</td>
              			{% for j in  e.count %}
              				<td>{{ j }}</td>
              			{% endfor%}

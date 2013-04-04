@@ -40,7 +40,7 @@ class AdminController extends Controller
 	 */
 	public function test_push()
 	{		
-		$device_token = "a663603ed6f7d0fcbf78f6ca57396d0adb7619210a5b4d073ed8526cafd344c1";
+		$device_token = "d7428bbd1365961370c1424445f99f4ee3c43bef4e0d38a64dbe515b4d35b3e9";
 		$payload['aps'] = array('alert' => "Hello!s", 'badge' => (int) 3, 'sound' => 'default');
 		$payload_json = json_encode($payload);
 		

@@ -3,8 +3,8 @@ namespace CowboyDuel\ApiBundle\Libraries;
 
 class PushNotifications 
 {		
-		private $apnsHost = 'gateway.sandbox.push.apple.com';
-		//private $apnsHost = 'gateway.push.apple.com';
+		//private $apnsHost = 'gateway.sandbox.push.apple.com';
+		private $apnsHost = 'gateway.push.apple.com';
 		private $apnsPort = '2195';
 		private $sslPem = 'apns.pem';
 		private $passPhrase = '1111';
