@@ -1147,7 +1147,7 @@ abstract class BaseFacebook
         break;
     }
 
-    throw new \Exception($e);
+    throw $e;
   }
 
 
