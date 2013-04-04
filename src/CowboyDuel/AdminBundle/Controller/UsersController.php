@@ -55,6 +55,7 @@ class UsersController extends Controller
 			
 		$userFriends = null;
 		$entityInfo['posts_On_Wall'] = null;
+        $idAuthenFacebook = '';
 		if($entity->getSnetwork() == 'F')
 		{
 			$facebook = new Facebook(array(
