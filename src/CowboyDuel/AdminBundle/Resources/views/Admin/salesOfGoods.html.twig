@@ -22,7 +22,7 @@
             	<tbody>
 		    	  {% for e in  data.sales_Of_Goods_buy_golds %}
                 	 <tr>
-                    	<th>{{ e.day }}</th><td>{{ e.count }}</td>
+                    	<th>{{ e.day|date('md') }}</th><td>{{ e.count }}</td>
                 	</tr>
 		    	  {% endfor%}
             	</tbody>
@@ -37,7 +37,7 @@
 				<tbody>
 				  {% for e in  data.sales_Of_Goods_buy_golds %}			
           			<tr>
-             			<td>{{ e.key }}</td><td>{{ e.day }} - {{ e.day|date('d/m/Y') }}</td><td>{{ e.count }}</td>
+             			<td>{{ e.key }}</td><td>{{ e.day|date('d/m/Y') }}</td><td>{{ e.count }}</td>
          			</tr>
 		 		  {% endfor%}
 				</tbody>
@@ -55,7 +55,7 @@
             	<tbody>
 		    	   {% for e in  data.sales_Of_Goods_buy_inApp %}
           			<tr>
-             			<th>{{ e.day }}</th><td>{{ e.count }}</td>
+             			<th>{{ e.day|date('md') }}</th><td>{{ e.count }}</td>
          			</tr>
 		    	  {% endfor%}
             	</tbody>
@@ -70,7 +70,7 @@
 				<tbody>
 				  {% for e in  data.sales_Of_Goods_buy_inApp %}			
           			<tr>
-             			<td>{{ e.key }}</td><td>{{ e.day }} - {{ e.day|date('d/m/Y') }}</td><td>{{ e.count }}</td>
+             			<td>{{ e.key }}</td><td>{{ e.day|date('d/m/Y') }}</td><td>{{ e.count }}</td>
          			</tr>
 		 		  {% endfor%}
 				</tbody>
@@ -89,7 +89,7 @@
             	<tbody>
 				  {% for e in  data.sales_Of_Goods_region.data %}			
           			<tr>
-             			<td>{{ e.day|date('d') }}</td>
+             			<td>{{ e.day|date('md') }}</td>
              			{% for j in  e.count %}
              				<td>{{ j }}</td>
              			{% endfor%}

@@ -179,7 +179,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		if(!is_null($nickname)) $user->setNickname($nickname);
 		if(!is_null($app_ver)) $user->setAppVer($app_ver);
 		if(!is_null($device_name)) $user->setDeviceName($device_name);
-		$user->setFirstLogin(time());
+		$user->setLastLogin(time());
 		if(!is_null($device_token)) $user->setDeviceToken($device_token);
 		if(!is_null($money)) $user->setMoney($money);
 		if(!is_null($type)) $user->setType($type);
