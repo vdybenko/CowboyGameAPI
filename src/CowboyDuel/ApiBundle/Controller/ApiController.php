@@ -268,70 +268,6 @@ class ApiController extends Controller
     }
     
     /**
-     * @Route("/duels", name="api_duels")
-     */
-    public function duelsAction()
-    {
-    	$request = $this->getRequest()->request;
-    	
-    	$duels 		= $request->get('duels');
-    	$authen 	= $request->get('authentification');
-    	$app_ver 	= $request->get('app_ver');
-    	$session_id = $request->get('session_id');    		
-    	$device_name	= $request->get('device_name');
-    	$system_name 	= $request->get('system_name');
-    	$system_version = $request->get('system_version');
-    	
-    	$duels_obj = json_decode($duels);
-    	
-    	if ($authen == null)
-    	{
-    		$responseDate['err_code'] = (int) - 4;
-    		$responseDate['err_description'] = 'Invalid value';
-    		return new Response(json_encode($responseDate));
-    	}
-    	
-    	$em = $this->getDoctrine()->getEntityManager();
-    	$queryHolds = new HelperQueryHolds($em);
-    	
-    	$user_info = $queryHolds->getUser($authen);
-    	$user_info = $user_info[0];
-    	
-    	print_r($duels_obj);
-    	
-    	if ($session_id == $user_info->getSessionId())
-    	{
-    		if(isset($duels_obj->{'duels'}))
-    		{
-    			foreach($duels_obj->{'duels'} as $duel)
-    			{
-    				if(isset($duel->{'duel'}))    					
-    					$queryHolds->setDuels
-    					(
-    						$authen,
-    						$device_name,
-    						$system_name,
-    						$system_version,
-    						$duel->{'duel'}->{'rate_fire'},
-    						$duel->{'duel'}->{'opponent'},
-    						$duel->{'duel'}->{'GPS'},
-    						$duel->{'duel'}->{'lat'},
-    						$duel->{'duel'}->{'lon'},
-    						$duel->{'duel'}->{'date'}
-    					);
-    			}
-    		}
-    		$responseData = array("err_code"=>(int)1,"err_desc"=>'Спасибо за письмо') ;
-    	}
-    	 else
-    	{
-    		$responseData = array("err_code" => (int)-1,"err_desc"=>'Сессия устарела. Авторизируйтесь') ;
-    	}
-    	
-    	return new Response(json_encode($responseData));
-    }
-    
-    /**
      * @Route("/transactions", name="api_transactions")
      */
     public function transactionsAction()
@@ -377,17 +313,12 @@ class ApiController extends Controller
     	   
     	$sum = $user_info->getMoney();
     	settype($sum, "int");
-    	
-    	// echo $authen.'##'.$session_id.'##',$user_info['session_id']; die;
+
     	if(isset($transactions_obj->{'transactions'}))
     	{    			
     		foreach($transactions_obj->{'transactions'} as $transaction)
     		{
-    			/*$transaction->{'transaction'}->{'description'} = $transaction->{'transaction'}->{'description'}^$secure_value;    				
-    			$transaction->{'transaction'}->{'opponent_authen'} = $transaction->{'transaction'}->{'opponent_authen'}^$secure_value;
-    			$transaction->{'transaction'}->{'local_id'} = $transaction->{'transaction'}->{'local_id'}^$secure_value;*/		
-    				
-    			if($session_id == $user_info->getSessionId() || $user_info->getSnetwork() == 'B' 
+    			if($session_id == $user_info->getSessionId() || $user_info->getSnetwork() == 'B'
     			  || $transaction->{'transaction'}->{'description'} == 'Steal')
     			{
     				if(!isset($transaction->{'transaction'}->{'transaction_id'}))

@@ -24,12 +24,16 @@ class ApiControllerTest extends WebTestCase
     {
     	$client = static::createClient();
 
-    	$client->request(
+    	$crawler = $client->request(
         	'POST', '/api/authorization', 
-        	array('id' => 'F:1sdsd'), /* request params */ 
+        	array('id' => 'A:697342137'), /* request params */
         	array(), /* files */
         	array('X-Requested-With' => "XMLHttpRequest")
     	);
+
+        if($client->getResponse()->getStatusCode() != 200)
+            echo $crawler->filter('.text_exception')->text();
+
     	$this->assertEquals(200, $client->getResponse()->getStatusCode());  
     }
     
