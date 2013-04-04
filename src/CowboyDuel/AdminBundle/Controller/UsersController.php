@@ -73,7 +73,7 @@ class UsersController extends Controller
                 $entityInfo['posts_On_Wall'] = $facebook->api("/$idAuthenFacebook/feed");
                 $entityInfo['posts_On_Wall'] = $entityInfo['posts_On_Wall']['data'];
             }
-            catch (Exception $e) { }
+            catch (FacebookApiException $e) { }
 		}	
 				
 		$entityInfo['buy_items_store'] = $queryHolds->getBuyItemsStoreOfUser($id);
