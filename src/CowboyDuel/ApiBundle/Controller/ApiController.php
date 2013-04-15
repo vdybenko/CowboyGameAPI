@@ -254,11 +254,11 @@ class ApiController extends Controller
     			$bigest_win = $request->get('bigest_win');
     			$remove_ads = $request->get('remove_ads');
 
-                $cap 	 = $request->get('cap');
-                $head    = $request->get('head');
-                $body 	 = $request->get('body');
-                $legs = $request->get('legs');
-                $shoes   = $request->get('shoes');
+                $cap   = $request->get('cap');
+                $head  = $request->get('head');
+                $body  = $request->get('body');
+                $legs  = $request->get('legs');
+                $shoes = $request->get('shoes');
     		
     			$word = strtoupper($authen{0});
     			if ($word == 'F' || $word == 'E' ) { $snetwork = $word;}

@@ -120,8 +120,11 @@ class UsersController extends Controller
     	$duels_win 	= $request->get('duels_win');
     	$duels_lost = $request->get('duels_lost');
     	$bigest_win = $request->get('bigest_win');
-    	/*$damage_value = $request->get('damage_value');
-    	$defense_value = $request->get('defense_value');*/
+        $cap   = $request->get('cap');
+        $head  = $request->get('head');
+        $body  = $request->get('body');
+        $legs  = $request->get('legs');
+        $shoes = $request->get('shoes');
     
     	if ($authen == null)
     	{
@@ -132,7 +135,8 @@ class UsersController extends Controller
     		$em = $this->getDoctrine()->getEntityManager();
     		$queryHolds = new HelperQueryHolds($em);
     				
-    		$result = $queryHolds->setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win);
+    		$result = $queryHolds->setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win,
+                                               $cap, $head, $body, $legs, $shoes);
     		
     		if($result == 0)
     		{

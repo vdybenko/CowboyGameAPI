@@ -101,7 +101,7 @@ class HelperQueryHolds extends HelperAbstractDb
 		return (isset($e[0]) && isset($filters['authen']))? $e[0]: $e;	
 	}
 	
-	public function setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win)
+	public function setUserData($authen, $level, $points, $duels_win, $duels_lost, $bigest_win, $cap, $head, $body, $legs, $shoes)
 	{
 		$user = $this->getUser($authen);
 		if($user == null) return 0;
@@ -111,8 +111,11 @@ class HelperQueryHolds extends HelperAbstractDb
 			 ->setDuelsWin($duels_win)
 			 ->setDuelsLost($duels_lost)
 			 ->setBigestWin($bigest_win)
-			 /*->setDamageValue($damage_value)
-			 ->setDefenseValue($defense_value)*/
+             ->setCap($cap)
+             ->setHead($head)
+             ->setBody($body)
+             ->setLegs($legs)
+             ->setShoes($shoes)
 		;
 		
 		$this->em->persist($user);
