@@ -130,7 +130,7 @@ class HelperQueryHolds extends HelperAbstractDb
 	
 	public function setUser($authen, $app_ver, $device_name, $device_token, $nickname, $os, $region, $current_language,
 							$level, $points, $money, $duels_win, $duels_lost, $bigest_win, $remove_ads, $avatar, $age,$home_town,
-							$friends, $identifier, $snetwork, $cap, $head, $body, $lengths, $shoes)
+							$friends, $identifier, $snetwork, $cap, $head, $body, $legs, $shoes)
 	{
 		$user = new Users();
 		
@@ -161,7 +161,7 @@ class HelperQueryHolds extends HelperAbstractDb
              ->setCap($cap)
              ->setHead($head)
              ->setBody($body)
-             ->setLengths($lengths)
+             ->setLegs($legs)
              ->setShoes($shoes)
 			 
 			 ->setLastLogin(time())
@@ -176,7 +176,7 @@ class HelperQueryHolds extends HelperAbstractDb
 	
 	public function setUserInfo($authen, $authen_old, $app_ver, $device_name, $device_token, $nickname, $type, $os, $region,
 								$current_language, $level, $points, $money, $duels_win, $duels_lost, $bigest_win, 
-								$remove_ads, $avatar, $age, $home_town, $friends, $identifier, $snetwork, $cap, $head, $body, $lengths, $shoes)
+								$remove_ads, $avatar, $age, $home_town, $friends, $identifier, $snetwork, $cap, $head, $body, $legs, $shoes)
 	{
 		$user = $this->getUserWithAuthenOld($authen, $authen_old);
 		
@@ -206,7 +206,7 @@ class HelperQueryHolds extends HelperAbstractDb
         if(!is_null($cap)) $user->setCap($cap);
         if(!is_null($head)) $user->setHead($head);
         if(!is_null($body)) $user->setBody($body);
-        if(!is_null($lengths)) $user->setLengths($lengths);
+        if(!is_null($legs)) $user->setLegs($legs);
         if(!is_null($shoes)) $user->setShoes($shoes);
 	
 		$this->em->merge($user);

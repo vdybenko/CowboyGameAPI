@@ -185,11 +185,11 @@ class Users
     private $body;
 
     /**
-     * @var integer $lengths
+     * @var integer $legs
      *
-     * @ORM\Column(name="lengths", type="integer", nullable=true)
+     * @ORM\Column(name="legs", type="integer", nullable=true)
      */
-    private $lengths;
+    private $legs;
 
     /**
      * @var integer $shoes
@@ -780,26 +780,26 @@ class Users
     }
 
     /**
-     * Set lengths
+     * Set legs
      *
-     * @param integer $lengths
+     * @param integer $legs
      * @return Users
      */
-    public function setLengths($lengths)
+    public function setLegs($legs)
     {
-        $this->lengths = $lengths;
+        $this->legs = $legs;
 
         return $this;
     }
 
     /**
-     * Get lengths
+     * Get legs
      *
      * @return integer
      */
-    public function getLengths()
+    public function getLegs()
     {
-        return $this->lengths;
+        return $this->legs;
     }
 
     /**

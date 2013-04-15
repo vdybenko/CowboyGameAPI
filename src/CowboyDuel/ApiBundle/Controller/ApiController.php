@@ -109,11 +109,11 @@ class ApiController extends Controller
     	$bigest_win = $request->get('bigest_win');
     	$remove_ads = $request->get('remove_ads');
 
-        $cap 	 = $request->get('cap');
-        $head    = $request->get('head');
-        $body 	 = $request->get('body');
-        $lengths = $request->get('lengths');
-        $shoes   = $request->get('shoes');
+        $cap   = $request->get('cap');
+        $head  = $request->get('head');
+        $body  = $request->get('body');
+        $legs  = $request->get('legs');
+        $shoes = $request->get('shoes');
 
     	if ($authen == null)
     	{
@@ -154,7 +154,7 @@ class ApiController extends Controller
     			$queryHolds->setUserInfo($authen, $authen_old, $app_ver, $device_name, $device_token, $nickname, $type, $os,$region,
     								     $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
     								 	 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork,
-                                         $cap, $head, $body, $lengths, $shoes);
+                                         $cap, $head, $body, $legs, $shoes);
     			//update session    			
     			$queryHolds->update_session($authen, $session_id);
     			
@@ -164,7 +164,7 @@ class ApiController extends Controller
     		   					      'age' => $age, 'home_town' => $home_town, 'friends'=> $friends, 
     		   					  	  'identifier' => $identifier,  'cap' => $user_info->getCap(),
                                       'head' => $user_info->getHead(), 'body' => $user_info->getBody(),
-                                      'lengths' => $user_info->getLengths(), 'shoes' => $user_info->getShoes()
+                                      'legs' => $user_info->getLegs(), 'shoes' => $user_info->getShoes()
                 );
     			return new Response(json_encode($responseDate));
     		}
@@ -203,7 +203,7 @@ class ApiController extends Controller
     		$queryHolds->setUser($authen, $app_ver, $device_name, $device_token, $nickname, $os, $region,
     		 					 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
     		 					 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork,
-                                 $cap, $head, $body, $lengths, $shoes);
+                                 $cap, $head, $body, $legs, $shoes);
     	}
     	else
     	{    	
@@ -257,7 +257,7 @@ class ApiController extends Controller
                 $cap 	 = $request->get('cap');
                 $head    = $request->get('head');
                 $body 	 = $request->get('body');
-                $lengths = $request->get('lengths');
+                $legs = $request->get('legs');
                 $shoes   = $request->get('shoes');
     		
     			$word = strtoupper($authen{0});
@@ -267,17 +267,17 @@ class ApiController extends Controller
     			$queryHolds->setUserInfo($authen, $authen_old, $app_ver, $device_name, $device_token, $nickname, $type, $os,$region,
     			 						 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
     			 						 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork,
-                                         $cap, $head, $body, $lengths, $shoes);
+                                         $cap, $head, $body, $legs, $shoes);
     		}
     	
     	}
     	$queryHolds->update_session($authen, $session_id);
     	$responseDate = array('err_code' => (int) 1, 'err_description' => 'Ok');
     	$responseDate += array('session_id' => $session_id, 'avatar' => $avatar, 'level' => $level, 'name' => $nickname,
-    						  'points' => $points, 'money' => $money, 'duels_win' => $duels_win, 'duels_lost' => $duels_lost, 
-    						  'bigest_win' => $bigest_win, 'remove_ads' => $remove_ads,
-                              'cap' => $user_info->getCap(), 'head' => $user_info->getHead(), 'body' => $user_info->getBody(),
-                              'lengths' => $user_info->getLengths(), 'shoes' => $user_info->getShoes()
+    						   'points' => $points, 'money' => $money, 'duels_win' => $duels_win, 'duels_lost' => $duels_lost,
+    						   'bigest_win' => $bigest_win, 'remove_ads' => $remove_ads,
+                               'cap' => $user_info->getCap(), 'head' => $user_info->getHead(), 'body' => $user_info->getBody(),
+                               'legs' => $user_info->getLegs(), 'shoes' => $user_info->getShoes()
     		   				 );    		
     	return new Response(json_encode($responseDate));
     }
