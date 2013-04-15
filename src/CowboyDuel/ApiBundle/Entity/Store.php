@@ -17,114 +17,114 @@ class Store
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string $type
      *
-     * @ORM\Column(name="type", type="string", length=20, nullable=false)
+     * @ORM\Column(name="type", type="string", length=20)
      */
     private $type;
 
     /**
      * @var string $title
      *
-     * @ORM\Column(name="title", type="string", length=50, nullable=true)
+     * @ORM\Column(name="title", type="string", length=50)
      */
     private $title;
 
     /**
-     * @var integer $damageordefense
+     * @var integer $damagedefense
      *
-     * @ORM\Column(name="damageOrDefense", type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
-    private $damageordefense;
-
+    private $damageOrDefense = 0;
+    
     /**
-     * @var integer $levellock
+     * @var float $frequently
      *
-     * @ORM\Column(name="levelLock", type="integer", nullable=true)
+     * @ORM\Column(type="float")
      */
-    private $levellock;
+    private $frequently;
 
     /**
      * @var integer $golds
      *
-     * @ORM\Column(name="golds", type="integer", nullable=true)
+     * @ORM\Column(name="golds", type="integer")
      */
-    private $golds;
+    private $golds = 0;
 
     /**
-     * @var string $inappid
+     * @var integer $inappid
      *
-     * @ORM\Column(name="inAppId", type="string", length=40, nullable=true)
+     * @ORM\Column(name="inAppId", type="string")
      */
-    private $inappid;
+    private $inappid = "";
 
     /**
      * @var string $thumb
      *
-     * @ORM\Column(name="thumb", type="string", length=70, nullable=true)
+     * @ORM\Column(type="string", length=60, nullable=true)
      */
-    private $thumb;
-
+    private $thumb = "";
+    
     /**
-     * @var string $thumbretina
+     * @var string $thumbRetina
      *
-     * @ORM\Column(name="thumbRetina", type="string", length=70, nullable=true)
+     * @ORM\Column(type="string", length=60, nullable=true)
      */
-    private $thumbretina;
+    private $thumbRetina = "";
 
     /**
      * @var string $img
      *
-     * @ORM\Column(name="img", type="string", length=70, nullable=true)
+     * @ORM\Column(type="string", length=60, nullable=true)
      */
-    private $img;
+    private $img = "";
+    
+    /**
+     * @var string $imgRetina
+     *
+     * @ORM\Column(type="string", length=60, nullable=true)
+     */
+    private $imgRetina = "";
 
     /**
-     * @var string $imgretina
+     * @var string $bigImg
      *
-     * @ORM\Column(name="imgRetina", type="string", length=70, nullable=true)
+     * @ORM\Column(type="string", length=60, nullable=true)
      */
-    private $imgretina;
-
+    private $bigImg = "";
+    
+    /**
+     * @var string $bigImgRetina
+     *
+     * @ORM\Column(type="string", length=60, nullable=true)
+     */
+    private $bigImgRetina = "";
+    
     /**
      * @var string $sound
      *
-     * @ORM\Column(name="sound", type="string", length=70, nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $sound;
-
-    /**
-     * @var string $bigimg
-     *
-     * @ORM\Column(name="bigImg", type="string", length=70, nullable=true)
-     */
-    private $bigimg;
-
-    /**
-     * @var string $bigimgretina
-     *
-     * @ORM\Column(name="bigImgRetina", type="string", length=70, nullable=true)
-     */
-    private $bigimgretina;
-
+    private $sound = "";    
+    
     /**
      * @var string $description
      *
-     * @ORM\Column(name="description", type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
-    private $description;
+    private $description = "";
 
     /**
-     * @var float $frequently
+     * @var integer $levelLock
      *
-     * @ORM\Column(name="frequently", type="float", nullable=false)
+     * @ORM\Column(type="integer")
      */
-    private $frequently;
+    private $levelLock = 0;
 
 
 
@@ -185,49 +185,47 @@ class Store
     }
 
     /**
-     * Set damageordefense
+     * Set damageOrDefense
      *
-     * @param integer $damageordefense
+     * @param integer $damageOrDefense
      * @return Store
      */
-    public function setDamageordefense($damageordefense)
+    public function setDamageOrDefense($damageOrDefense)
     {
-        $this->damageordefense = $damageordefense;
+        $this->damageOrDefense = $damageOrDefense;
     
         return $this;
     }
-
     /**
-     * Get damageordefense
+     * Get damageOrDefense
      *
      * @return integer 
      */
-    public function getDamageordefense()
+    public function getDamageOrDefense()
     {
-        return $this->damageordefense;
+        return $this->damageOrDefense;
     }
-
+    
     /**
-     * Set levellock
+     * Set frequently
      *
-     * @param integer $levellock
+     * @param float $frequently
      * @return Store
      */
-    public function setLevellock($levellock)
+    public function setFrequently($frequently)
     {
-        $this->levellock = $levellock;
+    	$this->frequently = $frequently;
     
-        return $this;
+    	return $this;
     }
-
     /**
-     * Get levellock
+     * Get frequently
      *
-     * @return integer 
+     * @return float
      */
-    public function getLevellock()
+    public function getFrequently()
     {
-        return $this->levellock;
+    	return $this->frequently;
     }
 
     /**
@@ -252,7 +250,6 @@ class Store
     {
         return $this->golds;
     }
-
     /**
      * Set inappid
      *
@@ -288,7 +285,6 @@ class Store
     
         return $this;
     }
-
     /**
      * Get thumb
      *
@@ -298,28 +294,27 @@ class Store
     {
         return $this->thumb;
     }
-
+    
     /**
-     * Set thumbretina
+     * Set thumbRetina
      *
-     * @param string $thumbretina
+     * @param string $thumbRetina
      * @return Store
      */
-    public function setThumbretina($thumbretina)
+    public function setThumbRetina($thumbRetina)
     {
-        $this->thumbretina = $thumbretina;
+    	$this->thumbRetina = $thumbRetina;
     
-        return $this;
+    	return $this;
     }
-
     /**
-     * Get thumbretina
+     * Get thumbRetina
      *
-     * @return string 
+     * @return string
      */
-    public function getThumbretina()
+    public function getThumbRetina()
     {
-        return $this->thumbretina;
+    	return $this->thumbRetina;
     }
 
     /**
@@ -334,7 +329,6 @@ class Store
     
         return $this;
     }
-
     /**
      * Get img
      *
@@ -344,30 +338,73 @@ class Store
     {
         return $this->img;
     }
-
+    
     /**
-     * Set imgretina
+     * Set imgRetina
      *
-     * @param string $imgretina
+     * @param string $imgRetina
      * @return Store
      */
-    public function setImgretina($imgretina)
+    public function setImgRetina($imgRetina)
     {
-        $this->imgretina = $imgretina;
+    	$this->imgRetina = $imgRetina;
     
-        return $this;
+    	return $this;
     }
+    /**
+     * Get imgRetina
+     *
+     * @return string
+     */
+    public function getImgRetina()
+    {
+    	return $this->imgRetina;
+    }    
 
     /**
-     * Get imgretina
+     * Set bigImg
      *
-     * @return string 
+     * @param string $bigImg
+     * @return Store
      */
-    public function getImgretina()
+    public function setBigImg($bigImg)
     {
-        return $this->imgretina;
+    	$this->bigImg = $bigImg;
+    
+    	return $this;
     }
-
+    /**
+     * Get bigImg
+     *
+     * @return string
+     */
+    public function getBigImg()
+    {
+    	return $this->bigImg;
+    }
+    
+    /**
+     * Set bigImgRetina
+     *
+     * @param string $bigImgRetina
+     * @return Store
+     */
+    public function setBigImgRetina($bigImgRetina)
+    {
+    	$this->bigImgRetina = $bigImgRetina;
+    
+    	return $this;
+    }
+    /**
+     * Get bigImgRetina
+     *
+     * @return string
+     */
+    public function getBigImgRetina()
+    {
+    	return $this->bigImgRetina;
+    }
+    
     /**
      * Set sound
      *
@@ -376,65 +413,18 @@ class Store
      */
     public function setSound($sound)
     {
-        $this->sound = $sound;
+    	$this->sound = $sound;
     
-        return $this;
+    	return $this;
     }
-
     /**
      * Get sound
      *
-     * @return string 
+     * @return string
      */
     public function getSound()
     {
-        return $this->sound;
-    }
-
-    /**
-     * Set bigimg
-     *
-     * @param string $bigimg
-     * @return Store
-     */
-    public function setBigimg($bigimg)
-    {
-        $this->bigimg = $bigimg;
-    
-        return $this;
-    }
-
-    /**
-     * Get bigimg
-     *
-     * @return string 
-     */
-    public function getBigimg()
-    {
-        return $this->bigimg;
-    }
-
-    /**
-     * Set bigimgretina
-     *
-     * @param string $bigimgretina
-     * @return Store
-     */
-    public function setBigimgretina($bigimgretina)
-    {
-        $this->bigimgretina = $bigimgretina;
-    
-        return $this;
-    }
-
-    /**
-     * Get bigimgretina
-     *
-     * @return string 
-     */
-    public function getBigimgretina()
-    {
-        return $this->bigimgretina;
+    	return $this->sound;
     }
 
     /**
@@ -449,7 +439,6 @@ class Store
     
         return $this;
     }
-
     /**
      * Get description
      *
@@ -461,25 +450,25 @@ class Store
     }
 
     /**
-     * Set frequently
+     * Set levelLock
      *
-     * @param float $frequently
+     * @param integer $levelLock
      * @return Store
      */
-    public function setFrequently($frequently)
+    public function setLevelLock($levelLock)
     {
-        $this->frequently = $frequently;
+        $this->levelLock = $levelLock;
     
         return $this;
     }
 
     /**
-     * Get frequently
+     * Get levelLock
      *
-     * @return float 
+     * @return integer 
      */
-    public function getFrequently()
+    public function getLevelLock()
     {
-        return $this->frequently;
+        return $this->levelLock;
     }
 }

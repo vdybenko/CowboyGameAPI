@@ -10,7 +10,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping structure for table kids_map.admin
+-- Dumping structure for table cowboys.admin
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_bin NOT NULL,
@@ -19,14 +19,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table kids_map.admin: ~1 rows (approximately)
+-- Dumping data for table cowboys.admin: ~1 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` (`id`, `name`, `email`, `password`) VALUES
 	(1, 'admin', 'admin@a.a', '74913f5cd5f61ec0bcfdb775414c2fb3d161b620');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 
--- Dumping structure for table kids_map.buyitemsstore
+-- Dumping structure for table cowboys.buyitemsstore
 CREATE TABLE IF NOT EXISTS `buyitemsstore` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `authenUser` varchar(50) COLLATE utf8_bin NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `buyitemsstore` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=284 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table kids_map.buyitemsstore: ~125 rows (approximately)
+-- Dumping data for table cowboys.buyitemsstore: ~125 rows (approximately)
 /*!40000 ALTER TABLE `buyitemsstore` DISABLE KEYS */;
 INSERT INTO `buyitemsstore` (`id`, `authenUser`, `itemIdStore`, `transactionsId`, `date`) VALUES
 	(152, 'F:100003855788662', 8, -1, 1364409371),
@@ -167,7 +167,7 @@ INSERT INTO `buyitemsstore` (`id`, `authenUser`, `itemIdStore`, `transactionsId`
 /*!40000 ALTER TABLE `buyitemsstore` ENABLE KEYS */;
 
 
--- Dumping structure for table kids_map.online
+-- Dumping structure for table cowboys.online
 CREATE TABLE IF NOT EXISTS `online` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `authen` varchar(50) CHARACTER SET utf8 NOT NULL,
@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `online` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2204 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table kids_map.online: 2 203 rows
+-- Dumping data for table cowboys.online: 2 203 rows
 /*!40000 ALTER TABLE `online` DISABLE KEYS */;
 INSERT INTO `online` (`id`, `authen`, `online`, `enterTime`, `exitTime`) VALUES
 	(1, 'A:a0a1df15f1', 1, '1364922627', '0'),
@@ -1863,7 +1863,7 @@ INSERT INTO `online` (`id`, `authen`, `online`, `enterTime`, `exitTime`) VALUES
 	(1681, 'A:4b30a67f5a', 1, '1365854058', '0'),
 	(1682, 'A:a78cfbf403', 1, '1365402968', '0'),
 	(1683, 'A:44f7975639', 1, '1365086458', '0'),
-	(1684, 'A:697342137', 1, '1365088428', '0'),
+	(1684, 'A:697342137', 1, '1366029551', '0'),
 	(1685, 'A:a84f634a1d', 1, '1365155506', '0'),
 	(1686, 'A:8266329cb8', 1, '1365089157', '0'),
 	(1687, 'A:a1f9c0350d', 1, '1365702259', '0'),
@@ -2386,7 +2386,7 @@ INSERT INTO `online` (`id`, `authen`, `online`, `enterTime`, `exitTime`) VALUES
 /*!40000 ALTER TABLE `online` ENABLE KEYS */;
 
 
--- Dumping structure for table kids_map.settings
+-- Dumping structure for table cowboys.settings
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) COLLATE utf8_bin NOT NULL,
@@ -2394,7 +2394,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table kids_map.settings: 4 rows
+-- Dumping data for table cowboys.settings: 4 rows
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 	(1, 'refresh_content', '1'),
@@ -2404,7 +2404,7 @@ INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 
--- Dumping structure for table kids_map.store
+-- Dumping structure for table cowboys.store
 CREATE TABLE IF NOT EXISTS `store` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `type` varchar(20) COLLATE utf8_bin NOT NULL,
@@ -2425,7 +2425,7 @@ CREATE TABLE IF NOT EXISTS `store` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table kids_map.store: ~6 rows (approximately)
+-- Dumping data for table cowboys.store: ~6 rows (approximately)
 /*!40000 ALTER TABLE `store` DISABLE KEYS */;
 INSERT INTO `store` (`id`, `type`, `title`, `damageOrDefense`, `levelLock`, `golds`, `inAppId`, `thumb`, `thumbRetina`, `img`, `imgRetina`, `sound`, `bigImg`, `bigImgRetina`, `description`, `frequently`) VALUES
 	(3, 'defenses', 'Jacket', 5, 4, 80, '0', 'http://bidoncd.s3.amazonaws.com/store/IconJacket.png', 'http://bidoncd.s3.amazonaws.com/store/IconJacket%402x.png', '', '', '', '', '', 'Save your life', 0),
@@ -2437,7 +2437,7 @@ INSERT INTO `store` (`id`, `type`, `title`, `damageOrDefense`, `levelLock`, `gol
 /*!40000 ALTER TABLE `store` ENABLE KEYS */;
 
 
--- Dumping structure for table kids_map.transactions
+-- Dumping structure for table cowboys.transactions
 CREATE TABLE IF NOT EXISTS `transactions` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
   `authen` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -2449,7 +2449,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8608 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table kids_map.transactions: 7 118 rows
+-- Dumping data for table cowboys.transactions: 7 118 rows
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
 INSERT INTO `transactions` (`id`, `authen`, `value`, `description`, `date`, `opponent_authen`, `local_id`) VALUES
 	(3852, 'F:100002726954717', 14, 'Duel', '1364604219', 'A:697342134', 39),
@@ -9573,7 +9573,7 @@ INSERT INTO `transactions` (`id`, `authen`, `value`, `description`, `date`, `opp
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 
 
--- Dumping structure for table kids_map.users
+-- Dumping structure for table cowboys.users
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `authen` varchar(50) CHARACTER SET utf8 NOT NULL,
@@ -9596,11 +9596,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `duels_win` int(11) NOT NULL DEFAULT '0',
   `duels_lost` int(11) NOT NULL DEFAULT '0',
   `bigest_win` int(11) NOT NULL DEFAULT '0',
-  `cap` int(10) NOT NULL,
-  `head` int(10) NOT NULL,
-  `body` int(10) NOT NULL,
-  `lengths` int(10) NOT NULL,
-  `shoes` int(10) NOT NULL,
+  `cap` int(10) DEFAULT '0',
+  `head` int(10) DEFAULT '0',
+  `body` int(10) DEFAULT '0',
+  `lengths` int(10) DEFAULT '0',
+  `shoes` int(10) DEFAULT '0',
   `remove_ads` int(11) NOT NULL DEFAULT '0',
   `avatar` text CHARACTER SET utf8 NOT NULL,
   `age` text COLLATE utf8_bin NOT NULL,
@@ -9612,9 +9612,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `authen` (`authen`),
   KEY `money` (`money`),
   KEY `Snetwork` (`snetwork`)
-) ENGINE=MyISAM AUTO_INCREMENT=344 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=345 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table kids_map.users: 235 rows
+-- Dumping data for table cowboys.users: 236 rows
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`, `last_login`, `first_login`, `type`, `region`, `current_language`, `os`, `app_ver`, `device_token`, `date`, `money`, `session_id`, `level`, `points`, `duels_win`, `duels_lost`, `bigest_win`, `cap`, `head`, `body`, `lengths`, `shoes`, `remove_ads`, `avatar`, `age`, `home_town`, `friends`, `identifier`) VALUES
 	(114, 'F:779605116', 'Santiago Cano', 'iPhone4', 'F', 1364481658, 1364481665, '0', 'es_CO', 'es', '6.1', '1.1.1', '6898a6108daf237483686973c87003deda29ab9365d5e2fb3f38eb721d57e911', 0, 81, '5154568091ce3', 2, 27, 0, 9, 0, 0, 0, 0, 0, 0, 0, '', '10/20/1990', '', 0, 'F:779605116'),
@@ -9622,9 +9622,9 @@ INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`,
 	(3, 'A:697342133', 'leperdant', 'iPod4', 'B', 0, 0, '', 'New York', 'ua', '6.1', '2.1', '', 0, 77, 'ghgyd3', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 'https://s3.amazonaws.com/bidoncd/avatars/539501_10151134590778159_692243691_n.jpg', '1987-11-30', 'New York', 10, 'bot'),
 	(4, 'A:697342134', 'police shooter', 'iPod4', 'B', 0, 0, '', '', '', '6.1', '2.1', '', 0, 53, 'dsad83j', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'https://s3.amazonaws.com/bidoncd/avatars/425355_2806254082522_1194585908_n.jpg', '0000-00-00', '', 0, ''),
 	(5, 'A:697342135', 'rangershoot9000', 'iPod4', 'B', 0, 0, '', '', '', '6.1', '2.1', '', 0, 60, 'kklj34e', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'https://s3.amazonaws.com/bidoncd/avatars/315959_257702987608826_1493735409_n.jpg', '0000-00-00', '', 0, ''),
-	(6, 'A:697342138', 'Jacob Riddle', 'iPod4', 'B', 0, 0, '', '', '', '6.1', '2.1', '', 0, 32, 'kjkf84d', 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'https://s3.amazonaws.com/bidoncd/avatars/222521_10151340781757275_1683854820_n.jpg', '0000-00-00', '', 0, ''),
+	(6, 'A:697342138', '1', '1', 'B', 1366023295, 0, '', '1', '1', '1', '1', '', 0, 32, '516bdc7e61e60', 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, '1', '1', '1', 1, '1'),
 	(7, 'A:697342136', 'Jarrod', 'iPod4', 'B', 0, 0, '', '', '', '6.1', '2.1', '', 0, 76, 'sdkj5g', 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'https://s3.amazonaws.com/bidoncd/avatars/197896_10152325624135383_1076212472_n.jpg', '0000-00-00', '', 0, ''),
-	(8, 'A:697342137', 'TonyTheTiger', 'iPod4', 'B', 0, 0, '', '', '', '6.1', '2.1', '', 0, 56, '515d98a9981e3', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'https://s3.amazonaws.com/bidoncd/avatars/189676_10150113914460872_5859475_n.jpg', '0000-00-00', '', 0, ''),
+	(8, 'A:697342137', 'TonyTheTiger', 'iPod4', 'B', 0, 0, '', '', '', '6.1', '2.1', '', 0, 56, '516bf4ed076fa', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'https://s3.amazonaws.com/bidoncd/avatars/189676_10150113914460872_5859475_n.jpg', '0000-00-00', '', 0, ''),
 	(109, 'F:100000408454752', 'Jason Beat-l Binneveld', 'iPhone5CDM', 'F', 1364472313, 1364472320, '0', 'nl_NL', 'nl', '6.1.3', '1.1.1', 'cd4083b146cf69c153f0ca95ba91cd680f8e9cb783e5699274778b9b04bb082a', 0, 200, '515431ff5aef5', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0, 'F:100000408454752'),
 	(102, 'F:537141553', 'Shultz ', 'iPhone5GSM', 'F', 1364450492, 1364800568, '0', 'ru_UA', 'en', '6.1.2', '1.0', 'a6c5f207333ce6bb72aec18f46fe22f37893e5d21b5c4a234d6b9c4bf3a56245', 0, 783, '515938f3b9478', 2, 27, 3, 0, 24, 0, 0, 0, 0, 0, 0, '', '06/29/1981', 'Cherkassy, Cherkas\'Ka Oblast\', Ukraine', 0, 'F:537141553'),
 	(287, 'F:100002322220925', 'Serg Sob', 'iPod5', 'F', 1365504187, 1365078664, '0', 'ru_UA', 'ru', '6.1.3', '1.2', 'd7428bbd1365961370c1424445f99f4ee3c43bef4e0d38a64dbe515b4d35b3e9', 0, 364, '516a48013ec64', 5, 423, 31, 4, 31, 0, 0, 0, 0, 0, 0, '', '05/04/1978', '', 0, 'F:100002322220925'),
@@ -9748,7 +9748,7 @@ INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`,
 	(221, 'F:100000366244381', 'Sha Gunna Wavey', 'iPhone4CDM', 'F', 1364677822, 1364677829, '0', 'en_US', 'en', '6.1.3', '1.1.1', '0b9f7aae00ed5cbffb7016515690ea5a934e3ca3255cfa32e47ff04e09c1c272', 0, 180, '515754c4473b4', 1, 11, 1, 2, 20, 0, 0, 0, 0, 0, 0, '', '10/19/1992', 'Brooklyn, New York', 0, 'F:100000366244381'),
 	(222, 'F:100004580201673', 'Joel Mcgown', 'iPhone5GSM', 'F', 1364679551, 1364679556, '0', 'en_US', 'en', '6.1.3', '1.1.1', 'd6d90e132ec1f86974f8ce1dcbd9b813304b168a81235b331d8cbd65bc547a0a', 0, 180, '51575b8333d85', 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, '', '12/06/1969', '', 0, 'F:100004580201673'),
 	(223, 'F:100001211655635', 'Mant175', 'iPhone5CDM', 'F', 1364680031, 1364680031, '0', 'en_US', 'en', '6.1.3', '1.1.1', '9638308d909d1eed28df2a11b39c6d8e5e3ca498d71d9b403dabc33e5741cabc', 0, 0, '5158cbdc8413a', 5, 421, 20, 3, 39, 0, 0, 0, 0, 0, 0, '', '04/06/1995', 'Glasford, Illinois', 0, 'F:100001211655635'),
-	(224, 'F:100000036033897', 'Jasmine', 'iPod5', 'F', 1364682091, 1364682098, '0', 'en_US', 'en', '6.0.1', '1.1.1', '99937ad68c09b3f1204c853d0125ce70005f23f6f07f81ca99a8d3625adc1b3a', 0, 108, '5157c02cc0cfa', 1, 18, 0, 6, 0, 0, 0, 0, 0, 0, 0, '', '10/03/1989', 'Pomona, California', 0, 'F:100000036033897'),
+	(224, 'F:100000036033897', '1', '1', 'F', 1366029587, 1364682098, '0', '1', '1', '1', '1', '1', 0, 108, '516bf51390f7b', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '1', '1', '1', 1, '1'),
 	(225, 'F:1231257471', 'Craig Findlater', 'iPhone5CDM', 'F', 1364683062, 1364683068, '0', 'en_GB', 'en-GB', '6.1.3', '1.1.1', '217f368ea4bac738a0721127c826cbfdda47ef75aaaeafa6e17a746452686403', 0, 162, '5157693b4238a', 1, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, '', '03/04/1988', 'Ellon, Aberdeenshire', 0, 'F:1231257471'),
 	(226, 'F:100002591344038', 'David Andrew Bivens', 'iPhone4S', 'F', 1364686832, 1364686841, '0', 'en_US', 'en', '6.1.3', '1.1.1', '39ef3cc56a933c7be6568ce923c142a8eac1f4b0bdd473409de36e36ae159d6b', 0, 200, '515777f86866b', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '08/22/1971', 'Washington Court House, Ohio', 0, 'F:100002591344038'),
 	(227, 'F:100001729965934', 'Alan Farrell ', 'iPhone4', 'F', 1364689151, 1364689156, '0', 'en_GB', 'en', '6.1.2', '1.1.1', 'dc54eaaa38814db1c3d245b02c439f2b30a25b21cd7b50b06c003f65e7ec11dd', 0, 89, '515781036bb28', 2, 22, 0, 8, 0, 0, 0, 0, 0, 0, 0, '', '08/02/1995', '', 0, 'F:100001729965934'),
@@ -9851,11 +9851,12 @@ INSERT INTO `users` (`user_id`, `authen`, `nickname`, `device_name`, `snetwork`,
 	(340, 'F:100000998677497', 'Badara Sey', 'iPhone4S', 'F', 1365968953, 1365968953, '0', 'en_US', 'en', '6.1.3', '1.1.1', 'cc626ac2277155e91275d6a6eea9b4071c2e4eeb152c9a7ee6d4e974d80cb4be', 0, 200, '516b0887e2969', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '06/28/1990', 'Silver Spring, Maryland', 0, 'F:100000998677497'),
 	(341, 'F:100000644051301', 'Lindsey Sporrer ', 'iPod4', 'F', 1365980349, 1365980340, '0', 'en_US', 'en', '6.1.3', '1.1.2', '', 0, 66, '516b34bf9577d', 1, 17, 0, 11, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0, 'F:100000644051301'),
 	(342, 'F:1456607952', 'Steve Slim', 'iPhone4S', 'F', 1365995791, 1365995781, '0', 'en_US', 'en', '6.1.3', '1.1.2', '', 0, 146, '516b710e9f260', 1, 6, 0, 3, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0, 'F:1456607952'),
-	(343, 'F:100002324250853', 'raufkin', 'iPhone4S', 'F', 1365999734, 1365999734, '0', 'ru_RU', 'ru', '6.1.3', '1.1.2', '340615add4cfd35190b2101dcf1e8f1d6ec93478cab8f9fcb7d85e0d6ea48d5e', 0, 171, '516b8075dc384', 1, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, '', '', 'Kemerovo', 0, 'F:100002324250853');
+	(343, 'F:100002324250853', 'raufkin', 'iPhone4S', 'F', 1365999734, 1365999734, '0', 'ru_RU', 'ru', '6.1.3', '1.1.2', '340615add4cfd35190b2101dcf1e8f1d6ec93478cab8f9fcb7d85e0d6ea48d5e', 0, 171, '516b8075dc384', 1, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, '', '', 'Kemerovo', 0, 'F:100002324250853'),
+	(344, 'F:1sdsd', 'Sergij Sobol', 'iPod3', 'F', 1366029553, 1366029052, '0', 'ru_UA', 'ru', '5.1.1', '2.2', '', 0, 200, '516bf4f06b3a6', 0, 10, 10, 0, 10, NULL, NULL, NULL, NULL, NULL, 0, 'sd', '10/26/1987', '', 0, 'F:100002141165315');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 
--- Dumping structure for table kids_map.users_favorites
+-- Dumping structure for table cowboys.users_favorites
 CREATE TABLE IF NOT EXISTS `users_favorites` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `user_authen` varchar(50) COLLATE utf8_bin NOT NULL,
@@ -9864,7 +9865,7 @@ CREATE TABLE IF NOT EXISTS `users_favorites` (
   KEY `user_authen` (`user_authen`)
 ) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table kids_map.users_favorites: 22 rows
+-- Dumping data for table cowboys.users_favorites: 22 rows
 /*!40000 ALTER TABLE `users_favorites` DISABLE KEYS */;
 INSERT INTO `users_favorites` (`id`, `user_authen`, `favorite_authen`) VALUES
 	(100, 'F:100003228559812', 'A:697342137'),

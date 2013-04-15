@@ -92,7 +92,7 @@ class HelperQueryHolds extends HelperAbstractDb
 				SELECT $select u.userId AS user_id, u.nickname, u.money, u.sessionId AS session_id, u.level, u.points, 
 					   u.duelsWin AS duels_win, u.duelsLost AS duels_lost, u.bigestWin AS bigest_win,
 				       u.removeAds AS remove_ads, u.avatar, u.age, u.homeTown AS home_town, u.friends, 
-					   u.identifier AS identifier				
+					   u.identifier AS identifier, u.cap, u.head, u.body, u.lengths, u.shoes
 				FROM CowboyDuelApiBundle:Users u
 				$where"
 		);

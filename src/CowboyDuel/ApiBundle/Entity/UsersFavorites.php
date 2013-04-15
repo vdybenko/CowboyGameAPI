@@ -22,20 +22,18 @@ class UsersFavorites
     private $id;
 
     /**
-     * @var string $userAuthen
+     * @var integer $userAuthen
      *
-     * @ORM\Column(name="user_authen", type="string", length=50, nullable=false)
+     * @ORM\Column(name="user_authen", type="string", nullable=false)
      */
     private $userAuthen;
 
     /**
-     * @var string $favoriteAuthen
+     * @var integer $favoriteAuthen
      *
-     * @ORM\Column(name="favorite_authen", type="string", length=50, nullable=false)
+     * @ORM\Column(name="favorite_authen", type="string", nullable=false)
      */
     private $favoriteAuthen;
-
-
 
     /**
      * Get id

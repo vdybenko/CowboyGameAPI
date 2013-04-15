@@ -31,7 +31,7 @@ class Settings
     /**
      * @var string $value
      *
-     * @ORM\Column(name="value", type="string", length=11, nullable=false)
+     * @ORM\Column(type="string", nullable=false)
      */
     private $value;
 
@@ -61,7 +61,7 @@ class Settings
     }
 
     /**
-     * Get name
+     * Get settingsname
      *
      * @return string 
      */

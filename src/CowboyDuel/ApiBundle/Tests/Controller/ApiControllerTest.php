@@ -39,8 +39,8 @@ class ApiControllerTest extends WebTestCase
     
     public function testRegistrationAction()
     {
-    	$client = static::createClient();    
-    	$client->request(
+    	$client = static::createClient();
+        $client->request(
     			'POST', '/api/registration',
     			  array("age" => "10/26/1987",
     				    "app_ver" => "2.2",

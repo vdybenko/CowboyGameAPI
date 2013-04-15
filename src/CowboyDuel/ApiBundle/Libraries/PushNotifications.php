@@ -39,7 +39,7 @@ class PushNotifications
 			$apnsMessage = chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '', $deviceToken)) . chr(0) . chr(strlen($message)) . $message;
 			fwrite($this->apnsConnection, $apnsMessage);
 
-            $logger = $this->container->get('logger');
+            $logger = $this->container->get('CowboyDuel.Logger');
             $logger->info('[push] '.$apnsMessage);
 		}
 	

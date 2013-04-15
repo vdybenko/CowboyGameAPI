@@ -12,3 +12,18 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     localhost
+        port:     %database_port%
+        dbname:   cowboys
+        user:     root
+        password:
+        charset:  UTF8
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true

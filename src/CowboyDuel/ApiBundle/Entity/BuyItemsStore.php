@@ -10,14 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="buyitemsstore")
  * @ORM\Entity
  */
-class Buyitemsstore
+class BuyItemsStore
 {
     /**
      * @var integer $id
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -29,27 +29,25 @@ class Buyitemsstore
     private $authenuser;
 
     /**
-     * @var integer $itemidstore
+     * @var integer $itemIdStore
      *
-     * @ORM\Column(name="itemIdStore", type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false)
      */
-    private $itemidstore;
-
+    private $itemIdStore;
+    
     /**
-     * @var integer $transactionsid
+     * @var integer $transactionsId
      *
-     * @ORM\Column(name="transactionsId", type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false)
      */
-    private $transactionsid;
-
+    private $transactionsId;
+    
     /**
      * @var integer $date
      *
-     * @ORM\Column(name="date", type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $date;
-
-
 
     /**
      * Get id
@@ -85,51 +83,49 @@ class Buyitemsstore
     }
 
     /**
-     * Set itemidstore
+     * Set itemIdStore
      *
-     * @param integer $itemidstore
+     * @param integer $itemIdStore
      * @return Buyitemsstore
      */
-    public function setItemidstore($itemidstore)
+    public function setItemIdStore($itemIdStore)
     {
-        $this->itemidstore = $itemidstore;
+        $this->itemIdStore = $itemIdStore;
     
         return $this;
     }
-
     /**
-     * Get itemidstore
+     * Get itemIdStore
      *
      * @return integer 
      */
-    public function getItemidstore()
+    public function getItemIdStore()
     {
-        return $this->itemidstore;
+        return $this->itemIdStore;
     }
-
+    
     /**
-     * Set transactionsid
+     * Set transactionsId
      *
-     * @param integer $transactionsid
+     * @param integer $transactionsId
      * @return Buyitemsstore
      */
-    public function setTransactionsid($transactionsid)
+    public function setTransactionsId($transactionsId)
     {
-        $this->transactionsid = $transactionsid;
+    	$this->transactionsId = $transactionsId;
     
-        return $this;
+    	return $this;
     }
-
     /**
-     * Get transactionsid
+     * Get transactionsId
      *
-     * @return integer 
+     * @return integer
      */
-    public function getTransactionsid()
+    public function getTransactionsId()
     {
-        return $this->transactionsid;
+    	return $this->transactionsId;
     }
-
+    
     /**
      * Set date
      *
@@ -138,18 +134,17 @@ class Buyitemsstore
      */
     public function setDate($date)
     {
-        $this->date = $date;
+    	$this->date = $date;
     
-        return $this;
+    	return $this;
     }
-
     /**
      * Get date
      *
-     * @return integer 
+     * @return integer
      */
     public function getDate()
     {
-        return $this->date;
+    	return $this->date;
     }
 }

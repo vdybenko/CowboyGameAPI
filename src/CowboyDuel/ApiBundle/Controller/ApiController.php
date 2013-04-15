@@ -58,10 +58,9 @@ class ApiController extends Controller
     	else 
     	{    	
     		$queryHolds->update_session($authen, $session_id);
+            $helperMethod->sendPushUsersFavorites($authen, $queryHolds);
+
     		$onlineExist = $queryHolds->getAuthenOnline($authen);
-    		
-    		$helperMethod->sendPushUsersFavorites($authen, $queryHolds);
-    	
     		if(empty($onlineExist))
     			$queryHolds->setAuthenOnline($authen, time());    		
     		 else
@@ -239,7 +238,7 @@ class ApiController extends Controller
                 $device_token = $request->get('device_token');
     			$device_name  = $request->get('device_name');
     			$region 	  = $request->get('region');
-    			 
+
     			$current_language = $request->get('current_language');
     			$nickname 	= $request->get('nickname');
     			$avatar   	= $request->get('avatar');

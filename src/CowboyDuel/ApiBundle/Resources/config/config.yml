@@ -5,6 +5,14 @@ services:
     CowboyDuel.PushNotifications:
         class:  CowboyDuel\ApiBundle\Libraries\PushNotifications
         arguments: [@service_container]
+    CowboyDuel.Logger:
+        class: Monolog\Logger
+        arguments: [my_info]
+        calls:
+            - [pushHandler, [@CowboyDuel.logger_handler]]
+    CowboyDuel.Logger_handler:
+        class: Monolog\Handler\StreamHandler
+        arguments: [%kernel.root_dir%/logs/CowboyDuelLogger.log, 100]
 
 parameters:
     # S3 Configuration
