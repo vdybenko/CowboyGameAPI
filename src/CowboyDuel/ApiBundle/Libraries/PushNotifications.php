@@ -10,9 +10,12 @@ class PushNotifications
 		private $passPhrase = '1111';
 		
 		private $apnsConnection;
+
+        private $container;
 	
 		function __construct($container)
 		{
+            $this->container = $container;
 			$this->sslPem = $container->get('kernel')->getRootdir().'/apns.pem';		
 			$this->connectToAPNS();
 		}
@@ -35,6 +38,9 @@ class PushNotifications
 		{
 			$apnsMessage = chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '', $deviceToken)) . chr(0) . chr(strlen($message)) . $message;
 			fwrite($this->apnsConnection, $apnsMessage);
+
+            $logger = $this->container->get('logger');
+            $logger->info('[push] '.$apnsMessage);
 		}
 	
 		function closeConnection()
