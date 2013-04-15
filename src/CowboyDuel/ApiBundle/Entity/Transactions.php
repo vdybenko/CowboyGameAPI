@@ -17,7 +17,7 @@ class Transactions
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -48,20 +48,22 @@ class Transactions
      * @ORM\Column(name="date", type="string", length=15, nullable=false)
      */
     private $date;
-    
+
     /**
      * @var string $opponentAuthen
      *
-     * @ORM\Column(name="opponent_authen", type="string")
+     * @ORM\Column(name="opponent_authen", type="string", length=255, nullable=false)
      */
     private $opponentAuthen;
-    
+
     /**
-     * @var string $localId
+     * @var integer $localId
      *
-     * @ORM\Column(name="local_id")
+     * @ORM\Column(name="local_id", type="integer", nullable=false)
      */
-    private $localId;    
+    private $localId;
+
+
 
     /**
      * Get id
@@ -164,7 +166,7 @@ class Transactions
     {
         return $this->date;
     }
-    
+
     /**
      * Set opponentAuthen
      *
@@ -173,39 +175,41 @@ class Transactions
      */
     public function setOpponentAuthen($opponentAuthen)
     {
-    	$this->opponentAuthen = $opponentAuthen;
+        $this->opponentAuthen = $opponentAuthen;
     
-    	return $this;
-    }    
+        return $this;
+    }
+
     /**
      * Get opponentAuthen
      *
-     * @return string
+     * @return string 
      */
     public function getOpponentAuthen()
     {
-    	return $this->opponentAuthen;
+        return $this->opponentAuthen;
     }
-    
+
     /**
-     * Set localIdv
+     * Set localId
      *
-     * @param integer $opponentAuthen
+     * @param integer $localId
      * @return Transactions
      */
     public function setLocalId($localId)
     {
-    	$this->localId = $localId;
+        $this->localId = $localId;
     
-    	return $this;
+        return $this;
     }
+
     /**
      * Get localId
      *
-     * @return integer
+     * @return integer 
      */
     public function getLocalId()
     {
-    	return $this->localId;
+        return $this->localId;
     }
 }

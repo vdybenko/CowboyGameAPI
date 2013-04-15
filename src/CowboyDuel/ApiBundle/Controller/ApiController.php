@@ -5,7 +5,6 @@ namespace CowboyDuel\ApiBundle\Controller;
 use CowboyDuel\ApiBundle\Libraries\PushNotifications;
 
 use CowboyDuel\ApiBundle\Entity\Users;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
 	Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
@@ -110,10 +109,13 @@ class ApiController extends Controller
     	$duels_lost = $request->get('duels_lost');
     	$bigest_win = $request->get('bigest_win');
     	$remove_ads = $request->get('remove_ads');
-    	
-    	/*$money 		= $request->get('money');
-    	$type 	= $request->get('type');*/
-    	
+
+        $cap 	 = $request->get('cap');
+        $head    = $request->get('head');
+        $body 	 = $request->get('body');
+        $lengths = $request->get('lengths');
+        $shoes   = $request->get('shoes');
+
     	if ($authen == null)
     	{
     		$responseDate['err_code'] = (int) - 4;
@@ -146,13 +148,14 @@ class ApiController extends Controller
 				$device_token = $user_info->getDeviceToken();
     			
     			$type 	= $user_info->getType();
-    			$region = $user_info->getRegion();;
+    			$region = $user_info->getRegion();
     			
     			//update info
     			$snetwork = $word;
     			$queryHolds->setUserInfo($authen, $authen_old, $app_ver, $device_name, $device_token, $nickname, $type, $os,$region,
     								     $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
-    								 	 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);
+    								 	 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork,
+                                         $cap, $head, $body, $lengths, $shoes);
     			//update session    			
     			$queryHolds->update_session($authen, $session_id);
     			
@@ -160,8 +163,10 @@ class ApiController extends Controller
     							      'money' => $money, 'duels_win' => $duels_win, 'duels_lost' => $duels_lost, 
     							      'bigest_win' => $bigest_win, 'remove_ads' => $remove_ads, 'avatar' => $avatar,
     		   					      'age' => $age, 'home_town' => $home_town, 'friends'=> $friends, 
-    		   					  	  'identifier' => $identifier
-    		   					 	 );  			
+    		   					  	  'identifier' => $identifier,  'cap' => $user_info->getCap(),
+                                      'head' => $user_info->getHead(), 'body' => $user_info->getBody(),
+                                      'lengths' => $user_info->getLengths(), 'shoes' => $user_info->getShoes()
+                );
     			return new Response(json_encode($responseDate));
     		}
     		 else
@@ -198,7 +203,8 @@ class ApiController extends Controller
     	
     		$queryHolds->setUser($authen, $app_ver, $device_name, $device_token, $nickname, $os, $region,
     		 					 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
-    		 					 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);    	
+    		 					 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork,
+                                 $cap, $head, $body, $lengths, $shoes);
     	}
     	else
     	{    	
@@ -229,9 +235,10 @@ class ApiController extends Controller
     			$auth_key = $request->get('auth_key');
     			$app_ver  = $request->get('app_ver');
     			$os 	  = $request->get('os');
-    			 
-    			$device_name = $request->get('device_name');
-    			$region 	 = $request->get('region');
+
+                $device_token = $request->get('device_token');
+    			$device_name  = $request->get('device_name');
+    			$region 	  = $request->get('region');
     			 
     			$current_language = $request->get('current_language');
     			$nickname 	= $request->get('nickname');
@@ -247,6 +254,12 @@ class ApiController extends Controller
     			$duels_lost = $request->get('duels_lost');
     			$bigest_win = $request->get('bigest_win');
     			$remove_ads = $request->get('remove_ads');
+
+                $cap 	 = $request->get('cap');
+                $head    = $request->get('head');
+                $body 	 = $request->get('body');
+                $lengths = $request->get('lengths');
+                $shoes   = $request->get('shoes');
     		
     			$word = strtoupper($authen{0});
     			if ($word == 'F' || $word == 'E' ) { $snetwork = $word;}
@@ -254,15 +267,18 @@ class ApiController extends Controller
     		
     			$queryHolds->setUserInfo($authen, $authen_old, $app_ver, $device_name, $device_token, $nickname, $type, $os,$region,
     			 						 $current_language, $level,$points, $money,$duels_win, $duels_lost, $bigest_win,
-    			 						 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork);
+    			 						 $remove_ads, $avatar, $age,$home_town, $friends, $identifier, $snetwork,
+                                         $cap, $head, $body, $lengths, $shoes);
     		}
     	
     	}
     	$queryHolds->update_session($authen, $session_id);
-    	$responseDate = array("err_code" => (int) 1, "err_description" => 'Ok');    	
+    	$responseDate = array('err_code' => (int) 1, 'err_description' => 'Ok');
     	$responseDate += array('session_id' => $session_id, 'avatar' => $avatar, 'level' => $level, 'name' => $nickname,
     						  'points' => $points, 'money' => $money, 'duels_win' => $duels_win, 'duels_lost' => $duels_lost, 
-    						  'bigest_win' => $bigest_win, 'remove_ads' => $remove_ads
+    						  'bigest_win' => $bigest_win, 'remove_ads' => $remove_ads,
+                              'cap' => $user_info->getCap(), 'head' => $user_info->getHead(), 'body' => $user_info->getBody(),
+                              'lengths' => $user_info->getLengths(), 'shoes' => $user_info->getShoes()
     		   				 );    		
     	return new Response(json_encode($responseDate));
     }

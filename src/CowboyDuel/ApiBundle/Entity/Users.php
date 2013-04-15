@@ -2,8 +2,6 @@
 
 namespace CowboyDuel\ApiBundle\Entity;
 
-use Symfony\Component\Validator\Constraints\Type;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,196 +12,233 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Users
 {
-	/**
-	 * @var integer $userId
-	 *
-	 * @ORM\Column(name="user_id", type="integer", nullable=false)
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
-	private $userId;
+    /**
+     * @var integer $userId
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $userId;
 
-	/**
-	 * @var string $authen
-	 *
-	 * @ORM\Column(name="authen", type="string", length=50, nullable=false)
-	 */
-	private $authen;
+    /**
+     * @var string $authen
+     *
+     * @ORM\Column(name="authen", type="string", length=50, nullable=false)
+     */
+    private $authen;
 
-	/**
-	 * @var string $nickname
-	 *
-	 * @ORM\Column(name="nickname", type="string", length=255, nullable=false)
-	 */
-	private $nickname;
+    /**
+     * @var string $nickname
+     *
+     * @ORM\Column(name="nickname", type="string", length=255, nullable=false)
+     */
+    private $nickname;
 
-	/**
-	 * @var string $deviceName
-	 *
-	 * @ORM\Column(name="device_name", type="string", length=10, nullable=false)
-	 */
-	private $deviceName;
+    /**
+     * @var string $deviceName
+     *
+     * @ORM\Column(name="device_name", type="string", length=10, nullable=false)
+     */
+    private $deviceName;
 
-	/**
-	 * @var string $snetwork
-	 *
-	 * @ORM\Column(name="snetwork", type="string", length=1, nullable=false)
-	 */
-	private $snetwork;
+    /**
+     * @var string $snetwork
+     *
+     * @ORM\Column(name="snetwork", type="string", length=1, nullable=false)
+     */
+    private $snetwork;
 
-	/**
-	 * @var integer $lastLogin
-	 *
-	 * @ORM\Column(name="last_login", type="integer", nullable=false)
-	 */
-	private $lastLogin;
+    /**
+     * @var integer $lastLogin
+     *
+     * @ORM\Column(name="last_login", type="integer", nullable=false)
+     */
+    private $lastLogin;
 
-	/**
-	 * @var integer $firstLogin
-	 *
-	 * @ORM\Column(name="first_login", type="integer", length=20, nullable=false)
-	 */
-	private $firstLogin;
+    /**
+     * @var integer $firstLogin
+     *
+     * @ORM\Column(name="first_login", type="integer", nullable=false)
+     */
+    private $firstLogin;
 
-	/**
-	 * @var string $type
-	 *
-	 * @ORM\Column(name="type", type="string", length=10, nullable=false)
-	 */
-	private $type;
+    /**
+     * @var string $type
+     *
+     * @ORM\Column(name="type", type="string", length=10, nullable=false)
+     */
+    private $type;
 
-	/**
-	 * @var string $region
-	 *
-	 * @ORM\Column(name="region", type="string", length=255, nullable=false)
-	 */
-	private $region;
+    /**
+     * @var string $region
+     *
+     * @ORM\Column(name="region", type="string", length=255, nullable=false)
+     */
+    private $region;
 
-	/**
-	 * @var string $currentLanguage
-	 *
-	 * @ORM\Column(name="current_language", type="string", length=255, nullable=false)
-	 */
-	private $currentLanguage;
+    /**
+     * @var string $currentLanguage
+     *
+     * @ORM\Column(name="current_language", type="string", length=255, nullable=false)
+     */
+    private $currentLanguage;
 
-	/**
-	 * @var string $os
-	 *
-	 * @ORM\Column(name="os", type="string", length=10, nullable=false)
-	 */
-	private $os;
+    /**
+     * @var string $os
+     *
+     * @ORM\Column(name="os", type="string", length=10, nullable=false)
+     */
+    private $os;
 
-	/**
-	 * @var string $appVer
-	 *
-	 * @ORM\Column(name="app_ver", type="string", length=10, nullable=false)
-	 */
-	private $appVer;
+    /**
+     * @var string $appVer
+     *
+     * @ORM\Column(name="app_ver", type="string", length=10, nullable=false)
+     */
+    private $appVer;
 
-	/**
-	 * @var string $deviceToken
-	 *
-	 * @ORM\Column(name="device_token", type="string", length=100, nullable=false)
-	 */
-	private $deviceToken;
+    /**
+     * @var string $deviceToken
+     *
+     * @ORM\Column(name="device_token", type="string", length=100, nullable=false)
+     */
+    private $deviceToken;
 
-	/**
-	 * @var integer $date
-	 *
-	 * @ORM\Column(name="date", type="integer", nullable=false)
-	 */
-	private $date;
+    /**
+     * @var integer $date
+     *
+     * @ORM\Column(name="date", type="integer", nullable=false)
+     */
+    private $date;
 
-	/**
-	 * @var integer $money
-	 *
-	 * @ORM\Column(name="money", type="integer", nullable=false)
-	 */
-	private $money;
+    /**
+     * @var integer $money
+     *
+     * @ORM\Column(name="money", type="integer", nullable=false)
+     */
+    private $money;
 
-	/**
-	 * @var string $sessionId
-	 *
-	 * @ORM\Column(name="session_id", type="string", length=50, nullable=false)
-	 */
-	private $sessionId;
+    /**
+     * @var string $sessionId
+     *
+     * @ORM\Column(name="session_id", type="string", length=50, nullable=false)
+     */
+    private $sessionId;
 
-	/**
-	 * @var integer $level
-	 *
-	 * @ORM\Column(name="level", type="integer", nullable=false)
-	 */
-	private $level;
+    /**
+     * @var integer $level
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level;
 
-	/**
-	 * @var integer $points
-	 *
-	 * @ORM\Column(name="points", type="integer", nullable=false)
-	 */
-	private $points;
+    /**
+     * @var integer $points
+     *
+     * @ORM\Column(name="points", type="integer", nullable=false)
+     */
+    private $points;
 
-	/**
-	 * @var integer $duelsWin
-	 *
-	 * @ORM\Column(name="duels_win", type="integer", nullable=false)
-	 */
-	private $duelsWin;
+    /**
+     * @var integer $duelsWin
+     *
+     * @ORM\Column(name="duels_win", type="integer", nullable=false)
+     */
+    private $duelsWin;
 
-	/**
-	 * @var integer $duelsLost
-	 *
-	 * @ORM\Column(name="duels_lost", type="integer", nullable=false)
-	 */
-	private $duelsLost;
+    /**
+     * @var integer $duelsLost
+     *
+     * @ORM\Column(name="duels_lost", type="integer", nullable=false)
+     */
+    private $duelsLost;
 
-	/**
-	 * @var integer $bigestWin
-	 *
-	 * @ORM\Column(name="bigest_win", type="integer", nullable=false)
-	 */
-	private $bigestWin;
+    /**
+     * @var integer $bigestWin
+     *
+     * @ORM\Column(name="bigest_win", type="integer", nullable=false)
+     */
+    private $bigestWin;
 
-	/**
-	 * @var integer $removeAds
-	 *
-	 * @ORM\Column(name="remove_ads", type="integer", nullable=false)
-	 */
-	private $removeAds;
+    /**
+     * @var integer $cap
+     *
+     * @ORM\Column(name="cap", type="integer", nullable=false)
+     */
+    private $cap;
 
-	/**
-	 * @var string $avatar
-	 *
-	 * @ORM\Column(name="avatar", type="text", nullable=false)
-	 */
-	private $avatar;
+    /**
+     * @var integer $head
+     *
+     * @ORM\Column(name="head", type="integer", nullable=false)
+     */
+    private $head;
 
-	/**
-	 * @var string $age
-	 *
-	 * @ORM\Column(name="age", type="text", nullable=false)
-	 */
-	private $age;
+    /**
+     * @var integer $body
+     *
+     * @ORM\Column(name="body", type="integer", nullable=false)
+     */
+    private $body;
 
-	/**
-	 * @var string $homeTown
-	 *
-	 * @ORM\Column(name="home_town", type="string", length=256, nullable=false)
-	 */
-	private $homeTown;
+    /**
+     * @var integer $lengths
+     *
+     * @ORM\Column(name="lengths", type="integer", nullable=false)
+     */
+    private $lengths;
 
-	/**
-	 * @var integer $friends
-	 *
-	 * @ORM\Column(name="friends", type="integer", nullable=false)
-	 */
-	private $friends;
+    /**
+     * @var integer $shoes
+     *
+     * @ORM\Column(name="shoes", type="integer", nullable=false)
+     */
+    private $shoes;
 
-	/**
-	 * @var string $facebookName
-	 *
-	 * @ORM\Column(type="string", length=30, nullable=false)
-	 */
-	private $identifier;
+    /**
+     * @var integer $removeAds
+     *
+     * @ORM\Column(name="remove_ads", type="integer", nullable=false)
+     */
+    private $removeAds;
+
+    /**
+     * @var string $avatar
+     *
+     * @ORM\Column(name="avatar", type="text", nullable=false)
+     */
+    private $avatar;
+
+    /**
+     * @var string $age
+     *
+     * @ORM\Column(name="age", type="text", nullable=false)
+     */
+    private $age;
+
+    /**
+     * @var string $homeTown
+     *
+     * @ORM\Column(name="home_town", type="string", length=256, nullable=false)
+     */
+    private $homeTown;
+
+    /**
+     * @var integer $friends
+     *
+     * @ORM\Column(name="friends", type="integer", nullable=false)
+     */
+    private $friends;
+
+    /**
+     * @var string $identifier
+     *
+     * @ORM\Column(name="identifier", type="string", length=30, nullable=false)
+     */
+    private $identifier;
+
+
 
     /**
      * Get userId
@@ -673,6 +708,121 @@ class Users
     public function getBigestWin()
     {
         return $this->bigestWin;
+    }
+
+    /**
+     * Set cap
+     *
+     * @param integer $cap
+     * @return Users
+     */
+    public function setCap($cap)
+    {
+        $this->cap = $cap;
+    
+        return $this;
+    }
+
+    /**
+     * Get cap
+     *
+     * @return integer 
+     */
+    public function getCap()
+    {
+        return $this->cap;
+    }
+
+    /**
+     * Set head
+     *
+     * @param integer $head
+     * @return Users
+     */
+    public function setHead($head)
+    {
+        $this->head = $head;
+    
+        return $this;
+    }
+
+    /**
+     * Get head
+     *
+     * @return integer 
+     */
+    public function getHead()
+    {
+        return $this->head;
+    }
+
+    /**
+     * Set body
+     *
+     * @param integer $body
+     * @return Users
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+    
+        return $this;
+    }
+
+    /**
+     * Get body
+     *
+     * @return integer 
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
+     * Set lengths
+     *
+     * @param integer $lengths
+     * @return Users
+     */
+    public function setLengths($lengths)
+    {
+        $this->lengths = $lengths;
+    
+        return $this;
+    }
+
+    /**
+     * Get lengths
+     *
+     * @return integer 
+     */
+    public function getLengths()
+    {
+        return $this->lengths;
+    }
+
+    /**
+     * Set shoes
+     *
+     * @param integer $shoes
+     * @return Users
+     */
+    public function setShoes($shoes)
+    {
+        $this->shoes = $shoes;
+    
+        return $this;
+    }
+
+    /**
+     * Get shoes
+     *
+     * @return integer 
+     */
+    public function getShoes()
+    {
+        return $this->shoes;
     }
 
     /**
