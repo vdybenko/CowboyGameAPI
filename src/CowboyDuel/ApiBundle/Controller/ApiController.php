@@ -276,8 +276,8 @@ class ApiController extends Controller
     	$responseDate += array('session_id' => $session_id, 'avatar' => $avatar, 'level' => $level, 'name' => $nickname,
     						   'points' => $points, 'money' => $money, 'duels_win' => $duels_win, 'duels_lost' => $duels_lost,
     						   'bigest_win' => $bigest_win, 'remove_ads' => $remove_ads,
-                               'cap' => $user_info->getCap(), 'head' => $user_info->getHead(), 'body' => $user_info->getBody(),
-                               'legs' => $user_info->getLegs(), 'shoes' => $user_info->getShoes()
+                               'cap' => $cap, 'head' => $head, 'body' => $body,
+                               'legs' => $legs, 'shoes' => $shoes
     		   				 );    		
     	return new Response(json_encode($responseDate));
     }
