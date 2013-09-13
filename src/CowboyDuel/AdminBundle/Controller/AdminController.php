@@ -28,7 +28,8 @@ class AdminController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		$queryHolds = new HelperQueryStatistic($em);
 		
-		$data = HelperMethod::setDataStatistic($em);
+		$data = HelperMethod::setDataStatistic($em);          $logger = $this->container->get('CowboyDuel.Logger');
+        $logger->info('[push] ');
 		
 		return array('data' => $data,
 					 'location' => 'admin_index');

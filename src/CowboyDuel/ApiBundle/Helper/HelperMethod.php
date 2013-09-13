@@ -19,7 +19,7 @@ class HelperMethod
 	
 	public function sendStatS3($file_upload, $uri, $data)
 	{	
-		S3::$use_ssl =  $this->container->getParameter('S3_use_ssl');
+		S3::$use_ssl = $this->container->getParameter('S3_use_ssl');
 		S3::setAuth($this->container->getParameter('S3_access_key'), $this->container->getParameter('S3_secret_key'));
 		
 		file_put_contents($file_upload, $data);

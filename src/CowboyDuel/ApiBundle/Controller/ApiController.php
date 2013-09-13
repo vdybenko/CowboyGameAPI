@@ -25,7 +25,10 @@ class ApiController extends Controller
      */
     public function indexAction()
     {
-    	$em = $this->getDoctrine()->getEntityManager();
+        $on = $this->getRequest()->query->get('push');
+        if($on != 1) return new Response("Api");
+
+        $em = $this->getDoctrine()->getEntityManager();
     	$queryHolds = new HelperQueryHolds($em);
 
         $user = $queryHolds->getUser('test_push');
@@ -132,7 +135,7 @@ class ApiController extends Controller
     	$word = strtoupper($authen{0});
     	$word_old = strtoupper($authen_old{0});
     	
-    	if(($word == 'F' ||  $word == 'E') && ($word_old == 'A' ))
+    	if($word == 'F' ||  $word == 'E')
     	{    			
     		$user_info = $queryHolds->getUserWithAuthenOld($authen, $authen_old);    		
     		if ($user_info != null && $authen_old != null)

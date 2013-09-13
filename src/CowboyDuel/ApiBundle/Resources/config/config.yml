@@ -9,7 +9,7 @@ services:
         class: Monolog\Logger
         arguments: [my_info]
         calls:
-            - [pushHandler, [@CowboyDuel.logger_handler]]
+            - [pushHandler, [@CowboyDuel.Logger_handler]]
     CowboyDuel.Logger_handler:
         class: Monolog\Handler\StreamHandler
         arguments: [%kernel.root_dir%/logs/CowboyDuelLogger.log, 100]
