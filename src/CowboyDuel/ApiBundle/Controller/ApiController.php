@@ -179,7 +179,7 @@ class ApiController extends Controller
     	}
     	 else
     	{
-    		if (isset($authen))	$authen_old = null;
+    		//if (isset($authen))	$authen_old = null;
     		$user_info = $queryHolds->getUserWithAuthenOld($authen, $authen_old);
     	}
     	
