@@ -66,7 +66,6 @@ class HelperQueryStore extends HelperAbstractDb
 				SELECT b.itemIdStore, b.date
 				FROM CowboyDuelApiBundle:BuyItemsStore b
 				WHERE b.authenuser='$authen'
-				ORDER BY s.id			
 			");	
 	
 		return $q->getResult();
