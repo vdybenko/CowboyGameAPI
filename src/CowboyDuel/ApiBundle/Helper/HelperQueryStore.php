@@ -64,8 +64,8 @@ class HelperQueryStore extends HelperAbstractDb
 	{
 		$q = $this->em->createQuery("
 				SELECT b.itemIdStore, b.date
-				FROM CowboyDuelApiBundle:BuyItemsStore b, CowboyDuelApiBundle:Store s
-				WHERE b.authenuser='$authen' AND b.itemIdStore = s.id	
+				FROM CowboyDuelApiBundle:BuyItemsStore b
+				WHERE b.authenuser='$authen'
 				ORDER BY s.id			
 			");	
 	
